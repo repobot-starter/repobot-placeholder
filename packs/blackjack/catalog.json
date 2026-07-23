@@ -1,0 +1,13 @@
+{
+    "key": "blackjack",
+    "templateKey": "repobot-blackjack",
+    "title": "BlackjackBot",
+    "description": "Casino blackjack against a dealer bot with chip betting, double down, 3:2 naturals, and a bankroll that persists between visits.",
+    "marketingExampleTitle": "Casino blackjack table",
+    "homePath": "/",
+    "previewPath": "/blackjack",
+    "homeViewDir": "web/app/src/View/Games/Blackjack",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

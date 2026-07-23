@@ -1,0 +1,13 @@
+{
+    "key": "folio",
+    "templateKey": "repobot-folio",
+    "title": "FolioBot",
+    "description": "An editorial one-page portfolio: hero statement, filterable project grid, about, and a contact CTA — all edited in one content file.",
+    "marketingExampleTitle": "Portfolio site",
+    "homePath": "/",
+    "previewPath": "/folio",
+    "homeViewDir": "web/app/src/View/Folio",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

@@ -1,0 +1,65 @@
+<section class="featured-collection">
+  {% if section.settings.eyebrow != blank %}
+    <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+  {% endif %}
+  <h2 class="featured-collection__title">{{ section.settings.title }}</h2>
+  <div class="product-grid">
+    {% assign collection = collections[section.settings.collection] %}
+    {% for product in collection.products limit: section.settings.limit %}
+      <a class="product-card" href="{{ product.url }}">
+        {% if product.featured_image %}
+          <img
+            src="{{ product.featured_image | image_url: width: 480 }}"
+            alt="{{ product.featured_image.alt | escape }}"
+            loading="lazy"
+            width="480"
+            height="{{ 480 | divided_by: product.featured_image.aspect_ratio | ceil }}"
+          >
+        {% endif %}
+        <h3>{{ product.title }}</h3>
+        {% render 'price', product: product %}
+      </a>
+    {% else %}
+      <p>{{ 'sections.featured_collection.empty' | t }}</p>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "In store now"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "This week's most-kept pieces"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "label": "Products to show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured collection"
+    }
+  ]
+}
+{% endschema %}

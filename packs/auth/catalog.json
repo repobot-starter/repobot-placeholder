@@ -1,0 +1,14 @@
+{
+    "key": "auth",
+    "templateKey": "repobot-auth",
+    "title": "AuthBot",
+    "description": "User accounts out of the box: sign-up, sign-in, and session-aware pages on the built-in Identity domain.",
+    "marketingExampleTitle": "User accounts starter",
+    "homePath": "/login",
+    "previewPath": "/login",
+    "homeViewDir": "web/app/src/View/LoginPage",
+    "clientOnly": false,
+    "capabilities": ["AUTH", "DATABASE", "EMAIL", "IOS", "ANDROID"],
+    "authMethods": ["email-code", "password", "anonymous"],
+    "isDefault": false
+}

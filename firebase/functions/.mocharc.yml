@@ -1,0 +1,9 @@
+exit: true
+reporter: "spec"
+timeout: 20000
+node-option:
+    - "import=tsx/esm"
+require:
+    - "test/MochaHooks.ts"
+spec:
+    - "test/**/*Test.ts"

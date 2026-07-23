@@ -1,0 +1,76 @@
+{
+    "sections": {
+        "hero": {
+            "type": "hero",
+            "settings": {}
+        },
+        "featured": {
+            "type": "featured-collection",
+            "settings": {}
+        },
+        "subscription": {
+            "type": "subscription-callout",
+            "settings": {}
+        },
+        "brew": {
+            "type": "brew-guide",
+            "blocks": {
+                "bloom": {
+                    "type": "step",
+                    "settings": {
+                        "title": "Bloom",
+                        "copy": "Wet the grounds and let them swell. This releases trapped gas so the pour extracts evenly.",
+                        "ratio": "0:00–0:45 · 50 g water"
+                    }
+                },
+                "pour": {
+                    "type": "step",
+                    "settings": {
+                        "title": "Pour",
+                        "copy": "Pour in slow spirals, keeping the bed level. Aim for a 1:16 coffee-to-water ratio.",
+                        "ratio": "0:45–2:30 · to 400 g"
+                    }
+                },
+                "rest": {
+                    "type": "step",
+                    "settings": {
+                        "title": "Rest",
+                        "copy": "Let it draw down completely, then give it a minute off the dripper. Flavors open as it cools.",
+                        "ratio": "2:30–3:00"
+                    }
+                }
+            },
+            "block_order": ["bloom", "pour", "rest"],
+            "settings": {}
+        },
+        "faq": {
+            "type": "faq",
+            "blocks": {
+                "freshness": {
+                    "type": "item",
+                    "settings": {
+                        "question": "How fresh is the coffee when it arrives?",
+                        "answer": "We roast Tuesdays and ship the same week, so most bags land within days of the roast date printed on the label."
+                    }
+                },
+                "grind": {
+                    "type": "item",
+                    "settings": {
+                        "question": "Can you grind it for me?",
+                        "answer": "Yes — choose whole bean, or a grind for pour-over, drip, French press, or espresso at checkout. Whole bean stays fresh longest."
+                    }
+                },
+                "decaf": {
+                    "type": "item",
+                    "settings": {
+                        "question": "Do you roast a decaf?",
+                        "answer": "We do. Our decaf is a sugarcane-process Colombian, roasted on the same schedule as everything else — no dusty back-shelf beans."
+                    }
+                }
+            },
+            "block_order": ["freshness", "grind", "decaf"],
+            "settings": {}
+        }
+    },
+    "order": ["hero", "featured", "subscription", "brew", "faq"]
+}

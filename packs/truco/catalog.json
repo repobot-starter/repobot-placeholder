@@ -1,0 +1,13 @@
+{
+    "key": "truco",
+    "templateKey": "repobot-truco",
+    "title": "TrucoBot",
+    "description": "Brazilian truco: manilhas, bluffs, and shouting Seis! against a bot with attitude.",
+    "marketingExampleTitle": "Truco boteco table",
+    "homePath": "/",
+    "previewPath": "/truco",
+    "homeViewDir": "web/app/src/View/Games/Truco",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

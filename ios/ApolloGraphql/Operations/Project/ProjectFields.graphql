@@ -1,0 +1,12 @@
+fragment ProjectFields on Project {
+  id
+  name
+  description
+  status
+  createdTime
+  archivedAt
+  createdBy {
+    id
+    displayName
+  }
+}

@@ -1,0 +1,10 @@
+---
+description: Enforce relative imports within packages; never import from src/ roots
+alwaysApply: true
+---
+
+# Relative Imports Only
+
+- Within a package, always use relative import paths (`./`, `../`).
+- Never generate imports that start with `src/` or `test/`.
+- Across packages, import from the package name (`@base/core`, `@base/design-system`), never deep paths.

@@ -1,0 +1,42 @@
+{
+    "sections": {
+        "hero": {
+            "type": "hero",
+            "settings": {}
+        },
+        "featured": {
+            "type": "featured-collection",
+            "settings": {}
+        },
+        "lookbook": {
+            "type": "lookbook",
+            "blocks": {
+                "autumn": {
+                    "type": "row",
+                    "settings": {
+                        "kicker": "Lookbook 01",
+                        "title": "The Autumn Edit",
+                        "copy": "Wool coats with soft shoulders, brushed-cotton shirting, and boots built for pavement and weather alike. Everything in the edit layers with everything else.",
+                        "link_label": "Shop the edit"
+                    }
+                },
+                "studio": {
+                    "type": "row",
+                    "settings": {
+                        "kicker": "Lookbook 02",
+                        "title": "Studio Essentials",
+                        "copy": "The pieces we reach for between fittings: relaxed trousers, a canvas tote that carries its weight, and knits that keep their shape.",
+                        "link_label": "Shop essentials"
+                    }
+                }
+            },
+            "block_order": ["autumn", "studio"],
+            "settings": {}
+        },
+        "newsletter": {
+            "type": "newsletter",
+            "settings": {}
+        }
+    },
+    "order": ["hero", "featured", "lookbook", "newsletter"]
+}

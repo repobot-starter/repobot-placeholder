@@ -1,0 +1,13 @@
+{
+    "key": "launch",
+    "templateKey": "repobot-launch",
+    "title": "LaunchBot",
+    "description": "A startup landing page: hero with waitlist capture, features, how-it-works, pricing with a billing toggle, and FAQ — all edited in one content file.",
+    "marketingExampleTitle": "Startup landing page",
+    "homePath": "/",
+    "previewPath": "/launch",
+    "homeViewDir": "web/app/src/View/Launch",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

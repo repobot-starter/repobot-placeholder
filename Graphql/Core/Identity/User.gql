@@ -1,0 +1,54 @@
+type User {
+    id: Id!
+    email: String!
+    displayName: String!
+    status: UserStatus!
+    account: Account
+    createdTime: Instant!
+}
+
+enum UserStatus {
+    ACTIVE
+    DISABLED
+}
+
+# Connection
+type UserConnection {
+    nodes: [User]!
+    pageInfo: PageInfo!
+}
+
+input UserConnectionInput {
+    filters: UserConnectionFilters
+    connection: ConnectionInput!
+}
+
+input UserConnectionFilters {
+    email: String
+    displayName: String
+    statuses: [UserStatus!]
+}
+
+# Create
+input CreateUserInput {
+    idempotencyKey: String!
+    fields: CreateUserFields!
+}
+
+input CreateUserFields {
+    accountId: Id!
+    email: String!
+    displayName: String!
+}
+
+# Update
+input UpdateUserInput {
+    objectId: Id!
+    idempotencyKey: String!
+    fields: UpdateUserFields!
+}
+
+input UpdateUserFields {
+    displayName: String
+    status: UserStatus
+}

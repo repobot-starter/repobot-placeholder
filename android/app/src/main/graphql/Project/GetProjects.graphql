@@ -1,0 +1,10 @@
+query GetProjects($input: ProjectConnectionInput!) {
+  projects(input: $input) {
+    nodes {
+      ...ProjectFields
+    }
+    pageInfo {
+      ...PageInfoFields
+    }
+  }
+}

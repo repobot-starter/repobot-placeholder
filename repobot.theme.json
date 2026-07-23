@@ -1,0 +1,11 @@
+{
+    "$comment": "Project theme contract. The design system derives its tokens from this file: web (web/design-system/src/theme/themeConfig.ts) at build time, native via scripts/generate-native-theme.mjs. Edit this file to re-brand the whole app — see docs/design-system.md#theming.",
+    "brand": {
+        "primary": "#1f6feb",
+        "primaryDark": "#90caf9"
+    },
+    "radius": "soft",
+    "density": "comfortable",
+    "fontFamily": "system",
+    "mode": "dark"
+}

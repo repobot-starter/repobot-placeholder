@@ -1,0 +1,26 @@
+---
+description: Core repo context and architecture expectations
+alwaysApply: true
+---
+
+# Repo Context
+
+This is a domain-oriented full-stack starter. Big ideas get their own domains; domains stay separated across every layer of the stack.
+
+# Architecture
+
+- Backend layering is intentional and strict:
+  - `firebase/functions/src/Data` defines persistence models, schema, and low-level query shape.
+  - `firebase/functions/src/Services` implement business workflows and domain invariants using `Data`.
+  - `firebase/functions/src/Graphql` is the API boundary translating client operations into service calls.
+  - Clients consume GraphQL contracts and never depend on backend data internals.
+- Each domain owns its own database module (`Data/IdentityDatabase.ts`, `Data/ProjectDatabase.ts`) and its own tables. Domains share one Postgres instance today but are designed to split into physically separate databases later — never join across domains in SQL; go through services.
+- Cross-domain access goes through module-level domain exports (`Services/<Domain>/index.ts`), not deep imports into another domain's internals.
+- GraphQL SDL source of truth is `Graphql/` at the repo root. Protobuf event schemas live in `protobufs/`.
+- Existing exemplar domains: `Identity` (Account, User — auth, dataloaders) and `Project` (CRUD, backend-driven forms, pubsub event). Imitate them.
+
+# Workflow
+
+- Adding a domain follows `docs/adding-a-domain.md` exactly: migration → tables → service → GraphQL schema → resolvers → form resolver → web page → tests.
+- All operations go through root `npm run` scripts (`dev:up`, `dev:status`, `migrate`, `codegen`, `check:all`, `test`). Do not hand-run docker/emulators/codegen.
+- Quality gate before finishing any task: `npm run check:all` and `npm test` must pass.

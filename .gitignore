@@ -1,0 +1,62 @@
+# Dependencies
+node_modules/
+
+# Builds
+firebase/functions/lib/
+dist/
+*.tsbuildinfo
+storybook-static/
+
+# Generated code (web/app/src/generated, firebase/functions/generated) is
+# COMMITTED, not ignored: composed template repos must typecheck on a fresh
+# clone with zero manual codegen. Regenerate with `npm run codegen` after
+# editing Graphql/**/*.gql or protobufs/**/*.proto and commit the output;
+# scripts/check-all.sh and CI fail when it is stale.
+
+# iOS / Xcode (apollo-ios-cli and ApolloGraphql/AppGraphqlApi are checked in
+# so generated projects can run codegen without extra setup)
+ios/**/DerivedData/
+ios/**/.build/
+ios/**/build/
+
+# Android / Gradle. Duplicates android/.gitignore on purpose:
+# compose-pack.sh rsyncs with --exclude-from on THIS file only (rsync cannot
+# honor nested gitignores without breaking on the `!.env.example` negation),
+# so anything ignored only in android/.gitignore would still be copied into
+# every composed template — and a Gradle build running concurrently makes
+# the rsync fail outright on files that vanish mid-copy.
+# (Both direct and ** forms: git's ** matches zero directories but rsync's
+# does not, and this file feeds both.)
+android/.gradle/
+android/**/.gradle/
+android/build/
+android/**/build/
+android/.kotlin/
+android/**/.kotlin/
+android/local.properties
+android/**/*.keystore
+ios/**/*.xcuserstate
+ios/**/xcuserdata/
+ios/**/.swiftpm/xcode/xcuserdata/
+ios/**/*.xccheckout
+ios/**/*.moved-aside
+# fastlane run artifacts (the .p8 key must never be committed)
+ios/fastlane/asc_key.p8
+ios/fastlane/testflight-result.json
+ios/fastlane/report.xml
+ios/fastlane/README.md
+ios/Gemfile.lock
+
+# Local dev state
+.dev/
+.devdata/
+*.log
+
+# Environment files: only .env.example templates are committed.
+.env
+.env.*
+!.env.example
+
+# OS / editor
+.DS_Store
+.idea/

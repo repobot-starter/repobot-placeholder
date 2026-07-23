@@ -1,0 +1,18 @@
+<header class="site-header">
+  <a class="site-header__brand" href="{{ routes.root_url }}">{{ shop.name }}</a>
+  <nav class="site-header__nav" role="navigation">
+    {% for link in linklists.main-menu.links %}
+      <a href="{{ link.url }}">{{ link.title }}</a>
+    {% endfor %}
+  </nav>
+  <a class="site-header__cart" href="{{ routes.cart_url }}">
+    {{ 'sections.header.cart' | t }} ({{ cart.item_count }})
+  </a>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": []
+}
+{% endschema %}

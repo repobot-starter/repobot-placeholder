@@ -1,0 +1,8 @@
+{
+    "projects": {
+        "default": "demo-repobot-base",
+        "local": "demo-repobot-base",
+        "dev": "your-dev-project-id",
+        "prod": "your-prod-project-id"
+    }
+}

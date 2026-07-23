@@ -1,0 +1,8 @@
+{
+    "key": "shopify-beauty",
+    "templateKey": "repobot-shopify-beauty",
+    "title": "Shopify beauty",
+    "description": "A skincare example store on the Repobot Shopify theme standards: routine builders, ingredient glossaries, and bundle callouts ready to swap for a real catalog.",
+    "platform": "SHOPIFY",
+    "comment": "Standalone template (not a pack on the web kernel): a Shopify theme has its own repo shape. Published by scripts/publish-templates.sh alongside pack-composed templates."
+}

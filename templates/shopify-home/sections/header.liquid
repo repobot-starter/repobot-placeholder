@@ -1,0 +1,24 @@
+<header class="site-header">
+  <a class="site-header__brand" href="{{ routes.root_url }}">{{ shop.name }}</a>
+  <nav class="site-header__nav" role="navigation">
+    {% if linklists.main-menu.links.size > 0 %}
+      {% for link in linklists.main-menu.links %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {% endfor %}
+    {% else %}
+      <a href="{{ routes.all_products_collection_url }}">{{ 'sections.header.nav_shop' | t }}</a>
+      <a href="/pages/rooms">{{ 'sections.header.nav_rooms' | t }}</a>
+      <a href="/pages/materials">{{ 'sections.header.nav_materials' | t }}</a>
+    {% endif %}
+  </nav>
+  <a class="site-header__cart" href="{{ routes.cart_url }}">
+    {{ 'sections.header.cart' | t }} ({{ cart.item_count }})
+  </a>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": []
+}
+{% endschema %}

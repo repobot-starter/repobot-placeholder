@@ -1,0 +1,13 @@
+{
+    "key": "chess",
+    "templateKey": "repobot-chess",
+    "title": "ChessBot",
+    "description": "Full-rules chess against a bot with three difficulty levels, or a friend in local 2P.",
+    "marketingExampleTitle": "Chess duel vs the bot",
+    "homePath": "/",
+    "previewPath": "/chess",
+    "homeViewDir": "web/app/src/View/Games/Chess",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

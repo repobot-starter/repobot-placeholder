@@ -1,0 +1,11 @@
+{
+    "defaultPort": 9292,
+    "up": "bash scripts/dev-up.sh",
+    "down": "bash scripts/dev-down.sh",
+    "readyUrl": "http://127.0.0.1:${PORT}",
+    "healthcheck": {
+        "url": "http://127.0.0.1:${PORT}",
+        "timeoutMs": 420000
+    },
+    "comment": "dev-up runs `shopify theme dev` against the store from the project's Shopify integration (SHOPIFY_FLAG_STORE + SHOPIFY_CLI_THEME_TOKEN are injected by the workspace). Without a connected store it serves the static preview fallback."
+}

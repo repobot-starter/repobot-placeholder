@@ -1,0 +1,13 @@
+{
+    "key": "race",
+    "templateKey": "repobot-race",
+    "title": "RaceBot",
+    "description": "A neon highway racer: weave through traffic, ride the nitro, and cash every overtake.",
+    "marketingExampleTitle": "Neon highway racer",
+    "homePath": "/",
+    "previewPath": "/race",
+    "homeViewDir": "web/app/src/View/Games/Race",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

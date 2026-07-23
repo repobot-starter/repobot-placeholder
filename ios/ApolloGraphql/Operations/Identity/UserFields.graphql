@@ -1,0 +1,11 @@
+fragment UserFields on User {
+  id
+  email
+  displayName
+  status
+  createdTime
+  account {
+    id
+    name
+  }
+}

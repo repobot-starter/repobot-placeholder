@@ -1,0 +1,13 @@
+{
+    "key": "pong",
+    "templateKey": "repobot-pong",
+    "title": "PongBot",
+    "description": "Classic paddle duel against a bot with four difficulty levels and 2P mode.",
+    "marketingExampleTitle": "Retro pong arcade",
+    "homePath": "/",
+    "previewPath": "/pong",
+    "homeViewDir": "web/app/src/View/Games/Pong",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

@@ -1,0 +1,13 @@
+{
+    "key": "chat",
+    "templateKey": "repobot-chat",
+    "title": "ChatBot",
+    "description": "An AI chat thread with streaming answers, visible reasoning, and tool calls — on web and iOS.",
+    "marketingExampleTitle": "AI chat starter",
+    "homePath": "/",
+    "previewPath": "/chat",
+    "homeViewDir": "web/app/src/View/AiChat",
+    "clientOnly": false,
+    "capabilities": ["AI", "BACKEND", "DATABASE", "IOS"],
+    "isDefault": false
+}

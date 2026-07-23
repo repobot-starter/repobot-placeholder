@@ -1,0 +1,13 @@
+{
+    "key": "code",
+    "templateKey": "repobot-code",
+    "title": "CodeBot",
+    "description": "Block-programming puzzles: build a program from command blocks to steer a robot past walls and pits and feed the hungry pet.",
+    "marketingExampleTitle": "Robot coding puzzles",
+    "homePath": "/",
+    "previewPath": "/code",
+    "homeViewDir": "web/app/src/View/Games/Code",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

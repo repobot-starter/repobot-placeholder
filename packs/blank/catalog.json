@@ -1,0 +1,13 @@
+{
+    "key": "blank",
+    "templateKey": "repobot-placeholder",
+    "title": "No template",
+    "description": "Empty starter with a simple landing page. Chat with the agent to build from scratch.",
+    "marketingExampleTitle": null,
+    "homePath": "/",
+    "previewPath": "/",
+    "homeViewDir": "web/app/src/View/Blank",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": true
+}

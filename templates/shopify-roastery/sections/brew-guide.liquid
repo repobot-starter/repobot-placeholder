@@ -1,0 +1,103 @@
+<section class="brew-guide">
+  {% if section.settings.eyebrow != blank %}
+    <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+  {% endif %}
+  <h2 class="brew-guide__title">{{ section.settings.title }}</h2>
+  {% if section.settings.intro != blank %}
+    <p class="brew-guide__intro">{{ section.settings.intro }}</p>
+  {% endif %}
+  <ol class="brew-guide__steps">
+    {% for block in section.blocks %}
+      <li class="brew-guide__step" {{ block.shopify_attributes }}>
+        <h3>{{ block.settings.title }}</h3>
+        <p>{{ block.settings.copy }}</p>
+        {% if block.settings.ratio != blank %}
+          <span class="brew-guide__ratio">{{ block.settings.ratio }}</span>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ol>
+</section>
+
+{% schema %}
+{
+  "name": "Brew guide",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "From our brew bar"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "The three-minute pour-over"
+    },
+    {
+      "type": "text",
+      "id": "intro",
+      "label": "Intro",
+      "default": "Medium-fine grind, water just off the boil. Everything else is patience."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Bloom"
+        },
+        {
+          "type": "textarea",
+          "id": "copy",
+          "label": "Copy",
+          "default": "Wet the grounds and let them swell. This releases trapped gas so the pour extracts evenly."
+        },
+        {
+          "type": "text",
+          "id": "ratio",
+          "label": "Ratio or time (optional)",
+          "default": "0:00–0:45 · 50 g water"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brew guide",
+      "blocks": [
+        {
+          "type": "step",
+          "settings": {
+            "title": "Bloom",
+            "copy": "Wet the grounds and let them swell. This releases trapped gas so the pour extracts evenly.",
+            "ratio": "0:00–0:45 · 50 g water"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Pour",
+            "copy": "Pour in slow spirals, keeping the bed level. Aim for a 1:16 coffee-to-water ratio.",
+            "ratio": "0:45–2:30 · to 400 g"
+          }
+        },
+        {
+          "type": "step",
+          "settings": {
+            "title": "Rest",
+            "copy": "Let it draw down completely, then give it a minute off the dripper. Flavors open as it cools.",
+            "ratio": "2:30–3:00"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

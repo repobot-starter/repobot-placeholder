@@ -1,0 +1,8 @@
+mutation CreateAiVoiceSession {
+  createAiVoiceSession {
+    clientSecret
+    expiresAt
+    model
+    voice
+  }
+}

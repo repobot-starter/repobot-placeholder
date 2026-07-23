@@ -1,0 +1,13 @@
+{
+    "key": "blog",
+    "templateKey": "repobot-blog",
+    "title": "BlogBot",
+    "description": "A markdown blog: masthead, tag-filtered post list, and a clean article reader — posts live in one content file, parsed by a tiny built-in markdown engine.",
+    "marketingExampleTitle": "Markdown blog",
+    "homePath": "/",
+    "previewPath": "/blog",
+    "homeViewDir": "web/app/src/View/Blog",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

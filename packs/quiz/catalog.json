@@ -1,0 +1,13 @@
+{
+    "key": "quiz",
+    "templateKey": "repobot-quiz",
+    "title": "QuizBot",
+    "description": "A multiple-choice quiz app: quizzes defined in one content file, instant right/wrong feedback with explanations, a results screen that lists your misses, and best scores saved on device — no accounts, no backend.",
+    "marketingExampleTitle": "Trivia quiz app",
+    "homePath": "/",
+    "previewPath": "/quiz",
+    "homeViewDir": "web/app/src/View/Quiz",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

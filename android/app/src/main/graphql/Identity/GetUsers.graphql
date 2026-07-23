@@ -1,0 +1,10 @@
+query GetUsers($input: UserConnectionInput!) {
+  users(input: $input) {
+    nodes {
+      ...UserFields
+    }
+    pageInfo {
+      ...PageInfoFields
+    }
+  }
+}

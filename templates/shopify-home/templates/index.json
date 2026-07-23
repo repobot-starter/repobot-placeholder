@@ -1,0 +1,103 @@
+{
+    "sections": {
+        "hero": {
+            "type": "hero",
+            "settings": {}
+        },
+        "featured": {
+            "type": "featured-collection",
+            "settings": {}
+        },
+        "rooms": {
+            "type": "room-lookbook",
+            "blocks": {
+                "living": {
+                    "type": "room",
+                    "settings": {
+                        "name": "The Living Room",
+                        "copy": "Low sofas, a table that takes mugs without coasters, light you can read by.",
+                        "link_label": "Shop the room"
+                    }
+                },
+                "study": {
+                    "type": "room",
+                    "settings": {
+                        "name": "The Study",
+                        "copy": "A desk that holds still while you think, and shelving that earns its wall.",
+                        "link_label": "Shop the room"
+                    }
+                },
+                "bedroom": {
+                    "type": "room",
+                    "settings": {
+                        "name": "The Bedroom",
+                        "copy": "A bed frame that doesn't creak and linen that gets better after every wash.",
+                        "link_label": "Shop the room"
+                    }
+                }
+            },
+            "block_order": ["living", "study", "bedroom"],
+            "settings": {}
+        },
+        "materials": {
+            "type": "materials",
+            "blocks": {
+                "walnut": {
+                    "type": "material",
+                    "settings": {
+                        "swatch": "#5d4433",
+                        "name": "Walnut",
+                        "sourcing": "American black walnut, air-dried for two years before it meets a blade."
+                    }
+                },
+                "boucle": {
+                    "type": "material",
+                    "settings": {
+                        "swatch": "#e6e0d3",
+                        "name": "Bouclé",
+                        "sourcing": "A looped wool blend from a Belgian mill. It wears in, not out."
+                    }
+                },
+                "steel": {
+                    "type": "material",
+                    "settings": {
+                        "swatch": "#3a3d3b",
+                        "name": "Powder-coated steel",
+                        "sourcing": "Bent, welded, and coated an hour from the workshop. No plastic caps to lose."
+                    }
+                }
+            },
+            "block_order": ["walnut", "boucle", "steel"],
+            "settings": {}
+        },
+        "delivery": {
+            "type": "delivery-faq",
+            "blocks": {
+                "white_glove": {
+                    "type": "item",
+                    "settings": {
+                        "question": "What does white-glove delivery include?",
+                        "answer": "We bring the piece inside, up the stairs, into the room, unwrap it, and take every scrap of packaging with us. You point; we place."
+                    }
+                },
+                "assembly": {
+                    "type": "item",
+                    "settings": {
+                        "question": "Do I have to assemble anything?",
+                        "answer": "Almost never. Most pieces arrive whole; the few that travel in parts, the delivery team finishes on the spot — bolts, levels, and all."
+                    }
+                },
+                "returns": {
+                    "type": "item",
+                    "settings": {
+                        "question": "How do returns work for large items?",
+                        "answer": "You have 30 days. We collect the piece from the room we delivered it to — no re-boxing required. Made-to-order fabrics are the one exception, flagged clearly before you buy."
+                    }
+                }
+            },
+            "block_order": ["white_glove", "assembly", "returns"],
+            "settings": {}
+        }
+    },
+    "order": ["hero", "featured", "rooms", "materials", "delivery"]
+}

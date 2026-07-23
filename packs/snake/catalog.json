@@ -1,0 +1,13 @@
+{
+    "key": "snake",
+    "templateKey": "repobot-snake",
+    "title": "SnakeBot",
+    "description": "Grid snake on a green-phosphor terminal, with levels and high scores.",
+    "marketingExampleTitle": "Terminal snake",
+    "homePath": "/",
+    "previewPath": "/snake",
+    "homeViewDir": "web/app/src/View/Games/Snake",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

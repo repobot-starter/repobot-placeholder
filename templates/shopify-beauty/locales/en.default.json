@@ -1,0 +1,65 @@
+{
+    "general": {
+        "meta": {
+            "tags": "Tagged \"{{ tags }}\"",
+            "page": "Page {{ page }}"
+        }
+    },
+    "sections": {
+        "header": {
+            "cart": "Cart",
+            "nav_shop": "Shop",
+            "nav_routines": "Routines",
+            "nav_ingredients": "Ingredients"
+        },
+        "footer": {
+            "tagline": "Three steps. Morning and night. That's the whole routine.",
+            "powered_by": "Powered by a Repobot starter theme."
+        },
+        "featured_collection": {
+            "empty": "Select a collection to feature its products here."
+        },
+        "routine_builder": {
+            "am": "AM",
+            "pm": "PM"
+        },
+        "ingredient_glossary": {
+            "found_in": "Found in"
+        },
+        "before_after": {
+            "week_zero": "Week 0",
+            "week_count": "Week {{ weeks }}"
+        },
+        "collection": {
+            "empty": "No products in this collection yet."
+        },
+        "cart": {
+            "title": "Your cart",
+            "quantity": "Quantity",
+            "total": "Total",
+            "update": "Update",
+            "checkout": "Check out",
+            "empty": "Your cart is empty.",
+            "continue_shopping": "Continue shopping"
+        },
+        "not_found": {
+            "title": "Page not found",
+            "body": "The page you were looking for doesn't exist.",
+            "back_home": "Back to home"
+        }
+    },
+    "products": {
+        "product": {
+            "add_to_cart": "Add to cart",
+            "sold_out": "Sold out",
+            "key_ingredients": {
+                "title": "Key ingredients"
+            },
+            "how_to_use": {
+                "title": "How to use",
+                "am": "AM",
+                "pm": "PM"
+            }
+        }
+    }
+}

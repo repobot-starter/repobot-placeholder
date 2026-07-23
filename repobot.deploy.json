@@ -1,0 +1,12 @@
+{
+    "templateKey": "repobot-placeholder",
+    "packKey": "blank",
+    "clientOnly": true,
+    "capabilities": [
+        "IOS",
+        "ANDROID"
+    ],
+    "authMethods": [
+        "email-code"
+    ]
+}

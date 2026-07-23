@@ -1,0 +1,53 @@
+# Shop domain: the single-product storefront with anonymous Stripe checkout.
+# All fields here are public (see publicOperationRootFields in
+# GraphqlServer.ts) — buyers never sign in.
+
+type ShopProduct {
+    key: String!
+    name: String!
+    tagline: String!
+    "Price in the currency's minor units (cents for USD)."
+    priceMinorUnits: Int!
+    "Lowercase ISO currency code, e.g. \"usd\"."
+    currency: String!
+}
+
+enum CheckoutSessionStatus {
+    PENDING
+    PAID
+}
+
+enum CheckoutProvider {
+    "Sandbox-only simulated checkout (PAYMENTS_MODE=local); no real payment."
+    LOCAL
+    "Stripe hosted Checkout (PAYMENTS_MODE=stripe)."
+    STRIPE
+}
+
+type CheckoutSession {
+    id: Id!
+    provider: CheckoutProvider!
+    status: CheckoutSessionStatus!
+    "Where to send the buyer to pay: the in-app test checkout or Stripe's hosted page."
+    checkoutUrl: String!
+    "Product snapshot taken at checkout time."
+    productName: String!
+    "Total in the currency's minor units."
+    amountTotal: Int!
+    currency: String!
+    createdTime: Instant!
+}
+
+input CreateCheckoutSessionInput {
+    idempotencyKey: String!
+    fields: CreateCheckoutSessionFields!
+}
+
+input CreateCheckoutSessionFields {
+    "The web app's origin (window.location.origin); success/cancel redirects are built from it."
+    origin: String!
+}
+
+input CompleteTestCheckoutSessionInput {
+    sessionId: Id!
+}

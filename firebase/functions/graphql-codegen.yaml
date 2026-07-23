@@ -1,0 +1,25 @@
+# Generates resolver types from the GraphQL SDL (copied into generated/Graphql
+# by prebuild.sh). Root resolvers return PartiallyResolved rows; field resolvers
+# hydrate relations through per-request dataloaders.
+schema: "./generated/Graphql/**/*.gql"
+generates:
+    ./generated/GraphqlResolverTypes.ts:
+        plugins:
+            - "typescript"
+            - "typescript-resolvers"
+        config:
+            useIndexSignature: true
+            contextType: "../src/Graphql/GraphqlServer.js#GraphqlRequestContext"
+            maybeValue: "T | undefined"
+            inputMaybeValue: "T | null | undefined"
+            typesPrefix: "Gql"
+            enumsAsTypes: true
+            scalars:
+                Id: "string"
+                Instant: "Date | string"
+            mappers:
+                Account: "../src/Graphql/Resolvers/PartiallyResolved.js#PartiallyResolvedAccount"
+                User: "../src/Graphql/Resolvers/PartiallyResolved.js#PartiallyResolvedUser"
+                Project: "../src/Graphql/Resolvers/PartiallyResolved.js#PartiallyResolvedProject"
+                ProjectMembership: "../src/Graphql/Resolvers/PartiallyResolved.js#PartiallyResolvedProjectMembership"
+                CheckoutSession: "../src/Graphql/Resolvers/PartiallyResolved.js#PartiallyResolvedCheckoutSession"

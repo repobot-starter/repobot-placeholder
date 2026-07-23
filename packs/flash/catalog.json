@@ -1,0 +1,13 @@
+{
+    "key": "flash",
+    "templateKey": "repobot-flash",
+    "title": "FlashBot",
+    "description": "A spaced-repetition flashcard app: decks defined in one content file, a five-box Leitner scheduler that decides what's due each day, and progress saved on device — no accounts, no backend.",
+    "marketingExampleTitle": "Flashcard study app",
+    "homePath": "/",
+    "previewPath": "/flash",
+    "homeViewDir": "web/app/src/View/Flash",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

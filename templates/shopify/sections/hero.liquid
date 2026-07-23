@@ -1,0 +1,43 @@
+<section class="hero">
+  <h1 class="hero__title">{{ section.settings.title }}</h1>
+  <p class="hero__subtitle">{{ section.settings.subtitle }}</p>
+  {% if section.settings.cta_link != blank %}
+    <a class="hero__cta" href="{{ section.settings.cta_link }}">{{ section.settings.cta_label }}</a>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Welcome to your store"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Built on the Repobot Shopify starter."
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button label",
+      "default": "Shop all"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero"
+    }
+  ]
+}
+{% endschema %}

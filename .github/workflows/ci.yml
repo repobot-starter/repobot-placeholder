@@ -1,0 +1,100 @@
+name: CI
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+
+jobs:
+    backend:
+        name: Backend build and test
+        runs-on: ubuntu-latest
+        services:
+            postgres:
+                image: postgres:16
+                env:
+                    POSTGRES_USER: postgres
+                    POSTGRES_PASSWORD: postgres
+                    POSTGRES_DB: postgres
+                ports:
+                    - 5433:5432
+                options: >-
+                    --health-cmd pg_isready
+                    --health-interval 5s
+                    --health-timeout 5s
+                    --health-retries 10
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: npm
+            - run: npm ci
+            - name: Codegen (protos + GraphQL types + JSON schema definitions)
+              run: bash firebase/functions/prebuild.sh
+            - name: Generated code freshness (generated/ is committed; run npm run codegen and commit)
+              run: |
+                  git add -N firebase/functions/generated
+                  git diff --exit-code -- firebase/functions/generated
+            - name: Lint
+              run: npm --workspace firebase/functions run lint
+            - name: Build
+              run: npm --workspace firebase/functions run build
+            - name: Apply SQL migrations to test database
+              run: npm --workspace firebase/functions run migrate:test
+            - name: Drizzle drift check (TS schema must match SQL migrations)
+              run: bash firebase/functions/scripts/drift-check.sh
+              env:
+                  DATABASE_URL: postgres://postgres:postgres@127.0.0.1:5433/postgres
+            - name: Blackbox tests
+              run: npm --workspace firebase/functions run test
+            - name: Prettier check
+              run: npx prettier --check "firebase/functions/src/**/*.ts" "firebase/functions/test/**/*.ts"
+
+    web:
+        name: Web build
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: npm
+            - run: npm ci
+            - name: Codegen
+              run: bash web/core/prebuild.sh && bash web/app/prebuild.sh
+            - name: Generated code freshness (src/generated is committed; run npm run codegen and commit)
+              run: |
+                  git add -N web/app/src/generated
+                  git diff --exit-code -- web/app/src/generated
+            - name: Typecheck core + design system
+              run: npm --workspace web/core run typecheck && npm --workspace web/design-system run typecheck
+            - name: Lint app
+              run: npm --workspace web/app run lint
+            - name: Build app
+              run: npm --workspace web/app run build
+
+    docs:
+        name: Docs path check
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+            - run: node scripts/check-doc-paths.mjs
+
+    secrets:
+        name: Secret scan
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+            # The gitleaks CLI, not gitleaks-action: the action requires a paid
+            # license for organization-owned repos, which made this job (and
+            # the whole run) permanently red on every hosted customer repo.
+            - name: Run gitleaks
+              run: |
+                  curl -sSfL https://github.com/gitleaks/gitleaks/releases/download/v8.24.3/gitleaks_8.24.3_linux_x64.tar.gz | tar -xz gitleaks
+                  ./gitleaks git --no-banner --redact --exit-code 1 .

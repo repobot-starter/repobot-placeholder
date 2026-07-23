@@ -1,0 +1,13 @@
+{
+    "key": "sitter",
+    "templateKey": "repobot-sitter",
+    "title": "SitterBot",
+    "description": "Babysitting chaos: fix mishaps with the right tool and keep the kids happy before the parents get home.",
+    "marketingExampleTitle": "Babysitting chaos game",
+    "homePath": "/",
+    "previewPath": "/sitter",
+    "homeViewDir": "web/app/src/View/Games/Sitter",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

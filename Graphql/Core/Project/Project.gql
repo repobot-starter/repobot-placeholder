@@ -1,0 +1,81 @@
+type Project {
+    id: Id!
+    name: String!
+    description: String
+    status: ProjectStatus!
+    createdBy: User!
+    memberships: [ProjectMembership!]!
+    createdTime: Instant!
+    archivedAt: Instant
+}
+
+enum ProjectStatus {
+    ACTIVE
+    ARCHIVED
+}
+
+type ProjectMembership {
+    id: Id!
+    role: ProjectMembershipRole!
+    user: User!
+    project: Project!
+    createdTime: Instant!
+}
+
+enum ProjectMembershipRole {
+    OWNER
+    EDITOR
+    VIEWER
+}
+
+# Connection
+type ProjectConnection {
+    nodes: [Project]!
+    pageInfo: PageInfo!
+}
+
+input ProjectConnectionInput {
+    filters: ProjectConnectionFilters
+    connection: ConnectionInput!
+}
+
+input ProjectConnectionFilters {
+    name: String
+    statuses: [ProjectStatus!]
+}
+
+# Create
+input CreateProjectInput {
+    idempotencyKey: String!
+    fields: CreateProjectFields!
+}
+
+input CreateProjectFields {
+    name: String!
+    description: String
+}
+
+# Update
+input UpdateProjectInput {
+    objectId: Id!
+    idempotencyKey: String!
+    fields: UpdateProjectFields!
+}
+
+input UpdateProjectFields {
+    name: String
+    description: String
+    doArchive: Boolean
+}
+
+# Membership
+input AddProjectMemberInput {
+    idempotencyKey: String!
+    fields: AddProjectMemberFields!
+}
+
+input AddProjectMemberFields {
+    projectId: Id!
+    userId: Id!
+    role: ProjectMembershipRole!
+}

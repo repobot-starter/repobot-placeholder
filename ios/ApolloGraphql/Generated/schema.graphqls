@@ -1,0 +1,358 @@
+"""
+A directive used by the Apollo iOS client to annotate operations or fragments that should be used exclusively for generating local cache mutations instead of as standard operations.
+"""
+directive @apollo_client_ios_localCacheMutation on QUERY | MUTATION | SUBSCRIPTION | FRAGMENT_DEFINITION
+
+"""
+A directive used by the Apollo iOS code generation engine to generate custom import statements in operation or fragment definition files. An import statement to import a module with the name provided in the `module` argument will be added to the generated definition file.
+"""
+directive @import(
+  """The name of the module to import."""
+  module: String!
+) repeatable on QUERY | MUTATION | SUBSCRIPTION | FRAGMENT_DEFINITION
+# Ai domain: the voice session broker for the talk pack. Chat streaming does
+# not go through GraphQL — it needs a streaming transport, served by the
+# ai__request__chat function (see firebase/functions/src/CloudFunctions/Ai.ts).
+#
+# createAiVoiceSession is public (see publicOperationRootFields in
+# GraphqlServer.ts): the talk surface works without sign-in, mirroring shop.
+# The OpenAI API key never leaves the server — the client only receives a
+# short-lived Realtime client secret.
+
+type AiVoiceSession {
+    "Short-lived secret the native app opens its OpenAI Realtime WebSocket with."
+    clientSecret: String!
+    "When the client secret expires; reconnect by minting a new session."
+    expiresAt: Instant
+    "The realtime model to pass when connecting, e.g. \"gpt-realtime-2\"."
+    model: String!
+    "The voice the session speaks with."
+    voice: String!
+}
+type Account {
+    id: Id!
+    name: String!
+    createdTime: Instant!
+}
+
+# Connection
+type AccountConnection {
+    nodes: [Account]!
+    pageInfo: PageInfo!
+}
+
+input AccountConnectionInput {
+    filters: AccountConnectionFilters
+    connection: ConnectionInput!
+}
+
+input AccountConnectionFilters {
+    name: String
+}
+
+# Create
+input CreateAccountInput {
+    idempotencyKey: String!
+    fields: CreateAccountFields!
+}
+
+input CreateAccountFields {
+    name: String!
+}
+type User {
+    id: Id!
+    email: String!
+    displayName: String!
+    status: UserStatus!
+    account: Account
+    createdTime: Instant!
+}
+
+enum UserStatus {
+    ACTIVE
+    DISABLED
+}
+
+# Connection
+type UserConnection {
+    nodes: [User]!
+    pageInfo: PageInfo!
+}
+
+input UserConnectionInput {
+    filters: UserConnectionFilters
+    connection: ConnectionInput!
+}
+
+input UserConnectionFilters {
+    email: String
+    displayName: String
+    statuses: [UserStatus!]
+}
+
+# Create
+input CreateUserInput {
+    idempotencyKey: String!
+    fields: CreateUserFields!
+}
+
+input CreateUserFields {
+    accountId: Id!
+    email: String!
+    displayName: String!
+}
+
+# Update
+input UpdateUserInput {
+    objectId: Id!
+    idempotencyKey: String!
+    fields: UpdateUserFields!
+}
+
+input UpdateUserFields {
+    displayName: String
+    status: UserStatus
+}
+type Project {
+    id: Id!
+    name: String!
+    description: String
+    status: ProjectStatus!
+    createdBy: User!
+    memberships: [ProjectMembership!]!
+    createdTime: Instant!
+    archivedAt: Instant
+}
+
+enum ProjectStatus {
+    ACTIVE
+    ARCHIVED
+}
+
+type ProjectMembership {
+    id: Id!
+    role: ProjectMembershipRole!
+    user: User!
+    project: Project!
+    createdTime: Instant!
+}
+
+enum ProjectMembershipRole {
+    OWNER
+    EDITOR
+    VIEWER
+}
+
+# Connection
+type ProjectConnection {
+    nodes: [Project]!
+    pageInfo: PageInfo!
+}
+
+input ProjectConnectionInput {
+    filters: ProjectConnectionFilters
+    connection: ConnectionInput!
+}
+
+input ProjectConnectionFilters {
+    name: String
+    statuses: [ProjectStatus!]
+}
+
+# Create
+input CreateProjectInput {
+    idempotencyKey: String!
+    fields: CreateProjectFields!
+}
+
+input CreateProjectFields {
+    name: String!
+    description: String
+}
+
+# Update
+input UpdateProjectInput {
+    objectId: Id!
+    idempotencyKey: String!
+    fields: UpdateProjectFields!
+}
+
+input UpdateProjectFields {
+    name: String
+    description: String
+    doArchive: Boolean
+}
+
+# Membership
+input AddProjectMemberInput {
+    idempotencyKey: String!
+    fields: AddProjectMemberFields!
+}
+
+input AddProjectMemberFields {
+    projectId: Id!
+    userId: Id!
+    role: ProjectMembershipRole!
+}
+type Query {
+    #
+    # Identity
+    #
+
+    currentUser: User!
+
+    accounts(input: AccountConnectionInput!): AccountConnection!
+
+    users(input: UserConnectionInput!): UserConnection!
+    userCreateFormSchema: SchemaForm!
+    userUpdateFormSchema(input: SchemaFormUpdateInput!): SchemaForm!
+
+    #
+    # Project
+    #
+
+    project(id: Id!): Project!
+    projects(input: ProjectConnectionInput!): ProjectConnection!
+    projectCreateFormSchema: SchemaForm!
+    projectUpdateFormSchema(input: SchemaFormUpdateInput!): SchemaForm!
+
+    #
+    # Shop (public: buyers are anonymous)
+    #
+
+    shopProduct: ShopProduct!
+    checkoutSession(id: Id!): CheckoutSession!
+}
+
+type Mutation {
+    #
+    # Identity
+    #
+
+    createAccount(input: CreateAccountInput!): Account!
+    createUser(input: CreateUserInput!): User!
+    updateUser(input: UpdateUserInput!): User!
+
+    #
+    # Project
+    #
+
+    createProject(input: CreateProjectInput!): Project!
+    updateProject(input: UpdateProjectInput!): Project!
+    addProjectMember(input: AddProjectMemberInput!): ProjectMembership!
+
+    #
+    # Shop (public: buyers are anonymous)
+    #
+
+    createCheckoutSession(input: CreateCheckoutSessionInput!): CheckoutSession!
+    completeTestCheckoutSession(input: CompleteTestCheckoutSessionInput!): CheckoutSession!
+
+    #
+    # Ai (public: the talk surface works without sign-in)
+    #
+
+    createAiVoiceSession: AiVoiceSession!
+}
+# Shop domain: the single-product storefront with anonymous Stripe checkout.
+# All fields here are public (see publicOperationRootFields in
+# GraphqlServer.ts) — buyers never sign in.
+
+type ShopProduct {
+    key: String!
+    name: String!
+    tagline: String!
+    "Price in the currency's minor units (cents for USD)."
+    priceMinorUnits: Int!
+    "Lowercase ISO currency code, e.g. \"usd\"."
+    currency: String!
+}
+
+enum CheckoutSessionStatus {
+    PENDING
+    PAID
+}
+
+enum CheckoutProvider {
+    "Sandbox-only simulated checkout (PAYMENTS_MODE=local); no real payment."
+    LOCAL
+    "Stripe hosted Checkout (PAYMENTS_MODE=stripe)."
+    STRIPE
+}
+
+type CheckoutSession {
+    id: Id!
+    provider: CheckoutProvider!
+    status: CheckoutSessionStatus!
+    "Where to send the buyer to pay: the in-app test checkout or Stripe's hosted page."
+    checkoutUrl: String!
+    "Product snapshot taken at checkout time."
+    productName: String!
+    "Total in the currency's minor units."
+    amountTotal: Int!
+    currency: String!
+    createdTime: Instant!
+}
+
+input CreateCheckoutSessionInput {
+    idempotencyKey: String!
+    fields: CreateCheckoutSessionFields!
+}
+
+input CreateCheckoutSessionFields {
+    "The web app's origin (window.location.origin); success/cancel redirects are built from it."
+    origin: String!
+}
+
+input CompleteTestCheckoutSessionInput {
+    sessionId: Id!
+}
+# Shared cursor-pagination contract. Every list query takes a domain
+# *ConnectionInput wrapping this ConnectionInput plus optional filters,
+# and returns a domain *Connection with nodes + pageInfo.
+
+input ConnectionInput {
+    pagination: PaginationInput!
+    sort: [SortOrderInput!]!
+}
+
+type PageInfo {
+    hasPreviousPage: Boolean!
+    hasNextPage: Boolean!
+    startCursor: String
+    endCursor: String
+}
+
+input PaginationInput {
+    first: Int!
+    after: String
+}
+
+input SortOrderInput {
+    fieldName: String!
+    direction: SortDirection!
+}
+
+enum SortDirection {
+    asc
+    desc
+}
+# Backend-driven forms. The backend builds complete form definitions
+# (JSON Schema + UI schema + default data, each JSON-encoded) so clients
+# render entity create/edit forms with zero frontend form code.
+
+type SchemaForm {
+    jsonSchema: String!
+    uiSchema: String!
+    defaultData: String!
+}
+
+input SchemaFormUpdateInput {
+    objectId: Id!
+}
+# Globally unique, prefixed row IDs (for example "user_01H..."). Sent to clients as-is.
+scalar Id
+
+# Represents a point in time, encoded as an RFC 3339 / ISO 8601 UTC string.
+# Format: "2026-04-14T22:58:03.000Z"
+scalar Instant

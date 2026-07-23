@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package base.project.v1;
+
+import "google/protobuf/timestamp.proto";
+
+// Published when a Project row is created. The PubSub topic name for this
+// event is the fully qualified message name: "base.project.v1.ProjectCreated".
+message ProjectCreated {
+  string project_id = 1;
+  string name = 2;
+  string created_by_user_id = 3;
+  google.protobuf.Timestamp created_at = 4;
+}

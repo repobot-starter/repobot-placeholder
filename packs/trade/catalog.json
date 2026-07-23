@@ -1,0 +1,13 @@
+{
+    "key": "trade",
+    "templateKey": "repobot-trade",
+    "title": "TradeBot",
+    "description": "A marketing site for a trade or supply-chain business: commodity cards, a supply-chain timeline, a live shipment board, and a quote CTA — all edited in one content file.",
+    "marketingExampleTitle": "Supply-chain business site",
+    "homePath": "/",
+    "previewPath": "/trade",
+    "homeViewDir": "web/app/src/View/Trade",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

@@ -1,0 +1,129 @@
+# TestFlight lane for Repobot dev deploys ("install on your iPhone").
+#
+# Runs inside .github/workflows/ios-build.yml (kind=testflight) on a macOS
+# runner, driven entirely by environment variables the platform injects:
+#
+#   ASC_ISSUER_ID / ASC_KEY_ID / ASC_KEY_P8  App Store Connect API key
+#                                            (from the account's Apple
+#                                            integration, injected as repo
+#                                            Actions secrets at dispatch)
+#   APPLE_TEAM_ID                            Apple developer team id
+#   APP_BUNDLE_ID                            bundle id derived from the
+#                                            environment's deploySlug
+#   APP_DISPLAY_NAME                         project name shown on the phone
+#
+# The app ships under the *user's* Apple account (App Store guideline 4.2.6
+# requires template apps to ship under the end client's developer account).
+# The lane is self-healing: it creates the bundle id and App Store Connect
+# app record on first run, and ensures a public-link beta group so the
+# platform can hand out an install link with no per-tester invites.
+
+default_platform(:ios)
+
+PUBLIC_GROUP_NAME = "Repobot Testers"
+
+platform :ios do
+  desc "Build the Development flavor and upload it to TestFlight with a public install link"
+  lane :testflight_deploy do
+    bundle_id = ENV.fetch("APP_BUNDLE_ID")
+    display_name = ENV.fetch("APP_DISPLAY_NAME", "App")
+    team_id = ENV.fetch("APPLE_TEAM_ID")
+
+    # The .p8 arrives as a secret env var; fastlane wants a file on disk.
+    key_path = File.expand_path("asc_key.p8", __dir__)
+    File.write(key_path, ENV.fetch("ASC_KEY_P8"))
+    api_key = app_store_connect_api_key(
+      key_id: ENV.fetch("ASC_KEY_ID"),
+      issuer_id: ENV.fetch("ASC_ISSUER_ID"),
+      key_filepath: key_path
+    )
+
+    # First run for a project: register the bundle id and create the App
+    # Store Connect app record. No-ops when they already exist.
+    produce(
+      api_key: api_key,
+      app_identifier: bundle_id,
+      app_name: display_name,
+      team_id: team_id,
+      skip_itc: false,
+      skip_devcenter: false
+    )
+
+    # TestFlight rejects duplicate build numbers; continue from the latest.
+    latest_build = latest_testflight_build_number(
+      api_key: api_key,
+      app_identifier: bundle_id,
+      team_id: team_id,
+      initial_build_number: 0
+    )
+    increment_build_number(
+      xcodeproj: "App.xcodeproj",
+      build_number: (latest_build + 1).to_s
+    )
+
+    # Automatic ("cloud") signing with the ASC API key: xcodebuild mints the
+    # certificate and profile itself via -allowProvisioningUpdates, so users
+    # never touch certificates. The bundle id and team are overridden at
+    # build time — the checked-in project keeps its placeholder identity.
+    signing_xcargs = [
+      "PRODUCT_BUNDLE_IDENTIFIER=#{bundle_id}",
+      "DEVELOPMENT_TEAM=#{team_id}",
+      "CODE_SIGN_STYLE=Automatic",
+      "INFOPLIST_KEY_CFBundleDisplayName=#{display_name.shellescape}",
+      "-allowProvisioningUpdates",
+      "-authenticationKeyPath #{key_path.shellescape}",
+      "-authenticationKeyID #{ENV.fetch("ASC_KEY_ID")}",
+      "-authenticationKeyIssuerID #{ENV.fetch("ASC_ISSUER_ID")}",
+    ].join(" ")
+    build_app(
+      project: "App.xcodeproj",
+      scheme: "Development",
+      export_method: "app-store",
+      export_team_id: team_id,
+      output_directory: "build",
+      xcargs: signing_xcargs,
+      export_xcargs: "-allowProvisioningUpdates"
+    )
+
+    upload_to_testflight(
+      api_key: api_key,
+      app_identifier: bundle_id,
+      team_id: team_id,
+      # Wait so the build can be attached to the public-link group below.
+      skip_waiting_for_build_processing: false,
+      distribute_external: true,
+      groups: [PUBLIC_GROUP_NAME],
+      changelog: "Development build from Repobot.",
+      notify_external_testers: false
+    )
+
+    # Ensure the public link exists and record it. The platform reads the
+    # link back through the ASC API as well; this artifact is for humans
+    # debugging a run.
+    public_link = ensure_public_link(bundle_id)
+    File.write(
+      File.expand_path("testflight-result.json", __dir__),
+      { publicLink: public_link, bundleId: bundle_id }.to_json
+    )
+    UI.success("TestFlight public link: #{public_link}")
+  ensure
+    File.delete(File.expand_path("asc_key.p8", __dir__)) if File.exist?(File.expand_path("asc_key.p8", __dir__))
+  end
+end
+
+# Finds or creates the shared public-link beta group and returns its link.
+# upload_to_testflight creates the group when missing, but without the
+# public link enabled — flip it on here.
+def ensure_public_link(bundle_id)
+  app = Spaceship::ConnectAPI::App.find(bundle_id)
+  UI.user_error!("App #{bundle_id} not found in App Store Connect after upload") if app.nil?
+  group = app.get_beta_groups.find { |candidate| candidate.name == PUBLIC_GROUP_NAME }
+  group ||= app.create_beta_group(group_name: PUBLIC_GROUP_NAME)
+  unless group.public_link_enabled
+    group = Spaceship::ConnectAPI.patch_beta_group(
+      group_id: group.id,
+      attributes: { publicLinkEnabled: true, publicLinkLimitEnabled: false }
+    ).first
+  end
+  group.public_link
+end

@@ -1,0 +1,28 @@
+{
+    "sections": {
+        "main": {
+            "type": "main-product",
+            "blocks": {
+                "tasting_notes": {
+                    "type": "tasting_notes",
+                    "settings": {
+                        "aroma": "Dark chocolate",
+                        "body": "Round & syrupy",
+                        "finish": "Toasted hazelnut"
+                    }
+                },
+                "details": {
+                    "type": "details",
+                    "settings": {
+                        "origin": "Huila, Colombia",
+                        "altitude": "1,750–1,900 m",
+                        "process": "Washed"
+                    }
+                }
+            },
+            "block_order": ["tasting_notes", "details"],
+            "settings": {}
+        }
+    },
+    "order": ["main"]
+}

@@ -1,0 +1,24 @@
+---
+description: Use partial-resolution plus dataloader pattern in GraphQL
+globs: firebase/functions/src/Graphql/Resolvers/**/*.ts
+alwaysApply: false
+---
+
+# GraphQL Partial Resolution Pattern
+
+- Root resolvers map service results to `PartiallyResolved*` shapes (GraphQL scalar fields + the backend model object).
+- Chained field resolvers hydrate related objects via request-scoped dataloaders on `GraphqlRequestContext` — never by re-querying per node.
+- Keep the mapping explicit even when GraphQL and backend types look similar; each side must be able to evolve safely.
+
+## Required flow
+
+1. Service returns the domain model.
+2. Root resolver maps to `PartiallyResolved*`.
+3. Field resolver reads the relation key and calls `context.<x>Dataloader.load(...)`.
+
+Exemplar: `Project.createdBy` in `firebase/functions/src/Graphql/Resolvers/Project/` hydrating via the user dataloader.
+
+## When to use dataloader
+
+- Use it for relation lookups across many nodes (avoids N+1 in connections).
+- Skip it for one-off lookups where a single bounded service call already returns the data.

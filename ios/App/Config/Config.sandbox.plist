@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>APP_NAME</key>
+  <string></string>
+  <key>GRAPHQL_URL</key>
+  <string>http://127.0.0.1:5001/demo-repobot-base/us-central1/graphql__request__api</string>
+  <key>AUTH_MODE</key>
+  <string>local</string>
+  <key>AUTH_REDIRECT_URL</key>
+  <string>baseapp-sandbox://auth/callback</string>
+  <!-- Comma-separated sign-in methods rendered by the sign-in screen, in
+       order: email-code, password, google, apple, anonymous. -->
+  <key>AUTH_METHODS</key>
+  <string>email-code</string>
+  <!-- Stamped into the built bundle by the "Stamp Sandbox Config" build phase
+       from web/app/.env.local (npm run bootstrap:env). Never commit a token. -->
+  <key>LOCAL_AUTH_TOKEN</key>
+  <string></string>
+</dict>
+</plist>

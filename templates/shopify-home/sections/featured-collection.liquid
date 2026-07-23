@@ -1,0 +1,71 @@
+<section class="featured-collection">
+  <h2 class="section-heading">{{ section.settings.title }}</h2>
+  <div class="product-grid">
+    {% assign collection = collections[section.settings.collection] %}
+    {% for product in collection.products limit: section.settings.limit %}
+      <a class="product-card" href="{{ product.url }}">
+        {% if product.featured_image %}
+          <img
+            src="{{ product.featured_image | image_url: width: 480 }}"
+            alt="{{ product.featured_image.alt | escape }}"
+            loading="lazy"
+            width="480"
+            height="{{ 480 | divided_by: product.featured_image.aspect_ratio | ceil }}"
+          >
+        {% endif %}
+        <h3>{{ product.title }}</h3>
+        {% assign material_line = '' %}
+        {% for tag in product.tags %}
+          {% assign tag_down = tag | downcase %}
+          {% if tag_down contains 'material:' or tag_down contains 'finish:' %}
+            {% assign tag_value = tag | split: ':' | last | strip %}
+            {% if material_line == '' %}
+              {% assign material_line = tag_value %}
+            {% else %}
+              {% assign material_line = material_line | append: ' · ' | append: tag_value %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+        {% if material_line != blank %}
+          <p class="product-card__material">{{ material_line }}</p>
+        {% endif %}
+        {% render 'price', product: product %}
+      </a>
+    {% else %}
+      <p>{{ 'sections.featured_collection.empty' | t }}</p>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Pieces that stay put"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "label": "Products to show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured collection"
+    }
+  ]
+}
+{% endschema %}

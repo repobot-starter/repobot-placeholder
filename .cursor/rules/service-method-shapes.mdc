@@ -1,0 +1,24 @@
+---
+description: Standardize service method naming and request-response shapes
+globs: firebase/functions/src/Services/**/*Service.ts
+alwaysApply: false
+---
+
+# Service Method Shape Conventions
+
+- Keep service files class-based with a singleton export (`export const projectService = new ProjectService()`).
+- Keep public service methods request-object based; avoid positional argument APIs.
+- Naming semantics:
+  - `getEntityByIdOrThrow(request)` => one record or `RpcError("NOT_FOUND", ...)`
+  - `listEntities(request)` => paginated/filterable `{ nodes, pageInfo }`
+  - `createEntity(request)` / `updateEntity(request)` => zod-validate, write, return the row
+  - `orderedBatchLoadByIds(ids)` => dataloader backend, results ordered to match input ids
+- Use the shared data helpers (`listRows`, `getRowByIdOrThrow`, `idempotentInsertAndGet` from `firebase/functions/src/Data/Utils`) instead of ad-hoc query shapes.
+- Method body shape: parse/validate -> DB ops -> typed return -> expected `RpcError`.
+- Define exported request/response/field types at the bottom of the file.
+- Exemplars: `firebase/functions/src/Services/Identity/UserService.ts`, `firebase/functions/src/Services/Project/ProjectService.ts`.
+
+## Avoid
+
+- One-off `fetch*`/`query*` method names for standard get/list patterns.
+- Returning untyped object blobs from public service methods.

@@ -1,0 +1,13 @@
+{
+    "key": "style",
+    "templateKey": "repobot-style",
+    "title": "StyleBot",
+    "description": "Dress-to-impress fashion game: style a model against a 40-second clock, then strut the runway for the judges.",
+    "marketingExampleTitle": "Runway fashion showdown",
+    "homePath": "/",
+    "previewPath": "/style",
+    "homeViewDir": "web/app/src/View/Games/Style",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

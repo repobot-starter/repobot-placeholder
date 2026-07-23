@@ -1,0 +1,18 @@
+{
+    "name": "@base/core",
+    "private": true,
+    "version": "0.1.0",
+    "type": "module",
+    "main": "./src/index.ts",
+    "scripts": {
+        "typecheck": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@apollo/client": "3.14.1",
+        "graphql": "16.14.2",
+        "valtio": "2.3.2"
+    },
+    "devDependencies": {
+        "typescript": "5.6.3"
+    }
+}

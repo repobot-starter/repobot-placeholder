@@ -1,0 +1,13 @@
+{
+    "key": "sugar",
+    "templateKey": "repobot-sugar",
+    "title": "SugarBot",
+    "description": "A landing page for a physical retail brand — demo brand: a pink pastry vending machine. Rotating daily menu, machine locations with live stocked / selling-fast / sold-out badges computed from the clock, and a host-a-machine CTA — no accounts, no backend.",
+    "marketingExampleTitle": "Pastry vending machine",
+    "homePath": "/",
+    "previewPath": "/sugar",
+    "homeViewDir": "web/app/src/View/Sugar",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

@@ -1,0 +1,11 @@
+<footer class="site-footer">
+  <p class="site-footer__tagline">{{ 'sections.footer.tagline' | t }}</p>
+  <p>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ 'sections.footer.powered_by' | t }}</p>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": []
+}
+{% endschema %}

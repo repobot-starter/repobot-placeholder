@@ -1,0 +1,19 @@
+# Ai domain: the voice session broker for the talk pack. Chat streaming does
+# not go through GraphQL — it needs a streaming transport, served by the
+# ai__request__chat function (see firebase/functions/src/CloudFunctions/Ai.ts).
+#
+# createAiVoiceSession is public (see publicOperationRootFields in
+# GraphqlServer.ts): the talk surface works without sign-in, mirroring shop.
+# The OpenAI API key never leaves the server — the client only receives a
+# short-lived Realtime client secret.
+
+type AiVoiceSession {
+    "Short-lived secret the native app opens its OpenAI Realtime WebSocket with."
+    clientSecret: String!
+    "When the client secret expires; reconnect by minting a new session."
+    expiresAt: Instant
+    "The realtime model to pass when connecting, e.g. \"gpt-realtime-2\"."
+    model: String!
+    "The voice the session speaks with."
+    voice: String!
+}

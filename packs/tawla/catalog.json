@@ -1,0 +1,13 @@
+{
+    "key": "tawla",
+    "templateKey": "repobot-tawla",
+    "title": "TawlaBot",
+    "description": "Backgammon the café way: race the pips, hit the blots, bear off first.",
+    "marketingExampleTitle": "Backgammon café table",
+    "homePath": "/",
+    "previewPath": "/tawla",
+    "homeViewDir": "web/app/src/View/Games/Tawla",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

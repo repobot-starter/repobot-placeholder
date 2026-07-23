@@ -1,0 +1,104 @@
+<section class="lookbook">
+  {% for block in section.blocks %}
+    <div class="lookbook__row" {{ block.shopify_attributes }}>
+      <div class="lookbook__media">
+        {% if block.settings.image %}
+          <img
+            src="{{ block.settings.image | image_url: width: 900 }}"
+            alt="{{ block.settings.image.alt | escape }}"
+            loading="lazy"
+            width="900"
+            height="{{ 900 | divided_by: block.settings.image.aspect_ratio | ceil }}"
+          >
+        {% else %}
+          {{ 'lifestyle-1' | placeholder_svg_tag }}
+        {% endif %}
+      </div>
+      <div class="lookbook__text">
+        {% if block.settings.kicker != blank %}
+          <span class="eyebrow">{{ block.settings.kicker }}</span>
+        {% endif %}
+        <h2 class="lookbook__title">{{ block.settings.title }}</h2>
+        <p class="lookbook__copy">{{ block.settings.copy }}</p>
+        {% if block.settings.link_label != blank %}
+          <a class="lookbook__link" href="{{ block.settings.link | default: routes.all_products_collection_url }}">
+            {{- block.settings.link_label -}}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</section>
+
+{% schema %}
+{
+  "name": "Lookbook",
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Editorial row",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "kicker",
+          "label": "Kicker",
+          "default": "The edit"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "A story worth wearing"
+        },
+        {
+          "type": "textarea",
+          "id": "copy",
+          "label": "Copy",
+          "default": "Layered textures, quiet color, and silhouettes that move with you."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Link label",
+          "default": "Shop the edit"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lookbook",
+      "blocks": [
+        {
+          "type": "row",
+          "settings": {
+            "kicker": "Lookbook 01",
+            "title": "The Autumn Edit",
+            "copy": "Wool coats with soft shoulders, brushed-cotton shirting, and boots built for pavement and weather alike. Everything in the edit layers with everything else.",
+            "link_label": "Shop the edit"
+          }
+        },
+        {
+          "type": "row",
+          "settings": {
+            "kicker": "Lookbook 02",
+            "title": "Studio Essentials",
+            "copy": "The pieces we reach for between fittings: relaxed trousers, a canvas tote that carries its weight, and knits that keep their shape.",
+            "link_label": "Shop essentials"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

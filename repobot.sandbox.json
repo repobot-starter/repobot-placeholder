@@ -1,0 +1,10 @@
+{
+    "defaultPort": 5173,
+    "up": "DB_MODE=embedded PORT=${PORT} bash scripts/dev-up.sh",
+    "down": "DB_MODE=embedded bash scripts/dev-down.sh",
+    "readyUrl": "http://127.0.0.1:${PORT}",
+    "healthcheck": {
+        "url": "http://127.0.0.1:${PORT}",
+        "timeoutMs": 420000
+    }
+}

@@ -1,0 +1,67 @@
+{
+    "general": {
+        "meta": {
+            "tags": "Tagged \"{{ tags }}\"",
+            "page": "Page {{ page }}"
+        }
+    },
+    "sections": {
+        "header": {
+            "cart": "Cart",
+            "shop": "Shop",
+            "lookbook": "Lookbook",
+            "about": "About"
+        },
+        "footer": {
+            "powered_by": "Considered apparel, built on a Repobot starter theme.",
+            "newsletter_note": "First looks, twice a month.",
+            "newsletter_link": "Join the dispatch"
+        },
+        "featured_collection": {
+            "empty": "Select a collection to feature its products here."
+        },
+        "collection": {
+            "empty": "No products in this collection yet."
+        },
+        "newsletter": {
+            "email_label": "Email address",
+            "email_placeholder": "you@example.com",
+            "submit": "Sign up",
+            "success": "You're on the list. See you in the next dispatch."
+        },
+        "cart": {
+            "title": "Your cart",
+            "quantity": "Quantity",
+            "total": "Total",
+            "update": "Update",
+            "checkout": "Check out",
+            "empty": "Your cart is empty.",
+            "continue_shopping": "Continue shopping"
+        },
+        "not_found": {
+            "title": "Page not found",
+            "body": "The page you were looking for doesn't exist.",
+            "back_home": "Back to home"
+        }
+    },
+    "products": {
+        "product": {
+            "add_to_cart": "Add to cart",
+            "sold_out": "Sold out",
+            "variant_label": "Variant",
+            "size_guide": {
+                "size": "Size",
+                "chest": "Chest (cm)",
+                "waist": "Waist (cm)",
+                "note": "Between sizes? Our cuts run true; size up for a relaxed fit.",
+                "sizes": {
+                    "xs": "XS",
+                    "s": "S",
+                    "m": "M",
+                    "l": "L",
+                    "xl": "XL"
+                }
+            }
+        }
+    }
+}

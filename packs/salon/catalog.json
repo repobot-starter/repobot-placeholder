@@ -1,0 +1,13 @@
+{
+    "key": "salon",
+    "templateKey": "repobot-salon",
+    "title": "SalonBot",
+    "description": "Hair-salon glow-up game: wash, cut, dye, and style each client's hair to match their request card, then score the big reveal.",
+    "marketingExampleTitle": "Hair salon makeover game",
+    "homePath": "/",
+    "previewPath": "/salon",
+    "homeViewDir": "web/app/src/View/Games/Salon",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

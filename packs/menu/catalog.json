@@ -1,0 +1,13 @@
+{
+    "key": "menu",
+    "templateKey": "repobot-menu",
+    "title": "MenuBot",
+    "description": "A local business site: menu with sections and dietary filters, a live open/closed badge computed from weekly hours, and contact with call/directions links — all edited in one content file.",
+    "marketingExampleTitle": "Restaurant & café site",
+    "homePath": "/",
+    "previewPath": "/menu",
+    "homeViewDir": "web/app/src/View/Menu",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

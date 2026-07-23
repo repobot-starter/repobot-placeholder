@@ -1,0 +1,14 @@
+{
+    "magicLink": {
+        "subject": "Your sign-in code",
+        "html": "<h2>Sign in</h2>\n<p>Enter this code in the app to sign in:</p>\n<p style=\"font-size:32px;font-weight:bold;letter-spacing:6px;font-family:monospace\">{{ .Token }}</p>\n<p>Or use this link: <a href=\"{{ .ConfirmationURL }}\">{{ .ConfirmationURL }}</a></p>\n<p>If you didn't request this, you can ignore this email.</p>"
+    },
+    "confirmation": {
+        "subject": "Your sign-up code",
+        "html": "<h2>Confirm your sign-up</h2>\n<p>Enter this code in the app to confirm your account:</p>\n<p style=\"font-size:32px;font-weight:bold;letter-spacing:6px;font-family:monospace\">{{ .Token }}</p>\n<p>Or use this link: <a href=\"{{ .ConfirmationURL }}\">{{ .ConfirmationURL }}</a></p>\n<p>If you didn't request this, you can ignore this email.</p>"
+    },
+    "recovery": {
+        "subject": "Your password reset code",
+        "html": "<h2>Reset your password</h2>\n<p>Enter this code in the app to reset your password:</p>\n<p style=\"font-size:32px;font-weight:bold;letter-spacing:6px;font-family:monospace\">{{ .Token }}</p>\n<p>Or use this link: <a href=\"{{ .ConfirmationURL }}\">{{ .ConfirmationURL }}</a></p>\n<p>If you didn't request this, you can ignore this email.</p>"
+    }
+}

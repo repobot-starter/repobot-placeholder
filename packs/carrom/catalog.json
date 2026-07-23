@@ -1,0 +1,13 @@
+{
+    "key": "carrom",
+    "templateKey": "repobot-carrom",
+    "title": "CarromBot",
+    "description": "Flick the striker, pocket your coins, and cover the queen on a plywood board.",
+    "marketingExampleTitle": "Carrom striker board",
+    "homePath": "/",
+    "previewPath": "/carrom",
+    "homeViewDir": "web/app/src/View/Games/Carrom",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

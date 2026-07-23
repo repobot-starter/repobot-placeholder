@@ -1,0 +1,12 @@
+# Theme Check configuration — the lint gate for this theme (npm run check).
+# CI fails on errors; warnings are advisory. Docs: https://shopify.dev/docs/themes/tools/theme-check
+root: .
+
+MissingTemplate:
+  enabled: true
+
+RequiredLayoutThemeObject:
+  enabled: true
+
+TranslationKeyExists:
+  enabled: true

@@ -1,0 +1,48 @@
+{
+    "general": {
+        "meta": {
+            "tags": "Tagged \"{{ tags }}\"",
+            "page": "Page {{ page }}"
+        }
+    },
+    "sections": {
+        "header": {
+            "cart": "Cart",
+            "nav_shop": "Shop",
+            "nav_rooms": "Rooms",
+            "nav_materials": "Materials"
+        },
+        "footer": {
+            "tagline": "Made slowly. Delivered carefully. Kept for good.",
+            "powered_by": "Powered by a Repobot starter theme."
+        },
+        "featured_collection": {
+            "empty": "Select a collection to feature its products here."
+        },
+        "collection": {
+            "empty": "No products in this collection yet."
+        },
+        "cart": {
+            "title": "Your cart",
+            "quantity": "Quantity",
+            "total": "Total",
+            "update": "Update",
+            "checkout": "Check out",
+            "empty": "Your cart is empty.",
+            "continue_shopping": "Continue shopping"
+        },
+        "not_found": {
+            "title": "Page not found",
+            "body": "The page you were looking for doesn't exist.",
+            "back_home": "Back to home"
+        }
+    },
+    "products": {
+        "product": {
+            "add_to_cart": "Add to cart",
+            "sold_out": "Sold out",
+            "variant_label": "Choose a finish",
+            "specifications": "Specifications"
+        }
+    }
+}

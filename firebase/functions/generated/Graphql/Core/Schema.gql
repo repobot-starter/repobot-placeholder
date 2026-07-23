@@ -1,0 +1,60 @@
+type Query {
+    #
+    # Identity
+    #
+
+    currentUser: User!
+
+    accounts(input: AccountConnectionInput!): AccountConnection!
+
+    users(input: UserConnectionInput!): UserConnection!
+    userCreateFormSchema: SchemaForm!
+    userUpdateFormSchema(input: SchemaFormUpdateInput!): SchemaForm!
+
+    #
+    # Project
+    #
+
+    project(id: Id!): Project!
+    projects(input: ProjectConnectionInput!): ProjectConnection!
+    projectCreateFormSchema: SchemaForm!
+    projectUpdateFormSchema(input: SchemaFormUpdateInput!): SchemaForm!
+
+    #
+    # Shop (public: buyers are anonymous)
+    #
+
+    shopProduct: ShopProduct!
+    checkoutSession(id: Id!): CheckoutSession!
+}
+
+type Mutation {
+    #
+    # Identity
+    #
+
+    createAccount(input: CreateAccountInput!): Account!
+    createUser(input: CreateUserInput!): User!
+    updateUser(input: UpdateUserInput!): User!
+
+    #
+    # Project
+    #
+
+    createProject(input: CreateProjectInput!): Project!
+    updateProject(input: UpdateProjectInput!): Project!
+    addProjectMember(input: AddProjectMemberInput!): ProjectMembership!
+
+    #
+    # Shop (public: buyers are anonymous)
+    #
+
+    createCheckoutSession(input: CreateCheckoutSessionInput!): CheckoutSession!
+    completeTestCheckoutSession(input: CompleteTestCheckoutSessionInput!): CheckoutSession!
+
+    #
+    # Ai (public: the talk surface works without sign-in)
+    #
+
+    createAiVoiceSession: AiVoiceSession!
+}

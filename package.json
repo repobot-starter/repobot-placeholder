@@ -1,0 +1,51 @@
+{
+    "name": "repobot-base",
+    "private": true,
+    "version": "0.1.0",
+    "type": "module",
+    "workspaces": [
+        "firebase/functions",
+        "web/core",
+        "web/design-system",
+        "web/app"
+    ],
+    "scripts": {
+        "dev:db": "bash scripts/dev-db.sh",
+        "dev:db:reset": "bash scripts/dev-db.sh --reset",
+        "dev:db:test": "bash scripts/dev-db.sh --test",
+        "dev:up": "bash scripts/dev-up.sh",
+        "dev:down": "bash scripts/dev-down.sh",
+        "dev:status": "bash scripts/dev-status.sh",
+        "dev:logs": "bash scripts/dev-logs.sh",
+        "bootstrap:env": "node scripts/bootstrap-env.mjs",
+        "migrate": "npm --workspace firebase/functions run migrate",
+        "migrate:test": "npm --workspace firebase/functions run migrate:test",
+        "codegen": "bash scripts/codegen.sh",
+        "graphql:ios:fetch": "cd ios && ./graphql-fetch-schema.sh",
+        "graphql:ios:generate": "cd ios && ./graphql-generate.sh",
+        "graphql:ios:prebuild": "cd ios && ./prebuild.sh",
+        "build:ios": "xcodebuild -project ios/App.xcodeproj -scheme Sandbox -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build",
+        "check:ios": "npm run build:ios",
+        "graphql:android:fetch": "cd android && ./graphql-fetch-schema.sh",
+        "graphql:android:prebuild": "cd android && ./prebuild.sh",
+        "build:android": "cd android && ./gradlew :app:assembleSandboxDebug",
+        "check:android": "cd android && ./gradlew :app:assembleSandboxDebug :app:testSandboxDebugUnitTest",
+        "check:all": "bash scripts/check-all.sh",
+        "check:docs": "node scripts/check-doc-paths.mjs",
+        "test:compose": "node --test scripts/compose-pack.test.mjs",
+        "test:web": "npm --workspace web/app run test",
+        "test": "npm --workspace firebase/functions run test",
+        "storybook": "npm --workspace web/design-system run storybook",
+        "deploy:dev": "bash scripts/deploy.sh dev",
+        "deploy:prod": "bash scripts/deploy.sh prod",
+        "prepare": "bash scripts/install-git-hooks.sh || true"
+    },
+    "engines": {
+        "node": ">=20"
+    },
+    "devDependencies": {
+        "embedded-postgres": "16.14.0-beta.17",
+        "firebase-tools": "13.35.1",
+        "prettier": "3.9.5"
+    }
+}

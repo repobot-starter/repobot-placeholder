@@ -1,0 +1,510 @@
+/* Repobot Haven — calm, architectural, token-driven base styles.
+   Colors come from theme settings (config/settings_schema.json); the layout
+   injects them onto :root, these declarations are the fallbacks and match
+   the schema defaults. */
+
+:root {
+    --color-accent: #6f7d5c;
+    --color-background: #f4f1ea;
+    --color-text: #2b2b28;
+    --color-border: rgba(43, 43, 40, 0.14);
+    --color-surface: rgba(43, 43, 40, 0.04);
+    --color-on-accent: #f4f1ea;
+    --font-heading: "Neue Haas Grotesk Text", "Helvetica Neue", Helvetica, "Segoe UI", system-ui, sans-serif;
+    --tracking-heading: -0.015em;
+    --tracking-eyebrow: 0.16em;
+    --space: 1rem;
+    --radius: 4px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family:
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        sans-serif;
+    font-size: 1.0625rem;
+    color: var(--color-text);
+    background: var(--color-background);
+    line-height: 1.65;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    letter-spacing: var(--tracking-heading);
+    line-height: 1.12;
+}
+
+a {
+    color: inherit;
+}
+
+.button,
+button {
+    display: inline-block;
+    padding: 0.85rem 1.9rem;
+    background: var(--color-accent);
+    color: var(--color-on-accent);
+    font: inherit;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    border: 1px solid var(--color-accent);
+    border-radius: var(--radius);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.button--ghost {
+    background: transparent;
+    color: var(--color-text);
+    border-color: var(--color-text);
+}
+
+.eyebrow {
+    display: block;
+    margin: 0 0 calc(var(--space) * 0.75);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--color-accent);
+}
+
+.text-link {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
+    color: var(--color-accent);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 0.2em;
+}
+
+/* Header */
+
+.site-header {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--space) * 2);
+    padding: calc(var(--space) * 1.25) calc(var(--space) * 2.5);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.site-header__brand {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: var(--tracking-heading);
+    text-decoration: none;
+    color: inherit;
+}
+
+.site-header__nav {
+    display: flex;
+    gap: calc(var(--space) * 1.5);
+    flex: 1;
+}
+
+.site-header__nav a,
+.site-header__cart {
+    color: inherit;
+    text-decoration: none;
+    font-size: 0.9375rem;
+    opacity: 0.85;
+}
+
+.site-header__nav a:hover,
+.site-header__cart:hover {
+    opacity: 1;
+    color: var(--color-accent);
+}
+
+/* Hero — full-bleed room scene */
+
+.hero {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    min-height: 72vh;
+    overflow: hidden;
+}
+
+.hero__media {
+    position: absolute;
+    inset: 0;
+}
+
+.hero__media img,
+.hero__media svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background: var(--color-surface);
+}
+
+.hero__panel {
+    position: relative;
+    max-width: 36rem;
+    margin: calc(var(--space) * 3) calc(var(--space) * 2.5);
+    padding: calc(var(--space) * 2.5);
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+}
+
+.hero__title {
+    margin: 0 0 var(--space);
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+}
+
+.hero__subtitle {
+    margin: 0 0 calc(var(--space) * 1.75);
+    max-width: 46ch;
+    opacity: 0.85;
+}
+
+.hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space);
+}
+
+/* Section chrome */
+
+.section-heading {
+    margin: 0;
+    font-size: clamp(1.6rem, 3vw, 2.25rem);
+}
+
+/* Featured collection / product grid */
+
+.featured-collection,
+.room-lookbook,
+.materials {
+    padding: calc(var(--space) * 4) calc(var(--space) * 2.5);
+}
+
+.featured-collection + .room-lookbook,
+.room-lookbook + .materials {
+    border-top: 1px solid var(--color-border);
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: calc(var(--space) * 2);
+    padding: calc(var(--space) * 2) 0 0;
+}
+
+.collection .product-grid {
+    padding: calc(var(--space) * 2) 0;
+}
+
+.product-card {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    background: var(--color-surface);
+}
+
+.product-card h3 {
+    margin: var(--space) 0 0.15rem;
+    font-size: 1.0625rem;
+}
+
+.product-card:hover h3 {
+    color: var(--color-accent);
+}
+
+.product-card__material {
+    margin: 0 0 0.15rem;
+    font-size: 0.875rem;
+    opacity: 0.7;
+}
+
+.product-card .price {
+    font-size: 0.9375rem;
+    opacity: 0.85;
+}
+
+/* Room lookbook */
+
+.room-lookbook__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: calc(var(--space) * 2);
+    margin-top: calc(var(--space) * 2);
+}
+
+.room-lookbook__media img,
+.room-lookbook__media svg {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    background: var(--color-surface);
+}
+
+.room-lookbook__name {
+    margin: var(--space) 0 0.35rem;
+    font-size: 1.25rem;
+}
+
+.room-lookbook__copy {
+    margin: 0 0 var(--space);
+    max-width: 34ch;
+    opacity: 0.8;
+}
+
+/* Materials */
+
+.materials__intro {
+    margin: calc(var(--space) * 0.75) 0 0;
+    max-width: 52ch;
+    opacity: 0.8;
+}
+
+.materials__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: calc(var(--space) * 1.5);
+    margin-top: calc(var(--space) * 2);
+}
+
+.materials__card {
+    padding: calc(var(--space) * 1.75);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+}
+
+.materials__swatch {
+    display: block;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+}
+
+.materials__name {
+    margin: var(--space) 0 0.35rem;
+    font-size: 1.125rem;
+}
+
+.materials__sourcing {
+    margin: 0;
+    opacity: 0.8;
+}
+
+/* Delivery FAQ */
+
+.delivery-faq {
+    max-width: 44rem;
+    margin: 0 auto;
+    padding: calc(var(--space) * 4) calc(var(--space) * 2.5);
+}
+
+.delivery-faq__title {
+    margin: 0 0 var(--space);
+    font-size: clamp(1.6rem, 3vw, 2.25rem);
+}
+
+.delivery-faq__item {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.delivery-faq__item summary {
+    padding: var(--space) 0;
+    font-family: var(--font-heading);
+    font-weight: 500;
+    letter-spacing: var(--tracking-heading);
+    cursor: pointer;
+}
+
+.delivery-faq__answer {
+    margin: 0 0 var(--space);
+    opacity: 0.8;
+}
+
+/* Product page */
+
+.product {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: calc(var(--space) * 3);
+    padding: calc(var(--space) * 3) calc(var(--space) * 2.5);
+}
+
+.product__media img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    background: var(--color-surface);
+}
+
+.product__info h1 {
+    margin: 0 0 calc(var(--space) * 0.5);
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.product__form select {
+    display: block;
+    width: 100%;
+    max-width: 20rem;
+    padding: 0.75rem;
+    margin: var(--space) 0;
+    font: inherit;
+    color: inherit;
+    background: transparent;
+    border: 1px solid var(--color-text);
+    border-radius: var(--radius);
+}
+
+.product__specs {
+    margin-top: calc(var(--space) * 2);
+}
+
+.product__specs-title,
+.product__swatches-title {
+    margin: 0 0 calc(var(--space) * 0.75);
+    font-size: 1.125rem;
+}
+
+.spec-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+}
+
+.spec-table th,
+.spec-table td {
+    text-align: left;
+    padding: 0.6rem 0.75rem 0.6rem 0;
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: top;
+}
+
+.spec-table th {
+    width: 9rem;
+    font-weight: 600;
+    color: var(--color-accent);
+}
+
+.product__swatches {
+    margin-top: calc(var(--space) * 2);
+    padding: calc(var(--space) * 1.5);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+}
+
+.product__swatches-note {
+    margin: 0;
+    opacity: 0.85;
+}
+
+.product__swatch-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--space) * 0.5);
+    margin: var(--space) 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.product__swatch-options li {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+}
+
+.price__compare {
+    opacity: 0.6;
+    margin-right: 0.5em;
+}
+
+/* Utility pages */
+
+.cart,
+.page,
+.collection,
+.not-found {
+    padding: calc(var(--space) * 2.5);
+}
+
+.cart__lines {
+    list-style: none;
+    padding: 0;
+}
+
+.cart__line {
+    display: flex;
+    align-items: center;
+    gap: var(--space);
+    padding: calc(var(--space) / 2) 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.cart__line input {
+    width: 4.5rem;
+    padding: 0.4rem 0.6rem;
+    font: inherit;
+    color: inherit;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+}
+
+/* Footer */
+
+.site-footer {
+    padding: calc(var(--space) * 3) calc(var(--space) * 2.5);
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+}
+
+.site-footer__tagline {
+    margin: 0 0 0.5rem;
+    font-family: var(--font-heading);
+    font-weight: 500;
+    letter-spacing: var(--tracking-heading);
+}
+
+.site-footer__note {
+    margin: 0;
+    font-size: 0.9375rem;
+    opacity: 0.7;
+}
+
+@media (max-width: 720px) {
+    .hero {
+        min-height: 60vh;
+    }
+
+    .hero__panel {
+        margin: calc(var(--space) * 1.5);
+        padding: calc(var(--space) * 1.5);
+    }
+
+    .product {
+        grid-template-columns: 1fr;
+    }
+}

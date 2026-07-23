@@ -1,0 +1,125 @@
+# iOS builds for Repobot previews and deploys. Dispatched by the Repobot
+# platform (IosBuildService) via the GitHub App — not triggered on push.
+#
+# kind=simulator: unsigned dev-flavor simulator build, published as the
+#   "simulator-app" run artifact. The platform downloads the artifact when
+#   the run succeeds and uploads it to Appetize server-side — no Appetize
+#   credentials ever enter this repository.
+# kind=testflight: signed dev-flavor device build shipped to TestFlight via
+#   the fastlane lane in ios/fastlane/. Needs the ASC_* repo secrets
+#   (injected by the platform from the project's Apple integration).
+#
+# Config values (app name, GraphQL endpoint) are stamped into
+# ios/App/Config/Config.dev.plist from the dispatch inputs; the platform
+# sources them from the environment's provisioned infrastructure. The auth
+# endpoint is derived from the GraphQL URL at runtime (same functions origin).
+name: iOS Build
+run-name: "iOS ${{ inputs.kind }} build ${{ inputs.build_id }}"
+
+on:
+    workflow_dispatch:
+        inputs:
+            kind:
+                description: "Build kind"
+                required: true
+                type: choice
+                options: [simulator, testflight]
+            build_id:
+                description: "Platform IosBuild id (correlates the run to the build record)"
+                required: true
+                type: string
+            app_name:
+                description: "Display name stamped into the app"
+                required: true
+                type: string
+            # Backend config inputs are optional: client-only packs
+            # legitimately build with empty values, and GitHub's dispatch API
+            # rejects an empty string for a `required: true` input as "not
+            # provided" (422).
+            graphql_url:
+                description: "GraphQL endpoint of the target environment (empty for client-only apps)"
+                required: false
+                type: string
+                default: ""
+            bundle_id:
+                description: "Bundle identifier (testflight builds; derived from deploySlug)"
+                required: false
+                type: string
+                default: ""
+
+permissions:
+    contents: read
+
+jobs:
+    simulator:
+        if: inputs.kind == 'simulator'
+        name: Simulator build + artifact publish
+        runs-on: macos-15
+        timeout-minutes: 30
+        steps:
+            - uses: actions/checkout@v4
+            - name: Select Xcode
+              run: sudo xcode-select -s /Applications/Xcode_16.2.app
+            - name: Regenerate GraphQL types (schema composed from this checkout)
+              run: cd ios && ./prebuild.sh
+            - name: Stamp dev config
+              env:
+                  APP_NAME: ${{ inputs.app_name }}
+                  GRAPHQL_URL: ${{ inputs.graphql_url }}
+              run: python3 scripts/lib/stamp-ios-config.py ios/App/Config/Config.dev.plist
+            - name: Build (unsigned, simulator)
+              run: |
+                  xcodebuild \
+                      -project ios/App.xcodeproj \
+                      -scheme Development \
+                      -sdk iphonesimulator \
+                      -destination 'generic/platform=iOS Simulator' \
+                      -derivedDataPath ios/DerivedData \
+                      CODE_SIGNING_ALLOWED=NO \
+                      build
+            - name: Package .app
+              run: |
+                  APP_PATH="$(find ios/DerivedData/Build/Products -maxdepth 2 -name '*.app' -type d | head -n 1)"
+                  test -n "$APP_PATH" || { echo "No .app produced"; exit 1; }
+                  # Keep the ditto zip: upload-artifact alone would drop the
+                  # executable permissions the simulator app needs.
+                  ditto -c -k --sequesterRsrc --keepParent "$APP_PATH" app.zip
+            - name: Publish simulator app artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: simulator-app
+                  path: app.zip
+
+    testflight:
+        if: inputs.kind == 'testflight'
+        name: TestFlight build + upload
+        runs-on: macos-15
+        timeout-minutes: 60
+        steps:
+            - uses: actions/checkout@v4
+            - name: Select Xcode
+              run: sudo xcode-select -s /Applications/Xcode_16.2.app
+            - name: Regenerate GraphQL types (schema composed from this checkout)
+              run: cd ios && ./prebuild.sh
+            - name: Stamp dev config
+              env:
+                  APP_NAME: ${{ inputs.app_name }}
+                  GRAPHQL_URL: ${{ inputs.graphql_url }}
+              run: python3 scripts/lib/stamp-ios-config.py ios/App/Config/Config.dev.plist
+            - name: Build and upload via fastlane
+              env:
+                  ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+                  ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+                  ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+                  APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+                  APP_BUNDLE_ID: ${{ inputs.bundle_id }}
+                  APP_DISPLAY_NAME: ${{ inputs.app_name }}
+              run: |
+                  test -n "$ASC_KEY_ID" || { echo "ASC_* secrets are not set (connect Apple in Repobot first)"; exit 1; }
+                  test -n "$APP_BUNDLE_ID" || { echo "bundle_id input is required for testflight builds"; exit 1; }
+                  cd ios && bundle install --quiet && bundle exec fastlane ios testflight_deploy
+            - name: Publish result artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: testflight-result
+                  path: ios/fastlane/testflight-result.json

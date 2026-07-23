@@ -1,0 +1,20 @@
+# Theme CI: lint every push/PR with Theme Check. This is the repobot
+# standards gate for Shopify projects (the equivalent of typecheck+tests on
+# web projects) — agent-driven promotions verify against it.
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  theme-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci || npm install
+      - run: npx shopify theme check --fail-level error

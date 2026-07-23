@@ -1,0 +1,122 @@
+{
+    "sections": {
+        "hero": {
+            "type": "hero",
+            "settings": {}
+        },
+        "featured": {
+            "type": "featured-collection",
+            "settings": {}
+        },
+        "routine": {
+            "type": "routine-builder",
+            "blocks": {
+                "am_cleanse": {
+                    "type": "step",
+                    "settings": {
+                        "time": "am",
+                        "title": "Cleanse",
+                        "why": "A gentle wash that clears the night without stripping the barrier."
+                    }
+                },
+                "am_vitamin_c": {
+                    "type": "step",
+                    "settings": {
+                        "time": "am",
+                        "title": "Vitamin C",
+                        "why": "An antioxidant layer that supports brightness and evens tone over time."
+                    }
+                },
+                "am_spf": {
+                    "type": "step",
+                    "settings": {
+                        "time": "am",
+                        "title": "SPF",
+                        "why": "Broad-spectrum protection — the one step with the strongest evidence behind it."
+                    }
+                },
+                "pm_cleanse": {
+                    "type": "step",
+                    "settings": {
+                        "time": "pm",
+                        "title": "Cleanse",
+                        "why": "Takes off sunscreen and the day so the next steps reach skin, not residue."
+                    }
+                },
+                "pm_retinal": {
+                    "type": "step",
+                    "settings": {
+                        "time": "pm",
+                        "title": "Retinal",
+                        "why": "Overnight renewal support, at a concentration most skin can build up to."
+                    }
+                },
+                "pm_barrier": {
+                    "type": "step",
+                    "settings": {
+                        "time": "pm",
+                        "title": "Barrier cream",
+                        "why": "Seals everything in and keeps water where it belongs — in your skin."
+                    }
+                }
+            },
+            "block_order": ["am_cleanse", "am_vitamin_c", "am_spf", "pm_cleanse", "pm_retinal", "pm_barrier"],
+            "settings": {}
+        },
+        "glossary": {
+            "type": "ingredient-glossary",
+            "blocks": {
+                "niacinamide": {
+                    "type": "ingredient",
+                    "settings": {
+                        "title": "Niacinamide",
+                        "what": "A form of vitamin B3 that supports the skin barrier and helps visibly refine tone and texture.",
+                        "found_in": "Daily Serum"
+                    }
+                },
+                "hyaluronic_acid": {
+                    "type": "ingredient",
+                    "settings": {
+                        "title": "Hyaluronic acid",
+                        "what": "A humectant that draws water into the upper layers of skin for an immediate, plumper feel.",
+                        "found_in": "Barrier Cream"
+                    }
+                },
+                "retinal": {
+                    "type": "ingredient",
+                    "settings": {
+                        "title": "Retinal",
+                        "what": "A vitamin A derivative one step from retinoic acid — renewal support with less of the usual adjustment period.",
+                        "found_in": "Night Treatment"
+                    }
+                }
+            },
+            "block_order": ["niacinamide", "hyaluronic_acid", "retinal"],
+            "settings": {}
+        },
+        "results": {
+            "type": "before-after",
+            "blocks": {
+                "pair_eight": {
+                    "type": "pair",
+                    "settings": {
+                        "weeks": 8
+                    }
+                },
+                "pair_twelve": {
+                    "type": "pair",
+                    "settings": {
+                        "weeks": 12
+                    }
+                }
+            },
+            "block_order": ["pair_eight", "pair_twelve"],
+            "settings": {}
+        },
+        "bundle": {
+            "type": "bundle-callout",
+            "settings": {}
+        }
+    },
+    "order": ["hero", "featured", "routine", "glossary", "results", "bundle"]
+}

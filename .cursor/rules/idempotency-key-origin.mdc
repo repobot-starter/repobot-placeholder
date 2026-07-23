@@ -1,0 +1,19 @@
+---
+description: Idempotency keys must originate at caller boundary
+globs: firebase/functions/src/**/*.ts
+alwaysApply: false
+---
+
+# Idempotency Key Origin
+
+- Treat `idempotencyKey` as a caller-provided contract: clients generate it, GraphQL passes it through, services hand it to `idempotentInsertAndGet`.
+- Do not generate new idempotency keys inside normal service write paths.
+- Internal key generation is allowed only for explicit internal fan-out operations with documented rationale.
+
+```typescript
+// ❌ Avoid (inside a service)
+idempotencyKey: crypto.randomUUID()
+
+// ✅ Prefer
+idempotencyKey: input.idempotencyKey
+```

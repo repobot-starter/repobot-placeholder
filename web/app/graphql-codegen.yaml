@@ -1,0 +1,13 @@
+# GraphQL Code Generator config: SDL in /Graphql + documents in
+# src/Graphql/Operations/Gql -> typed documents and React Apollo hooks.
+schema: "../../Graphql/**/*.gql"
+documents: ["src/Graphql/Operations/**/*.ts"]
+generates:
+    ./src/generated/graphql/types.ts:
+        plugins: ["typescript", "typescript-operations", "typescript-react-apollo"]
+        config:
+            withHooks: true
+            enumsAsTypes: true
+            scalars:
+                Id: "string"
+                Instant: "string"

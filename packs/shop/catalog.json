@@ -1,0 +1,13 @@
+{
+    "key": "shop",
+    "templateKey": "repobot-shop",
+    "title": "ShopBot",
+    "description": "Sell one thing beautifully: an author-style storefront with Stripe checkout — no customer accounts required.",
+    "marketingExampleTitle": "Storefront with Stripe checkout",
+    "homePath": "/",
+    "previewPath": "/shop",
+    "homeViewDir": "web/app/src/View/Shop",
+    "clientOnly": false,
+    "capabilities": ["PAYMENTS", "DATABASE"],
+    "isDefault": false
+}

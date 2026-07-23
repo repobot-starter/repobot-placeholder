@@ -1,0 +1,53 @@
+<section class="subscription-callout">
+  <h2 class="subscription-callout__title">{{ section.settings.title }}</h2>
+  <p class="subscription-callout__body">{{ section.settings.body }}</p>
+  {% if section.settings.cta_link != blank %}
+    <a class="button" href="{{ section.settings.cta_link }}">{{ section.settings.cta_label }}</a>
+  {% endif %}
+  {% if section.settings.small_print != blank %}
+    <p class="subscription-callout__small-print">{{ section.settings.small_print }}</p>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Subscription callout",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Never run dry."
+    },
+    {
+      "type": "text",
+      "id": "body",
+      "label": "Body",
+      "default": "A fresh bag every fortnight, roasted the same week it ships. Pick your roast, set your grind, and we handle the rest."
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button label",
+      "default": "Start a subscription"
+    },
+    {
+      "type": "text",
+      "id": "small_print",
+      "label": "Small print",
+      "default": "Pause or cancel anytime. Free shipping on every subscription order."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Subscription callout"
+    }
+  ]
+}
+{% endschema %}

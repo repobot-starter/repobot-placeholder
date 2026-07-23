@@ -1,0 +1,13 @@
+{
+    "key": "chimney",
+    "templateKey": "repobot-chimney",
+    "title": "ChimneyBot",
+    "description": "A night-time rooftop runner: jump house by house, clear every chimney — land in one and you get cooked.",
+    "marketingExampleTitle": "Rooftop runner",
+    "homePath": "/",
+    "previewPath": "/chimney",
+    "homeViewDir": "web/app/src/View/Games/Chimney",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

@@ -1,0 +1,13 @@
+{
+    "key": "paint",
+    "templateKey": "repobot-paint",
+    "title": "PaintBot",
+    "description": "A retro paint studio: brushes, flood fill, shapes, stickers, and PNG export.",
+    "marketingExampleTitle": "Retro paint studio",
+    "homePath": "/",
+    "previewPath": "/paint",
+    "homeViewDir": "web/app/src/View/Games/Paint",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

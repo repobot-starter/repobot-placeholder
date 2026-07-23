@@ -1,0 +1,13 @@
+{
+    "key": "hanafuda",
+    "templateKey": "repobot-hanafuda",
+    "title": "HanafudaBot",
+    "description": "Koi-Koi with the full 48-card flower deck: match the months, chase the yaku.",
+    "marketingExampleTitle": "Koi-Koi card table",
+    "homePath": "/",
+    "previewPath": "/hanafuda",
+    "homeViewDir": "web/app/src/View/Games/Hanafuda",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

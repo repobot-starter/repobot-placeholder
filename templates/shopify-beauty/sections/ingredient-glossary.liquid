@@ -1,0 +1,105 @@
+<section class="ingredient-glossary">
+  {% if section.settings.eyebrow != blank %}
+    <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+  {% endif %}
+  <h2 class="ingredient-glossary__title">{{ section.settings.title }}</h2>
+  {% if section.settings.intro != blank %}
+    <p class="ingredient-glossary__intro">{{ section.settings.intro }}</p>
+  {% endif %}
+  <div class="ingredient-glossary__grid">
+    {% for block in section.blocks %}
+      <div class="ingredient-card" {{ block.shopify_attributes }}>
+        <h3>{{ block.settings.title }}</h3>
+        <p class="ingredient-card__what">{{ block.settings.what }}</p>
+        {% if block.settings.found_in != blank %}
+          <span class="ingredient-card__found-in">
+            {{- 'sections.ingredient_glossary.found_in' | t }}: {{ block.settings.found_in -}}
+          </span>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Ingredient glossary",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Know what you're using"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "The glossary"
+    },
+    {
+      "type": "text",
+      "id": "intro",
+      "label": "Intro",
+      "default": "Every active we use, in plain language: what it does and where it shows up on the shelf."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingredient",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Name",
+          "default": "Niacinamide"
+        },
+        {
+          "type": "textarea",
+          "id": "what",
+          "label": "What it does",
+          "default": "A form of vitamin B3 that supports the skin barrier and helps visibly refine tone and texture."
+        },
+        {
+          "type": "text",
+          "id": "found_in",
+          "label": "Found in",
+          "default": "Daily Serum"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ingredient glossary",
+      "blocks": [
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Niacinamide",
+            "what": "A form of vitamin B3 that supports the skin barrier and helps visibly refine tone and texture.",
+            "found_in": "Daily Serum"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Hyaluronic acid",
+            "what": "A humectant that draws water into the upper layers of skin for an immediate, plumper feel.",
+            "found_in": "Barrier Cream"
+          }
+        },
+        {
+          "type": "ingredient",
+          "settings": {
+            "title": "Retinal",
+            "what": "A vitamin A derivative one step from retinoic acid — renewal support with less of the usual adjustment period.",
+            "found_in": "Night Treatment"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

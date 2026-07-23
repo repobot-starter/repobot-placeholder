@@ -1,0 +1,56 @@
+{
+    "general": {
+        "meta": {
+            "tags": "Tagged \"{{ tags }}\"",
+            "page": "Page {{ page }}"
+        }
+    },
+    "sections": {
+        "header": {
+            "cart": "Cart",
+            "nav_shop": "Shop",
+            "nav_brew_guides": "Brew guides",
+            "nav_our_roastery": "Our roastery"
+        },
+        "footer": {
+            "tagline": "Roasted Tuesdays. At your door by the weekend.",
+            "powered_by": "Powered by a Repobot starter theme."
+        },
+        "featured_collection": {
+            "empty": "Select a collection to feature its products here."
+        },
+        "collection": {
+            "empty": "No products in this collection yet."
+        },
+        "cart": {
+            "title": "Your cart",
+            "quantity": "Quantity",
+            "total": "Total",
+            "update": "Update",
+            "checkout": "Check out",
+            "empty": "Your cart is empty.",
+            "continue_shopping": "Continue shopping"
+        },
+        "not_found": {
+            "title": "Page not found",
+            "body": "The page you were looking for doesn't exist.",
+            "back_home": "Back to home"
+        }
+    },
+    "products": {
+        "product": {
+            "add_to_cart": "Add to cart",
+            "sold_out": "Sold out",
+            "tasting_notes": {
+                "aroma": "Aroma",
+                "body": "Body",
+                "finish": "Finish"
+            },
+            "details": {
+                "origin": "Origin",
+                "altitude": "Altitude",
+                "process": "Process"
+            }
+        }
+    }
+}

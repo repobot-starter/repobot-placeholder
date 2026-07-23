@@ -1,0 +1,13 @@
+{
+    "key": "talk",
+    "templateKey": "repobot-talk",
+    "title": "TalkBot",
+    "description": "A push-to-talk AI voice assistant on iOS: hold to speak, and it answers out loud with a live transcript.",
+    "marketingExampleTitle": "AI voice starter",
+    "homePath": "/",
+    "previewPath": "/talk",
+    "homeViewDir": "web/app/src/View/AiTalk",
+    "clientOnly": false,
+    "capabilities": ["AI", "BACKEND", "DATABASE", "IOS"],
+    "isDefault": false
+}
