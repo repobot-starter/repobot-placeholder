@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <!-- Stamped at build time by the iOS build pipeline from the production
+       environment's provisioned infrastructure (see .github/workflows/ios-build.yml).
+       Empty values fail closed with a clear ConfigLoader error. -->
+  <key>APP_NAME</key>
+  <string></string>
+  <key>GRAPHQL_URL</key>
+  <string></string>
+  <key>AUTH_MODE</key>
+  <string>builtin</string>
+  <key>AUTH_REDIRECT_URL</key>
+  <string>baseapp://auth/callback</string>
+  <key>AUTH_METHODS</key>
+  <string>email-code</string>
+  <!-- The deployed web app's origin; payments checkout/portal redirect URLs
+       are built from it. Stamped at build time like GRAPHQL_URL; empty
+       disables the billing surfaces (they report billing unavailable). -->
+  <key>WEB_ORIGIN</key>
+  <string></string>
+</dict>
+</plist>

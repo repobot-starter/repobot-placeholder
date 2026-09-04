@@ -1,0 +1,26 @@
+# Shop domain: the storefront exemplar composing the payments kernel. The
+# shop owns its server-side product catalog; checkout session types live in
+# Payments/Payments.gql. All fields here are public (see
+# publicOperationRootFields in GraphqlServer.ts) — buyers never sign in.
+
+type ShopProduct {
+    key: String!
+    name: String!
+    tagline: String!
+    "Price in the currency's minor units (cents for USD)."
+    priceMinorUnits: Int!
+    "Lowercase ISO currency code, e.g. \"usd\"."
+    currency: String!
+}
+
+input CreateCheckoutSessionInput {
+    idempotencyKey: String!
+    fields: CreateCheckoutSessionFields!
+}
+
+input CreateCheckoutSessionFields {
+    "The web app's origin (window.location.origin); success/cancel redirects are built from it."
+    origin: String!
+    "Which catalog product to charge for; omitted means the storefront's default product."
+    productKey: String
+}

@@ -1,0 +1,16 @@
+{
+    "sections": {
+        "hero": {
+            "type": "hero",
+            "settings": {}
+        },
+        "featured": {
+            "type": "featured-collection",
+            "settings": {
+                "collection": "gear",
+                "limit": 3
+            }
+        }
+    },
+    "order": ["hero", "featured"]
+}

@@ -1,0 +1,5 @@
+mutation CreateSubscriptionCheckoutSession($input: CreateSubscriptionCheckoutSessionInput!) {
+    createSubscriptionCheckoutSession(input: $input) {
+        ...CheckoutSessionFields
+    }
+}

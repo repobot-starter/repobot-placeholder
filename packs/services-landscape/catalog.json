@@ -1,0 +1,15 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services pack composed with a landscaper content seed and a moss-green brand over the sitework register. Everything else — pages, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-landscape",
+    "remixOf": "services",
+    "templateKey": "repobot-services-landscape",
+    "title": "Landscaping & hardscaping",
+    "description": "A landscaping company site: design-build services with honest starting prices, draggable before/after yard transformations, a live open/closed badge with click-to-call, testimonials, credentials, and a quote-request form \u2014 a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Landscaping company",
+    "contentSeed": "web/app/src/View/Services/landscapeRemix.content.ts",
+    "theme": {
+        "$comment": "Moss green over the sitework register's plan-grid ground \u2014 the same trades voice as the category's contractor starter, visibly a different company. Marketing pages resolve brand over preset accent, so the overlay re-skins the pages and the app surfaces together. navigation re-pins the shared servicesShell chrome (a declared theme variant outranks the shell prop): the base contractor wears the full-width band, so the landscaping remix takes the centered masthead \u2014 the nav-variety audit spreads the nine-template services family across the vocabulary.",
+        "brand": { "primary": "#4d7c0f", "primaryDark": "#a3e635" },
+        "navigation": { "variant": "centered" }
+    }
+}

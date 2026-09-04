@@ -1,0 +1,98 @@
+{
+    "key": "resume",
+    "templateKey": "repobot-resume",
+    "title": "Résumé",
+    "description": "A personal résumé / CV one-pager — the site a job seeker sends instead of a PDF: name and computed years of experience up top, roles with durations computed from their dates, skills, selected projects, and a links band; the same page typesets to a clean one-page printed résumé, and Download résumé is just window.print().",
+    "marketingExampleTitle": "Personal résumé site",
+    "category": "resume",
+    "homePath": "/",
+    "previewPath": "/resume",
+    "homeViewDir": "web/app/src/View/Resume",
+    "base": "content",
+    "clientOnly": true,
+    "capabilities": [],
+    "isDefault": false,
+    "theme": {
+        "$comment": "The editorial register worn as a document: an archival ink-blue accent (instead of the preset's terracotta, which folio owns) rides as the project brand so app-side surfaces match the marketing page — marketing pages resolve brand over preset accent.",
+        "brand": {
+            "primary": "#274060",
+            "primaryDark": "#8fb3dd"
+        }
+    },
+    "contentContract": {
+        "$comment": "The pack's content slots, as data (packs/README.md 'Content contract'). Dates are data, never prose: a composer binds role start/end as YYYY-MM and the page computes ranges, durations, ordering, and the hero's total years (dates.ts) — guarded by the pack's content tests.",
+        "module": "web/app/src/View/Resume/content.ts",
+        "slots": {
+            "person.name": { "kind": "text" },
+            "person.title": { "kind": "text" },
+            "person.location": { "kind": "text" },
+            "person.email": { "kind": "text" },
+            "person.summary": { "kind": "text[]", "min": 1 },
+            "roles": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "title": { "kind": "text" },
+                    "company": { "kind": "text" },
+                    "start": { "kind": "text" },
+                    "summary": { "kind": "text" }
+                }
+            },
+            "education": {
+                "kind": "collection",
+                "min": 1,
+                "item": {
+                    "credential": { "kind": "text" },
+                    "school": { "kind": "text" },
+                    "years": { "kind": "text" }
+                }
+            },
+            "skillGroups": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "title": { "kind": "text" },
+                    "skills": { "kind": "text[]", "min": 2 }
+                }
+            },
+            "projects": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "title": { "kind": "text" },
+                    "description": { "kind": "text" },
+                    "year": { "kind": "text" },
+                    "url": { "kind": "text" }
+                }
+            },
+            "links": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "label": { "kind": "text" },
+                    "value": { "kind": "text" },
+                    "url": { "kind": "text" }
+                }
+            }
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware home surface: the route maps to the page id its config merges under (ResumePage.tsx, useSitePageConfig), and the page seeds the layout skeleton — ids match resumeLanding.ts; the platform's structural editor edits these. The preset is editorial: a résumé IS a typeset document, so the paper-and-ink register does the art direction with zero images.",
+        "style": { "preset": "editorial" },
+        "routes": { "/": "home" },
+        "pages": {
+            "home": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "statement" },
+                    { "id": "summary", "type": "rich-prose", "variant": "narrow" },
+                    { "id": "experience", "type": "highlights", "variant": "setlist" },
+                    { "id": "stats", "type": "stats", "variant": "row" },
+                    { "id": "skills", "type": "card-grid", "variant": "4up" },
+                    { "id": "projects", "type": "showcase", "variant": "card-grid" },
+                    { "id": "education", "type": "card-grid", "variant": "2up" },
+                    { "id": "links", "type": "lead-form", "variant": "contact-block" }
+                ]
+            }
+        }
+    }
+}

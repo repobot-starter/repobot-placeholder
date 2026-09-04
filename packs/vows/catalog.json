@@ -1,0 +1,311 @@
+{
+    "key": "vows",
+    "templateKey": "repobot-vows",
+    "title": "Wedding website",
+    "description": "A classic wedding website: the couple's story in chapters, the weekend schedule with venue directions, travel and room blocks, the wedding party, registry links, and an RSVP card that delivers replies straight to the couple — with a live countdown computed from the wedding date. A multi-page site edited in one content file.",
+    "marketingExampleTitle": "Wedding website",
+    "category": "weddings-and-events",
+    "homePath": "/",
+    "previewPath": "/vows",
+    "homeViewDir": "web/app/src/View/Vows",
+    "base": "landing",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false,
+    "forms": {
+        "$comment": "Managed-form kinds, formKey -> kind (append-only vocabulary: RSVP | LEAD | MAILING_LIST | PROOFING). Compose stamps these into repobot.deploy.json as formKinds; the dashboard renders declared kinds as typed views (guest list / lead pipeline / subscribers) and keeps the raw Inbox for undeclared keys. Ingestion is unchanged.",
+        "vows-rsvp": "RSVP"
+    },
+    "theme": {
+        "$comment": "The heirloom register's brand overlay: the preset's botanical green as the project brand, so app-side surfaces wear the same stationery register as the wedding pages instead of the kernel default blue. Values match the heirloom preset's own light/dark accents — the marketing pages resolve brand over preset accent, so keeping them identical means the overlay re-brands the app without shifting the pages.",
+        "brand": { "primary": "#46583c", "primaryDark": "#a9bd97" }
+    },
+    "contentContract": {
+        "$comment": "The pack's content slots, as data (packs/README.md 'Content contract'). Declares what a composer (agent or tool) must bind for a generated variant of this pack to present as real: slot paths into the typed content module, their kinds, and minimums. The demo couple marries at a Hudson Valley garden estate, but the slots are wedding-agnostic — any couple binds the same shape. The countdown labels are computed from couple.weddingDateIso by the clock engine (countdown.ts) and follow wherever the date goes. Authored alongside the module and guarded by the pack's content tests — the module satisfies the contract; the contract never drifts ahead of it.",
+        "module": "web/app/src/View/Vows/content.ts",
+        "slots": {
+            "couple.names": { "kind": "text" },
+            "couple.partnerA": { "kind": "text" },
+            "couple.partnerB": { "kind": "text" },
+            "couple.weddingDateIso": { "kind": "text" },
+            "couple.weddingDateLabel": { "kind": "text" },
+            "couple.venueShort": { "kind": "text" },
+            "couple.email": { "kind": "text" },
+            "couple.hashtag": { "kind": "text" },
+            "home.headline": { "kind": "text" },
+            "home.subheadline": { "kind": "text" },
+            "home.heroImage": { "kind": "media" },
+            "home.welcomeTitle": { "kind": "text" },
+            "home.welcomeBody": { "kind": "text" },
+            "story.headline": { "kind": "text" },
+            "story.intro": { "kind": "text" },
+            "story.chapters": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "title": { "kind": "text" },
+                    "body": { "kind": "text" },
+                    "image": { "kind": "media" }
+                }
+            },
+            "story.gallery": { "kind": "media[]", "min": 3 },
+            "schedule.headline": { "kind": "text" },
+            "schedule.intro": { "kind": "text" },
+            "schedule.days": {
+                "kind": "collection",
+                "min": 1,
+                "item": {
+                    "label": { "kind": "text" },
+                    "events": {
+                        "kind": "collection",
+                        "min": 1,
+                        "item": {
+                            "time": { "kind": "text" },
+                            "title": { "kind": "text" },
+                            "description": { "kind": "text" }
+                        }
+                    }
+                }
+            },
+            "schedule.venues": {
+                "kind": "collection",
+                "min": 1,
+                "item": {
+                    "name": { "kind": "text" },
+                    "role": { "kind": "text" },
+                    "address": { "kind": "text" },
+                    "description": { "kind": "text" },
+                    "image": { "kind": "media" },
+                    "mapUrl": { "kind": "text" }
+                }
+            },
+            "travel.headline": { "kind": "text" },
+            "travel.intro": { "kind": "text" },
+            "travel.gettingThere": { "kind": "text[]", "min": 1 },
+            "travel.hotels": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "name": { "kind": "text" },
+                    "description": { "kind": "text" },
+                    "distance": { "kind": "text" },
+                    "url": { "kind": "text" }
+                }
+            },
+            "party.headline": { "kind": "text" },
+            "party.intro": { "kind": "text" },
+            "party.members": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "name": { "kind": "text" },
+                    "role": { "kind": "text" },
+                    "bio": { "kind": "text" }
+                }
+            },
+            "registry.headline": { "kind": "text" },
+            "registry.intro": { "kind": "text" },
+            "registry.links": {
+                "kind": "collection",
+                "min": 1,
+                "item": {
+                    "name": { "kind": "text" },
+                    "description": { "kind": "text" },
+                    "url": { "kind": "text" }
+                }
+            },
+            "rsvp.headline": { "kind": "text" },
+            "rsvp.body": { "kind": "text" },
+            "rsvp.replyByIso": { "kind": "text" },
+            "rsvp.replyByLabel": { "kind": "text" },
+            "rsvp.confirmation": { "kind": "text" },
+            "rsvp.faqs": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "question": { "kind": "text" },
+                    "answer": { "kind": "text" }
+                }
+            }
+        }
+    },
+    "content": {
+        "$comment": "Business-content contract seed, merged over repobot.content.json at compose (the same overlay path as landing/theme — scripts/lib/pack-switch.mjs applyPackOverlays). The guestlist domain is the wedding's PRIVATE roster — who's invited, how many seats, the note that matters at the door — and deliberately seeds EMPTY: the roster is the owner's from day one, never demo data. No pack page renders it; it exists so the platform's Manage panel keeps the roster next to the RSVP inbox it pairs with (the catalog's vows-rsvp form).",
+        "guestlist": {
+            "entries": []
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (web/app/src/View/Vows/VowsPage.tsx, useSitePageConfig). pages seeds each page's layout skeleton — ids match vowsLanding.ts; the platform's structural editor edits these. The preset is heirloom (the romantic-editorial register: warm ivory stock, Fraunces serif with the italic flourish, champagne hairlines, botanical green) — the invitation suite itself, deliberately apart from lanternlight's night-of celebration and brownstone's listing folder.",
+        "style": { "preset": "heirloom" },
+        "routes": {
+            "/": "home",
+            "/story": "story",
+            "/schedule": "schedule",
+            "/travel": "travel",
+            "/party": "party",
+            "/rsvp": "rsvp"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "masthead-overlay"
+                    },
+                    {
+                        "id": "welcome",
+                        "type": "rich-prose",
+                        "variant": "narrow"
+                    },
+                    {
+                        "id": "weekend",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "venues",
+                        "type": "showcase",
+                        "variant": "collections"
+                    },
+                    {
+                        "id": "gallery",
+                        "type": "gallery",
+                        "variant": "masonry"
+                    },
+                    {
+                        "id": "rsvp-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "story": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "chapters",
+                        "type": "highlights",
+                        "variant": "alternating"
+                    },
+                    {
+                        "id": "gallery",
+                        "type": "gallery",
+                        "variant": "sequence"
+                    },
+                    {
+                        "id": "rsvp-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "schedule": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "day-1",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "day-2",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "day-3",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "venues",
+                        "type": "highlights",
+                        "variant": "alternating"
+                    },
+                    {
+                        "id": "rsvp-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "travel": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "getting-there",
+                        "type": "rich-prose",
+                        "variant": "narrow"
+                    },
+                    {
+                        "id": "hotels",
+                        "type": "card-grid",
+                        "variant": "3up"
+                    },
+                    {
+                        "id": "things-to-do",
+                        "type": "feature-grid",
+                        "variant": "icon-list"
+                    },
+                    {
+                        "id": "rsvp-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "party": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "party",
+                        "type": "team",
+                        "variant": "list"
+                    },
+                    {
+                        "id": "registry",
+                        "type": "card-grid",
+                        "variant": "2up"
+                    },
+                    {
+                        "id": "rsvp-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "rsvp": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "rsvp-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    }
+                ]
+            }
+        }
+    }
+}

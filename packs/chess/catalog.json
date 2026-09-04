@@ -1,0 +1,14 @@
+{
+    "key": "chess",
+    "templateKey": "repobot-chess",
+    "title": "Chess",
+    "description": "Full-rules chess against a three-level engine, or a friend in local two-player.",
+    "marketingExampleTitle": "Classic chess",
+    "homePath": "/",
+    "previewPath": "/chess",
+    "homeViewDir": "web/app/src/View/Games/Chess",
+    "base": "game",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

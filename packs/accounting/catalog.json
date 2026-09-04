@@ -1,0 +1,15 @@
+{
+    "key": "accounting",
+    "templateKey": "repobot-accounting",
+    "title": "AccountingBot",
+    "description": "An AI accounting advisor: marketing landing and pricing pages, sign-up and sign-in, and a signed-in dashboard that connects QuickBooks, shows revenue/outstanding/overdue stat cards with invoice and customer tables, and chats about the books via AI tool calls.",
+    "marketingExampleTitle": "AI accounting advisor",
+    "homePath": "/",
+    "previewPath": "/overview",
+    "homeViewDir": "web/app/src/View/Site",
+    "base": "app",
+    "clientOnly": false,
+    "capabilities": ["AUTH", "DATABASE", "EMAIL", "AI", "BACKEND"],
+    "authMethods": ["email-code", "password"],
+    "isDefault": false
+}

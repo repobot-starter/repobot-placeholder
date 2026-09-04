@@ -1,0 +1,24 @@
+---
+description: SQL-first migrations; Drizzle TS schema is a mirror, never the authority
+globs: firebase/functions/migrations/**/*.sql,firebase/functions/src/Data/**/*.ts
+alwaysApply: false
+---
+
+# SQL-First Migrations
+
+The database schema is defined by ordered SQL files in `firebase/functions/migrations/`. The Drizzle TS tables in `firebase/functions/src/Data/` are a typed mirror of that SQL — they power queries and validation but never change the database.
+
+## Recipe for any schema change
+
+1. Create `firebase/functions/migrations/<UTC timestamp>__<snake_case_description>.sql` (timestamp format `YYYYMMDDTHHMMSS`).
+2. Mirror the change in the matching Drizzle table under `firebase/functions/src/Data/<Domain>/`.
+3. Run `npm run migrate` (and `npm run migrate:test` before tests).
+4. CI's drift check applies all migrations to a scratch database and fails if the TS mirror disagrees with the SQL.
+
+## Never
+
+- Never edit or delete a migration that has been applied anywhere. Write a new one.
+- Never write down-migrations; the stream is forward-only.
+- Never use `drizzle-kit push` to change a database. drizzle-kit exists only for the CI drift check.
+- Never put more than one concern in a migration file.
+- Data backfills are migrations too — same stream, same rules.

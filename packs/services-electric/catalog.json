@@ -1,0 +1,16 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services-emergency pack composed with an electrician content seed and an amber brand over the sitework register. Everything else — pages, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-electric",
+    "remixOf": "services-emergency",
+    "templateKey": "repobot-services-electric",
+    "title": "Electrician",
+    "description": "An electrician site built for the emergency call: a phone number that never leaves the viewport, flat printed prices, response-time proof, a four-step dispatch story, and a callback form for everything that can wait \u2014 a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Electrician",
+    "contentSeed": "web/app/src/View/ServicesEmergency/electricRemix.content.ts",
+    "theme": {
+        "$comment": "Amber over the sitework register's plan-grid ground \u2014 the dispatch shape's utility-blue plumber recolored to the electrical trade's high-visibility voice. mode dark opens the site on the register's night shift (floodlit-yard ground, bone type, the amber at vest brightness \u2014 the trade that works when the lights are out; the appearance toggle still swaps to the daylight sheet). Marketing pages resolve brand over preset accent, so the overlay re-skins the pages and the app surfaces together. navigation re-pins the shared servicesEmergencyShell chrome (a declared theme variant outranks the shell prop): the base plumber wears the split dispatch bar, so the electrician takes the full-width translucent band \u2014 flush chrome over the night-shift ground \u2014 per the nav-variety audit.",
+        "mode": "dark",
+        "brand": { "primary": "#b45309", "primaryDark": "#fbbf24" },
+        "navigation": { "variant": "full-width" }
+    }
+}

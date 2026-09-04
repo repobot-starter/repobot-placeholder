@@ -1,0 +1,105 @@
+# The Entry domain: a data-entry workbook the user shapes to their own work.
+# Fields are the user-defined schema (the designer surface); records are the
+# rows. The record form is built dynamically on the backend from the live
+# field definitions (entryRecordCreateFormSchema), so the modal entry form
+# always IS the user's schema — the showcase of backend-driven forms.
+
+type EntryField {
+    id: Id!
+    label: String!
+    "Stable cell key inside a record's valuesJson; derived from the label at create."
+    fieldKey: String!
+    fieldType: EntryFieldType!
+    required: Boolean!
+    "Choices for SELECT fields; null for every other type."
+    options: [String!]
+    "Column order, ascending."
+    position: Int!
+    createdTime: Instant!
+}
+
+enum EntryFieldType {
+    TEXT
+    NUMBER
+    DATE
+    YESNO
+    SELECT
+}
+
+type EntryRecord {
+    id: Id!
+    "The row's cell values, JSON-encoded: { [fieldKey]: string | number | boolean }."
+    valuesJson: String!
+    createdTime: Instant!
+    updatedTime: Instant!
+}
+
+# Connection
+type EntryRecordConnection {
+    nodes: [EntryRecord]!
+    pageInfo: PageInfo!
+}
+
+input EntryRecordConnectionInput {
+    filters: EntryRecordConnectionFilters
+    connection: ConnectionInput!
+}
+
+input EntryRecordConnectionFilters {
+    "Case-insensitive substring match across the record's text cell values."
+    search: String
+}
+
+# Field create/update
+input CreateEntryFieldInput {
+    idempotencyKey: String!
+    fields: CreateEntryFieldFields!
+}
+
+input CreateEntryFieldFields {
+    label: String!
+    fieldType: EntryFieldType!
+    required: Boolean
+    "Choices for SELECT fields; ignored for every other type."
+    options: [String!]
+}
+
+input UpdateEntryFieldInput {
+    objectId: Id!
+    idempotencyKey: String!
+    fields: UpdateEntryFieldFields!
+}
+
+input UpdateEntryFieldFields {
+    label: String
+    required: Boolean
+    options: [String!]
+}
+
+input DeleteEntryFieldInput {
+    objectId: Id!
+}
+
+# Record create/update
+input CreateEntryRecordInput {
+    idempotencyKey: String!
+    fields: CreateEntryRecordFields!
+}
+
+input CreateEntryRecordFields {
+    valuesJson: String!
+}
+
+input UpdateEntryRecordInput {
+    objectId: Id!
+    idempotencyKey: String!
+    fields: UpdateEntryRecordFields!
+}
+
+input UpdateEntryRecordFields {
+    valuesJson: String!
+}
+
+input DeleteEntryRecordInput {
+    objectId: Id!
+}

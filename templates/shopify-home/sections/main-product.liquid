@@ -1,0 +1,166 @@
+<section class="product">
+  <div class="product__media">
+    {% if product.featured_image %}
+      <img
+        src="{{ product.featured_image | image_url: width: 900 }}"
+        alt="{{ product.featured_image.alt | escape }}"
+        width="900"
+        height="{{ 900 | divided_by: product.featured_image.aspect_ratio | ceil }}"
+      >
+    {% endif %}
+  </div>
+  <div class="product__info">
+    <h1>{{ product.title }}</h1>
+    {% render 'price', product: product %}
+    <div class="product__description">{{ product.description }}</div>
+
+    {% form 'product', product, class: 'product__form' %}
+      <select name="id" aria-label="{{ 'products.product.variant_label' | t }}">
+        {% for variant in product.variants %}
+          <option value="{{ variant.id }}" {% if variant == product.selected_or_first_available_variant %}selected{% endif %}>
+            {{ variant.title }}
+          </option>
+        {% endfor %}
+      </select>
+      <button class="button" type="submit" name="add" {% unless product.available %}disabled{% endunless %}>
+        {% if product.available %}
+          {{ 'products.product.add_to_cart' | t }}
+        {% else %}
+          {{ 'products.product.sold_out' | t }}
+        {% endif %}
+      </button>
+    {% endform %}
+
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'specifications' %}
+          <div class="product__specs" {{ block.shopify_attributes }}>
+            <h2 class="product__specs-title">{{ 'products.product.specifications' | t }}</h2>
+            <table class="spec-table">
+              <tbody>
+                {% if block.settings.label_1 != blank and block.settings.value_1 != blank %}
+                  <tr>
+                    <th scope="row">{{ block.settings.label_1 }}</th>
+                    <td>{{ block.settings.value_1 }}</td>
+                  </tr>
+                {% endif %}
+                {% if block.settings.label_2 != blank and block.settings.value_2 != blank %}
+                  <tr>
+                    <th scope="row">{{ block.settings.label_2 }}</th>
+                    <td>{{ block.settings.value_2 }}</td>
+                  </tr>
+                {% endif %}
+                {% if block.settings.label_3 != blank and block.settings.value_3 != blank %}
+                  <tr>
+                    <th scope="row">{{ block.settings.label_3 }}</th>
+                    <td>{{ block.settings.value_3 }}</td>
+                  </tr>
+                {% endif %}
+                {% if block.settings.label_4 != blank and block.settings.value_4 != blank %}
+                  <tr>
+                    <th scope="row">{{ block.settings.label_4 }}</th>
+                    <td>{{ block.settings.value_4 }}</td>
+                  </tr>
+                {% endif %}
+              </tbody>
+            </table>
+          </div>
+        {% when 'swatches' %}
+          <aside class="product__swatches" {{ block.shopify_attributes }}>
+            <h2 class="product__swatches-title">{{ block.settings.title }}</h2>
+            <p class="product__swatches-note">{{ block.settings.note }}</p>
+            {% unless product.has_only_default_variant %}
+              <ul class="product__swatch-options">
+                {% for option in product.options %}
+                  <li>{{ option }}</li>
+                {% endfor %}
+              </ul>
+            {% endunless %}
+          </aside>
+      {% endcase %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "specifications",
+      "name": "Specifications",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label_1",
+          "label": "Row 1 label",
+          "default": "Dimensions"
+        },
+        {
+          "type": "text",
+          "id": "value_1",
+          "label": "Row 1 value",
+          "default": "W 210 × D 92 × H 78 cm"
+        },
+        {
+          "type": "text",
+          "id": "label_2",
+          "label": "Row 2 label",
+          "default": "Materials"
+        },
+        {
+          "type": "text",
+          "id": "value_2",
+          "label": "Row 2 value",
+          "default": "Solid walnut frame, wool bouclé upholstery"
+        },
+        {
+          "type": "text",
+          "id": "label_3",
+          "label": "Row 3 label",
+          "default": "Weight"
+        },
+        {
+          "type": "text",
+          "id": "value_3",
+          "label": "Row 3 value",
+          "default": "42 kg"
+        },
+        {
+          "type": "text",
+          "id": "label_4",
+          "label": "Row 4 label",
+          "default": "Care"
+        },
+        {
+          "type": "text",
+          "id": "value_4",
+          "label": "Row 4 value",
+          "default": "Vacuum weekly; blot spills — never rub"
+        }
+      ]
+    },
+    {
+      "type": "swatches",
+      "name": "Finishes & fabrics",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Finishes & fabrics"
+        },
+        {
+          "type": "textarea",
+          "id": "note",
+          "label": "Note",
+          "default": "Every wood finish and fabric we offer is a variant of this piece — pick a combination above and the price and lead time follow."
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

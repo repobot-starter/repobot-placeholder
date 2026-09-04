@@ -1,0 +1,50 @@
+{
+    "$comment": "Exemplar brief for the shop pack (docs/brief-spec.md). Runnable against the base repo itself: /shop and shopProducts exist regardless of the active pack. The capability ask reports blocked on the base repo (no repobot.deploy.json until a project is composed) — that is the expected, honest status.",
+    "business": {
+        "name": "Mara Ellison — The Lighthouse Letters",
+        "oneLiner": "A single-book storefront for a novelist who answers every reader letter by hand.",
+        "audience": "Readers of literary fiction, gift buyers",
+        "tone": "Quiet, coastal, personal",
+        "locale": "en-US",
+        "currency": "usd"
+    },
+    "content": {
+        "products.book": {
+            "kind": "product",
+            "name": "The Lighthouse Letters",
+            "priceMinorUnits": 1200
+        }
+    },
+    "asks": [
+        {
+            "id": "site-preset",
+            "statement": "A site that matches your style",
+            "tier": "compiled",
+            "realizedBy": { "manifest": "repobot.project.json", "pointer": "marketing.preset" }
+        },
+        {
+            "id": "book-purchasable",
+            "statement": "Your book, purchasable online",
+            "tier": "checkable",
+            "contentRefs": ["products.book"],
+            "acceptance": [
+                { "assert": "query-returns", "operation": "shopProducts", "expectCount": 1 },
+                { "assert": "route-renders", "path": "/shop" },
+                { "assert": "content-present", "path": "/shop", "text": "The Lighthouse Letters" }
+            ]
+        },
+        {
+            "id": "payments-provisioned",
+            "statement": "Real checkout when you go live",
+            "tier": "checkable",
+            "acceptance": [{ "assert": "capability-declared", "capability": "PAYMENTS" }]
+        },
+        {
+            "id": "coastal-feel",
+            "statement": "A quiet, coastal feel",
+            "tier": "judged",
+            "rubric": "Muted palette, serif or humanist type, personal voice in the copy — never generic ecommerce.",
+            "acceptance": [{ "assert": "screenshot", "path": "/shop" }]
+        }
+    ]
+}

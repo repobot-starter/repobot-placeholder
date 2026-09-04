@@ -1,0 +1,128 @@
+<section class="product">
+  <div class="product__media">
+    {% if product.featured_image %}
+      <img
+        src="{{ product.featured_image | image_url: width: 900 }}"
+        alt="{{ product.featured_image.alt | escape }}"
+        width="900"
+        height="{{ 900 | divided_by: product.featured_image.aspect_ratio | ceil }}"
+      >
+    {% endif %}
+  </div>
+  <div class="product__info">
+    <h1>{{ product.title }}</h1>
+    {% render 'price', product: product %}
+    <div class="product__description">{{ product.description }}</div>
+
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'tasting_notes' %}
+          <div class="product__tasting-notes" {{ block.shopify_attributes }}>
+            <div class="tasting-note">
+              <span class="tasting-note__label">{{ 'products.product.tasting_notes.aroma' | t }}</span>
+              {{ block.settings.aroma }}
+            </div>
+            <div class="tasting-note">
+              <span class="tasting-note__label">{{ 'products.product.tasting_notes.body' | t }}</span>
+              {{ block.settings.body }}
+            </div>
+            <div class="tasting-note">
+              <span class="tasting-note__label">{{ 'products.product.tasting_notes.finish' | t }}</span>
+              {{ block.settings.finish }}
+            </div>
+          </div>
+        {% when 'details' %}
+          <dl class="product__details" {{ block.shopify_attributes }}>
+            {% if block.settings.origin != blank %}
+              <dt>{{ 'products.product.details.origin' | t }}</dt>
+              <dd>{{ block.settings.origin }}</dd>
+            {% endif %}
+            {% if block.settings.altitude != blank %}
+              <dt>{{ 'products.product.details.altitude' | t }}</dt>
+              <dd>{{ block.settings.altitude }}</dd>
+            {% endif %}
+            {% if block.settings.process != blank %}
+              <dt>{{ 'products.product.details.process' | t }}</dt>
+              <dd>{{ block.settings.process }}</dd>
+            {% endif %}
+          </dl>
+      {% endcase %}
+    {% endfor %}
+
+    {% form 'product', product %}
+      <select name="id">
+        {% for variant in product.variants %}
+          <option value="{{ variant.id }}" {% if variant == product.selected_or_first_available_variant %}selected{% endif %}>
+            {{ variant.title }}
+          </option>
+        {% endfor %}
+      </select>
+      <button type="submit" name="add" {% unless product.available %}disabled{% endunless %}>
+        {% if product.available %}
+          {{ 'products.product.add_to_cart' | t }}
+        {% else %}
+          {{ 'products.product.sold_out' | t }}
+        {% endif %}
+      </button>
+    {% endform %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "tasting_notes",
+      "name": "Tasting notes",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "aroma",
+          "label": "Aroma",
+          "default": "Dark chocolate"
+        },
+        {
+          "type": "text",
+          "id": "body",
+          "label": "Body",
+          "default": "Round & syrupy"
+        },
+        {
+          "type": "text",
+          "id": "finish",
+          "label": "Finish",
+          "default": "Toasted hazelnut"
+        }
+      ]
+    },
+    {
+      "type": "details",
+      "name": "Origin details",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "origin",
+          "label": "Origin",
+          "default": "Huila, Colombia"
+        },
+        {
+          "type": "text",
+          "id": "altitude",
+          "label": "Altitude",
+          "default": "1,750–1,900 m"
+        },
+        {
+          "type": "text",
+          "id": "process",
+          "label": "Process",
+          "default": "Washed"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

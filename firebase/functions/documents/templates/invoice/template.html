@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Invoice {{invoiceNumber}}</title>
+    </head>
+    <body>
+        <main class="invoice-page">
+            <header class="masthead">
+                <div class="masthead-identity">
+                    <div class="business-name">{{businessName}}</div>
+                    {{#businessAddress}}
+                    <div class="muted">{{businessAddress}}</div>
+                    {{/businessAddress}} {{#businessEmail}}
+                    <div class="muted">{{businessEmail}}</div>
+                    {{/businessEmail}}
+                </div>
+                <div class="masthead-badge">
+                    <div class="doc-label">Invoice</div>
+                    <div class="doc-number">{{invoiceNumber}}</div>
+                </div>
+            </header>
+
+            <section class="meta-row">
+                <div class="meta-block">
+                    <span class="meta-label">Billed To</span>
+                    <div class="client-name">{{clientName}}</div>
+                    {{#clientAddress}}
+                    <div class="muted">{{clientAddress}}</div>
+                    {{/clientAddress}} {{#clientEmail}}
+                    <div class="muted">{{clientEmail}}</div>
+                    {{/clientEmail}}
+                </div>
+                <div class="meta-block meta-dates">
+                    <div>
+                        <span class="meta-label">Issue Date</span>
+                        <div class="meta-value">{{issueDate}}</div>
+                    </div>
+                    {{#dueDate}}
+                    <div>
+                        <span class="meta-label">Due Date</span>
+                        <div class="meta-value">{{dueDate}}</div>
+                    </div>
+                    {{/dueDate}}
+                </div>
+            </section>
+
+            <table class="line-table">
+                <thead>
+                    <tr>
+                        <th class="col-description">Description</th>
+                        <th class="col-qty">Qty</th>
+                        <th class="col-amount">Unit Price</th>
+                        <th class="col-amount">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#lineItems}}
+                    <tr>
+                        <td class="col-description">{{description}}</td>
+                        <td class="col-qty">{{quantity}}</td>
+                        <td class="col-amount">{{unitPrice}}</td>
+                        <td class="col-amount">{{lineTotal}}</td>
+                    </tr>
+                    {{/lineItems}}
+                </tbody>
+            </table>
+
+            <section class="totals">
+                <div class="totals-row"><span>Subtotal</span><strong>{{subtotal}}</strong></div>
+                {{#tax}}
+                <div class="totals-row"><span>Tax</span><strong>{{tax}}</strong></div>
+                {{/tax}}
+                <div class="totals-row grand-total"><span>Total Due</span><strong>{{total}}</strong></div>
+            </section>
+
+            {{#notes}}
+            <footer class="notes">
+                <span class="meta-label">Notes</span>
+                <p>{{notes}}</p>
+            </footer>
+            {{/notes}}
+        </main>
+    </body>
+</html>

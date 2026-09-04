@@ -1,0 +1,204 @@
+{
+    "key": "wedding",
+    "templateKey": "repobot-wedding",
+    "title": "Weddings",
+    "description": "A wedding photographer's studio site: full-bleed crossfade hero, sequenced wedding galleries with a lightbox, flat-priced packages with an FAQ, about with testimonials, an inquiry form, and a code-gated client proofing room \u2014 a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Wedding photography studio",
+    "category": "photography",
+    "homePath": "/",
+    "previewPath": "/wedding",
+    "homeViewDir": "web/app/src/View/Wedding",
+    "base": "content",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false,
+    "forms": {
+        "$comment": "Managed-form kinds, formKey -> kind (append-only vocabulary: RSVP | LEAD | MAILING_LIST | PROOFING). The studio's inquiry form is a lead pipeline. The proofing room's selection form is declared PROOFING (owner decision, 2026-08-31): client proofing is a managed capability the platform runs for the studio, and the dashboard renders selections as a typed proofing record (client, frame list in album order, new/handled) instead of the raw Inbox's field dump.",
+        "inquiry": "LEAD",
+        "proofing-selection": "PROOFING"
+    },
+    "contentContract": {
+        "$comment": "The pack's content slots, as data (packs/README.md 'Content contract'). Declares what a composer (agent or tool) must bind for a generated variant of this pack to present as real: slot paths into the typed content module, their kinds, and minimums. Authored alongside the module and guarded by the pack's content tests \u2014 the module satisfies the contract; the contract never drifts ahead of it.",
+        "module": "web/app/src/View/Wedding/content.ts",
+        "slots": {
+            "photographer.name": { "kind": "text" },
+            "photographer.tagline": { "kind": "text" },
+            "photographer.location": { "kind": "text" },
+            "photographer.email": { "kind": "text" },
+            "heroSlides": { "kind": "media[]", "min": 1 },
+            "selectedWork": { "kind": "media[]", "min": 4 },
+            "albums": {
+                "kind": "collection",
+                "min": 1,
+                "item": {
+                    "title": { "kind": "text" },
+                    "eyebrow": { "kind": "text" },
+                    "description": { "kind": "text" },
+                    "images": { "kind": "media[]", "min": 4 }
+                }
+            },
+            "home.headline": { "kind": "text" },
+            "home.subheadline": { "kind": "text" },
+            "home.intro.title": { "kind": "text" },
+            "home.intro.paragraphs": { "kind": "text[]", "min": 1 },
+            "packages": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "name": { "kind": "text" },
+                    "price": { "kind": "number" },
+                    "description": { "kind": "text" },
+                    "features": { "kind": "text[]", "min": 2 }
+                }
+            },
+            "faq": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "question": { "kind": "text" },
+                    "answer": { "kind": "text" }
+                }
+            },
+            "about.headline": { "kind": "text" },
+            "about.portrait": { "kind": "media" },
+            "about.paragraphs": { "kind": "text[]", "min": 2 },
+            "about.testimonials": {
+                "kind": "collection",
+                "min": 1,
+                "item": {
+                    "quote": { "kind": "text" },
+                    "name": { "kind": "text" },
+                    "detail": { "kind": "text" }
+                }
+            },
+            "inquire.headline": { "kind": "text" },
+            "inquire.body": { "kind": "text" }
+        }
+    },
+    "theme": {
+        "$comment": "The lanternlight register's overlay: mode dark opens the site in its native midnight appearance (string lights against night sky \u2014 the appearance toggle still swaps to the morning-after light variant), and the preset's ink-on-ground monochrome rides as the project brand so app-side surfaces (the code-gated proofing room's chrome and controls) wear the same register as the marketing pages instead of the kernel default blue. Brand values match the lanternlight preset's own light/dark accents \u2014 the marketing pages resolve brand over preset accent, so keeping them identical means the overlay re-brands the app without shifting the pages.",
+        "mode": "dark",
+        "brand": { "primary": "#1a1a1a", "primaryDark": "#f4f4f4" }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (web/app/src/View/Wedding/WeddingPage.tsx, useSitePageConfig). pages seeds each page's layout skeleton \u2014 ids match weddingLanding.ts; the platform's structural editor edits these. style must ride the overlay: the compose merge keeps the kernel document's root style otherwise, and applySitePageDocument makes the document preset outrank every page's pinned one. The preset is lanternlight (the nighttime-celebration register: midnight ground, white string-light glow, staid black-and-white palette, marquee masthead, tilted party prints, ticket-stub RSVP) \u2014 the wedding as the night itself; heirloom, the keepsake after the day, stays in the kernel as its remix-adjacent register.",
+        "style": { "preset": "lanternlight" },
+        "routes": {
+            "/": "home",
+            "/weddings": "weddings",
+            "/packages": "packages",
+            "/about": "about",
+            "/inquire": "inquire"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "masthead-overlay"
+                    },
+                    {
+                        "id": "intro",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "selected-work",
+                        "type": "gallery",
+                        "variant": "scrapbook"
+                    },
+                    {
+                        "id": "packages",
+                        "type": "pricing",
+                        "variant": "tiers"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "weddings",
+                        "type": "showcase",
+                        "variant": "collections"
+                    },
+                    {
+                        "id": "inquire-banner",
+                        "type": "cta-banner",
+                        "variant": "ticket"
+                    }
+                ]
+            },
+            "weddings": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "weddings",
+                        "type": "showcase",
+                        "variant": "collections"
+                    }
+                ]
+            },
+            "packages": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "packages",
+                        "type": "pricing",
+                        "variant": "tiers"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "inquire-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "inquire-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "inquire": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "inquiry-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

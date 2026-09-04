@@ -1,0 +1,215 @@
+{
+    "key": "nonprofit",
+    "templateKey": "repobot-nonprofit",
+    "title": "Nonprofit",
+    "description": "A mission-driven nonprofit site in a severe annual-report register: monumental impact-numbers typography, program spreads, a volunteer calendar that splits upcoming from past by itself with a computed next-day badge, a volunteer signup form, and a Donate CTA that links out to the org's own donation page — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Nonprofit website",
+    "category": "community",
+    "homePath": "/",
+    "previewPath": "/nonprofit",
+    "homeViewDir": "web/app/src/View/Nonprofit",
+    "base": "landing",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false,
+    "theme": {
+        "$comment": "The monolith register's brand overlay: monolith carries no accent hue at all — its accents ARE the ink (near-black in light mode, white in dark), and the Donate CTA reads as a hard white plate on true black. Setting brand to those same inks re-brands app surfaces into the register without shifting the marketing pages. Mode is dark: monolith's native mode.",
+        "mode": "dark",
+        "brand": { "primary": "#0a0a0a", "primaryDark": "#ffffff" }
+    },
+    "contentContract": {
+        "$comment": "The pack's content slots, as data (packs/README.md 'Content contract'). Declares what a composer (agent or tool) must bind for a generated variant of this pack to present as real: slot paths into the typed content module, their kinds, and minimums. events feeds the computed volunteer calendar (upcoming/past split, next-day badge) — its start slots are ISO local datetimes a composer must bind exactly, never prose. stats values are strings on purpose (units and shapes like \"92%\" or \"$0.86\" are typography, not arithmetic). Authored alongside the module and guarded by the pack's content tests — the module satisfies the contract; the contract never drifts ahead of it.",
+        "module": "web/app/src/View/Nonprofit/content.ts",
+        "slots": {
+            "org.name": { "kind": "text" },
+            "org.tagline": { "kind": "text" },
+            "org.location": { "kind": "text" },
+            "org.email": { "kind": "text" },
+            "org.donateUrl": { "kind": "text" },
+            "home.headline": { "kind": "text" },
+            "home.subheadline": { "kind": "text" },
+            "home.hero": { "kind": "media" },
+            "home.restored.headline": { "kind": "text" },
+            "home.restored.body": { "kind": "text" },
+            "home.restored.image": { "kind": "media" },
+            "home.featuredQuote.quote": { "kind": "text" },
+            "home.featuredQuote.author": { "kind": "text" },
+            "stats": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "value": { "kind": "text" },
+                    "label": { "kind": "text" }
+                }
+            },
+            "impactStats": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "value": { "kind": "text" },
+                    "label": { "kind": "text" },
+                    "description": { "kind": "text" }
+                }
+            },
+            "programs": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "title": { "kind": "text" },
+                    "eyebrow": { "kind": "text" },
+                    "description": { "kind": "text" },
+                    "image": { "kind": "media" }
+                }
+            },
+            "events": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "title": { "kind": "text" },
+                    "start": { "kind": "text" },
+                    "location": { "kind": "text" },
+                    "description": { "kind": "text" }
+                }
+            },
+            "impact.headline": { "kind": "text" },
+            "impact.body": { "kind": "text" },
+            "impact.letter.headline": { "kind": "text" },
+            "impact.letter.body": { "kind": "text" },
+            "impact.letter.portrait": { "kind": "media" },
+            "impact.voices": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "quote": { "kind": "text" },
+                    "author": { "kind": "text" },
+                    "title": { "kind": "text" }
+                }
+            },
+            "volunteer.headline": { "kind": "text" },
+            "volunteer.body": { "kind": "text" },
+            "volunteer.steps": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "title": { "kind": "text" },
+                    "description": { "kind": "text" }
+                }
+            },
+            "donate.headline": { "kind": "text" },
+            "donate.body": { "kind": "text" }
+        }
+    },
+    "content": {
+        "$comment": "Business-content contract seed, merged over repobot.content.json at compose (the same overlay path as landing/theme — scripts/lib/pack-switch.mjs applyPackOverlays). The events domain mirrors content.ts events entry for entry (the seed-fidelity tests pin it), minus the photographs — imagery stays code-owned and the pack joins it back by slug (View/Nonprofit/calendar.ts). Upcoming vs. past and the \"Next up\" highlight stay computed at render time by the events engine wherever the facts come from.",
+        "events": {
+            "entries": [
+                {
+                    "slug": "earth-day-2026",
+                    "title": "Earth Day cleanup, all crews",
+                    "start": "2026-04-22T09:00",
+                    "end": "2026-04-22T14:00",
+                    "location": "All 38 neighborhood sites",
+                    "description": "Our biggest day of the year: eleven hundred volunteers, six tons of debris out of the water, and the season's first crawdad sighting."
+                },
+                {
+                    "slug": "science-saturday-jun",
+                    "title": "Science Saturday: summer sampling",
+                    "start": "2026-06-13T08:30",
+                    "end": "2026-06-13T12:00",
+                    "location": "Meet at the field lab, Georgetown",
+                    "description": "Monthly water-quality round with the summer index samples — the readings the state delisting reviews lean on hardest."
+                },
+                {
+                    "slug": "august-garden-blitz",
+                    "title": "Rain garden blitz week",
+                    "start": "2026-08-10T08:00",
+                    "end": "2026-08-14T16:00",
+                    "location": "Delridge · 12 host yards",
+                    "description": "Five days, twelve gardens, one very sore corps. Delridge's runoff now has twelve fewer straight shots at Longfellow Creek."
+                },
+                {
+                    "slug": "coastal-cleanup",
+                    "title": "Coastal cleanup day",
+                    "start": "2026-09-19T09:00",
+                    "end": "2026-09-19T13:00",
+                    "location": "Duwamish river mouth",
+                    "description": "We take the watershed's finish line: two miles of shoreline where everything the creeks carry ends up. Gloves, grabbers, and coffee provided."
+                },
+                {
+                    "slug": "fall-planting-kickoff",
+                    "title": "Fall planting kickoff",
+                    "start": "2026-10-10T09:00",
+                    "end": "2026-10-10T14:00",
+                    "location": "Thornton Creek, mile 9",
+                    "description": "First dig of the planting season: four thousand willow stakes and sedge plugs into the reach the summer crews prepped. No experience needed — the mud teaches fast."
+                },
+                {
+                    "slug": "raingarden-build-nov",
+                    "title": "Rain garden build day",
+                    "start": "2026-11-07T09:00",
+                    "end": "2026-11-07T15:00",
+                    "location": "Beacon Hill · 3 host yards",
+                    "description": "Last builds before the ground gets stubborn. Three yards, three basins, and the corps' famous chili at noon."
+                },
+                {
+                    "slug": "volunteer-night-2026",
+                    "title": "Volunteer appreciation night",
+                    "start": "2026-12-04T18:00",
+                    "end": "2026-12-04T21:00",
+                    "location": "The field lab, Georgetown",
+                    "description": "The year's numbers on the big screen, the blooper reel from the trail cameras, and the golden wader award. Plus-ones welcome."
+                }
+            ]
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (web/app/src/View/Nonprofit/NonprofitPage.tsx, useSitePageConfig). pages seeds each page's layout skeleton — ids match nonprofitLanding.ts; the platform's structural editor edits these. The preset is monolith (true black, strict ink-and-paper, monumental scale-1.3 display, the beam, zero accent hue) — the annual-report register: photography is the only color, numbers do the persuading, and the Donate plate is the whole accent budget.",
+        "style": { "preset": "monolith" },
+        "routes": {
+            "/": "home",
+            "/programs": "programs",
+            "/impact": "impact",
+            "/volunteer": "volunteer"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "masthead-overlay" },
+                    { "id": "numbers", "type": "stats", "variant": "row" },
+                    { "id": "programs", "type": "showcase", "variant": "card-grid" },
+                    { "id": "restored", "type": "content-split", "variant": "media-right" },
+                    { "id": "voice", "type": "testimonials", "variant": "single-featured" },
+                    { "id": "donate-banner", "type": "cta-banner", "variant": "full-bleed" }
+                ]
+            },
+            "programs": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "statement" },
+                    { "id": "program-restoration", "type": "content-split", "variant": "media-right" },
+                    { "id": "program-water-watch", "type": "content-split", "variant": "media-left" },
+                    { "id": "program-rain-gardens", "type": "content-split", "variant": "media-right" },
+                    { "id": "program-classroom", "type": "content-split", "variant": "media-left" },
+                    { "id": "volunteer-banner", "type": "cta-banner", "variant": "card" }
+                ]
+            },
+            "impact": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "statement" },
+                    { "id": "ledger", "type": "stats", "variant": "cards" },
+                    { "id": "letter", "type": "content-split", "variant": "media-left" },
+                    { "id": "voices", "type": "testimonials", "variant": "quote-grid" },
+                    { "id": "donate-banner", "type": "cta-banner", "variant": "full-bleed" }
+                ]
+            },
+            "volunteer": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "statement" },
+                    { "id": "upcoming", "type": "showcase", "variant": "card-grid" },
+                    { "id": "how", "type": "steps", "variant": "timeline" },
+                    { "id": "signup", "type": "lead-form", "variant": "detail-form" },
+                    { "id": "past", "type": "showcase", "variant": "card-grid" }
+                ]
+            }
+        }
+    }
+}

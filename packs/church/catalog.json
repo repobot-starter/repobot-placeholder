@@ -1,0 +1,225 @@
+{
+    "key": "church",
+    "templateKey": "repobot-church",
+    "title": "Church",
+    "description": "A church site in the midnight-service register — near-black ground, monumental uppercase type, one candle-amber accent: a computed \"next service\" badge and an events calendar that splits upcoming from past by itself, ministries, a sermon archive, a plan-a-visit form, and a Give CTA that links out to the church's own giving page — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Church website",
+    "category": "community",
+    "homePath": "/",
+    "previewPath": "/church",
+    "homeViewDir": "web/app/src/View/Church",
+    "base": "content",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false,
+    "theme": {
+        "$comment": "The hymnal register's brand overlay: the preset's candle-amber accent as the project brand, so app-side surfaces wear the same midnight-service register as the marketing pages instead of the kernel default blue. mode dark opens the site in the register's native appearance (the appearance toggle still swaps to the daylight reading). Values match the hymnal preset's own light/dark accents — the marketing pages resolve brand over preset accent, so keeping them identical means the overlay re-brands the app without shifting the pages.",
+        "mode": "dark",
+        "brand": { "primary": "#a16207", "primaryDark": "#ff9e2c" }
+    },
+    "contentContract": {
+        "$comment": "The pack's content slots, as data (packs/README.md 'Content contract'). Declares what a composer (agent or tool) must bind for a generated variant of this pack to present as real: slot paths into the typed content module, their kinds, and minimums. serviceTimes and events feed the computed mechanics (next-service badge, upcoming/past split) — their day/minute and start slots are numbers and ISO datetimes a composer must bind exactly, never prose. Authored alongside the module and guarded by the pack's content tests — the module satisfies the contract; the contract never drifts ahead of it.",
+        "module": "web/app/src/View/Church/content.ts",
+        "slots": {
+            "church.name": { "kind": "text" },
+            "church.tagline": { "kind": "text" },
+            "church.location": { "kind": "text" },
+            "church.address": { "kind": "text" },
+            "church.phone": { "kind": "text" },
+            "church.email": { "kind": "text" },
+            "church.giveUrl": { "kind": "text" },
+            "home.headline": { "kind": "text" },
+            "home.subheadline": { "kind": "text" },
+            "home.hero": { "kind": "media" },
+            "home.welcome.headline": { "kind": "text" },
+            "home.welcome.body": { "kind": "text" },
+            "home.welcome.portrait": { "kind": "media" },
+            "serviceTimes": {
+                "kind": "collection",
+                "min": 1,
+                "item": {
+                    "day": { "kind": "number" },
+                    "minute": { "kind": "number" },
+                    "label": { "kind": "text" }
+                }
+            },
+            "serviceSchedule": {
+                "kind": "collection",
+                "min": 1,
+                "item": {
+                    "headline": { "kind": "text" },
+                    "body": { "kind": "text" }
+                }
+            },
+            "ministries": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "title": { "kind": "text" },
+                    "eyebrow": { "kind": "text" },
+                    "description": { "kind": "text" },
+                    "image": { "kind": "media" }
+                }
+            },
+            "sermons": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "title": { "kind": "text" },
+                    "speaker": { "kind": "text" },
+                    "date": { "kind": "text" },
+                    "passage": { "kind": "text" },
+                    "series": { "kind": "text" },
+                    "summary": { "kind": "text" }
+                }
+            },
+            "events": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "title": { "kind": "text" },
+                    "start": { "kind": "text" },
+                    "location": { "kind": "text" },
+                    "description": { "kind": "text" }
+                }
+            },
+            "visit.headline": { "kind": "text" },
+            "visit.body": { "kind": "text" },
+            "visit.photo": { "kind": "media" },
+            "visit.expectations": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "title": { "kind": "text" },
+                    "description": { "kind": "text" }
+                }
+            },
+            "give.headline": { "kind": "text" },
+            "give.body": { "kind": "text" }
+        }
+    },
+    "content": {
+        "$comment": "Business-content contract seed, merged over repobot.content.json at compose (the same overlay path as landing/theme — scripts/lib/pack-switch.mjs applyPackOverlays). The events domain mirrors content.ts events entry for entry (the seed-fidelity tests pin it), minus the photographs — imagery stays code-owned and the pack joins it back by slug (View/Church/calendar.ts). Upcoming vs. past and the \"Next up\" highlight stay computed at render time by the events engine wherever the facts come from.",
+        "events": {
+            "entries": [
+                {
+                    "slug": "picnic-2026",
+                    "title": "Church picnic at Whatcom Falls",
+                    "start": "2026-06-27T11:00",
+                    "end": "2026-06-27T15:00",
+                    "location": "Whatcom Falls Park",
+                    "description": "Fried chicken, three-legged races, and a baptism in the creek — the whole church outdoors for an afternoon."
+                },
+                {
+                    "slug": "vbs-2026",
+                    "title": "Vacation Bible School",
+                    "start": "2026-07-13T09:00",
+                    "end": "2026-07-17T12:00",
+                    "location": "All rooms",
+                    "description": "Five mornings, ninety kids, one very tired puppet team. Registration opens each spring."
+                },
+                {
+                    "slug": "pancakes-2026",
+                    "title": "Neighborhood pancake breakfast",
+                    "start": "2026-08-08T08:30",
+                    "end": "2026-08-08T11:00",
+                    "location": "Front lawn",
+                    "description": "Griddles on the lawn, no program, no ask. If you smelled it from your porch, you were invited."
+                },
+                {
+                    "slug": "fall-kickoff",
+                    "title": "Fall kickoff dinner",
+                    "start": "2026-09-12T17:30",
+                    "end": "2026-09-12T20:00",
+                    "location": "Fellowship hall",
+                    "description": "The common table, kickoff edition: home groups relaunch, ministries take sign-ups, and dessert outnumbers dinner. Everyone's invited, especially if you're new."
+                },
+                {
+                    "slug": "serve-day",
+                    "title": "Neighborhood serve day",
+                    "start": "2026-09-26T09:00",
+                    "end": "2026-09-26T13:00",
+                    "location": "Front steps",
+                    "description": "Yards, gutters, and porch steps for neighbors who asked — crews of six, tools provided, lunch after. Kids welcome with a grown-up."
+                },
+                {
+                    "slug": "harvest-supper",
+                    "title": "Harvest supper & pie auction",
+                    "start": "2026-10-24T17:00",
+                    "end": "2026-10-24T20:00",
+                    "location": "Fellowship hall",
+                    "description": "Soup, bread, and the annual pie auction that funds the youth group's spring trip. Bidding is friendly until the marionberry comes out."
+                },
+                {
+                    "slug": "thanksgiving-table",
+                    "title": "Community Thanksgiving table",
+                    "start": "2026-11-26T12:30",
+                    "end": "2026-11-26T15:00",
+                    "location": "Fellowship hall",
+                    "description": "Thanksgiving dinner for anyone spending the day alone — no sign-up, no charge, seconds encouraged. Drivers deliver plates to homebound neighbors at 2."
+                },
+                {
+                    "slug": "candlelight-2026",
+                    "title": "Christmas Eve candlelight service",
+                    "start": "2026-12-24T17:00",
+                    "end": "2026-12-24T18:15",
+                    "location": "Sanctuary",
+                    "description": "Carols, the Christmas story, and the room lit one candle at a time. Our fullest hour of the year — come early, sit close."
+                }
+            ]
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (web/app/src/View/Church/ChurchPage.tsx, useSitePageConfig). pages seeds each page's layout skeleton — ids match churchLanding.ts; the platform's structural editor edits these. The preset is hymnal (the midnight-service register: warm near-black ground under grain, monumental uppercase Space Grotesk, hairline rules, one candle-amber accent held to CTAs and the beam) — reverence through boldness, a venue's conviction rather than a parish newsletter, deliberately apart from ballroom's gala gold and marquee's playbill.",
+        "style": { "preset": "hymnal" },
+        "routes": {
+            "/": "home",
+            "/visit": "visit",
+            "/ministries": "ministries",
+            "/sermons": "sermons",
+            "/events": "events"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "masthead-overlay" },
+                    { "id": "services", "type": "highlights", "variant": "setlist" },
+                    { "id": "welcome", "type": "content-split", "variant": "media-right" },
+                    { "id": "ministries", "type": "showcase", "variant": "collections" },
+                    { "id": "upcoming", "type": "showcase", "variant": "card-grid" },
+                    { "id": "give-banner", "type": "cta-banner", "variant": "full-bleed" }
+                ]
+            },
+            "visit": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "statement" },
+                    { "id": "expectations", "type": "steps", "variant": "timeline" },
+                    { "id": "sundays", "type": "content-split", "variant": "media-left" },
+                    { "id": "plan-visit", "type": "lead-form", "variant": "detail-form" }
+                ]
+            },
+            "ministries": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "statement" },
+                    { "id": "ministries", "type": "showcase", "variant": "card-grid" },
+                    { "id": "visit-banner", "type": "cta-banner", "variant": "card" }
+                ]
+            },
+            "sermons": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "statement" },
+                    { "id": "archive", "type": "showcase", "variant": "filterable-grid" },
+                    { "id": "visit-banner", "type": "cta-banner", "variant": "card" }
+                ]
+            },
+            "events": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "statement" },
+                    { "id": "upcoming", "type": "showcase", "variant": "card-grid" },
+                    { "id": "past", "type": "showcase", "variant": "card-grid" },
+                    { "id": "give-banner", "type": "cta-banner", "variant": "full-bleed" }
+                ]
+            }
+        }
+    }
+}

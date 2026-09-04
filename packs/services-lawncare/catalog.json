@@ -1,0 +1,15 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services-recurring pack composed with a lawn-care content seed and a deep-emerald brand over the warm-boutique register. Everything else — pages, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-lawncare",
+    "remixOf": "services-recurring",
+    "templateKey": "repobot-services-lawncare",
+    "title": "Lawn care & mowing",
+    "description": "A lawn care site built around the schedule: mowing and treatment plans priced per visit, a line-by-line plan comparison, a proof gallery, testimonials, and a booking form that asks for a frequency, not a project \u2014 a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Lawn care service",
+    "contentSeed": "web/app/src/View/ServicesRecurring/lawncareRemix.content.ts",
+    "theme": {
+        "$comment": "Deep emerald over the warm-boutique register's cream warmth \u2014 the recurring shape's herbal-green cleaner deepened to turf. Marketing pages resolve brand over preset accent, so the overlay re-skins the pages and the app surfaces together. navigation re-pins the shared servicesRecurringShell chrome (a declared theme variant outranks the shell prop): the base cleaner wears the pill-links cluster, so the lawncare remix takes the inline floating card \u2014 the nav-variety audit spreads the nine-template services family across the vocabulary.",
+        "brand": { "primary": "#047857", "primaryDark": "#34d399" },
+        "navigation": { "variant": "inline" }
+    }
+}

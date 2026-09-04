@@ -1,0 +1,47 @@
+{
+    "key": "quickbooks",
+    "templateKey": "repobot-quickbooks",
+    "title": "QuickBooks Sync",
+    "description": "Your QuickBooks books as a one-page, dark-mode finance command center: connect a company and see cash, revenue, and profit with sparklines, thirteen months of income vs expenses, A/R aging, top customers, and the latest invoices — a realistic sample company connects instantly in the sandbox, and a bound Intuit connection makes it real on deploy.",
+    "marketingExampleTitle": "QuickBooks sync",
+    "homePath": "/",
+    "previewPath": "/quickbooks",
+    "homeViewDir": "web/app/src/View/QuickBooksSync",
+    "base": "app",
+    "isFeature": true,
+    "clientOnly": false,
+    "capabilities": ["AUTH", "DATABASE", "BACKEND"],
+    "isDefault": false,
+    "theme": {
+        "$comment": "The command center's dark art direction (the founder's explicit ask) rides as the pack's seed theme: near-black layered ground, white ink for money in. The palette's dark values are the page's pre-AppShell art constants (palette.ts) verbatim so shell chrome and glass cards read as one surface; the shell defaults to top-nav because the page is a single surface with no in-app navigation — its old chrome was a lone topbar.",
+        "mode": "dark",
+        "character": "plain",
+        "brand": {
+            "primary": "#1f1f1f",
+            "primaryDark": "#e8ecef"
+        },
+        "palette": {
+            "background": "#f6f6f5",
+            "backgroundDark": "#0a0a0a",
+            "surface": "#ffffff",
+            "surfaceDark": "#141414",
+            "surfaceHover": "#ececea",
+            "surfaceHoverDark": "#1d1d1d",
+            "border": "#e0e0dd",
+            "borderDark": "#262626",
+            "textPrimary": "#161616",
+            "textPrimaryDark": "#ececec",
+            "textSecondary": "#6b6b6b",
+            "textSecondaryDark": "#9a9a9a",
+            "muted": "#ececea",
+            "mutedDark": "#191919",
+            "input": "#e0e0dd",
+            "inputDark": "#262626",
+            "skeleton": "#e8e8e5",
+            "skeletonDark": "#1d1d1d",
+            "charts": ["#161616", "#6f7681", "#9aa1ac", "#4b515b", "#c9ced6", "#fbbf5c"],
+            "chartsDark": ["#ffffff", "#c9ced6", "#9aa1ac", "#6f7681", "#4b515b", "#fbbf5c"]
+        },
+        "shell": { "variant": "top-nav" }
+    }
+}

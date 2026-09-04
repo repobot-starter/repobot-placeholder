@@ -1,0 +1,13 @@
+{
+    "name": "webpreview-host",
+    "version": "0.0.0",
+    "type": "module",
+    "private": true,
+    "description": "Static host page for the SwiftUI web preview. `npm install` here, then serve the ios/ directory and open /WebPreview/web/index.html.",
+    "dependencies": {
+        "@bjorn3/browser_wasi_shim": "0.3.0"
+    },
+    "devDependencies": {
+        "puppeteer-core": "^24.43.1"
+    }
+}

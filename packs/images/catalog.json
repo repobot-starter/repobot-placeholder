@@ -1,0 +1,48 @@
+{
+    "key": "images",
+    "templateKey": "repobot-images",
+    "title": "Contact Sheet",
+    "description": "A photo library of your own: a darkroom contact sheet where every account gets a private roll — capture-date timeline, masonry grid, albums, favorites, and a lightbox with zoom, slideshow, captions, and rotate. Photos are processed entirely in the browser at import: a built-in EXIF reader pulls the capture time and a canvas renders WebP thumbnails before the bytes ride signed cloud-storage URLs (up to 100MB, never proxied through functions). Ships with a seeded demo roll so the first open shows a working library, plus a clear-library action. Shares its storage domain with the file locker pack: install both and Photos becomes a lens over the same library.",
+    "marketingExampleTitle": "Photo library",
+    "homePath": "/",
+    "previewPath": "/images",
+    "homeViewDir": "web/app/src/View/Images",
+    "base": "app",
+    "isFeature": true,
+    "clientOnly": false,
+    "capabilities": ["AUTH", "STORAGE", "IOS", "ANDROID"],
+    "authMethods": ["email-code"],
+    "isDefault": false,
+    "theme": {
+        "$comment": "Mono-utility worn as an application, dark reading: the same fund-index/dj spec-sheet register as the files pack (graph paper, hairlines, Plex Mono frame numbers) printed in reverse — a darkroom contact sheet where photos are the only color on the page. The register's inks ride as the project brand so kernel surfaces (login, settings) match. The palette carries the contact sheet's exact grounds so the AppShell chrome and the sheet read as one surface — its dark values are the pack's pre-AppShell art constants verbatim; the light values are the same sheet as a print box.",
+        "mode": "dark",
+        "character": "plain",
+        "brand": {
+            "primary": "#d8b24a",
+            "primaryDark": "#d8b24a"
+        },
+        "palette": {
+            "background": "#f5f5f4",
+            "backgroundDark": "#0a0a0a",
+            "surface": "#fdfdfc",
+            "surfaceDark": "#161616",
+            "surfaceHover": "#ebebe9",
+            "surfaceHoverDark": "#1d1d1d",
+            "border": "#dcdcd8",
+            "borderDark": "#2b2b2b",
+            "textPrimary": "#191919",
+            "textPrimaryDark": "#ececec",
+            "textSecondary": "#6e6e6a",
+            "textSecondaryDark": "#8f8f8f",
+            "muted": "#ebebe9",
+            "mutedDark": "#1d1d1d",
+            "input": "#dcdcd8",
+            "inputDark": "#2b2b2b",
+            "skeleton": "#e7e7e4",
+            "skeletonDark": "#1d1d1d",
+            "charts": ["#191919", "#5c5c58", "#8a8a86", "#3a3a38", "#6e6e6a", "#b3b3af"],
+            "chartsDark": ["#ececec", "#b3b3af", "#83837f", "#d5d5d1", "#8f8f8f", "#565652"]
+        },
+        "shell": { "variant": "sidebar" }
+    }
+}

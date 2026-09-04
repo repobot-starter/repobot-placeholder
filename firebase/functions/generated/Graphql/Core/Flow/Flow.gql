@@ -1,0 +1,105 @@
+# Budgeting domain: budget/forecast templates as month-grids over the
+# owner's live accounting connection. Only the plan is stored — actuals and
+# variance are computed at read time from the live P&L, so the grid never
+# goes stale. All operations require an authenticated user; rows are
+# strictly per-user (ownership is checked in the service).
+
+enum FlowSection {
+    INCOME
+    EXPENSES
+}
+
+"""
+A budget/forecast template: a named grid whose columns are consecutive
+calendar months and whose rows are FlowLines. Money follows the kernel
+money rule (integer minor units + ISO currency).
+"""
+type FlowTemplate {
+    id: Id!
+    name: String!
+    "First grid month as YYYY-MM."
+    startMonth: String!
+    monthCount: Int!
+    "The grid's months, oldest first (startMonth plus monthCount - 1 more)."
+    months: [String!]!
+    "Lowercase ISO currency code, e.g. \"usd\"."
+    currency: String!
+    createdTime: Instant!
+    "The grid's rows: income first, then expenses, by position."
+    lines: [FlowLine!]!
+}
+
+"One row of the grid: the plan, plus live actuals and variance per month."
+type FlowLine {
+    id: Id!
+    position: Int!
+    label: String!
+    section: FlowSection!
+    "The P&L category this row links to on the owner's books; null for a free row."
+    linkedCategory: String
+    "Planned amounts, one per grid month, integer minor units."
+    budgetsMinorUnits: [Int!]!
+    "Live actuals per grid month; null where the month has no actuals (unlinked row, future month, or no connection)."
+    actualsMinorUnits: [Int]!
+    "actual minus budget per grid month; null wherever actuals are null."
+    variancesMinorUnits: [Int]!
+}
+
+"The P&L categories the owner's books serve, for the link dropdown."
+type FlowLinkableCategories {
+    incomeCategories: [String!]!
+    expenseCategories: [String!]!
+}
+
+input FlowCreateTemplateInput {
+    idempotencyKey: String!
+    name: String!
+    "First grid month as YYYY-MM."
+    startMonth: String!
+    "1-24 grid months."
+    monthCount: Int!
+    "Seed one linked row per P&L category with budgets from the latest actual month (requires connected books)."
+    seedFromActuals: Boolean
+}
+
+input FlowRenameTemplateInput {
+    templateId: Id!
+    name: String!
+}
+
+input FlowDeleteTemplateInput {
+    templateId: Id!
+}
+
+input FlowAddLineInput {
+    idempotencyKey: String!
+    templateId: Id!
+    label: String!
+    section: FlowSection!
+    linkedCategory: String
+}
+
+input FlowUpdateLineInput {
+    lineId: Id!
+    label: String
+    "Pass an empty string to clear the link; omit to leave it unchanged."
+    linkedCategory: String
+    "The full row of planned amounts (exactly monthCount entries, integer minor units)."
+    budgetsMinorUnits: [Int!]
+}
+
+input FlowRemoveLineInput {
+    lineId: Id!
+}
+
+input FlowExportTemplateXlsxInput {
+    idempotencyKey: String!
+    templateId: Id!
+}
+
+input FlowImportTemplateXlsxInput {
+    idempotencyKey: String!
+    "A READY xlsx upload whose Budget sheet has the shape the export produces."
+    uploadId: Id!
+    name: String!
+}

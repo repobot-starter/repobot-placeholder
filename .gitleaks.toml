@@ -1,0 +1,26 @@
+# Gitleaks config for the CI secret scan (.github/workflows/ci.yml).
+#
+# Extends the default ruleset with allowlists for machine-generated files
+# whose contents pattern-match secrets but aren't: the design-system
+# pristine manifest maps filenames to SHA-256 content hashes, and names
+# like AuthCard.tsx or tokens.css.ts next to a 64-hex value trip the
+# generic-api-key rule — which turned every freshly provisioned project's
+# pipeline red on its very first push.
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Machine-generated integrity manifests: values are content hashes, not credentials"
+paths = [
+    # Any pristine manifest, wherever it lives: the protected-directory set
+    # grows (packs/, web/core/, firebase/functions/src/Services/, …) and
+    # each new manifest re-tripped generic-api-key until someone extended
+    # this list — the path shape is the guarantee, not the directory.
+    '''(^|/)\.pristine-manifest\.json$''',
+    # Test-pinning manifest: test filenames mapped to SHA-256 content
+    # hashes — the same filename-next-to-64-hex shape that already trips
+    # generic-api-key on the pristine manifest. Its arrival turned every
+    # new project's Secret scan red on the initial commit.
+    '''web/app/tests/\.pinned-tests\.json''',
+]

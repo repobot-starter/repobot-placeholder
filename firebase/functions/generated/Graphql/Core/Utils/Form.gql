@@ -1,0 +1,13 @@
+# Backend-driven forms. The backend builds complete form definitions
+# (JSON Schema + UI schema + default data, each JSON-encoded) so clients
+# render entity create/edit forms with zero frontend form code.
+
+type SchemaForm {
+    jsonSchema: String!
+    uiSchema: String!
+    defaultData: String!
+}
+
+input SchemaFormUpdateInput {
+    objectId: Id!
+}

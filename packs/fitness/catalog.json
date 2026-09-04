@@ -1,0 +1,426 @@
+{
+    "key": "fitness",
+    "templateKey": "repobot-fitness",
+    "title": "Strength Club",
+    "description": "A boutique strength studio's site in a strict black-and-white register: a live weekly class-schedule grid computed from one content file (today highlighted, a 'Next class / In session' badge derived from the clock), coach bios, month-to-month pricing tiers and class packs, and a free-week lead form — five pages, all edited in a single content file, art-directed in the chalk register (near-black rubber ground, chalk-bone signage type, hairline rules, high-contrast black-and-white photography).",
+    "marketingExampleTitle": "Strength studio site",
+    "category": "fitness",
+    "homePath": "/",
+    "previewPath": "/fitness",
+    "homeViewDir": "web/app/src/View/Fitness",
+    "base": "landing",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false,
+    "theme": {
+        "$comment": "The chalk register's overlay: mode dark opens the site in its native training-floor appearance (the appearance toggle still swaps to the daylight whiteboard-wall variant), and the register's chalk-on-black ink rides as the project brand so app-side surfaces wear the same monochrome register as the marketing pages instead of the kernel default blue. Brand values match the chalk preset's own light/dark accents — the marketing pages resolve brand over preset accent, so keeping them identical means the overlay re-brands the app without shifting the pages.",
+        "mode": "dark",
+        "brand": {
+            "primary": "#181815",
+            "primaryDark": "#f0eee7"
+        }
+    },
+    "contentContract": {
+        "$comment": "The pack's content slots, as data (packs/README.md 'Content contract'). Declares what a composer (agent or tool) must bind for a generated variant of this pack to present as real: slot paths into the typed content module, their kinds, and minimums. Authored alongside the module and guarded by the pack's content tests — the module satisfies the contract; the contract never drifts ahead of it. The schedule is the signature slot: day/start/end are NUMBERS (weekday index and minutes since midnight) that the schedule engine computes the live badge and the grid from — a composer must bind them as numbers, never prose.",
+        "module": "web/app/src/View/Fitness/content.ts",
+        "slots": {
+            "gym.name": { "kind": "text" },
+            "gym.tagline": { "kind": "text" },
+            "gym.city": { "kind": "text" },
+            "gym.address": { "kind": "text" },
+            "gym.phone": { "kind": "text" },
+            "gym.email": { "kind": "text" },
+            "weeklySchedule": {
+                "kind": "collection",
+                "min": 8,
+                "item": {
+                    "day": { "kind": "number" },
+                    "start": { "kind": "number" },
+                    "end": { "kind": "number" },
+                    "title": { "kind": "text" },
+                    "instructor": { "kind": "text" }
+                }
+            },
+            "coaches": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "name": { "kind": "text" },
+                    "role": { "kind": "text" },
+                    "bio": { "kind": "text" },
+                    "photo": { "kind": "media" }
+                }
+            },
+            "stats": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "value": { "kind": "text" },
+                    "label": { "kind": "text" }
+                }
+            },
+            "memberships": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "name": { "kind": "text" },
+                    "monthly": { "kind": "number" },
+                    "yearlyPerMonth": { "kind": "number" },
+                    "description": { "kind": "text" },
+                    "features": { "kind": "text[]", "min": 3 }
+                }
+            },
+            "classPacks": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "name": { "kind": "text" },
+                    "price": { "kind": "text" },
+                    "detail": { "kind": "text" }
+                }
+            },
+            "faq": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "question": { "kind": "text" },
+                    "answer": { "kind": "text" }
+                }
+            },
+            "testimonials": {
+                "kind": "collection",
+                "min": 1,
+                "item": {
+                    "quote": { "kind": "text" },
+                    "name": { "kind": "text" },
+                    "detail": { "kind": "text" }
+                }
+            },
+            "home.headline": { "kind": "text" },
+            "home.subheadline": { "kind": "text" },
+            "home.hero": { "kind": "media" },
+            "gallery": { "kind": "media[]", "min": 3 },
+            "story.headline": { "kind": "text" },
+            "story.paragraphs": { "kind": "text[]", "min": 2 },
+            "story.image": { "kind": "media" },
+            "trial.headline": { "kind": "text" },
+            "trial.body": { "kind": "text" }
+        }
+    },
+    "content": {
+        "$comment": "Business-content contract seed, merged over repobot.content.json at compose (the same overlay path as landing/theme — scripts/lib/pack-switch.mjs applyPackOverlays). The schedule domain mirrors content.ts weeklySchedule entry for entry (the seed-fidelity tests pin it) and adds the booking-facing fields the platform keys on: stable sessionIds (day-HHMM-title, the contract resolver's own derivation rule), per-class capacity, and bookable. Open-floor hours are staffed access, not a reservable class — no capacity, not bookable.",
+        "schedule": {
+            "sessions": [
+                {
+                    "sessionId": "mon-0600-strength-101",
+                    "day": 1,
+                    "start": 360,
+                    "end": 420,
+                    "title": "Strength 101",
+                    "instructor": "Mara Reyes",
+                    "note": "All levels",
+                    "capacity": 12,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "mon-1200-lunch-express",
+                    "day": 1,
+                    "start": 720,
+                    "end": 765,
+                    "title": "Lunch Express",
+                    "instructor": "Dom Cole",
+                    "capacity": 10,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "mon-1730-barbell-club",
+                    "day": 1,
+                    "start": 1050,
+                    "end": 1110,
+                    "title": "Barbell Club",
+                    "instructor": "Mara Reyes",
+                    "capacity": 10,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "mon-1830-conditioning",
+                    "day": 1,
+                    "start": 1110,
+                    "end": 1170,
+                    "title": "Conditioning",
+                    "instructor": "Whit Okafor",
+                    "capacity": 12,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "tue-0600-conditioning",
+                    "day": 2,
+                    "start": 360,
+                    "end": 420,
+                    "title": "Conditioning",
+                    "instructor": "Whit Okafor",
+                    "capacity": 12,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "tue-1730-olympic-lifting",
+                    "day": 2,
+                    "start": 1050,
+                    "end": 1110,
+                    "title": "Olympic Lifting",
+                    "instructor": "Ken Ito",
+                    "note": "Intermediate",
+                    "capacity": 8,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "tue-1830-strength-101",
+                    "day": 2,
+                    "start": 1110,
+                    "end": 1170,
+                    "title": "Strength 101",
+                    "instructor": "Dom Cole",
+                    "note": "All levels",
+                    "capacity": 12,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "wed-0600-strength-101",
+                    "day": 3,
+                    "start": 360,
+                    "end": 420,
+                    "title": "Strength 101",
+                    "instructor": "Mara Reyes",
+                    "note": "All levels",
+                    "capacity": 12,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "wed-1200-lunch-express",
+                    "day": 3,
+                    "start": 720,
+                    "end": 765,
+                    "title": "Lunch Express",
+                    "instructor": "Dom Cole",
+                    "capacity": 10,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "wed-1730-barbell-club",
+                    "day": 3,
+                    "start": 1050,
+                    "end": 1110,
+                    "title": "Barbell Club",
+                    "instructor": "Mara Reyes",
+                    "capacity": 10,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "thu-0600-conditioning",
+                    "day": 4,
+                    "start": 360,
+                    "end": 420,
+                    "title": "Conditioning",
+                    "instructor": "Whit Okafor",
+                    "capacity": 12,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "thu-1730-olympic-lifting",
+                    "day": 4,
+                    "start": 1050,
+                    "end": 1110,
+                    "title": "Olympic Lifting",
+                    "instructor": "Ken Ito",
+                    "note": "Intermediate",
+                    "capacity": 8,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "thu-1830-mobility",
+                    "day": 4,
+                    "start": 1110,
+                    "end": 1170,
+                    "title": "Mobility",
+                    "instructor": "Whit Okafor",
+                    "note": "All levels",
+                    "capacity": 12,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "fri-0600-strength-101",
+                    "day": 5,
+                    "start": 360,
+                    "end": 420,
+                    "title": "Strength 101",
+                    "instructor": "Mara Reyes",
+                    "note": "All levels",
+                    "capacity": 12,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "fri-1200-lunch-express",
+                    "day": 5,
+                    "start": 720,
+                    "end": 765,
+                    "title": "Lunch Express",
+                    "instructor": "Dom Cole",
+                    "capacity": 10,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "fri-1730-open-floor",
+                    "day": 5,
+                    "start": 1050,
+                    "end": 1140,
+                    "title": "Open Floor",
+                    "instructor": "Staffed floor"
+                },
+                {
+                    "sessionId": "sat-0900-team-session",
+                    "day": 6,
+                    "start": 540,
+                    "end": 600,
+                    "title": "Team Session",
+                    "instructor": "All coaches",
+                    "note": "All levels",
+                    "capacity": 20,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "sat-1030-open-floor",
+                    "day": 6,
+                    "start": 630,
+                    "end": 720,
+                    "title": "Open Floor",
+                    "instructor": "Staffed floor"
+                }
+            ]
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (web/app/src/View/Fitness/FitnessPage.tsx, useSitePageConfig). pages seeds each page's layout skeleton — ids match fitnessLanding.ts; the platform's structural editor edits these. The preset is chalk (the training-floor register: near-black rubber, chalk-bone stenciled signage, hairline rules, dust grain — strictly monochrome, the black-and-white photography carries all tone), deliberately apart from monolith's monumental tech statement and sitework's plan table.",
+        "style": {
+            "preset": "chalk"
+        },
+        "routes": {
+            "/": "home",
+            "/schedule": "schedule",
+            "/coaches": "coaches",
+            "/pricing": "pricing",
+            "/trial": "trial"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "proof",
+                        "type": "stats",
+                        "variant": "row"
+                    },
+                    {
+                        "id": "schedule",
+                        "type": "schedule",
+                        "variant": "week-grid"
+                    },
+                    {
+                        "id": "floor",
+                        "type": "gallery",
+                        "variant": "filmstrip"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "trial-banner",
+                        "type": "cta-banner",
+                        "variant": "full-bleed"
+                    }
+                ]
+            },
+            "schedule": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "schedule",
+                        "type": "schedule",
+                        "variant": "week-grid"
+                    }
+                ]
+            },
+            "coaches": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "coaches",
+                        "type": "team",
+                        "variant": "portraits"
+                    },
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    }
+                ]
+            },
+            "pricing": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "pricing",
+                        "type": "pricing",
+                        "variant": "tiers"
+                    },
+                    {
+                        "id": "packs",
+                        "type": "card-grid",
+                        "variant": "3up"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "trial-banner",
+                        "type": "cta-banner",
+                        "variant": "full-bleed"
+                    }
+                ]
+            },
+            "trial": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "trial-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

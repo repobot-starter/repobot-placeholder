@@ -1,0 +1,11 @@
+---
+description: Keep gql documents out of View files in web/app
+globs: web/app/src/**/*.ts,web/app/src/**/*.tsx
+alwaysApply: false
+---
+
+# Frontend GraphQL Document Placement
+
+- GraphQL operation documents live only in `web/app/src/Graphql/Operations/Gql/`. Never place `gql` template blocks in View/UI files.
+- Views import the generated typed hooks (from codegen) — run `npm run codegen` after adding operations.
+- Import `@base/design-system` and `@base/core` from their package roots only; no deep `src/` imports across packages.

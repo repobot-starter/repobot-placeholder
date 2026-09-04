@@ -1,0 +1,274 @@
+#!/usr/bin/env bash
+# One command to a running stack: env -> db -> migrate -> codegen -> functions emulator -> web.
+#
+# Usage:   scripts/dev-up.sh [--no-wait]
+# Env:     DB_MODE=docker|embedded (default docker; sandboxes use embedded)
+#          PORT (web dev server port; default 5173, auto-bumps to the next
+#          free port when another process owns it — e.g. a different
+#          checkout's Vite. The chosen port is recorded in .dev/web-port.)
+#          FUNCTIONS_PORT (functions emulator port; default 5001, auto-bumps
+#          to the next free port when another process owns it — e.g. the
+#          repobot platform's emulator, or another session's stack on a
+#          shared sandbox pod. The chosen port is recorded in
+#          .dev/functions-port. Set it explicitly to pin a port —
+#          e.g. FUNCTIONS_PORT=5601 — and dev-up fails loudly if that port
+#          is taken. Non-default ports get a generated firebase.local.json
+#          (gitignored) and the web server's /api proxy follows; no
+#          hand-edited config needed. Set it before the first dev:up, or
+#          dev:down first: an already-running stack keeps the port it
+#          started with.)
+#
+# Idempotent: components that are already running are left alone.
+# The web dev server is started as early as possible so browser healthchecks
+# pass while the backend finishes booting.
+
+source "$(dirname "$0")/lib/common.sh"
+cd "$REPO_ROOT"
+
+# The full-stack readiness marker (see repobot.sandbox.json readyFile): the
+# platform healthcheck passes as soon as the web dev server answers, but the
+# backend (migrations, functions build, emulator) is still booting — agents
+# that start verifying against the manifest port then burn retries on gates
+# that cannot pass yet. Cleared here, written only after every port wait
+# below succeeds. Stale copies can arrive via workspace snapshots; clearing
+# first makes the marker trustworthy for this boot.
+STACK_READY_FILE="$DEV_DIR/stack-ready"
+rm -f "$STACK_READY_FILE"
+
+# Reuse the port an existing base-local-core container is mapped to (even if
+# stopped): machines hosting several checkouts remap this checkout's db (e.g.
+# to 55432 because another project owns 5432), and forgetting DB_PORT on the
+# next dev-up would collide with the foreign Postgres.
+if [ -z "${DB_PORT:-}" ] && [ "${DB_MODE:-docker}" = "docker" ]; then
+    EXISTING_DB_PORT="$(docker inspect -f '{{(index (index .HostConfig.PortBindings "5432/tcp") 0).HostPort}}' base-local-core 2>/dev/null || true)"
+    if [ -n "$EXISTING_DB_PORT" ]; then
+        DB_PORT="$EXISTING_DB_PORT"
+    fi
+fi
+export DB_PORT="${DB_PORT:-5432}"
+# The db port flows into the generated .env.local via DATABASE_URL (env wins over manifest defaults).
+export DATABASE_URL="${DATABASE_URL:-postgres://postgres:postgres@127.0.0.1:$DB_PORT/postgres}"
+
+# Functions emulator port. The firebase CLI takes ports only from its config
+# file, so a non-default port means generating firebase.local.json (firebase.json
+# with the port swapped; gitignored, so it never ships in composed templates).
+#
+# Selection mirrors the web port below: a rerun with the emulator already up
+# keeps the port it booted with (recorded in .dev/functions-port); an
+# explicit FUNCTIONS_PORT is honored strictly and fails loudly when another
+# process owns it; otherwise start at 5001 and skip past occupied ports.
+# Without the occupied-port checks, the emulator dies on the bind while
+# wait_for_port and the graphql-route probe below both pass VACUOUSLY
+# against the foreign server on the same port — the stack reports ready with
+# a backend it does not own, and every /api call dies the moment that
+# neighbor shuts down (the 2026-08-30 black-preview incident: a sandbox
+# session bootstrapped beside another session's live stack, lost the 5001
+# bind, and its preview went dark when the neighbor was retired).
+FUNCTIONS_PORT_FILE="$DEV_DIR/functions-port"
+if [ -f "$PID_DIR/functions.pid" ] && kill -0 "$(cat "$PID_DIR/functions.pid")" 2>/dev/null \
+    && [ -f "$FUNCTIONS_PORT_FILE" ]; then
+    # An already-running emulator keeps the port it started with, whatever
+    # this run's FUNCTIONS_PORT says — start_background leaves it alone, so
+    # the generated config and GRAPHQL_URL must describe the running one.
+    FUNCTIONS_PORT="$(cat "$FUNCTIONS_PORT_FILE")"
+elif [ -n "${FUNCTIONS_PORT:-}" ]; then
+    if port_open 127.0.0.1 "$FUNCTIONS_PORT"; then
+        fail "FUNCTIONS_PORT=$FUNCTIONS_PORT is already in use by another process. Free it or pick a different FUNCTIONS_PORT."
+    fi
+else
+    FUNCTIONS_PORT="$(bump_past_occupied_ports 5001 5099 "functions emulator")"
+fi
+echo "$FUNCTIONS_PORT" > "$FUNCTIONS_PORT_FILE"
+FIREBASE_CONFIG_ARGS=()
+if [ "$FUNCTIONS_PORT" != "5001" ]; then
+    node -e '
+        const { readFileSync, writeFileSync } = require("node:fs")
+        const config = JSON.parse(readFileSync("firebase.json", "utf8"))
+        config.$comment =
+            "GENERATED by scripts/dev-up.sh from firebase.json: emulator port"
+            + " override for running alongside another stack (FUNCTIONS_PORT="
+            + process.argv[1] + "). Gitignored; do not edit."
+        config.emulators = { ...config.emulators }
+        config.emulators.functions = {
+            ...config.emulators.functions,
+            port: Number(process.argv[1]),
+        }
+        writeFileSync("firebase.local.json", JSON.stringify(config, null, 4) + "\n")
+    ' "$FUNCTIONS_PORT"
+    FIREBASE_CONFIG_ARGS=(--config firebase.local.json)
+    log "Functions emulator will run on $FUNCTIONS_PORT (generated firebase.local.json)."
+fi
+GRAPHQL_URL="http://127.0.0.1:$FUNCTIONS_PORT/demo-repobot-base/us-central1/graphql__request__api"
+
+# 1. Env files (no-op if they already exist).
+node scripts/bootstrap-env.mjs
+
+# The db port is a per-boot property, but bootstrap-env never rewrites existing
+# values — a workspace bootstrapped under one port (e.g. a sandbox session slot
+# shifting DB_PORT) keeps that port in .env.local forever, and the functions
+# then dial a Postgres that isn't there (every query dies ECONNREFUSED). Re-pin
+# the line to this boot's port. Only the bootstrap-generated localhost shape is
+# touched: a hand-edited custom DATABASE_URL is left alone.
+node -e '
+    const { readFileSync, writeFileSync } = require("node:fs")
+    const envPath = "firebase/functions/.env.local"
+    const current = "DATABASE_URL=" + process.env.DATABASE_URL
+    const generatedShape = /^DATABASE_URL=postgres:\/\/postgres:postgres@127\.0\.0\.1:\d+\/postgres$/
+    const lines = readFileSync(envPath, "utf8").split("\n")
+    const i = lines.findIndex((line) => line.startsWith("DATABASE_URL="))
+    if (i !== -1 && lines[i] !== current && generatedShape.test(lines[i])) {
+        lines[i] = current
+        writeFileSync(envPath, lines.join("\n"))
+        console.log("[dev-up] Re-pinned .env.local DATABASE_URL to this boot'\''s port.")
+    }
+'
+
+# 2. Database.
+bash scripts/dev-db.sh
+
+# 3. Codegen (only when the generated outputs are missing; codegen.sh is cheap to re-run).
+if [ ! -d firebase/functions/generated ] || [ ! -d web/app/src/generated ]; then
+    bash scripts/codegen.sh
+fi
+
+# 4. Web dev server first (fast to boot; serves the healthcheck target).
+#
+# Port selection: an explicit PORT is honored strictly; otherwise start at
+# 5173 and skip past ports owned by other processes (e.g. another checkout's
+# Vite on this machine). Without this, our strictPort Vite dies while
+# wait_for_port sees the foreign server listening and falsely reports the
+# stack as up — the browser then silently lands in the wrong app.
+WEB_PORT_FILE="$DEV_DIR/web-port"
+if [ -f "$PID_DIR/web.pid" ] && kill -0 "$(cat "$PID_DIR/web.pid")" 2>/dev/null; then
+    if [ ! -f "$WEB_PORT_FILE" ]; then
+        fail "web dev server is already running but its port is unrecorded. Run 'npm run dev:down' first."
+    fi
+    WEB_PORT="$(cat "$WEB_PORT_FILE")"
+elif [ -n "${PORT:-}" ]; then
+    WEB_PORT="$PORT"
+    if port_open 127.0.0.1 "$WEB_PORT"; then
+        fail "PORT=$WEB_PORT is already in use by another process. Free it or pick a different PORT."
+    fi
+else
+    WEB_PORT=5173
+    while port_open 127.0.0.1 "$WEB_PORT"; do
+        warn "Port $WEB_PORT is in use by another process; trying $((WEB_PORT + 1))."
+        WEB_PORT=$((WEB_PORT + 1))
+        if [ "$WEB_PORT" -gt 5199 ]; then
+            fail "No free web port between 5173 and 5199."
+        fi
+    done
+fi
+echo "$WEB_PORT" > "$WEB_PORT_FILE"
+# The browser is never handed an absolute loopback API URL: behind the
+# platform's workspace preview gateway, 127.0.0.1 is the VIEWER's machine,
+# not this pod, so absolute URLs made every backend call from a proxied
+# preview die with "Failed to fetch". Instead the app fetches same-origin
+# (/api/...) and the Vite dev server forwards /api/* to the emulator
+# (apiProxy in web/app/vite.config.ts). Real env beats .env.local, so the
+# absolute URL bootstrap-env writes there stays inert for the web server
+# (scripts and the emulator itself keep reading it — they run on this
+# machine, where loopback is correct). Any FUNCTIONS_PORT rides in through
+# the proxy target — no hand-syncing when the emulator moves.
+WEB_ENV=(
+    PORT="$WEB_PORT"
+    VITE_GRAPHQL_URL="/api/graphql__request__api"
+    REPOBOT_API_PROXY_TARGET="${GRAPHQL_URL%/graphql__request__api}"
+)
+start_background web env "${WEB_ENV[@]}" npm --workspace web/app run dev -- --host 127.0.0.1 --port "$WEB_PORT" --strictPort
+
+# 5+6. Migrations + functions build.
+#
+# The build is skipped when nothing it reads has changed since the last
+# successful build: npm's prebuild hook wipes and regenerates generated/
+# (buf + graphql-codegen + JSON schema) before a full tsc, and the bake
+# already paid all of that — it stamps the input hash, so bake-seeded
+# sandboxes boot without rebuilding. Any source/schema/lockfile change flips
+# the hash and forces a real build.
+#
+# When the build does run, migrations run concurrently with it (they share
+# no state: migrate talks to Postgres, the build reads sources), with the
+# migrate output buffered so a failure still reports cleanly.
+BUILD_STAMP_FILE="$DEV_DIR/functions-build-stamp"
+BUILD_STAMP="$(bash scripts/lib/functions-build-stamp.sh)"
+if [ -d firebase/functions/lib ] && [ -d firebase/functions/generated ] \
+    && [ -f "$BUILD_STAMP_FILE" ] && [ "$(cat "$BUILD_STAMP_FILE")" = "$BUILD_STAMP" ]; then
+    log "Functions build inputs unchanged since the last build; skipping build."
+    npm --workspace firebase/functions run migrate
+else
+    MIGRATE_LOG="$LOG_DIR/migrate.log"
+    npm --workspace firebase/functions run migrate >"$MIGRATE_LOG" 2>&1 &
+    MIGRATE_PID=$!
+    BUILD_STATUS=0
+    npm --workspace firebase/functions run build || BUILD_STATUS=$?
+    MIGRATE_STATUS=0
+    wait "$MIGRATE_PID" || MIGRATE_STATUS=$?
+    if [ "$MIGRATE_STATUS" -ne 0 ]; then
+        cat "$MIGRATE_LOG" >&2
+        fail "Migrations failed (output above; also in $MIGRATE_LOG)."
+    fi
+    [ "$BUILD_STATUS" -eq 0 ] || fail "Functions build failed."
+    echo "$BUILD_STAMP" > "$BUILD_STAMP_FILE"
+fi
+start_background functions "$REPO_ROOT/node_modules/.bin/firebase" emulators:start --only functions --project demo-repobot-base ${FIREBASE_CONFIG_ARGS[@]+"${FIREBASE_CONFIG_ARGS[@]}"}
+
+wait_for_port 127.0.0.1 "$WEB_PORT" 120 "web dev server"
+wait_for_port 127.0.0.1 "$FUNCTIONS_PORT" 180 "functions emulator"
+
+# wait_for_port proves SOMETHING answers on the port — not that it is OUR
+# emulator. Port selection above skips ports that were occupied at boot, but
+# a foreign process can still win a bind race in the gap between the check
+# and our emulator's bind: our emulator dies on "port taken" while the
+# squatter keeps the port answering long enough to satisfy both the wait
+# above and the registration probe below, then exits and leaves the port
+# dead. Readiness must never be published unless the emulator THIS boot
+# started (or a prior boot of THIS stack) is alive.
+if ! { [ -f "$PID_DIR/functions.pid" ] && kill -0 "$(cat "$PID_DIR/functions.pid")" 2>/dev/null; }; then
+    tail -n 40 "$LOG_DIR/functions.log" >&2 2>/dev/null || true
+    fail "functions emulator process exited during startup (port $FUNCTIONS_PORT answered, but not by us — likely a bind race; log tail above, full log in $LOG_DIR/functions.log)."
+fi
+
+# The emulator's port answering is NOT the same as the functions existing:
+# the hub binds its port even when function discovery failed or loaded a
+# partial set (a mid-chain module-load error registers only the exports
+# evaluated before it). A stack published as ready in that state serves the
+# app shell fine while every /api/* call 404s with the emulator's "function
+# does not exist" page — which surfaces to users as a bare "Received status
+# code 404" from the app's own API client, long after boot looked green.
+# Probe the deepest-in-the-export-chain critical function until the route
+# EXISTS (any status but 404 — even a 400/500 proves registration); a
+# persistent 404 fails the boot loudly so supervisors retry instead of
+# publishing a poisoned stack.
+node -e '
+    const url = process.argv[1]
+    const deadline = Date.now() + 60_000
+    const poll = async () => {
+        try {
+            const res = await fetch(url)
+            if (res.status !== 404) process.exit(0)
+        } catch {
+            // Port answered but the hub is still wiring routes; keep polling.
+        }
+        if (Date.now() >= deadline) process.exit(1)
+        setTimeout(poll, 500)
+    }
+    void poll()
+' "$GRAPHQL_URL" || fail "functions emulator is up but graphql__request__api is not registered (404). Function discovery likely failed partway; check $LOG_DIR/functions.log."
+
+# Every service answered: publish readiness for agent gates (readyFile in
+# repobot.sandbox.json — the platform delays agent dispatch on this, never
+# the user's preview stream).
+date -u +"%Y-%m-%dT%H:%M:%SZ" > "$STACK_READY_FILE"
+
+log "Stack is up:"
+log "  web:       http://127.0.0.1:$WEB_PORT"
+log "  graphql:   $GRAPHQL_URL"
+log "  postgres:  127.0.0.1:$DB_PORT"
+
+if [ "${1:-}" = "--no-wait" ]; then
+    exit 0
+fi
+
+# Keep the foreground process alive (the sandbox runtime supervises this pid).
+log "Press Ctrl+C to stop tailing (services keep running; use 'npm run dev:down' to stop them)."
+tail -f "$LOG_DIR/web.log" "$LOG_DIR/functions.log"

@@ -1,0 +1,173 @@
+{
+    "key": "menu",
+    "templateKey": "repobot-menu",
+    "title": "MenuBot",
+    "description": "A local business site: menu with sections and dietary filters, a live open/closed badge computed from weekly hours, and contact with call/directions links — all edited in one content file.",
+    "marketingExampleTitle": "Restaurant & café site",
+    "homePath": "/",
+    "previewPath": "/menu",
+    "homeViewDir": "web/app/src/View/Menu",
+    "base": "content",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false,
+    "content": {
+        "$comment": "Business-content contract seed, merged over repobot.content.json at compose (the same overlay path as landing/theme — scripts/lib/pack-switch.mjs applyPackOverlays). The hours and menu domains mirror content.ts entry for entry (the seed-fidelity tests pin them): hours.week is the weeklyHours table the live open/closed badge computes from (an absent day is closed), menu.sections is the card with prices in cents — display formatting (formatPrice) stays the pack's job wherever the facts come from.",
+        "hours": {
+            "week": [
+                {
+                    "day": 0,
+                    "intervals": [[540, 840]]
+                },
+                {
+                    "day": 2,
+                    "intervals": [[420, 900]]
+                },
+                {
+                    "day": 3,
+                    "intervals": [[420, 900]]
+                },
+                {
+                    "day": 4,
+                    "intervals": [[420, 900]]
+                },
+                {
+                    "day": 5,
+                    "intervals": [
+                        [420, 900],
+                        [1020, 1260]
+                    ]
+                },
+                {
+                    "day": 6,
+                    "intervals": [
+                        [480, 900],
+                        [1020, 1260]
+                    ]
+                }
+            ]
+        },
+        "menu": {
+            "sections": [
+                {
+                    "title": "Breakfast",
+                    "note": "Served till 11:30, eggs from Meadowlark Farm",
+                    "items": [
+                        {
+                            "name": "Copper Kettle breakfast",
+                            "description": "Two eggs any style, sourdough toast, herbed potatoes, greens",
+                            "priceCents": 1400,
+                            "dietary": ["V"],
+                            "popular": true
+                        },
+                        {
+                            "name": "Oat porridge",
+                            "description": "Steel-cut oats, poached pear, toasted hazelnuts, maple",
+                            "priceCents": 950,
+                            "dietary": ["VG", "GF"]
+                        },
+                        {
+                            "name": "Smoked trout toast",
+                            "description": "Rye, whipped crème fraîche, pickled shallot, dill",
+                            "priceCents": 1550,
+                            "dietary": []
+                        },
+                        {
+                            "name": "Buttermilk pancakes",
+                            "description": "Three cakes, whipped butter, warm blueberry compote",
+                            "priceCents": 1250,
+                            "dietary": ["V"],
+                            "popular": true
+                        }
+                    ]
+                },
+                {
+                    "title": "Lunch",
+                    "note": "From 11:30, soup changes daily",
+                    "items": [
+                        {
+                            "name": "Soup + half sandwich",
+                            "description": "Today's soup with a half grilled cheese on sourdough",
+                            "priceCents": 1300,
+                            "dietary": ["V"],
+                            "popular": true
+                        },
+                        {
+                            "name": "Roast chicken sandwich",
+                            "description": "Garlic aioli, pickles, butter lettuce, ciabatta",
+                            "priceCents": 1500,
+                            "dietary": []
+                        },
+                        {
+                            "name": "Farro bowl",
+                            "description": "Roasted squash, kale, feta, pepitas, lemon vinaigrette",
+                            "priceCents": 1400,
+                            "dietary": ["V"]
+                        },
+                        {
+                            "name": "Kettle burger",
+                            "description": "Smashed patty, sharp cheddar, onion jam, fries",
+                            "priceCents": 1700,
+                            "dietary": []
+                        }
+                    ]
+                },
+                {
+                    "title": "Drinks",
+                    "items": [
+                        {
+                            "name": "Drip coffee",
+                            "description": "Bottomless with any plate — Heart Roasters",
+                            "priceCents": 400,
+                            "dietary": ["VG", "GF"]
+                        },
+                        {
+                            "name": "Cappuccino",
+                            "description": "Double shot, oat milk on request",
+                            "priceCents": 550,
+                            "dietary": ["V"],
+                            "popular": true
+                        },
+                        {
+                            "name": "Chai",
+                            "description": "House-spiced, steamed milk, lightly sweet",
+                            "priceCents": 525,
+                            "dietary": ["V"]
+                        },
+                        {
+                            "name": "Fresh lemonade",
+                            "description": "Pressed daily, mint from the planter out back",
+                            "priceCents": 450,
+                            "dietary": ["VG", "GF"]
+                        }
+                    ]
+                },
+                {
+                    "title": "Sweets",
+                    "note": "Baked each morning",
+                    "items": [
+                        {
+                            "name": "Cardamom bun",
+                            "description": "Twisted, buttery, pearl sugar",
+                            "priceCents": 525,
+                            "dietary": ["V"],
+                            "popular": true
+                        },
+                        {
+                            "name": "Olive oil cake",
+                            "description": "Citrus glaze, whipped cream",
+                            "priceCents": 650,
+                            "dietary": ["V"]
+                        },
+                        {
+                            "name": "Flourless chocolate cookie",
+                            "description": "Crackly top, sea salt",
+                            "priceCents": 400,
+                            "dietary": ["V", "GF"]
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

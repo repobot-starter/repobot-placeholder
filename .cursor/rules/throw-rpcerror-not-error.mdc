@@ -1,0 +1,19 @@
+---
+description: Throw RpcError instead of Error in backend code
+globs: firebase/functions/src/**/*.ts
+alwaysApply: false
+---
+
+# Throw `RpcError` Instead Of `Error`
+
+- Do not throw `new Error(...)` in new or edited backend code.
+- Always throw `new RpcError(code, message)` (`firebase/functions/src/Utils/RpcError.ts`) so error handling is consistent across the API boundary.
+- Choose the code that matches intent: `NOT_FOUND`, `INVALID_ARGUMENT`, `UNAUTHENTICATED`, `PERMISSION_DENIED`, `FAILED_PRECONDITION`, `INTERNAL`.
+
+```typescript
+// ❌ Avoid
+throw new Error("Project not found")
+
+// ✅ Prefer
+throw new RpcError("NOT_FOUND", "Project not found")
+```

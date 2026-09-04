@@ -1,0 +1,150 @@
+{
+    "key": "photography",
+    "templateKey": "repobot-photography",
+    "title": "Portfolio",
+    "description": "A gallery-first photography portfolio: full-bleed crossfade hero, justified galleries with a lightbox, album collections, about, and an inquiry form \u2014 a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Photography portfolio",
+    "category": "photography",
+    "homePath": "/",
+    "previewPath": "/photography",
+    "homeViewDir": "web/app/src/View/Photography",
+    "base": "content",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false,
+    "forms": {
+        "$comment": "Managed-form kinds, formKey -> kind (append-only vocabulary: RSVP | LEAD | MAILING_LIST | PROOFING). The portfolio's inquiry form is a lead pipeline, declared to match the wedding pack's pattern. The proofing room's selection form is declared PROOFING (owner decision, 2026-08-31, alongside wedding): client proofing is a managed capability the platform runs for the photographer, and the dashboard renders selections as a typed proofing record (client, frame list in album order, new/handled) instead of the raw Inbox's field dump.",
+        "inquiry": "LEAD",
+        "proofing-selection": "PROOFING"
+    },
+    "theme": {
+        "$comment": "The tourbook register's brand overlay: the preset's ink-on-paper accent as the project brand, so app-side surfaces wear the same monochrome register as the marketing pages instead of the kernel default blue. mode dark opens the site on the register's native face — the true-black darkroom ground with white ink, so the photographs are the only light on the page (the appearance toggle still swaps to the paper reading). Values match the tourbook preset's own light/dark accents \u2014 the marketing pages resolve brand over preset accent, so keeping them identical means the overlay re-brands the app without shifting the pages.",
+        "mode": "dark",
+        "brand": { "primary": "#141414", "primaryDark": "#ffffff" }
+    },
+    "contentContract": {
+        "$comment": "The pack's content slots, as data (packs/README.md 'Content contract'). Declares what a composer (agent or tool) must bind for a generated variant of this pack to present as real: slot paths into the typed content module, their kinds, and minimums. Authored alongside the module and guarded by the pack's content tests \u2014 the module satisfies the contract; the contract never drifts ahead of it.",
+        "module": "web/app/src/View/Photography/content.ts",
+        "slots": {
+            "photographer.name": { "kind": "text" },
+            "photographer.tagline": { "kind": "text" },
+            "photographer.location": { "kind": "text" },
+            "photographer.email": { "kind": "text" },
+            "heroSlides": { "kind": "media[]", "min": 1 },
+            "selectedWork": { "kind": "media[]", "min": 4 },
+            "albums": {
+                "kind": "collection",
+                "min": 1,
+                "item": {
+                    "title": { "kind": "text" },
+                    "eyebrow": { "kind": "text" },
+                    "description": { "kind": "text" },
+                    "images": { "kind": "media[]", "min": 4 }
+                }
+            },
+            "home.headline": { "kind": "text" },
+            "home.subheadline": { "kind": "text" },
+            "home.intro.title": { "kind": "text" },
+            "home.intro.paragraphs": { "kind": "text[]", "min": 1 },
+            "about.headline": { "kind": "text" },
+            "about.portrait": { "kind": "media" },
+            "about.paragraphs": { "kind": "text[]", "min": 2 },
+            "about.testimonials": {
+                "kind": "collection",
+                "min": 1,
+                "item": {
+                    "quote": { "kind": "text" },
+                    "name": { "kind": "text" },
+                    "detail": { "kind": "text" }
+                }
+            },
+            "inquire.headline": { "kind": "text" },
+            "inquire.body": { "kind": "text" }
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (web/app/src/View/Photography/PhotographyPage.tsx, useSitePageConfig). pages seeds each page's layout skeleton \u2014 ids match photographyLanding.ts; the platform's structural editor edits these. style must ride the overlay: the compose merge keeps the kernel document's root style otherwise, and applySitePageDocument makes the document preset outrank every page's pinned one \u2014 photography shipped rendering editorial instead of its own register once. The preset is tourbook (the expedition register: grained monochrome paper, masthead type, ink accent, tilted prints \u2014 the photographs are the only color) \u2014 the adventurous voice, deliberately apart from atelier's gallery hush and the wedding pack's lanternlight.",
+        "style": { "preset": "tourbook" },
+        "routes": {
+            "/": "home",
+            "/work": "work",
+            "/about": "about",
+            "/inquire": "inquire"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "masthead-overlay"
+                    },
+                    {
+                        "id": "selected-work",
+                        "type": "gallery",
+                        "variant": "scrapbook"
+                    },
+                    {
+                        "id": "intro",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "collections",
+                        "type": "showcase",
+                        "variant": "collections"
+                    },
+                    {
+                        "id": "inquire-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "work": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "collections",
+                        "type": "showcase",
+                        "variant": "collections"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials"
+                    },
+                    {
+                        "id": "inquire-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "inquire": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "inquiry-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

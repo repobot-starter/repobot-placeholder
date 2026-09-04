@@ -1,0 +1,4 @@
+{
+    "key": "blank",
+    "comment": "Which pack owns `/` in this checkout. Set by compose-pack.sh."
+}

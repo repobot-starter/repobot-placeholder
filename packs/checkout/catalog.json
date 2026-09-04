@@ -1,0 +1,47 @@
+{
+    "key": "checkout",
+    "templateKey": "repobot-checkout",
+    "title": "Stripe Checkout",
+    "description": "One event, one reserve button, a real checkout: a black-and-white supper-club page selling a small-group cooking class — menu card, seats-left scarcity, and a Stripe-backed checkout that is simulated for free in the sandbox and becomes live Stripe on deploy.",
+    "marketingExampleTitle": "Stripe checkout",
+    "homePath": "/",
+    "previewPath": "/checkout",
+    "homeViewDir": "web/app/src/View/Checkout",
+    "base": "app",
+    "isFeature": true,
+    "clientOnly": false,
+    "capabilities": ["PAYMENTS", "DATABASE"],
+    "isDefault": false,
+    "theme": {
+        "$comment": "The supper club after hours, preserved verbatim as the seed: a near-black dining room (mode: dark) whose night values are the page's pre-AppShell art constants, so the shell chrome and the room read as one surface; the light values are the same dining room with the lights on. The brand resolves to near-black ink so the reserve button stays deliberately achromatic until a project brands it — the printed menu and reservation cards stay paper-white by art direction in either mode. The shell defaults to minimal because the page is one seller with no navigation; content is flush because the room owns its own container widths.",
+        "mode": "dark",
+        "character": "plain",
+        "brand": {
+            "primary": "#141414",
+            "primaryDark": "#fafafa"
+        },
+        "palette": {
+            "background": "#f6f4f0",
+            "backgroundDark": "#0d0d0d",
+            "surface": "#ffffff",
+            "surfaceDark": "#141414",
+            "surfaceHover": "#efece7",
+            "surfaceHoverDark": "#1c1c1c",
+            "border": "#e4e1db",
+            "borderDark": "#242424",
+            "textPrimary": "#141414",
+            "textPrimaryDark": "#f2f2f2",
+            "textSecondary": "#6f6f6f",
+            "textSecondaryDark": "#9a9a9a",
+            "muted": "#efece7",
+            "mutedDark": "#161616",
+            "input": "#e4e1db",
+            "inputDark": "#242424",
+            "skeleton": "#eae7e1",
+            "skeletonDark": "#191919",
+            "charts": ["#141414", "#5c5c5c", "#8a8a8a", "#3a3a3a", "#6f6f6f", "#b0b0b0"],
+            "chartsDark": ["#f2f2f2", "#b0b0b0", "#828282", "#d6d6d6", "#9a9a9a", "#565656"]
+        },
+        "shell": { "variant": "minimal", "content": "flush" }
+    }
+}

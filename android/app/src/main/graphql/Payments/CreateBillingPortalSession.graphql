@@ -1,0 +1,5 @@
+mutation CreateBillingPortalSession($input: CreateBillingPortalSessionInput!) {
+    createBillingPortalSession(input: $input) {
+        url
+    }
+}

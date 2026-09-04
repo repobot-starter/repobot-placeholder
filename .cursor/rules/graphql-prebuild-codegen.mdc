@@ -1,0 +1,16 @@
+---
+description: Regenerate GraphQL/proto codegen via npm run codegen; never hand-roll generated/ output
+alwaysApply: true
+---
+
+# Codegen: use `npm run codegen`
+
+Never recreate a package's `generated/` folder by hand or run `graphql-codegen`/`buf` ad hoc. From the repo root:
+
+```bash
+npm run codegen
+```
+
+This runs every package's `prebuild.sh` (`firebase/functions/prebuild.sh`, `web/core/prebuild.sh`, `web/app/prebuild.sh`) in the right order: protos, GraphQL resolver types, JSON schema definitions for backend-driven forms, and typed client hooks.
+
+Run it after any change to `Graphql/**/*.gql` or `protobufs/**/*.proto`. Never edit files under any `generated/` directory.

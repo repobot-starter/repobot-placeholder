@@ -1,0 +1,37 @@
+{
+    "$comment": "Compose-time public/ pruning (scripts/lib/public-assets.mjs): this composed template ships only the pack-owned imagery subtrees its own sources use. `pruned` lists the other packs' web/app/public subtrees removed from this tree — their code still ships (the kernel is whole) but is inert behind the pack switch, and the content tests' publicAssetPresent helper reads this file to keep their on-disk assertions honest. Written by compose-pack.sh; do not edit.",
+    "packKey": "blank",
+    "keep": [
+        "files"
+    ],
+    "pruned": [
+        "band",
+        "care",
+        "church",
+        "community",
+        "dj",
+        "estate",
+        "fitness",
+        "fitness-trainer",
+        "fitness-yoga",
+        "gala",
+        "images",
+        "nonprofit",
+        "photography",
+        "photography-music",
+        "reunion",
+        "saas",
+        "services",
+        "services-electric",
+        "services-emergency",
+        "services-hvac",
+        "services-landscape",
+        "services-lawncare",
+        "services-painting",
+        "services-pest",
+        "services-recurring",
+        "single",
+        "vows",
+        "wedding"
+    ]
+}

@@ -1,0 +1,155 @@
+{
+    "key": "gala",
+    "templateKey": "repobot-gala",
+    "title": "Black-tie event",
+    "description": "A black-tie evening as one dramatic page: the invitation lines, the order of the evening on a timeline, the fine print (dress, gifts, getting there), the venue with directions, the after-party, and a reply card that delivers RSVPs straight to the host — with a live countdown computed from the event date. Flexes to milestone birthdays, anniversaries, galas, and New Year's weddings.",
+    "marketingExampleTitle": "Black-tie event",
+    "category": "weddings-and-events",
+    "homePath": "/",
+    "previewPath": "/gala",
+    "homeViewDir": "web/app/src/View/Gala",
+    "base": "landing",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false,
+    "forms": {
+        "$comment": "Managed-form kinds, formKey -> kind (append-only vocabulary: RSVP | LEAD | MAILING_LIST | PROOFING). Compose stamps these into repobot.deploy.json as formKinds; the dashboard renders declared kinds as typed views and keeps the raw Inbox for undeclared keys.",
+        "gala-rsvp": "RSVP"
+    },
+    "theme": {
+        "$comment": "The ballroom register's brand overlay: the preset's gold-foil accent as the project brand, so app-side surfaces wear the same black-tie register as the evening's pages instead of the kernel default blue. Values match the ballroom preset's own dark/light accents — the marketing pages resolve brand over preset accent, so keeping them identical means the overlay re-brands the app without shifting the pages.",
+        "brand": { "primary": "#9a7514", "primaryDark": "#d4a72c" }
+    },
+    "contentContract": {
+        "$comment": "The pack's content slots, as data (packs/README.md 'Content contract'). Declares what a composer (agent or tool) must bind for a generated variant of this pack to present as real: slot paths into the typed content module, their kinds, and minimums. The demo evening is a black-tie sixtieth on New Year's Eve, but the slots fit any formal night — a foundation gala or an anniversary binds the same shape. The countdown labels are computed from event.dateIso by the clock engine (countdown.ts) and follow wherever the date goes. Authored alongside the module and guarded by the pack's content tests — the module satisfies the contract; the contract never drifts ahead of it.",
+        "module": "web/app/src/View/Gala/content.ts",
+        "slots": {
+            "event.title": { "kind": "text" },
+            "event.subtitle": { "kind": "text" },
+            "event.host": { "kind": "text" },
+            "event.dateIso": { "kind": "text" },
+            "event.dateLabel": { "kind": "text" },
+            "event.timeLabel": { "kind": "text" },
+            "event.venueShort": { "kind": "text" },
+            "event.email": { "kind": "text" },
+            "event.heroImage": { "kind": "media" },
+            "program.headline": { "kind": "text" },
+            "program.intro": { "kind": "text" },
+            "program.items": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "time": { "kind": "text" },
+                    "title": { "kind": "text" },
+                    "description": { "kind": "text" }
+                }
+            },
+            "details.headline": { "kind": "text" },
+            "details.items": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "title": { "kind": "text" },
+                    "body": { "kind": "text" }
+                }
+            },
+            "venue.name": { "kind": "text" },
+            "venue.role": { "kind": "text" },
+            "venue.address": { "kind": "text" },
+            "venue.description": { "kind": "text" },
+            "venue.image": { "kind": "media" },
+            "venue.mapUrl": { "kind": "text" },
+            "after.title": { "kind": "text" },
+            "after.body": { "kind": "text" },
+            "after.image": { "kind": "media" },
+            "toastImage": { "kind": "media" },
+            "rsvp.headline": { "kind": "text" },
+            "rsvp.body": { "kind": "text" },
+            "rsvp.replyByIso": { "kind": "text" },
+            "rsvp.replyByLabel": { "kind": "text" },
+            "rsvp.confirmation": { "kind": "text" },
+            "rsvp.faqs": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "question": { "kind": "text" },
+                    "answer": { "kind": "text" }
+                }
+            }
+        }
+    },
+    "content": {
+        "$comment": "Business-content contract seed, merged over repobot.content.json at compose (the same overlay path as landing/theme — scripts/lib/pack-switch.mjs applyPackOverlays). The guestlist domain is the gala's PRIVATE roster — who's invited, how many seats, the note that matters at the door — and deliberately seeds EMPTY: the roster is the owner's from day one, never demo data. No pack page renders it; it exists so the platform's Manage panel keeps the roster next to the RSVP inbox it pairs with (the catalog's gala-rsvp form).",
+        "guestlist": {
+            "entries": []
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (web/app/src/View/Gala/GalaPage.tsx, useSitePageConfig). pages seeds each page's layout skeleton — ids match galaLanding.ts; the platform's structural editor edits these. The preset is ballroom (the black-tie register: candlelit near-black, gold-foil engraving accent, monumental Fraunces with the italic flourish, one slow spotlight sweep) — 8 PM in the grand room, deliberately apart from lanternlight's barn party and heirloom's morning stationery.",
+        "style": { "preset": "ballroom" },
+        "routes": {
+            "/": "home",
+            "/rsvp": "rsvp"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "masthead-overlay"
+                    },
+                    {
+                        "id": "invitation",
+                        "type": "rich-prose",
+                        "variant": "narrow"
+                    },
+                    {
+                        "id": "program",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "toast",
+                        "type": "gallery",
+                        "variant": "sequence"
+                    },
+                    {
+                        "id": "details",
+                        "type": "feature-grid",
+                        "variant": "icon-list"
+                    },
+                    {
+                        "id": "venue",
+                        "type": "highlights",
+                        "variant": "alternating"
+                    },
+                    {
+                        "id": "rsvp-banner",
+                        "type": "cta-banner",
+                        "variant": "ticket"
+                    }
+                ]
+            },
+            "rsvp": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "rsvp-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    }
+                ]
+            }
+        }
+    }
+}

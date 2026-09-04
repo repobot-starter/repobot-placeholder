@@ -1,0 +1,84 @@
+{
+    "companyName": "Harborline Logistics",
+    "tagline": "Freight coordination that pays for itself.",
+    "accentColor": "#1f6feb",
+    "hasLogo": false,
+    "logoDataUri": "",
+    "preparedDate": "2026-08-12",
+
+    "hasTraction": true,
+    "tractionTitle": "Traction",
+    "tractionBody": "Revenue grew 38% over the trailing year across a widening base of repeat customers.",
+    "tractionStats": [
+        { "label": "Trailing 12-month revenue", "value": "$1,842,300" },
+        { "label": "Revenue growth, trailing year", "value": "38%" },
+        { "label": "Active customers", "value": "12" },
+        { "label": "Invoices collected", "value": "21" }
+    ],
+
+    "hasRevenue": true,
+    "revenueTitle": "Revenue",
+    "revenueBody": "Monthly revenue, trailing thirteen months — live from the books.",
+    "revenueBars": [
+        { "label": "Aug", "value": "$118,400", "heightPercent": 62 },
+        { "label": "Sep", "value": "$124,900", "heightPercent": 66 },
+        { "label": "Oct", "value": "$131,200", "heightPercent": 69 },
+        { "label": "Nov", "value": "$127,800", "heightPercent": 67 },
+        { "label": "Dec", "value": "$139,500", "heightPercent": 73 },
+        { "label": "Jan", "value": "$144,100", "heightPercent": 76 },
+        { "label": "Feb", "value": "$149,700", "heightPercent": 79 },
+        { "label": "Mar", "value": "$156,300", "heightPercent": 82 },
+        { "label": "Apr", "value": "$162,000", "heightPercent": 85 },
+        { "label": "May", "value": "$168,800", "heightPercent": 89 },
+        { "label": "Jun", "value": "$175,200", "heightPercent": 92 },
+        { "label": "Jul", "value": "$182,600", "heightPercent": 96 },
+        { "label": "Aug", "value": "$190,100", "heightPercent": 100 }
+    ],
+
+    "hasMargins": true,
+    "marginsTitle": "Margins",
+    "marginsBody": "Net margin ran 22% in the latest month; the chart shows monthly net income for the trailing thirteen months.",
+    "netIncomeBars": [
+        { "label": "Aug", "value": "$21,300", "heightPercent": 51 },
+        { "label": "Sep", "value": "$23,900", "heightPercent": 57 },
+        { "label": "Oct", "value": "$25,100", "heightPercent": 60 },
+        { "label": "Nov", "value": "$24,200", "heightPercent": 58 },
+        { "label": "Dec", "value": "$28,600", "heightPercent": 68 },
+        { "label": "Jan", "value": "$30,000", "heightPercent": 72 },
+        { "label": "Feb", "value": "$31,800", "heightPercent": 76 },
+        { "label": "Mar", "value": "$34,100", "heightPercent": 81 },
+        { "label": "Apr", "value": "$35,600", "heightPercent": 85 },
+        { "label": "May", "value": "$37,900", "heightPercent": 90 },
+        { "label": "Jun", "value": "$39,400", "heightPercent": 94 },
+        { "label": "Jul", "value": "$41,000", "heightPercent": 98 },
+        { "label": "Aug", "value": "$41,900", "heightPercent": 100 }
+    ],
+
+    "hasRunway": true,
+    "runwayTitle": "Runway",
+    "runwayBody": "Cash on hand and the trailing burn — currently cash-flow positive.",
+    "cashBars": [
+        { "label": "Aug", "value": "$212,000", "heightPercent": 44 },
+        { "label": "Sep", "value": "$231,400", "heightPercent": 48 },
+        { "label": "Oct", "value": "$252,900", "heightPercent": 53 },
+        { "label": "Nov", "value": "$271,300", "heightPercent": 57 },
+        { "label": "Dec", "value": "$295,800", "heightPercent": 62 },
+        { "label": "Jan", "value": "$321,600", "heightPercent": 67 },
+        { "label": "Feb", "value": "$348,900", "heightPercent": 73 },
+        { "label": "Mar", "value": "$378,200", "heightPercent": 79 },
+        { "label": "Apr", "value": "$408,800", "heightPercent": 85 },
+        { "label": "May", "value": "$441,300", "heightPercent": 92 },
+        { "label": "Jun", "value": "$475,100", "heightPercent": 99 },
+        { "label": "Jul", "value": "$479,600", "heightPercent": 100 },
+        { "label": "Aug", "value": "$478,900", "heightPercent": 100 }
+    ],
+    "runwayStats": [
+        { "label": "Cash on hand", "value": "$478,900" },
+        { "label": "Avg monthly net income (3 mo)", "value": "$40,800" },
+        { "label": "Runway", "value": "Cash-flow positive" }
+    ],
+
+    "hasAsk": true,
+    "askTitle": "The ask",
+    "askBody": "We're raising $2.5M to expand the coordination team, deepen carrier integrations, and open two new lanes. The round funds eighteen months of the plan at today's margins."
+}

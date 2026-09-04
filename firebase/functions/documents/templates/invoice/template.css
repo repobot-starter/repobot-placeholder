@@ -1,0 +1,162 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #16181d;
+    background: #ffffff;
+}
+
+.invoice-page {
+    width: 8.5in;
+    min-height: 11in;
+    margin: 0 auto;
+    padding: 0.75in 0.7in;
+}
+
+.muted {
+    color: #6b7280;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.masthead {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #16181d;
+}
+
+.business-name {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.masthead-badge {
+    text-align: right;
+}
+
+.doc-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #6b7280;
+}
+
+.doc-number {
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 4px;
+}
+
+.meta-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    margin: 24px 0 28px;
+}
+
+.meta-label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #6b7280;
+    margin-bottom: 5px;
+}
+
+.client-name {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.meta-dates {
+    display: flex;
+    gap: 32px;
+    text-align: right;
+}
+
+.meta-value {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.line-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.line-table th {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #6b7280;
+    text-align: left;
+    padding: 0 10px 8px;
+    border-bottom: 1px solid #d1d5db;
+}
+
+.line-table td {
+    padding: 10px;
+    border-bottom: 1px solid #e5e7eb;
+    vertical-align: top;
+}
+
+.col-qty {
+    width: 60px;
+    text-align: right;
+}
+
+.col-amount {
+    width: 110px;
+    text-align: right;
+}
+
+.line-table th.col-qty,
+.line-table th.col-amount {
+    text-align: right;
+}
+
+.totals {
+    margin-top: 16px;
+    margin-left: auto;
+    width: 280px;
+    font-size: 13px;
+}
+
+.totals-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 10px;
+}
+
+.grand-total {
+    margin-top: 6px;
+    border-top: 2px solid #16181d;
+    padding-top: 10px;
+    font-size: 15px;
+}
+
+.notes {
+    margin-top: 40px;
+    padding-top: 16px;
+    border-top: 1px solid #e5e7eb;
+}
+
+.notes p {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.6;
+    color: #374151;
+}

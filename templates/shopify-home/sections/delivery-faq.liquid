@@ -1,0 +1,71 @@
+<section class="delivery-faq">
+  <h2 class="delivery-faq__title">{{ section.settings.title }}</h2>
+  {% for block in section.blocks %}
+    <details class="delivery-faq__item" {{ block.shopify_attributes }}>
+      <summary>{{ block.settings.question }}</summary>
+      <p class="delivery-faq__answer">{{ block.settings.answer }}</p>
+    </details>
+  {% endfor %}
+</section>
+
+{% schema %}
+{
+  "name": "Delivery FAQ",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Before it arrives"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "What does white-glove delivery include?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "We bring the piece inside, up the stairs, into the room, unwrap it, and take every scrap of packaging with us. You point; we place."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Delivery FAQ",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "question": "What does white-glove delivery include?",
+            "answer": "We bring the piece inside, up the stairs, into the room, unwrap it, and take every scrap of packaging with us. You point; we place."
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "question": "Do I have to assemble anything?",
+            "answer": "Almost never. Most pieces arrive whole; the few that travel in parts, the delivery team finishes on the spot — bolts, levels, and all."
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "question": "How do returns work for large items?",
+            "answer": "You have 30 days. We collect the piece from the room we delivered it to — no re-boxing required. Made-to-order fabrics are the one exception, flagged clearly before you buy."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

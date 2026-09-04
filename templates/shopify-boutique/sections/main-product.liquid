@@ -1,0 +1,130 @@
+<section class="product">
+  <div class="product__media">
+    {% if product.featured_image %}
+      <img
+        src="{{ product.featured_image | image_url: width: 900 }}"
+        alt="{{ product.featured_image.alt | escape }}"
+        width="900"
+        height="{{ 900 | divided_by: product.featured_image.aspect_ratio | ceil }}"
+      >
+    {% endif %}
+  </div>
+  <div class="product__info">
+    <h1>{{ product.title }}</h1>
+    {% render 'price', product: product %}
+    <div class="product__description">{{ product.description }}</div>
+
+    {% form 'product', product, class: 'product__form' %}
+      <select name="id" aria-label="{{ 'products.product.variant_label' | t }}">
+        {% for variant in product.variants %}
+          <option value="{{ variant.id }}" {% if variant == product.selected_or_first_available_variant %}selected{% endif %}>
+            {{ variant.title }}
+          </option>
+        {% endfor %}
+      </select>
+      <button class="button" type="submit" name="add" {% unless product.available %}disabled{% endunless %}>
+        {% if product.available %}
+          {{ 'products.product.add_to_cart' | t }}
+        {% else %}
+          {{ 'products.product.sold_out' | t }}
+        {% endif %}
+      </button>
+    {% endform %}
+
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'size_guide' %}
+          <details class="product__panel" {{ block.shopify_attributes }}>
+            <summary>{{ block.settings.title }}</summary>
+            <div class="product__panel-body">
+              <table class="size-table">
+                <thead>
+                  <tr>
+                    <th scope="col">{{ 'products.product.size_guide.size' | t }}</th>
+                    <th scope="col">{{ 'products.product.size_guide.chest' | t }}</th>
+                    <th scope="col">{{ 'products.product.size_guide.waist' | t }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">{{ 'products.product.size_guide.sizes.xs' | t }}</th>
+                    <td>82&ndash;86</td>
+                    <td>64&ndash;68</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">{{ 'products.product.size_guide.sizes.s' | t }}</th>
+                    <td>87&ndash;92</td>
+                    <td>69&ndash;75</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">{{ 'products.product.size_guide.sizes.m' | t }}</th>
+                    <td>93&ndash;99</td>
+                    <td>76&ndash;83</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">{{ 'products.product.size_guide.sizes.l' | t }}</th>
+                    <td>100&ndash;107</td>
+                    <td>84&ndash;92</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">{{ 'products.product.size_guide.sizes.xl' | t }}</th>
+                    <td>108&ndash;116</td>
+                    <td>93&ndash;102</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>{{ 'products.product.size_guide.note' | t }}</p>
+            </div>
+          </details>
+        {% when 'fabric_care' %}
+          <details class="product__panel" {{ block.shopify_attributes }}>
+            <summary>{{ block.settings.title }}</summary>
+            <div class="product__panel-body">
+              <p>{{ block.settings.content }}</p>
+            </div>
+          </details>
+      {% endcase %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "size_guide",
+      "name": "Size guide",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Panel title",
+          "default": "Size guide"
+        }
+      ]
+    },
+    {
+      "type": "fabric_care",
+      "name": "Fabric & care",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Panel title",
+          "default": "Fabric & care"
+        },
+        {
+          "type": "textarea",
+          "id": "content",
+          "label": "Content",
+          "default": "Woven from natural fibers chosen to soften with wear. Machine wash cold with like colors, lay flat to dry, and warm-iron if needed. Skip the dryer — your future self will thank you."
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

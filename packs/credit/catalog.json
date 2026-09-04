@@ -1,0 +1,15 @@
+{
+    "key": "credit",
+    "templateKey": "repobot-credit",
+    "title": "Letter of Credit Drag & Drop",
+    "description": "A letter-of-credit checking desk: drop an LC PDF for an instant SWIFT MT700 breakdown (latest shipment date, presentation window, terms), then drag the invoice, bill of lading, and packing list against it — a discrepancy engine checks dates, amounts, ports, and tolerance and produces the report the bank would.",
+    "marketingExampleTitle": "Letter of credit checking desk",
+    "homePath": "/",
+    "previewPath": "/desk",
+    "homeViewDir": "web/app/src/View/Site",
+    "base": "app",
+    "clientOnly": false,
+    "capabilities": ["AUTH", "DATABASE", "STORAGE", "AI", "BACKEND"],
+    "authMethods": ["email-code", "password"],
+    "isDefault": false
+}

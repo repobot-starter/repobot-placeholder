@@ -1,0 +1,8 @@
+{
+    "key": "shopify-boutique",
+    "templateKey": "repobot-shopify-boutique",
+    "title": "Shopify boutique",
+    "description": "An editorial apparel-store example on the Repobot Shopify theme standards: styled sections, boutique presets, and demo copy ready to swap for a real catalog.",
+    "platform": "SHOPIFY",
+    "comment": "Standalone template (not a pack on the web kernel): a Shopify theme has its own repo shape. Published by scripts/publish-templates.sh alongside pack-composed templates."
+}

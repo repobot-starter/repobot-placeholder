@@ -1,0 +1,34 @@
+# Interpret domain: drop a PDF, get an interpretation — what the document
+# is, a plain-language summary, the key points, and the fields worth
+# extracting. Stateless by design: nothing is persisted; the mutation reads
+# the upload through the storage kernel and returns the reading. Rides the
+# document-intake kernel — real pdfjs text extraction in every mode; the
+# interpretation layer is the model on AI deploys and a deterministic
+# heuristic reading of the extracted text in the sandbox (AI_MODE=local),
+# so any PDF works with zero credentials.
+
+"One-shot reading of an uploaded PDF document."
+type DocumentInterpretation {
+    "What kind of document this is, e.g. \"Commercial invoice\" or \"Résumé\"."
+    documentType: String!
+    "The document's own title, when it states one."
+    title: String
+    "A plain-language summary, a few sentences."
+    summary: String!
+    "The document's most important points, in reading order."
+    keyPoints: [String!]!
+    "Notable fields worth extracting: parties, dates, amounts, references."
+    fields: [InterpretedField!]!
+    pageCount: Int!
+}
+
+"One extracted field: a label and the value the document states."
+type InterpretedField {
+    label: String!
+    value: String!
+}
+
+input InterpretDocumentInput {
+    "A READY application/pdf upload (the dropped document)."
+    uploadId: Id!
+}

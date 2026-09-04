@@ -1,0 +1,35 @@
+{
+    "businessName": "Northwind Studio",
+    "businessEmail": "billing@northwind.example",
+    "businessAddress": "410 Harbor Lane, Suite 220, Portland, OR 97209",
+    "clientName": "Acme Corporation",
+    "clientEmail": "accounts@acme.example",
+    "clientAddress": "1 Coyote Plaza, Albuquerque, NM 87102",
+    "invoiceNumber": "INV-2026-0142",
+    "issueDate": "2026-07-24",
+    "dueDate": "2026-08-23",
+    "lineItems": [
+        {
+            "description": "Brand identity design",
+            "quantity": "1",
+            "unitPrice": "$3,200.00",
+            "lineTotal": "$3,200.00"
+        },
+        {
+            "description": "Marketing site build (5 pages)",
+            "quantity": "1",
+            "unitPrice": "$4,800.00",
+            "lineTotal": "$4,800.00"
+        },
+        {
+            "description": "Content revisions",
+            "quantity": "6",
+            "unitPrice": "$120.00",
+            "lineTotal": "$720.00"
+        }
+    ],
+    "subtotal": "$8,720.00",
+    "tax": "$0.00",
+    "total": "$8,720.00",
+    "notes": "Payment is due within 30 days. Please reference the invoice number on your transfer."
+}

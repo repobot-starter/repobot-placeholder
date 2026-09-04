@@ -1,0 +1,14 @@
+{
+    "key": "snake",
+    "templateKey": "repobot-snake",
+    "title": "Snake",
+    "description": "Grid snake with rising levels, a speed curve, and a local high-score table.",
+    "marketingExampleTitle": "Classic snake",
+    "homePath": "/",
+    "previewPath": "/snake",
+    "homeViewDir": "web/app/src/View/Games/Snake",
+    "base": "game",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

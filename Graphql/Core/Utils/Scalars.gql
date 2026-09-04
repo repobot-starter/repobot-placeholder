@@ -1,0 +1,6 @@
+# Globally unique, prefixed row IDs (for example "user_01H..."). Sent to clients as-is.
+scalar Id
+
+# Represents a point in time, encoded as an RFC 3339 / ISO 8601 UTC string.
+# Format: "2026-04-14T22:58:03.000Z"
+scalar Instant

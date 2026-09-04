@@ -1,0 +1,67 @@
+# Songs domain: a living most-popular-songs catalog the AI agent reads and
+# writes. Rank 1 is the top of the chart.
+
+type Song {
+    id: Id!
+    "1 is the top of the chart."
+    chartRank: Int!
+    title: String!
+    artist: String!
+    year: Int!
+    genre: String!
+    "Lifetime streams in billions, when known."
+    streamsBillions: Float
+    notes: String
+    createdTime: Instant!
+    updatedTime: Instant!
+}
+
+type SongConnection {
+    nodes: [Song]!
+    pageInfo: PageInfo!
+}
+
+input SongConnectionInput {
+    filters: SongConnectionFilters
+    connection: ConnectionInput!
+}
+
+input SongConnectionFilters {
+    "Case-insensitive substring match across title, artist, genre, and notes."
+    search: String
+}
+
+input CreateSongInput {
+    idempotencyKey: String!
+    fields: CreateSongFields!
+}
+
+input CreateSongFields {
+    chartRank: Int!
+    title: String!
+    artist: String!
+    year: Int!
+    genre: String!
+    streamsBillions: Float
+    notes: String
+}
+
+input UpdateSongInput {
+    objectId: Id!
+    idempotencyKey: String!
+    fields: UpdateSongFields!
+}
+
+input UpdateSongFields {
+    chartRank: Int
+    title: String
+    artist: String
+    year: Int
+    genre: String
+    streamsBillions: Float
+    notes: String
+}
+
+input DeleteSongInput {
+    objectId: Id!
+}

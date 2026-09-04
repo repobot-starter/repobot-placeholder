@@ -1,0 +1,873 @@
+{
+    "$comment": "The saas pack's project IA (docs/project-ia.md). Stamped to the repo root by compose-pack.sh, which then runs scaffold-ia to wire the dashboard destinations. Marketing pages carry inline landing configs (real starter copy, CTAs into /login) that win over the blueprint defaults; edit content here, not in hand-built pages. Product screenshots are real captures of the shipped dashboard, processed by `npm run image -- responsive` into web/app/public/saas/.",
+    "marketing": {
+        "preset": "monolith",
+        "siteName": "Outlay",
+        "pages": [
+            {
+                "id": "home",
+                "path": "/",
+                "title": "Home",
+                "blueprint": "landing",
+                "description": "Team cards, budgets, and approvals — every dollar accounted for.",
+                "landing": {
+                    "style": {
+                        "preset": "monolith"
+                    },
+                    "shell": {
+                        "nav": {
+                            "content": {
+                                "logo": {
+                                    "name": "Outlay"
+                                },
+                                "links": [
+                                    {
+                                        "label": "Features",
+                                        "href": "/features"
+                                    },
+                                    {
+                                        "label": "Pricing",
+                                        "href": "/pricing"
+                                    }
+                                ],
+                                "cta": {
+                                    "label": "Sign in",
+                                    "href": "/login"
+                                }
+                            }
+                        },
+                        "footer": {
+                            "variant": "simple",
+                            "content": {
+                                "blurb": "Outlay",
+                                "links": [
+                                    {
+                                        "label": "Features",
+                                        "href": "/features"
+                                    },
+                                    {
+                                        "label": "Pricing",
+                                        "href": "/pricing"
+                                    },
+                                    {
+                                        "label": "Sign in",
+                                        "href": "/login"
+                                    }
+                                ],
+                                "note": "© Outlay. All rights reserved."
+                            }
+                        }
+                    },
+                    "sections": [
+                        {
+                            "type": "hero",
+                            "variant": "statement",
+                            "content": {
+                                "badge": "Spend, seen clearly",
+                                "headline": "Move money at the speed of thought",
+                                "accent": "last-word",
+                                "subheadline": "Approvals in one tap, cards with rules built in, forecasts that see around corners — one system, engineered for speed.",
+                                "primaryCta": {
+                                    "label": "Start free",
+                                    "href": "/login"
+                                },
+                                "secondaryCta": {
+                                    "label": "See pricing",
+                                    "href": "/pricing"
+                                },
+                                "media": {
+                                    "kind": "browser",
+                                    "src": "/saas/hero-overview-dark-2400w.webp",
+                                    "alt": "The Outlay overview: spend KPIs with trends, the daily-spend curve, category mix, and the approvals queue",
+                                    "url": "app.outlay.dev/overview",
+                                    "width": 2400,
+                                    "height": 1500,
+                                    "srcSet": [
+                                        {
+                                            "src": "/saas/hero-overview-dark-640w.webp",
+                                            "width": 640
+                                        },
+                                        {
+                                            "src": "/saas/hero-overview-dark-1024w.webp",
+                                            "width": 1024
+                                        },
+                                        {
+                                            "src": "/saas/hero-overview-dark-1600w.webp",
+                                            "width": 1600
+                                        },
+                                        {
+                                            "src": "/saas/hero-overview-dark-2400w.webp",
+                                            "width": 2400
+                                        }
+                                    ]
+                                },
+                                "fragments": [
+                                    {
+                                        "kind": "image",
+                                        "src": "/saas/fragment-stat-card-558w.webp",
+                                        "alt": "Spend this month: $41,562, down 6% against the prior 30 days",
+                                        "width": 558,
+                                        "height": 220,
+                                        "srcSet": [
+                                            {
+                                                "src": "/saas/fragment-stat-card-558w.webp",
+                                                "width": 558
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "kind": "image",
+                                        "src": "/saas/fragment-approvals-1140w.webp",
+                                        "alt": "The approvals queue with one-tap Approve and Decline actions",
+                                        "width": 1140,
+                                        "height": 253,
+                                        "srcSet": [
+                                            {
+                                                "src": "/saas/fragment-approvals-640w.webp",
+                                                "width": 640
+                                            },
+                                            {
+                                                "src": "/saas/fragment-approvals-1140w.webp",
+                                                "width": 1140
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "social-proof",
+                            "variant": "ticker",
+                            "content": {
+                                "items": ["Approvals", "Cards", "Budgets", "Forecasts", "Controls", "Ledger"]
+                            }
+                        },
+                        {
+                            "type": "feature-grid",
+                            "variant": "bento",
+                            "content": {
+                                "kicker": "The spend stack",
+                                "title": "Shown, not told",
+                                "features": [
+                                    {
+                                        "icon": "chart",
+                                        "title": "See spend as it happens",
+                                        "description": "The daily curve, category mix, and month pace update with every swipe — not at month close.",
+                                        "media": {
+                                            "kind": "image",
+                                            "src": "/saas/bento-chart-area-1368w.webp",
+                                            "alt": "The daily spend chart over a 30-day window",
+                                            "width": 1368,
+                                            "height": 662,
+                                            "srcSet": [
+                                                {
+                                                    "src": "/saas/bento-chart-area-640w.webp",
+                                                    "width": 640
+                                                },
+                                                {
+                                                    "src": "/saas/bento-chart-area-1024w.webp",
+                                                    "width": 1024
+                                                },
+                                                {
+                                                    "src": "/saas/bento-chart-area-1368w.webp",
+                                                    "width": 1368
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "icon": "shield",
+                                        "title": "Budgets that hold the line",
+                                        "description": "Every card draws from a budget with a hard limit. When it's spent, the card says no — you don't have to.",
+                                        "media": {
+                                            "kind": "image",
+                                            "src": "/saas/bento-budget-card-516w.webp",
+                                            "alt": "The Office budget at 97% used, flagged as running hot",
+                                            "width": 516,
+                                            "height": 248,
+                                            "srcSet": [
+                                                {
+                                                    "src": "/saas/bento-budget-card-516w.webp",
+                                                    "width": 558
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "icon": "zap",
+                                        "title": "One-tap approvals",
+                                        "description": "Requests land with the context to decide: who, what, how much, against which budget.",
+                                        "media": {
+                                            "kind": "image",
+                                            "src": "/saas/bento-approvals-1140w.webp",
+                                            "alt": "The approvals queue: each request with its owner, purpose, amount, and one-tap Approve and Decline",
+                                            "width": 1140,
+                                            "height": 604,
+                                            "srcSet": [
+                                                {
+                                                    "src": "/saas/bento-approvals-640w.webp",
+                                                    "width": 640
+                                                },
+                                                {
+                                                    "src": "/saas/bento-approvals-1140w.webp",
+                                                    "width": 1140
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "icon": "layers",
+                                        "title": "Cards with limits built in",
+                                        "description": "Issue a virtual card in seconds, scoped to a budget and a holder, with its pace visible at a glance.",
+                                        "media": {
+                                            "kind": "image",
+                                            "src": "/saas/bento-card-tile-516w.webp",
+                                            "alt": "A virtual engineering card with its monthly limit and pace",
+                                            "width": 516,
+                                            "height": 280,
+                                            "srcSet": [
+                                                {
+                                                    "src": "/saas/bento-card-tile-516w.webp",
+                                                    "width": 558
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "icon": "check",
+                                        "title": "A ledger that closes itself",
+                                        "description": "Every swipe arrives coded — merchant, category, member, card — so month close is a review, not a hunt.",
+                                        "media": {
+                                            "kind": "image",
+                                            "src": "/saas/bento-ledger-1428w.webp",
+                                            "alt": "The ledger, already coded: merchant, category, and member on every line",
+                                            "width": 1428,
+                                            "height": 785,
+                                            "srcSet": [
+                                                {
+                                                    "src": "/saas/bento-ledger-640w.webp",
+                                                    "width": 640
+                                                },
+                                                {
+                                                    "src": "/saas/bento-ledger-1024w.webp",
+                                                    "width": 1024
+                                                },
+                                                {
+                                                    "src": "/saas/bento-ledger-1428w.webp",
+                                                    "width": 1428
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "highlights",
+                            "variant": "alternating",
+                            "content": {
+                                "kicker": "Under the hood",
+                                "title": "Built for the person who closes the books",
+                                "highlights": [
+                                    {
+                                        "headline": "The whole ledger, three clicks from anything",
+                                        "body": "Every transaction with per-column filters, a column manager, and CSV export. Pin merchants, hide noise, and hand your accountant the exact view they asked for.",
+                                        "media": {
+                                            "kind": "image",
+                                            "src": "/saas/page-transactions-dark-2400w.webp",
+                                            "alt": "The Outlay transactions table with filters and export",
+                                            "width": 2400,
+                                            "height": 1500,
+                                            "srcSet": [
+                                                {
+                                                    "src": "/saas/page-transactions-dark-640w.webp",
+                                                    "width": 640
+                                                },
+                                                {
+                                                    "src": "/saas/page-transactions-dark-1024w.webp",
+                                                    "width": 1024
+                                                },
+                                                {
+                                                    "src": "/saas/page-transactions-dark-1600w.webp",
+                                                    "width": 1600
+                                                },
+                                                {
+                                                    "src": "/saas/page-transactions-dark-2400w.webp",
+                                                    "width": 2400
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "headline": "Budgets with pace, not just limits",
+                                        "body": "Each category shows what's spent, what's left, and whether it's running hot — flagged before it blows, not after. The spent-vs-limit chart makes the month's story legible at a glance.",
+                                        "media": {
+                                            "kind": "image",
+                                            "src": "/saas/page-budgets-dark-2400w.webp",
+                                            "alt": "Category budgets with pace bars and the spent-vs-limit chart",
+                                            "width": 2400,
+                                            "height": 1500,
+                                            "srcSet": [
+                                                {
+                                                    "src": "/saas/page-budgets-dark-640w.webp",
+                                                    "width": 640
+                                                },
+                                                {
+                                                    "src": "/saas/page-budgets-dark-1024w.webp",
+                                                    "width": 1024
+                                                },
+                                                {
+                                                    "src": "/saas/page-budgets-dark-1600w.webp",
+                                                    "width": 1600
+                                                },
+                                                {
+                                                    "src": "/saas/page-budgets-dark-2400w.webp",
+                                                    "width": 2400
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "testimonials",
+                            "variant": "quote-grid",
+                            "content": {
+                                "kicker": "From finance teams",
+                                "title": "Don't take our word for it",
+                                "quotes": [
+                                    {
+                                        "quote": "Month close went from four days to one afternoon. The ledger arrives already coded.",
+                                        "author": "Dana M.",
+                                        "title": "Controller, 40-person startup"
+                                    },
+                                    {
+                                        "quote": "We stopped chasing receipts. Every card is scoped to a budget, so the answer to 'can we?' is on the card.",
+                                        "author": "Felix A.",
+                                        "title": "Head of finance, product studio"
+                                    },
+                                    {
+                                        "quote": "Approvals used to live in my inbox. Now they take one tap and the audit trail writes itself.",
+                                        "author": "Ines K.",
+                                        "title": "Operations lead, 12-person agency"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "faq",
+                            "variant": "accordion",
+                            "content": {
+                                "kicker": "Good to know",
+                                "title": "Questions before you start",
+                                "items": [
+                                    {
+                                        "question": "How fast can we issue the first card?",
+                                        "answer": "Minutes. Create an account, set a budget, and issue a virtual card against it — nothing to install and no bank paperwork to start."
+                                    },
+                                    {
+                                        "question": "What happens when a budget runs out?",
+                                        "answer": "Cards drawing on it decline politely and the holder sees why. Raising the limit is one edit, with the approval trail kept."
+                                    },
+                                    {
+                                        "question": "Does it work with our accounting stack?",
+                                        "answer": "The ledger exports clean CSV today and the transactions come pre-coded by category, member, and card — your accountant maps it once."
+                                    },
+                                    {
+                                        "question": "Can I cancel or export my data?",
+                                        "answer": "Any time, from account settings. Your ledger stays yours and stays exportable."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "cta-banner",
+                            "variant": "full-bleed",
+                            "content": {
+                                "title": "Give every dollar a job",
+                                "body": "Free to start — issue your first card in minutes and let the ledger close itself.",
+                                "cta": {
+                                    "label": "Start free",
+                                    "href": "/login"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "id": "features",
+                "path": "/features",
+                "title": "Features",
+                "blueprint": "custom",
+                "description": "Cards, budgets, approvals, and the ledger — the whole spend loop, shown on the real product.",
+                "landing": {
+                    "style": {
+                        "preset": "monolith"
+                    },
+                    "shell": {
+                        "nav": {
+                            "content": {
+                                "logo": {
+                                    "name": "Outlay"
+                                },
+                                "links": [
+                                    {
+                                        "label": "Home",
+                                        "href": "/"
+                                    },
+                                    {
+                                        "label": "Pricing",
+                                        "href": "/pricing"
+                                    }
+                                ],
+                                "cta": {
+                                    "label": "Sign in",
+                                    "href": "/login"
+                                }
+                            }
+                        },
+                        "footer": {
+                            "variant": "simple",
+                            "content": {
+                                "blurb": "Outlay",
+                                "links": [
+                                    {
+                                        "label": "Home",
+                                        "href": "/"
+                                    },
+                                    {
+                                        "label": "Pricing",
+                                        "href": "/pricing"
+                                    },
+                                    {
+                                        "label": "Sign in",
+                                        "href": "/login"
+                                    }
+                                ],
+                                "note": "© Outlay. All rights reserved."
+                            }
+                        }
+                    },
+                    "sections": [
+                        {
+                            "type": "hero",
+                            "variant": "statement",
+                            "content": {
+                                "kicker": "Features",
+                                "headline": "The whole spend loop, one system",
+                                "subheadline": "Issue the card, hold the budget, approve in one tap, close from a ledger that codes itself. Every screen below is the real product.",
+                                "primaryCta": {
+                                    "label": "Start free",
+                                    "href": "/login"
+                                },
+                                "secondaryCta": {
+                                    "label": "See pricing",
+                                    "href": "/pricing"
+                                }
+                            }
+                        },
+                        {
+                            "type": "feature-grid",
+                            "variant": "icon-list",
+                            "content": {
+                                "kicker": "In the box",
+                                "title": "Everything a finance team runs on",
+                                "features": [
+                                    {
+                                        "icon": "layers",
+                                        "title": "Virtual cards in seconds",
+                                        "description": "Scoped to a budget and a holder, with the monthly limit printed on the card."
+                                    },
+                                    {
+                                        "icon": "shield",
+                                        "title": "Hard budget limits",
+                                        "description": "When a budget is spent, its cards decline politely — policy enforced at the swipe."
+                                    },
+                                    {
+                                        "icon": "zap",
+                                        "title": "One-tap approvals",
+                                        "description": "Requests arrive with who, what, how much, and which budget — decide from the queue."
+                                    },
+                                    {
+                                        "icon": "chart",
+                                        "title": "Live pace tracking",
+                                        "description": "Daily curve, category mix, and month pace update with every transaction."
+                                    },
+                                    {
+                                        "icon": "check",
+                                        "title": "A self-coding ledger",
+                                        "description": "Merchant, category, member, and card land on every line the moment it posts."
+                                    },
+                                    {
+                                        "icon": "inbox",
+                                        "title": "Clean CSV export",
+                                        "description": "Filter to the exact view your accountant asked for and hand it over in one click."
+                                    },
+                                    {
+                                        "icon": "users",
+                                        "title": "Unlimited members",
+                                        "description": "Every plan includes the whole team — pricing follows spend, never seats."
+                                    },
+                                    {
+                                        "icon": "sliders",
+                                        "title": "Approval rules",
+                                        "description": "Route requests by amount, budget, or member so the right person decides."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "highlights",
+                            "variant": "alternating",
+                            "content": {
+                                "kicker": "On the real product",
+                                "title": "Four screens that run the loop",
+                                "highlights": [
+                                    {
+                                        "headline": "Cards that carry their own rules",
+                                        "body": "The card wall shows every card with its holder, limit, and month-to-date pace — and issuing a new one takes seconds, not a banking form. Pick a card to audit its recent activity on the spot.",
+                                        "media": {
+                                            "kind": "image",
+                                            "src": "/saas/page-cards-dark-2400w.webp",
+                                            "alt": "The Outlay card wall with per-card limits and month-to-date pace",
+                                            "width": 2400,
+                                            "height": 1500,
+                                            "srcSet": [
+                                                {
+                                                    "src": "/saas/page-cards-dark-640w.webp",
+                                                    "width": 640
+                                                },
+                                                {
+                                                    "src": "/saas/page-cards-dark-1024w.webp",
+                                                    "width": 1024
+                                                },
+                                                {
+                                                    "src": "/saas/page-cards-dark-1600w.webp",
+                                                    "width": 1600
+                                                },
+                                                {
+                                                    "src": "/saas/page-cards-dark-2400w.webp",
+                                                    "width": 2400
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "headline": "Budgets with pace, not just limits",
+                                        "body": "Each category shows what's spent, what's left, and whether it's running hot — flagged before it blows, not after. The spent-vs-limit chart makes the month's story legible at a glance.",
+                                        "media": {
+                                            "kind": "image",
+                                            "src": "/saas/page-budgets-dark-2400w.webp",
+                                            "alt": "Category budgets with pace bars and the spent-vs-limit chart",
+                                            "width": 2400,
+                                            "height": 1500,
+                                            "srcSet": [
+                                                {
+                                                    "src": "/saas/page-budgets-dark-640w.webp",
+                                                    "width": 640
+                                                },
+                                                {
+                                                    "src": "/saas/page-budgets-dark-1024w.webp",
+                                                    "width": 1024
+                                                },
+                                                {
+                                                    "src": "/saas/page-budgets-dark-1600w.webp",
+                                                    "width": 1600
+                                                },
+                                                {
+                                                    "src": "/saas/page-budgets-dark-2400w.webp",
+                                                    "width": 2400
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "headline": "The ledger your accountant asked for",
+                                        "body": "Every transaction, already coded, with per-column filters, a column manager, and CSV export. Month close becomes a review pass instead of a receipt hunt.",
+                                        "media": {
+                                            "kind": "image",
+                                            "src": "/saas/page-transactions-dark-2400w.webp",
+                                            "alt": "The Outlay transactions table with filters and export",
+                                            "width": 2400,
+                                            "height": 1500,
+                                            "srcSet": [
+                                                {
+                                                    "src": "/saas/page-transactions-dark-640w.webp",
+                                                    "width": 640
+                                                },
+                                                {
+                                                    "src": "/saas/page-transactions-dark-1024w.webp",
+                                                    "width": 1024
+                                                },
+                                                {
+                                                    "src": "/saas/page-transactions-dark-1600w.webp",
+                                                    "width": 1600
+                                                },
+                                                {
+                                                    "src": "/saas/page-transactions-dark-2400w.webp",
+                                                    "width": 2400
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "headline": "The morning check-in",
+                                        "body": "One screen answers the standing questions: what did we spend, what's left, who's waiting on an approval, and what just posted. KPIs with trends, the daily curve, and the queue — before the first coffee.",
+                                        "media": {
+                                            "kind": "image",
+                                            "src": "/saas/hero-overview-dark-2400w.webp",
+                                            "alt": "The Outlay overview: spend KPIs with trends, the daily-spend curve, category mix, and the approvals queue",
+                                            "width": 2400,
+                                            "height": 1500,
+                                            "srcSet": [
+                                                {
+                                                    "src": "/saas/hero-overview-dark-640w.webp",
+                                                    "width": 640
+                                                },
+                                                {
+                                                    "src": "/saas/hero-overview-dark-1024w.webp",
+                                                    "width": 1024
+                                                },
+                                                {
+                                                    "src": "/saas/hero-overview-dark-1600w.webp",
+                                                    "width": 1600
+                                                },
+                                                {
+                                                    "src": "/saas/hero-overview-dark-2400w.webp",
+                                                    "width": 2400
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "cta-banner",
+                            "variant": "full-bleed",
+                            "content": {
+                                "title": "See it with your own spend",
+                                "body": "Free to start — issue your first card in minutes and watch the ledger code itself.",
+                                "cta": {
+                                    "label": "Start free",
+                                    "href": "/login"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "id": "pricing",
+                "path": "/pricing",
+                "title": "Pricing",
+                "blueprint": "pricing",
+                "description": "Start free, pay for control — never per seat.",
+                "landing": {
+                    "style": {
+                        "preset": "monolith"
+                    },
+                    "shell": {
+                        "nav": {
+                            "content": {
+                                "logo": {
+                                    "name": "Outlay"
+                                },
+                                "links": [
+                                    {
+                                        "label": "Home",
+                                        "href": "/"
+                                    },
+                                    {
+                                        "label": "Features",
+                                        "href": "/features"
+                                    }
+                                ],
+                                "cta": {
+                                    "label": "Sign in",
+                                    "href": "/login"
+                                }
+                            }
+                        },
+                        "footer": {
+                            "variant": "simple",
+                            "content": {
+                                "blurb": "Outlay",
+                                "links": [
+                                    {
+                                        "label": "Home",
+                                        "href": "/"
+                                    },
+                                    {
+                                        "label": "Features",
+                                        "href": "/features"
+                                    },
+                                    {
+                                        "label": "Sign in",
+                                        "href": "/login"
+                                    }
+                                ],
+                                "note": "© Outlay. All rights reserved."
+                            }
+                        }
+                    },
+                    "sections": [
+                        {
+                            "type": "hero",
+                            "variant": "statement",
+                            "content": {
+                                "headline": "Pay for control, not per seat",
+                                "subheadline": "Every plan includes unlimited members and unlimited cards. Price follows the spend you put under management."
+                            }
+                        },
+                        {
+                            "type": "social-proof",
+                            "variant": "metrics-row",
+                            "content": {
+                                "label": "Why teams switch",
+                                "metrics": [
+                                    {
+                                        "value": "$4.2M+",
+                                        "label": "monthly spend under management"
+                                    },
+                                    {
+                                        "value": "6,000+",
+                                        "label": "cards issued"
+                                    },
+                                    {
+                                        "value": "3 days",
+                                        "label": "average saved at month close"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "pricing",
+                            "variant": "tiers",
+                            "content": {
+                                "kicker": "Plans",
+                                "title": "Pick what fits today",
+                                "tiers": [
+                                    {
+                                        "name": "Starter",
+                                        "monthly": 0,
+                                        "yearlyPerMonth": 0,
+                                        "description": "For the first cards.",
+                                        "features": [
+                                            "Up to $10k monthly spend",
+                                            "Unlimited virtual cards",
+                                            "Two budgets",
+                                            "CSV export"
+                                        ]
+                                    },
+                                    {
+                                        "name": "Growth",
+                                        "monthly": 29,
+                                        "yearlyPerMonth": 24,
+                                        "description": "For teams running on it.",
+                                        "features": [
+                                            "Everything in Starter",
+                                            "Unlimited budgets",
+                                            "Approval rules",
+                                            "Accounting sync"
+                                        ],
+                                        "highlighted": true,
+                                        "badge": "Most popular"
+                                    },
+                                    {
+                                        "name": "Scale",
+                                        "monthly": 79,
+                                        "yearlyPerMonth": 64,
+                                        "description": "For finance teams with structure.",
+                                        "features": [
+                                            "Everything in Growth",
+                                            "Custom limits and roles",
+                                            "SAML SSO",
+                                            "Priority support"
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "faq",
+                            "variant": "accordion",
+                            "content": {
+                                "kicker": "Billing",
+                                "title": "Common questions",
+                                "items": [
+                                    {
+                                        "question": "What counts as spend under management?",
+                                        "answer": "The card transactions Outlay processes for you each month. Budgets, members, and cards are never metered."
+                                    },
+                                    {
+                                        "question": "Can I change plans later?",
+                                        "answer": "Yes — upgrades apply immediately and downgrades apply at the next billing cycle."
+                                    },
+                                    {
+                                        "question": "How do I cancel?",
+                                        "answer": "From account settings, any time. Your ledger stays exportable."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "cta-banner",
+                            "variant": "card",
+                            "content": {
+                                "title": "Ready for Growth?",
+                                "body": "Subscribe to the Growth plan — new here? You'll create your free account first, then check out.",
+                                "cta": {
+                                    "label": "Subscribe to Growth",
+                                    "href": "/subscribe?plan=growth"
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ],
+        "brand": {
+            "$comment": "No committed logo/logoMark on purpose: the product is black and white, and a baked image can't read on both grounds. BrandMark and the app shell fall back to the theme-aware plate (accent tile + wordmark in text color) \u2014 a hard white plate on black in dark mode, the negative in light \u2014 which IS the monolith identity. icon/social stay baked for favicons and og:image.",
+            "icon": "/brand/icon.png",
+            "social": "/brand/social.png"
+        }
+    },
+    "dashboard": {
+        "destinations": [
+            {
+                "id": "overview",
+                "path": "/overview",
+                "label": "Overview",
+                "blueprint": "overview",
+                "description": "The signed-in home: spend KPIs with trends, the daily-spend curve, category mix, approvals queue, and the latest transactions."
+            },
+            {
+                "id": "transactions",
+                "path": "/transactions",
+                "label": "Transactions",
+                "blueprint": "table",
+                "icon": "M17 2l4 4-4 4 M3 11v-1a4 4 0 0 1 4-4h14 M7 22l-4-4 4-4 M21 13v1a4 4 0 0 1-4 4H3",
+                "description": "The full ledger: a detailed table with per-column filters, column manager, and CSV export."
+            },
+            {
+                "id": "budgets",
+                "path": "/budgets",
+                "label": "Budgets",
+                "blueprint": "custom",
+                "icon": "M21.21 15.89A10 10 0 1 1 8 2.83 M22 12A10 10 0 0 0 12 2v10z",
+                "description": "Category budgets with pace bars and the spent-vs-limit comparison chart."
+            },
+            {
+                "id": "cards",
+                "path": "/cards",
+                "label": "Cards",
+                "blueprint": "custom",
+                "icon": "M3 5h18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z M1 10h22 M5 15h4",
+                "description": "The card wall: every team card with holder, limit, and month-to-date pace, plus per-card activity."
+            }
+        ]
+    }
+}

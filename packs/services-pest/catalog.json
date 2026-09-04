@@ -1,0 +1,16 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services-recurring pack composed with a pest-control content seed and a brick-red brand over the warm-boutique register. Everything else — pages, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-pest",
+    "remixOf": "services-recurring",
+    "templateKey": "repobot-services-pest",
+    "title": "Pest control",
+    "description": "A pest control site built around the schedule: quarterly and monthly protection plans priced per visit, a line-by-line plan comparison, a proof gallery, testimonials, and a booking form that asks for a frequency, not a project \u2014 a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Pest control service",
+    "contentSeed": "web/app/src/View/ServicesRecurring/pestRemix.content.ts",
+    "theme": {
+        "$comment": "Brick red over the warm-boutique register's espresso dark \u2014 the protective, urgent voice of the trade, opened after dark when the pests come out. mode dark selects the register's candlelit appearance (espresso ground, cream type, the red as embers; the appearance toggle still swaps to the cream daylight). Marketing pages resolve brand over preset accent, so the overlay re-skins the pages and the app surfaces together. navigation re-pins the shared servicesRecurringShell chrome (a declared theme variant outranks the shell prop): the base cleaner wears the pill-links cluster, so the pest remix takes the centered masthead \u2014 the nav-variety audit spreads the nine-template services family across the vocabulary.",
+        "mode": "dark",
+        "brand": { "primary": "#b91c1c", "primaryDark": "#f87171" },
+        "navigation": { "variant": "centered" }
+    }
+}

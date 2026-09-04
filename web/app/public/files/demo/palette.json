@@ -1,0 +1,12 @@
+{
+    "name": "Harbor tide palette",
+    "version": 2,
+    "colors": [
+        { "token": "navy-band", "hex": "#12263a", "use": "primary band, wordmark" },
+        { "token": "tide-foam", "hex": "#f2efe6", "use": "label ground" },
+        { "token": "buoy-red", "hex": "#c0392b", "use": "accent, never for body text" },
+        { "token": "kelp", "hex": "#3d5a45", "use": "secondary band" },
+        { "token": "rope", "hex": "#b9a074", "use": "rules and borders" }
+    ],
+    "spotColors": ["navy-band", "buoy-red"]
+}

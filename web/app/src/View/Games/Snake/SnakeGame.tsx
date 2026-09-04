@@ -1,0 +1,248 @@
+import React, { useEffect, useRef } from "react"
+import { useAnimationFrameLoop } from "../../../Utils/useAnimationFrameLoop"
+import * as styles from "./SnakePage.styles.css"
+
+export const GRID_COLS = 28
+export const GRID_ROWS = 22
+const CELL = 24
+export const BOARD_WIDTH = GRID_COLS * CELL
+export const BOARD_HEIGHT = GRID_ROWS * CELL
+
+const CELLS_PER_LEVEL = 5
+const BASE_TICK_MS = 150
+const TICK_DECREASE_PER_LEVEL = 12
+const MIN_TICK_MS = 55
+
+export interface SnakeScore {
+    score: number
+    level: number
+}
+
+interface Cell {
+    x: number
+    y: number
+}
+
+type Food = Cell
+
+interface SnakeSettings {
+    paused: boolean
+    onScore?: (score: SnakeScore) => void
+    onGameOver?: (result: SnakeScore) => void
+}
+
+interface GameState {
+    snake: Cell[]
+    direction: Cell
+    nextDirection: Cell
+    food: Food
+    score: number
+    cellsEaten: number
+    level: number
+    over: boolean
+    lastTick: number
+    startedAt: number
+}
+
+/**
+ * The playfield. Fixed-timestep grid game driven by requestAnimationFrame;
+ * game state lives in refs. The parent owns pause/game-over UI and receives
+ * score/level/game-over callbacks. Controls: arrows or WASD.
+ */
+export default function SnakeGame(props: SnakeSettings & { resetToken: number }): React.ReactElement {
+    const { resetToken, ...settings } = props
+    const canvasRef = useRef<HTMLCanvasElement>(null)
+    const gameRef = useRef<GameState | null>(null)
+    const settingsRef = useRef<SnakeSettings>(settings)
+    settingsRef.current = settings
+
+    useEffect(() => {
+        const middleRow = Math.floor(GRID_ROWS / 2)
+        const snake: Cell[] = [
+            { x: 8, y: middleRow },
+            { x: 7, y: middleRow },
+            { x: 6, y: middleRow },
+        ]
+        gameRef.current = {
+            snake,
+            direction: { x: 1, y: 0 },
+            nextDirection: { x: 1, y: 0 },
+            food: spawnFood({ snake }),
+            score: 0,
+            cellsEaten: 0,
+            level: 1,
+            over: false,
+            lastTick: 0,
+            startedAt: performance.now(),
+        }
+        settingsRef.current.onScore?.({ score: 0, level: 1 })
+    }, [resetToken])
+
+    useEffect(() => {
+        const DIRECTIONS: Record<string, Cell | undefined> = {
+            arrowup: { x: 0, y: -1 },
+            w: { x: 0, y: -1 },
+            arrowdown: { x: 0, y: 1 },
+            s: { x: 0, y: 1 },
+            arrowleft: { x: -1, y: 0 },
+            a: { x: -1, y: 0 },
+            arrowright: { x: 1, y: 0 },
+            d: { x: 1, y: 0 },
+        }
+        const handleKeyDown = (event: KeyboardEvent): void => {
+            const direction = DIRECTIONS[event.key.toLowerCase()]
+            const game = gameRef.current
+            if (!direction || !game) {
+                return
+            }
+            event.preventDefault()
+            // Disallow reversing straight into yourself.
+            if (direction.x === -game.direction.x && direction.y === -game.direction.y) {
+                return
+            }
+            game.nextDirection = direction
+        }
+        window.addEventListener("keydown", handleKeyDown)
+        return () => window.removeEventListener("keydown", handleKeyDown)
+    }, [])
+
+    // Fixed-timestep game: the loop ignores dt and steps whenever `now`
+    // crosses the level's tick interval.
+    useAnimationFrameLoop((_dt, now) => {
+        const ctx = canvasRef.current?.getContext("2d")
+        const game = gameRef.current
+        if (!ctx || !game) {
+            return
+        }
+        const tickMs = Math.max(MIN_TICK_MS, BASE_TICK_MS - (game.level - 1) * TICK_DECREASE_PER_LEVEL)
+        if (!settingsRef.current.paused && !game.over && now - game.lastTick >= tickMs) {
+            game.lastTick = now
+            step(game, settingsRef.current)
+        }
+        draw(ctx, game)
+    })
+
+    return <canvas ref={canvasRef} width={BOARD_WIDTH} height={BOARD_HEIGHT} className={styles.board} />
+}
+
+function spawnFood(game: Pick<GameState, "snake">): Food {
+    while (true) {
+        const cell: Food = {
+            x: Math.floor(Math.random() * GRID_COLS),
+            y: Math.floor(Math.random() * GRID_ROWS),
+        }
+        if (!game.snake.some((segment) => segment.x === cell.x && segment.y === cell.y)) {
+            return cell
+        }
+    }
+}
+
+function step(game: GameState, settings: SnakeSettings): void {
+    game.direction = game.nextDirection
+    const head: Cell = {
+        x: game.snake[0].x + game.direction.x,
+        y: game.snake[0].y + game.direction.y,
+    }
+
+    const hitWall = head.x < 0 || head.y < 0 || head.x >= GRID_COLS || head.y >= GRID_ROWS
+    const hitSelf = game.snake.some((segment) => segment.x === head.x && segment.y === head.y)
+    if (hitWall || hitSelf) {
+        game.over = true
+        settings.onGameOver?.({ score: game.score, level: game.level })
+        return
+    }
+
+    game.snake.unshift(head)
+
+    if (head.x === game.food.x && head.y === game.food.y) {
+        game.cellsEaten += 1
+        game.score += 100 * game.level
+        if (game.cellsEaten % CELLS_PER_LEVEL === 0) {
+            game.level += 1
+        }
+        game.food = spawnFood(game)
+        settings.onScore?.({ score: game.score, level: game.level })
+    } else {
+        game.snake.pop()
+    }
+}
+
+function draw(ctx: CanvasRenderingContext2D, game: GameState): void {
+    ctx.fillStyle = "#111112"
+    ctx.fillRect(0, 0, BOARD_WIDTH, BOARD_HEIGHT)
+
+    // Hairline grid
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.04)"
+    ctx.lineWidth = 1
+    for (let x = 0; x <= GRID_COLS; x++) {
+        ctx.beginPath()
+        ctx.moveTo(x * CELL + 0.5, 0)
+        ctx.lineTo(x * CELL + 0.5, BOARD_HEIGHT)
+        ctx.stroke()
+    }
+    for (let y = 0; y <= GRID_ROWS; y++) {
+        ctx.beginPath()
+        ctx.moveTo(0, y * CELL + 0.5)
+        ctx.lineTo(BOARD_WIDTH, y * CELL + 0.5)
+        ctx.stroke()
+    }
+
+    // Food: a white dot inside a hairline ring
+    const foodX = game.food.x * CELL + CELL / 2
+    const foodY = game.food.y * CELL + CELL / 2
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.35)"
+    ctx.lineWidth = 1
+    ctx.beginPath()
+    ctx.arc(foodX, foodY, CELL / 2 - 4, 0, Math.PI * 2)
+    ctx.stroke()
+    ctx.fillStyle = "#fafafa"
+    ctx.beginPath()
+    ctx.arc(foodX, foodY, 4, 0, Math.PI * 2)
+    ctx.fill()
+
+    // Snake: rounded segments fading toward the tail, bright head with eyes
+    const tailAlpha = 0.35
+    game.snake.forEach((segment, index) => {
+        const isHead = index === 0
+        const inset = isHead ? 1 : 2
+        if (isHead) {
+            ctx.fillStyle = "#fafafa"
+        } else {
+            const fade = 1 - (index / Math.max(1, game.snake.length - 1)) * (1 - tailAlpha)
+            ctx.fillStyle = `rgba(212, 212, 216, ${(0.85 * fade).toFixed(3)})`
+        }
+        roundRect(
+            ctx,
+            segment.x * CELL + inset,
+            segment.y * CELL + inset,
+            CELL - inset * 2,
+            CELL - inset * 2,
+            isHead ? 7 : 8,
+        )
+        ctx.fill()
+        if (isHead) {
+            ctx.fillStyle = "#111112"
+            const cx = segment.x * CELL + CELL / 2
+            const cy = segment.y * CELL + CELL / 2
+            ctx.fillRect(cx - 6, cy - 3, 4, 4)
+            ctx.fillRect(cx + 2, cy - 3, 4, 4)
+        }
+    })
+}
+
+function roundRect(
+    ctx: CanvasRenderingContext2D,
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    radius: number,
+): void {
+    ctx.beginPath()
+    ctx.moveTo(x + radius, y)
+    ctx.arcTo(x + width, y, x + width, y + height, radius)
+    ctx.arcTo(x + width, y + height, x, y + height, radius)
+    ctx.arcTo(x, y + height, x, y, radius)
+    ctx.arcTo(x, y, x + width, y, radius)
+    ctx.closePath()
+}

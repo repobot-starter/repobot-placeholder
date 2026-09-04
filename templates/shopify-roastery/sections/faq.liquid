@@ -1,0 +1,71 @@
+<section class="faq">
+  <h2 class="faq__title">{{ section.settings.title }}</h2>
+  {% for block in section.blocks %}
+    <details class="faq__item" {{ block.shopify_attributes }}>
+      <summary>{{ block.settings.question }}</summary>
+      <p class="faq__answer">{{ block.settings.answer }}</p>
+    </details>
+  {% endfor %}
+</section>
+
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Good questions"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "How fresh is the coffee when it arrives?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Answer",
+          "default": "We roast Tuesdays and ship the same week, so most bags land within days of the roast date printed on the label."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "question": "How fresh is the coffee when it arrives?",
+            "answer": "We roast Tuesdays and ship the same week, so most bags land within days of the roast date printed on the label."
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "question": "Can you grind it for me?",
+            "answer": "Yes — choose whole bean, or a grind for pour-over, drip, French press, or espresso at checkout. Whole bean stays fresh longest."
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "question": "Do you roast a decaf?",
+            "answer": "We do. Our decaf is a sugarcane-process Colombian, roasted on the same schedule as everything else — no dusty back-shelf beans."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

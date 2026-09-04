@@ -1,0 +1,61 @@
+{
+    "key": "folio",
+    "templateKey": "repobot-folio",
+    "title": "Folio",
+    "description": "An editorial one-page portfolio: hero statement, filterable project grid, about, and a contact CTA — all edited in one content file.",
+    "marketingExampleTitle": "Portfolio site",
+    "homePath": "/",
+    "previewPath": "/folio",
+    "homeViewDir": "web/app/src/View/Folio",
+    "base": "content",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false,
+    "contentContract": {
+        "$comment": "The pack's content slots, as data (packs/README.md 'Content contract'): slot paths into the typed content module, their kinds, and minimums. Authored alongside the module and guarded by the pack's content tests. The per-project emoji/accent art fields are native-app presentation, not composer slots.",
+        "module": "web/app/src/View/Folio/content.ts",
+        "slots": {
+            "profile.name": { "kind": "text" },
+            "profile.role": { "kind": "text" },
+            "profile.statement": { "kind": "text" },
+            "profile.location": { "kind": "text" },
+            "profile.email": { "kind": "text" },
+            "projects": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "title": { "kind": "text" },
+                    "year": { "kind": "text" },
+                    "description": { "kind": "text" },
+                    "tags": { "kind": "text[]", "min": 1 },
+                    "url": { "kind": "text" }
+                }
+            },
+            "about.paragraphs": { "kind": "text[]", "min": 1 },
+            "about.skills": { "kind": "text[]", "min": 4 },
+            "socials": {
+                "kind": "collection",
+                "min": 1,
+                "item": {
+                    "label": { "kind": "text" },
+                    "url": { "kind": "text" }
+                }
+            }
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware home surface: the route maps to the page id its config merges under (FolioPage.tsx, useSitePageConfig), and the page seeds the layout skeleton — ids match folioLanding.ts; the platform's structural editor edits these. The preset is editorial, folio's own lineage (paper-and-ink, serif statement, rules over cards).",
+        "style": { "preset": "editorial" },
+        "routes": { "/": "home" },
+        "pages": {
+            "home": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "statement" },
+                    { "id": "work", "type": "showcase", "variant": "filterable-grid" },
+                    { "id": "toolkit", "type": "social-proof", "variant": "text-logos" },
+                    { "id": "contact", "type": "lead-form", "variant": "contact-block" }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,169 @@
+# QuickBooks domain: the workspace's QuickBooks company connection plus read
+# access to its accounting data (company snapshot, customers, invoices). All
+# operations require an authenticated caller (the default gate in
+# GraphqlServer.ts — none of these fields are public).
+#
+# In QUICKBOOKS_MODE=local (the sandbox and v1 deploys) the data is the
+# deterministic simulated sample company; customer and invoice ids are
+# QuickBooks-side ids, not database row ids, so they are plain Strings.
+
+type QuickBooksConnection {
+    id: Id!
+    "The QuickBooks company (realm) id this connection is bound to."
+    realmId: String!
+    companyName: String!
+    mode: QuickBooksMode!
+    "Which accounting provider this connection is for."
+    provider: AccountingProvider!
+    connectedTime: Instant!
+}
+
+enum QuickBooksMode {
+    LOCAL
+    INTUIT
+}
+
+"The accounting providers a workspace can connect. Both serve the same simulated dataset in QUICKBOOKS_MODE=local."
+enum AccountingProvider {
+    QUICKBOOKS
+    XERO
+}
+
+type QuickBooksStatus {
+    connected: Boolean!
+    connection: QuickBooksConnection
+    "How new connections connect here: LOCAL (instant, simulated) or INTUIT (the OAuth flow)."
+    mode: QuickBooksMode!
+}
+
+"The Intuit consent-screen hand-off that starts a live (INTUIT-mode) connect."
+type QuickBooksAuthorization {
+    "Send the user's browser here; Intuit redirects back with code, state and realmId."
+    authorizationUrl: String!
+}
+
+input BeginQuickBooksAuthorizationInput {
+    "Where Intuit redirects back after consent (must be registered on the Intuit app)."
+    redirectUri: String!
+}
+
+input CompleteQuickBooksAuthorizationInput {
+    idempotencyKey: String!
+    "The authorization code from Intuit's callback query string."
+    code: String!
+    "The opaque state from Intuit's callback query string."
+    state: String!
+    "The connected company's realm id from Intuit's callback query string."
+    realmId: String!
+    "The exact redirectUri the authorization began with."
+    redirectUri: String!
+}
+
+type QuickBooksCompanySnapshot {
+    companyName: String!
+    "Lowercase ISO currency code, e.g. \"usd\"."
+    currency: String!
+    "Sum of paid invoice totals, in the currency's minor units (cents for USD)."
+    revenueMinorUnits: Int!
+    "Sum of unpaid invoice balances (open + overdue), in minor units."
+    outstandingMinorUnits: Int!
+    "Sum of overdue invoice balances, in minor units."
+    overdueMinorUnits: Int!
+    paidInvoiceCount: Int!
+    openInvoiceCount: Int!
+    overdueInvoiceCount: Int!
+    customerCount: Int!
+}
+
+type QuickBooksCustomer {
+    "QuickBooks-side customer id."
+    id: String!
+    displayName: String!
+    companyName: String
+    email: String!
+    city: String!
+    state: String!
+    "Date the customer was added, as YYYY-MM-DD."
+    customerSince: String!
+    "Sum of this customer's unpaid invoice balances, in minor units."
+    openBalanceMinorUnits: Int!
+}
+
+type QuickBooksInvoice {
+    "QuickBooks-side invoice id."
+    id: String!
+    docNumber: String!
+    customerId: String!
+    customerName: String!
+    status: QuickBooksInvoiceStatus!
+    "Issue date as YYYY-MM-DD."
+    issueDate: String!
+    "Due date as YYYY-MM-DD."
+    dueDate: String!
+    "Invoice total in minor units."
+    totalMinorUnits: Int!
+    "Unpaid remainder in minor units; 0 for paid invoices."
+    balanceMinorUnits: Int!
+}
+
+enum QuickBooksInvoiceStatus {
+    PAID
+    OPEN
+    OVERDUE
+}
+
+input QuickBooksInvoicesInput {
+    filters: QuickBooksInvoicesFilters
+}
+
+input QuickBooksInvoicesFilters {
+    statuses: [QuickBooksInvoiceStatus!]
+}
+
+input ConnectQuickBooksInput {
+    idempotencyKey: String!
+    "Which accounting provider to connect; defaults to QUICKBOOKS."
+    provider: AccountingProvider
+}
+
+"One category line on a financial statement, in the currency's minor units."
+type QuickBooksStatementLine {
+    category: String!
+    minorUnits: Int!
+}
+
+"One calendar month of profit & loss. Thirteen trailing months are served, oldest first."
+type QuickBooksProfitAndLossPeriod {
+    "Calendar month as YYYY-MM."
+    month: String!
+    incomeLines: [QuickBooksStatementLine!]!
+    totalIncomeMinorUnits: Int!
+    expenseLines: [QuickBooksStatementLine!]!
+    totalExpensesMinorUnits: Int!
+    netIncomeMinorUnits: Int!
+}
+
+"Which statements an xlsx export includes."
+enum QuickBooksStatementExportKind {
+    PROFIT_AND_LOSS
+    BALANCE_SHEET
+    ALL
+}
+
+input ExportQuickBooksStatementsXlsxInput {
+    idempotencyKey: String!
+    "Which statements to include; defaults to ALL."
+    statement: QuickBooksStatementExportKind
+}
+
+"One month-end balance sheet. Assets always equal liabilities plus equity."
+type QuickBooksBalanceSheetPeriod {
+    "Calendar month as YYYY-MM (as-of month end)."
+    month: String!
+    assetLines: [QuickBooksStatementLine!]!
+    totalAssetsMinorUnits: Int!
+    liabilityLines: [QuickBooksStatementLine!]!
+    totalLiabilitiesMinorUnits: Int!
+    equityLines: [QuickBooksStatementLine!]!
+    totalEquityMinorUnits: Int!
+}

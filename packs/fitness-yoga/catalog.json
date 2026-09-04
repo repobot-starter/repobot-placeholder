@@ -1,0 +1,437 @@
+{
+    "key": "fitness-yoga",
+    "templateKey": "repobot-fitness-yoga",
+    "title": "Yoga & Pilates Studio",
+    "description": "A yoga and pilates studio's site in the atelier register — paper-white ground, hairline rules, tracked-caps type — with warm bone-and-sand photography carrying all the light: a live weekly class-schedule grid computed from one content file (today highlighted, a 'Next class / In session' badge derived from the clock), teacher bios as full-frame portraits, mat and reformer membership tiers, and a two-week introduction lead form. Five pages, all edited in a single content file.",
+    "marketingExampleTitle": "Yoga studio site",
+    "category": "fitness",
+    "homePath": "/",
+    "previewPath": "/yoga",
+    "homeViewDir": "web/app/src/View/FitnessYoga",
+    "base": "landing",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false,
+    "theme": {
+        "$comment": "The atelier register's overlay: mode light opens the site on gallery-white paper (the appearance toggle still swaps to the dim charcoal-gallery variant), and the register's near-ink accent rides as the project brand so app-side surfaces wear the same quiet register as the marketing pages instead of the kernel default blue. Brand values match atelier's own light/dark accents — the marketing pages resolve brand over preset accent, so keeping them identical means the overlay re-brands the app without shifting the pages. The warmth is the photography's job, never the chrome's.",
+        "mode": "light",
+        "brand": {
+            "primary": "#211f1c",
+            "primaryDark": "#e9e7e2"
+        }
+    },
+    "contentContract": {
+        "$comment": "The pack's content slots, as data (packs/README.md 'Content contract'). Declares what a composer (agent or tool) must bind for a generated variant of this pack to present as real: slot paths into the typed content module, their kinds, and minimums. Authored alongside the module and guarded by the pack's content tests — the module satisfies the contract; the contract never drifts ahead of it. The schedule is the signature slot: day/start/end are NUMBERS (weekday index and minutes since midnight) that the schedule engine computes the live badge and the grid from — a composer must bind them as numbers, never prose.",
+        "module": "web/app/src/View/FitnessYoga/content.ts",
+        "slots": {
+            "studio.name": { "kind": "text" },
+            "studio.tagline": { "kind": "text" },
+            "studio.city": { "kind": "text" },
+            "studio.address": { "kind": "text" },
+            "studio.phone": { "kind": "text" },
+            "studio.email": { "kind": "text" },
+            "weeklySchedule": {
+                "kind": "collection",
+                "min": 8,
+                "item": {
+                    "day": { "kind": "number" },
+                    "start": { "kind": "number" },
+                    "end": { "kind": "number" },
+                    "title": { "kind": "text" },
+                    "instructor": { "kind": "text" }
+                }
+            },
+            "teachers": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "name": { "kind": "text" },
+                    "role": { "kind": "text" },
+                    "bio": { "kind": "text" },
+                    "photo": { "kind": "media" }
+                }
+            },
+            "memberships": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "name": { "kind": "text" },
+                    "monthly": { "kind": "number" },
+                    "yearlyPerMonth": { "kind": "number" },
+                    "description": { "kind": "text" },
+                    "features": { "kind": "text[]", "min": 3 }
+                }
+            },
+            "singleVisits": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "name": { "kind": "text" },
+                    "price": { "kind": "text" },
+                    "detail": { "kind": "text" }
+                }
+            },
+            "faq": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "question": { "kind": "text" },
+                    "answer": { "kind": "text" }
+                }
+            },
+            "testimonials": {
+                "kind": "collection",
+                "min": 1,
+                "item": {
+                    "quote": { "kind": "text" },
+                    "name": { "kind": "text" },
+                    "detail": { "kind": "text" }
+                }
+            },
+            "home.headline": { "kind": "text" },
+            "home.subheadline": { "kind": "text" },
+            "home.hero": { "kind": "media" },
+            "practice.headline": { "kind": "text" },
+            "practice.body": { "kind": "text" },
+            "practice.image": { "kind": "media" },
+            "gallery": { "kind": "media[]", "min": 3 },
+            "founder.headline": { "kind": "text" },
+            "founder.paragraphs": { "kind": "text[]", "min": 2 },
+            "founder.image": { "kind": "media" },
+            "intro.headline": { "kind": "text" },
+            "intro.body": { "kind": "text" }
+        }
+    },
+    "content": {
+        "$comment": "Business-content contract seed, merged over repobot.content.json at compose (the same overlay path as landing/theme — scripts/lib/pack-switch.mjs applyPackOverlays). The schedule domain mirrors content.ts weeklySchedule entry for entry (the seed-fidelity tests pin it) and adds the booking-facing fields the platform keys on: stable sessionIds (day-HHMM-title, the contract resolver's own derivation rule), per-class capacity, and bookable. Capacities follow the studio's own note: mat classes seat sixteen, the reformer room seats four.",
+        "schedule": {
+            "sessions": [
+                {
+                    "sessionId": "sun-0900-slow-flow",
+                    "day": 0,
+                    "start": 540,
+                    "end": 615,
+                    "title": "Slow Flow",
+                    "instructor": "Noa Lim",
+                    "note": "All levels",
+                    "capacity": 16,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "sun-1800-restorative",
+                    "day": 0,
+                    "start": 1080,
+                    "end": 1155,
+                    "title": "Restorative",
+                    "instructor": "Priya Nair",
+                    "note": "Candlelit",
+                    "capacity": 16,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "mon-0630-sunrise-vinyasa",
+                    "day": 1,
+                    "start": 390,
+                    "end": 450,
+                    "title": "Sunrise Vinyasa",
+                    "instructor": "Maren Kols",
+                    "capacity": 16,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "mon-1200-mat-pilates",
+                    "day": 1,
+                    "start": 720,
+                    "end": 770,
+                    "title": "Mat Pilates",
+                    "instructor": "Sol Andrada",
+                    "capacity": 16,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "mon-1830-yin",
+                    "day": 1,
+                    "start": 1110,
+                    "end": 1170,
+                    "title": "Yin",
+                    "instructor": "Priya Nair",
+                    "note": "All levels",
+                    "capacity": 16,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "tue-0700-reformer",
+                    "day": 2,
+                    "start": 420,
+                    "end": 470,
+                    "title": "Reformer",
+                    "instructor": "Sol Andrada",
+                    "note": "Four beds — reserve",
+                    "capacity": 4,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "tue-0930-slow-flow",
+                    "day": 2,
+                    "start": 570,
+                    "end": 630,
+                    "title": "Slow Flow",
+                    "instructor": "Noa Lim",
+                    "note": "All levels",
+                    "capacity": 16,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "tue-1730-vinyasa-ii",
+                    "day": 2,
+                    "start": 1050,
+                    "end": 1110,
+                    "title": "Vinyasa II",
+                    "instructor": "Maren Kols",
+                    "note": "Experienced",
+                    "capacity": 16,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "wed-0630-sunrise-vinyasa",
+                    "day": 3,
+                    "start": 390,
+                    "end": 450,
+                    "title": "Sunrise Vinyasa",
+                    "instructor": "Maren Kols",
+                    "capacity": 16,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "wed-1200-mat-pilates",
+                    "day": 3,
+                    "start": 720,
+                    "end": 770,
+                    "title": "Mat Pilates",
+                    "instructor": "Sol Andrada",
+                    "capacity": 16,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "wed-1830-yin",
+                    "day": 3,
+                    "start": 1110,
+                    "end": 1170,
+                    "title": "Yin",
+                    "instructor": "Priya Nair",
+                    "note": "All levels",
+                    "capacity": 16,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "thu-0700-reformer",
+                    "day": 4,
+                    "start": 420,
+                    "end": 470,
+                    "title": "Reformer",
+                    "instructor": "Sol Andrada",
+                    "note": "Four beds — reserve",
+                    "capacity": 4,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "thu-0930-prenatal",
+                    "day": 4,
+                    "start": 570,
+                    "end": 630,
+                    "title": "Prenatal",
+                    "instructor": "Noa Lim",
+                    "capacity": 16,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "thu-1730-vinyasa-ii",
+                    "day": 4,
+                    "start": 1050,
+                    "end": 1110,
+                    "title": "Vinyasa II",
+                    "instructor": "Maren Kols",
+                    "note": "Experienced",
+                    "capacity": 16,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "fri-0630-sunrise-vinyasa",
+                    "day": 5,
+                    "start": 390,
+                    "end": 450,
+                    "title": "Sunrise Vinyasa",
+                    "instructor": "Maren Kols",
+                    "capacity": 16,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "fri-1200-mat-pilates",
+                    "day": 5,
+                    "start": 720,
+                    "end": 770,
+                    "title": "Mat Pilates",
+                    "instructor": "Sol Andrada",
+                    "capacity": 16,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "sat-0900-slow-flow",
+                    "day": 6,
+                    "start": 540,
+                    "end": 615,
+                    "title": "Slow Flow",
+                    "instructor": "Noa Lim",
+                    "note": "All levels",
+                    "capacity": 16,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "sat-1100-prenatal",
+                    "day": 6,
+                    "start": 660,
+                    "end": 720,
+                    "title": "Prenatal",
+                    "instructor": "Noa Lim",
+                    "capacity": 16,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "sat-1600-yin",
+                    "day": 6,
+                    "start": 960,
+                    "end": 1020,
+                    "title": "Yin",
+                    "instructor": "Priya Nair",
+                    "capacity": 16,
+                    "bookable": true
+                }
+            ]
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (web/app/src/View/FitnessYoga/YogaPage.tsx, useSitePageConfig). pages seeds each page's layout skeleton — ids match yogaLanding.ts; the platform's structural editor edits these. The preset is atelier (the gallery register: paper-white, hairlines, tracked caps, near-ink accent) — the studio's warmth comes entirely from its bone-and-sand photography, deliberately apart from the photography category's tourbook and the strength club's chalk.",
+        "style": {
+            "preset": "atelier"
+        },
+        "routes": {
+            "/": "home",
+            "/schedule": "schedule",
+            "/teachers": "teachers",
+            "/pricing": "pricing",
+            "/begin": "begin"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "practice",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "schedule",
+                        "type": "schedule",
+                        "variant": "week-grid"
+                    },
+                    {
+                        "id": "rooms",
+                        "type": "gallery",
+                        "variant": "sequence"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "begin-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "schedule": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "schedule",
+                        "type": "schedule",
+                        "variant": "week-grid"
+                    }
+                ]
+            },
+            "teachers": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "teachers",
+                        "type": "team",
+                        "variant": "portraits"
+                    },
+                    {
+                        "id": "founder",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    }
+                ]
+            },
+            "pricing": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "pricing",
+                        "type": "pricing",
+                        "variant": "tiers"
+                    },
+                    {
+                        "id": "visits",
+                        "type": "card-grid",
+                        "variant": "3up"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "begin-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "begin": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "begin-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

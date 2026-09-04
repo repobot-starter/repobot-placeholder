@@ -1,0 +1,317 @@
+{
+    "key": "fitness-trainer",
+    "templateKey": "repobot-fitness-trainer",
+    "title": "Personal Trainer",
+    "description": "A strength coach's personal-brand site in the monolith register — true black ground, monumental type with the closing word stroke-only, hairline rules, zero color — with one continuous single-hard-light photo shoot carrying all the atmosphere: a live training-week schedule computed from one content file (today marked, a 'Next session / In session' badge derived from the clock), the coach's bio with credentials, three coaching programs as pricing tiers, an apply-to-train process timeline, and a free-consult application form. Four pages, all edited in a single content file.",
+    "marketingExampleTitle": "Personal trainer site",
+    "category": "fitness",
+    "homePath": "/",
+    "previewPath": "/trainer",
+    "homeViewDir": "web/app/src/View/FitnessTrainer",
+    "base": "landing",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false,
+    "theme": {
+        "$comment": "The monolith register's overlay: mode dark opens the site on true black (the appearance toggle still swaps to the gallery-white negative), and the register's ink accents ride as the project brand so app-side surfaces wear the same monochrome register as the marketing pages instead of the kernel default blue. Brand values match monolith's own light/dark accents — the marketing pages resolve brand over preset accent, so keeping them identical means the overlay re-brands the app without shifting the pages. There is no color anywhere; the photography is the only atmosphere.",
+        "mode": "dark",
+        "brand": {
+            "primary": "#0a0a0a",
+            "primaryDark": "#ffffff"
+        }
+    },
+    "contentContract": {
+        "$comment": "The pack's content slots, as data (packs/README.md 'Content contract'). Declares what a composer (agent or tool) must bind for a generated variant of this pack to present as real: slot paths into the typed content module, their kinds, and minimums. Authored alongside the module and guarded by the pack's content tests — the module satisfies the contract; the contract never drifts ahead of it. The training week is the signature slot: day/start/end are NUMBERS (weekday index and minutes since midnight) that the schedule engine computes the live badge and the day rows from — a composer must bind them as numbers, never prose.",
+        "module": "web/app/src/View/FitnessTrainer/content.ts",
+        "slots": {
+            "trainer.name": { "kind": "text" },
+            "trainer.brand": { "kind": "text" },
+            "trainer.tagline": { "kind": "text" },
+            "trainer.city": { "kind": "text" },
+            "trainer.address": { "kind": "text" },
+            "trainer.phone": { "kind": "text" },
+            "trainer.email": { "kind": "text" },
+            "trainingWeek": {
+                "kind": "collection",
+                "min": 6,
+                "item": {
+                    "day": { "kind": "number" },
+                    "start": { "kind": "number" },
+                    "end": { "kind": "number" },
+                    "title": { "kind": "text" },
+                    "instructor": { "kind": "text" }
+                }
+            },
+            "bio.headline": { "kind": "text" },
+            "bio.paragraphs": { "kind": "text[]", "min": 2 },
+            "bio.credentials": { "kind": "text[]", "min": 2 },
+            "bio.portrait": { "kind": "media" },
+            "stats": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "value": { "kind": "text" },
+                    "label": { "kind": "text" }
+                }
+            },
+            "programs": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "name": { "kind": "text" },
+                    "monthly": { "kind": "number" },
+                    "yearlyPerMonth": { "kind": "number" },
+                    "description": { "kind": "text" },
+                    "features": { "kind": "text[]", "min": 3 }
+                }
+            },
+            "process": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "title": { "kind": "text" },
+                    "description": { "kind": "text" }
+                }
+            },
+            "faq": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "question": { "kind": "text" },
+                    "answer": { "kind": "text" }
+                }
+            },
+            "testimonials": {
+                "kind": "collection",
+                "min": 1,
+                "item": {
+                    "quote": { "kind": "text" },
+                    "name": { "kind": "text" },
+                    "detail": { "kind": "text" }
+                }
+            },
+            "home.headline": { "kind": "text" },
+            "home.subheadline": { "kind": "text" },
+            "home.hero": { "kind": "media" },
+            "gallery": { "kind": "media[]", "min": 3 },
+            "consult.headline": { "kind": "text" },
+            "consult.body": { "kind": "text" }
+        }
+    },
+    "content": {
+        "$comment": "Business-content contract seed, merged over repobot.content.json at compose (the same overlay path as landing/theme — scripts/lib/pack-switch.mjs applyPackOverlays). The schedule domain mirrors content.ts trainingWeek entry for entry (the seed-fidelity tests pin it) and adds the booking-facing fields the platform keys on: stable sessionIds (day-HHMM-title, the contract resolver's own derivation rule), capacity, and bookable. Only the four-athlete small groups take online bookings; 1:1 blocks are by-appointment windows (Phase-4 appointment slots, not capacity-N classes) and the team session is current-clients only.",
+        "schedule": {
+            "sessions": [
+                {
+                    "sessionId": "mon-0600-1-1-blocks",
+                    "day": 1,
+                    "start": 360,
+                    "end": 540,
+                    "title": "1:1 blocks",
+                    "instructor": "By appointment"
+                },
+                {
+                    "sessionId": "mon-1200-small-group",
+                    "day": 1,
+                    "start": 720,
+                    "end": 780,
+                    "title": "Small group",
+                    "instructor": "4 athletes, 2 spots open",
+                    "capacity": 4,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "mon-1700-1-1-blocks",
+                    "day": 1,
+                    "start": 1020,
+                    "end": 1200,
+                    "title": "1:1 blocks",
+                    "instructor": "By appointment"
+                },
+                {
+                    "sessionId": "tue-0600-1-1-blocks",
+                    "day": 2,
+                    "start": 360,
+                    "end": 540,
+                    "title": "1:1 blocks",
+                    "instructor": "By appointment"
+                },
+                {
+                    "sessionId": "tue-1800-small-group",
+                    "day": 2,
+                    "start": 1080,
+                    "end": 1140,
+                    "title": "Small group",
+                    "instructor": "4 athletes, waitlist",
+                    "note": "Strength focus",
+                    "capacity": 4,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "thu-0600-1-1-blocks",
+                    "day": 4,
+                    "start": 360,
+                    "end": 540,
+                    "title": "1:1 blocks",
+                    "instructor": "By appointment"
+                },
+                {
+                    "sessionId": "thu-1200-small-group",
+                    "day": 4,
+                    "start": 720,
+                    "end": 780,
+                    "title": "Small group",
+                    "instructor": "4 athletes, 1 spot open",
+                    "capacity": 4,
+                    "bookable": true
+                },
+                {
+                    "sessionId": "thu-1700-1-1-blocks",
+                    "day": 4,
+                    "start": 1020,
+                    "end": 1200,
+                    "title": "1:1 blocks",
+                    "instructor": "By appointment"
+                },
+                {
+                    "sessionId": "fri-0600-1-1-blocks",
+                    "day": 5,
+                    "start": 360,
+                    "end": 600,
+                    "title": "1:1 blocks",
+                    "instructor": "By appointment"
+                },
+                {
+                    "sessionId": "sat-0800-team-session",
+                    "day": 6,
+                    "start": 480,
+                    "end": 570,
+                    "title": "Team session",
+                    "instructor": "All current clients",
+                    "note": "Monthly testing on first Saturdays",
+                    "capacity": 18
+                }
+            ]
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (web/app/src/View/FitnessTrainer/TrainerPage.tsx, useSitePageConfig). pages seeds each page's layout skeleton — ids match trainerLanding.ts; the platform's structural editor edits these. The preset is monolith (true black, monumental type, the outline accent word, hairlines) — one coach's personal brand, deliberately apart from the strength club's chalk stencil and the yoga studio's paper atelier.",
+        "style": {
+            "preset": "monolith"
+        },
+        "routes": {
+            "/": "home",
+            "/programs": "programs",
+            "/results": "results",
+            "/apply": "apply"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "proof",
+                        "type": "stats",
+                        "variant": "row"
+                    },
+                    {
+                        "id": "coach",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "week",
+                        "type": "schedule",
+                        "variant": "day-rows"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "consult-banner",
+                        "type": "cta-banner",
+                        "variant": "full-bleed"
+                    }
+                ]
+            },
+            "programs": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "pricing",
+                        "type": "pricing",
+                        "variant": "tiers"
+                    },
+                    {
+                        "id": "process",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "consult-banner",
+                        "type": "cta-banner",
+                        "variant": "full-bleed"
+                    }
+                ]
+            },
+            "results": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "proof",
+                        "type": "stats",
+                        "variant": "row"
+                    },
+                    {
+                        "id": "floor",
+                        "type": "gallery",
+                        "variant": "filmstrip"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "consult-banner",
+                        "type": "cta-banner",
+                        "variant": "full-bleed"
+                    }
+                ]
+            },
+            "apply": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "apply-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

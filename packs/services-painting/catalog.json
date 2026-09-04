@@ -1,0 +1,15 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services pack composed with a painting-company content seed and a plum brand over the sitework register. Everything else — pages, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-painting",
+    "remixOf": "services",
+    "templateKey": "repobot-services-painting",
+    "title": "House painting",
+    "description": "A painting company site: interior and exterior services with honest starting prices, draggable before/after repaint transformations, a live open/closed badge with click-to-call, testimonials, credentials, and a quote-request form \u2014 a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Painting company",
+    "contentSeed": "web/app/src/View/Services/paintingRemix.content.ts",
+    "theme": {
+        "$comment": "Plum over the sitework register's plan-grid ground \u2014 the same trades voice as the category's contractor starter, visibly a different company. Marketing pages resolve brand over preset accent, so the overlay re-skins the pages and the app surfaces together. navigation re-pins the shared servicesShell chrome (a declared theme variant outranks the shell prop): the base contractor wears the full-width band, so the painting remix keeps the inline floating card \u2014 the nav-variety audit spreads the nine-template services family across the vocabulary.",
+        "brand": { "primary": "#7e22ce", "primaryDark": "#c084fc" },
+        "navigation": { "variant": "inline" }
+    }
+}

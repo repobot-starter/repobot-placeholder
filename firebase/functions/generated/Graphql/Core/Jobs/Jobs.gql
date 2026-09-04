@@ -1,0 +1,27 @@
+# The jobs kernel's observability surface (see docs/jobs.md). Jobs
+# themselves are config in src/Jobs/JobsRegistry.ts; the API only exposes
+# the run ledger so owners and agents can see what ran, when, and how it
+# went. The jobRuns query is authenticated (never in the public allowlists).
+
+enum JobRunStatus {
+    "The run claimed its due time and is executing (or crashed mid-run)."
+    RUNNING
+    "The handler completed."
+    SUCCEEDED
+    "The handler threw; error carries the message."
+    FAILED
+}
+
+"One claimed (job, due time) from the job_runs ledger."
+type JobRun {
+    id: Id!
+    "The registry name of the job (src/Jobs/JobsRegistry.ts)."
+    jobName: String!
+    "The cron due time this run claimed (UTC, minute precision)."
+    scheduledFor: Instant!
+    startedAt: Instant!
+    finishedAt: Instant
+    status: JobRunStatus!
+    "The thrown error's message when status is FAILED."
+    error: String
+}

@@ -1,0 +1,16 @@
+{
+    "$comment": "Landing layout contract. The ACTIVE pack's landing surface reads its layout skeleton — style preset, shell chrome variants, section order and variants — from this file (web/app/src/View/Landing/landingDocument.ts), while section content stays in code, bound by each section's id. Edit this file to re-arrange or re-skin the page; invalid or unknown values fall back to the code config. See docs/landing.md#the-page-is-a-config.",
+    "style": { "preset": "editorial" },
+    "sections": [
+        { "id": "nav", "type": "nav", "variant": "minimal" },
+        { "id": "hero", "type": "hero", "variant": "statement" },
+        { "id": "social-proof", "type": "social-proof", "variant": "text-logos" },
+        { "id": "feature-grid", "type": "feature-grid", "variant": "icon-list" },
+        { "id": "showcase", "type": "showcase", "variant": "filterable-grid" },
+        { "id": "steps", "type": "steps", "variant": "numbered-cards" },
+        { "id": "faq", "type": "faq", "variant": "accordion" },
+        { "id": "cta-banner", "type": "cta-banner", "variant": "card" },
+        { "id": "lead-form", "type": "lead-form", "variant": "inline-email" },
+        { "id": "footer", "type": "footer", "variant": "single-row" }
+    ]
+}

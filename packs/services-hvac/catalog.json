@@ -1,0 +1,15 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services-emergency pack composed with an HVAC content seed and a steel-teal brand over the sitework register. Everything else — pages, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-hvac",
+    "remixOf": "services-emergency",
+    "templateKey": "repobot-services-hvac",
+    "title": "Heating & cooling (HVAC)",
+    "description": "A heating-and-cooling site built for the no-heat call: a phone number that never leaves the viewport, flat printed prices, response-time proof, a four-step dispatch story, and a callback form for tune-ups and installs \u2014 a multi-page site edited in one content file.",
+    "marketingExampleTitle": "HVAC company",
+    "contentSeed": "web/app/src/View/ServicesEmergency/hvacRemix.content.ts",
+    "theme": {
+        "$comment": "Steel teal over the sitework register's plan-grid ground \u2014 the dispatch shape's utility-blue plumber recolored to the mechanical trade's cool voice. mode dark opens the site on the register's night shift (floodlit-yard ground, bone type, the teal luminous against the asphalt \u2014 the furnace-out-at-midnight call; the appearance toggle still swaps to the daylight sheet). Marketing pages resolve brand over preset accent, so the overlay re-skins the pages and the app surfaces together.",
+        "mode": "dark",
+        "brand": { "primary": "#0f766e", "primaryDark": "#2dd4bf" }
+    }
+}

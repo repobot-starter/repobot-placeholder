@@ -1,0 +1,227 @@
+{
+    "key": "services",
+    "templateKey": "repobot-services",
+    "title": "Contractor & remodeling",
+    "description": "A local service business site: services with honest starting prices, a draggable before/after project gallery, a live open/closed badge with click-to-call, testimonials, credentials, and a quote-request form \u2014 a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Local service business",
+    "category": "services",
+    "homePath": "/",
+    "previewPath": "/services",
+    "homeViewDir": "web/app/src/View/Services",
+    "base": "landing",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false,
+    "forms": {
+        "$comment": "Managed-form kinds, formKey -> kind (append-only vocabulary: RSVP | LEAD | MAILING_LIST | PROOFING). Compose stamps these into repobot.deploy.json as formKinds; the dashboard renders declared kinds as typed views and keeps the raw Inbox for undeclared keys.",
+        "quote-request": "LEAD"
+    },
+    "theme": {
+        "$comment": "The sitework register's brand overlay: the preset's safety-orange accent as the project brand, so app-side surfaces wear the same trades register as the marketing pages instead of the kernel default blue. Values match the sitework preset's own light/dark accents \u2014 the marketing pages resolve brand over preset accent, so keeping them identical means the overlay re-brands the app without shifting the pages.",
+        "brand": { "primary": "#c2410c", "primaryDark": "#ff8a3d" }
+    },
+    "contentContract": {
+        "$comment": "The pack's content slots, as data (packs/README.md 'Content contract'). Declares what a composer (agent or tool) must bind for a generated variant of this pack to present as real: slot paths into the typed content module, their kinds, and minimums. The demo business is a remodeling contractor, but the slots are trade-agnostic \u2014 a plumber, landscaper, or cleaner variant binds the same shape. Authored alongside the module and guarded by the pack's content tests \u2014 the module satisfies the contract; the contract never drifts ahead of it.",
+        "module": "web/app/src/View/Services/content.ts",
+        "slots": {
+            "business.name": { "kind": "text" },
+            "business.tagline": { "kind": "text" },
+            "business.location": { "kind": "text" },
+            "business.phone": { "kind": "text" },
+            "business.email": { "kind": "text" },
+            "business.address": { "kind": "text" },
+            "business.license": { "kind": "text" },
+            "home.headline": { "kind": "text" },
+            "home.subheadline": { "kind": "text" },
+            "home.heroImage": { "kind": "media" },
+            "services": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "title": { "kind": "text" },
+                    "eyebrow": { "kind": "text" },
+                    "description": { "kind": "text" },
+                    "priceNote": { "kind": "text" },
+                    "image": { "kind": "media" }
+                }
+            },
+            "projects": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "title": { "kind": "text" },
+                    "location": { "kind": "text" },
+                    "scope": { "kind": "text" },
+                    "description": { "kind": "text" },
+                    "before": { "kind": "media" },
+                    "after": { "kind": "media" }
+                }
+            },
+            "metrics": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "value": { "kind": "text" },
+                    "label": { "kind": "text" }
+                }
+            },
+            "testimonials": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "quote": { "kind": "text" },
+                    "name": { "kind": "text" },
+                    "detail": { "kind": "text" }
+                }
+            },
+            "serviceArea": { "kind": "text[]", "min": 1 },
+            "faq": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "question": { "kind": "text" },
+                    "answer": { "kind": "text" }
+                }
+            },
+            "about.headline": { "kind": "text" },
+            "about.photo": { "kind": "media" },
+            "about.paragraphs": { "kind": "text[]", "min": 2 },
+            "about.credentials": { "kind": "text[]", "min": 1 },
+            "quote.headline": { "kind": "text" },
+            "quote.body": { "kind": "text" }
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (web/app/src/View/Services/ServicesPage.tsx, useSitePageConfig). pages seeds each page's layout skeleton \u2014 ids match servicesLanding.ts; the platform's structural editor edits these. The preset is sitework (the trades register: plan-grid work paper, stenciled uppercase display, safety-orange accent, jobsite grain) \u2014 licensed-and-insured confidence, deliberately apart from warm-boutique's caf\u00e9 warmth.",
+        "style": { "preset": "sitework" },
+        "routes": {
+            "/": "home",
+            "/projects": "projects",
+            "/services": "services",
+            "/about": "about",
+            "/quote": "quote"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "split-media"
+                    },
+                    {
+                        "id": "services",
+                        "type": "card-grid",
+                        "variant": "3up"
+                    },
+                    {
+                        "id": "transformations",
+                        "type": "gallery",
+                        "variant": "before-after"
+                    },
+                    {
+                        "id": "proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "service-area",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "projects": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "transformations",
+                        "type": "gallery",
+                        "variant": "before-after"
+                    },
+                    {
+                        "id": "process",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "showcase",
+                        "variant": "card-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "quote": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "quote-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

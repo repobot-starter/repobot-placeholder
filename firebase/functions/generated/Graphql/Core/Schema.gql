@@ -1,0 +1,362 @@
+type Query {
+    #
+    # Identity
+    #
+
+    currentUser: User!
+
+    accounts(input: AccountConnectionInput!): AccountConnection!
+
+    users(input: UserConnectionInput!): UserConnection!
+    userCreateFormSchema: SchemaForm!
+    userUpdateFormSchema(input: SchemaFormUpdateInput!): SchemaForm!
+
+    #
+    # Project
+    #
+
+    project(id: Id!): Project!
+    projects(input: ProjectConnectionInput!): ProjectConnection!
+    projectCreateFormSchema: SchemaForm!
+    projectUpdateFormSchema(input: SchemaFormUpdateInput!): SchemaForm!
+
+    #
+    # Shop (public: buyers are anonymous)
+    #
+
+    shopProduct: ShopProduct!
+    shopProducts: [ShopProduct!]!
+
+    #
+    # Payments kernel (checkoutSession public; purchases and mySubscription
+    # authenticated — subscriptions are never anonymous)
+    #
+
+    checkoutSession(id: Id!): CheckoutSession!
+    purchases(input: PurchaseConnectionInput!): PurchaseConnection!
+    "The caller's subscription (most recent; optionally scoped to a product), or null."
+    mySubscription(productKey: String): PaymentSubscription
+
+    #
+    # Storage kernel (authenticated: files always have an accountable owner)
+    #
+
+    "The download URL for a READY upload (PUBLIC: stable; PRIVATE: owner-checked, short-lived)."
+    fileUrl(uploadId: Id!): FileUrl!
+
+    #
+    # Jobs kernel (authenticated: run history for owners and agents)
+    #
+
+    "Scheduled-job run history, newest first (optionally one job, capped at 200)."
+    jobRuns(jobName: String, limit: Int): [JobRun!]!
+
+    #
+    # QuickBooks (authenticated: the accounting dashboard and advisor tools)
+    #
+
+    quickBooksStatus: QuickBooksStatus!
+    quickBooksCompanySnapshot: QuickBooksCompanySnapshot!
+    quickBooksCustomers: [QuickBooksCustomer!]!
+    quickBooksInvoices(input: QuickBooksInvoicesInput): [QuickBooksInvoice!]!
+    "Thirteen trailing months of P&L, oldest first."
+    quickBooksProfitAndLoss: [QuickBooksProfitAndLossPeriod!]!
+    "Thirteen trailing month-end balance sheets, oldest first."
+    quickBooksBalanceSheet: [QuickBooksBalanceSheetPeriod!]!
+
+    #
+    # Cfo (authenticated: the fractional-CFO practice portal)
+    #
+
+    "The caller's practice membership, created on first touch (first user = advisor)."
+    cfoMyMembership: CfoMembership!
+    "Every client with the live state of their books (advisor-only)."
+    cfoClients: [CfoClient!]!
+    "One member's books: the advisor may pass any member; a client only themself."
+    cfoClient(clientUserId: Id!): CfoClient!
+    "Every invite, newest first (advisor-only)."
+    cfoInvites: [CfoInvite!]!
+
+    #
+    # Credit (authenticated: the letter-of-credit desk)
+    #
+
+    "The caller's letters of credit, newest first."
+    creditLcs: [CreditLc!]!
+    "One letter of credit with its documents and discrepancy report."
+    creditLc(lcId: Id!): CreditLc!
+
+    #
+    # Flow (authenticated: the budgeting grid)
+    #
+
+    "The caller's budget templates, newest first."
+    flowTemplates: [FlowTemplate!]!
+    "One template with its computed grid (live actuals + variance)."
+    flowTemplate(templateId: Id!): FlowTemplate!
+    "The P&L categories the caller's books serve, for the link dropdown."
+    flowLinkableCategories: FlowLinkableCategories!
+
+    "The caller's own books connection, or null before connecting (per-user surface)."
+    myBooksConnection: QuickBooksConnection
+
+    #
+    # Entry (authenticated: the data-entry workbook — fields are the
+    # user-defined schema, records are the rows; the record form schema is
+    # built from the live field definitions)
+    #
+
+    "The workbook's field definitions, in column order."
+    entryFields: [EntryField!]!
+    entryRecords(input: EntryRecordConnectionInput!): EntryRecordConnection!
+    entryFieldCreateFormSchema: SchemaForm!
+    entryFieldUpdateFormSchema(input: SchemaFormUpdateInput!): SchemaForm!
+    "Built dynamically from the live field definitions — the modal form IS the user's schema."
+    entryRecordCreateFormSchema: SchemaForm!
+    entryRecordUpdateFormSchema(input: SchemaFormUpdateInput!): SchemaForm!
+
+    #
+    # Songs (authenticated: the AI agent pack's living catalog)
+    #
+
+    songs(input: SongConnectionInput!): SongConnection!
+    song(id: Id!): Song!
+    songCreateFormSchema: SchemaForm!
+    songUpdateFormSchema(input: SchemaFormUpdateInput!): SchemaForm!
+
+    #
+    # Drive (authenticated: the Files/Images utility packs' owner-scoped
+    # library over the storage kernel)
+    #
+
+    driveEntries(input: DriveEntryConnectionInput!): DriveEntryConnection!
+    driveEntry(id: Id!): DriveEntry!
+    "The caller's albums, by name."
+    driveAlbums: [DriveAlbum!]!
+    driveAlbum(albumId: Id!): DriveAlbum!
+
+    #
+    # Pitch (authenticated: the investor deck builder)
+    #
+
+    "The caller's decks, newest first."
+    pitchDecks: [PitchDeck!]!
+    "One deck with its slide outline."
+    pitchDeck(deckId: Id!): PitchDeck!
+    "The live numbers behind the chart slides; null before the books are connected."
+    pitchDeckData: PitchDeckData
+}
+
+type Mutation {
+    #
+    # Identity
+    #
+
+    createAccount(input: CreateAccountInput!): Account!
+    createUser(input: CreateUserInput!): User!
+    updateUser(input: UpdateUserInput!): User!
+
+    #
+    # Project
+    #
+
+    createProject(input: CreateProjectInput!): Project!
+    updateProject(input: UpdateProjectInput!): Project!
+    addProjectMember(input: AddProjectMemberInput!): ProjectMembership!
+    updateProjectMember(input: UpdateProjectMemberInput!): ProjectMembership!
+    removeProjectMember(input: RemoveProjectMemberInput!): Boolean!
+
+    #
+    # Shop (public: buyers are anonymous)
+    #
+
+    createCheckoutSession(input: CreateCheckoutSessionInput!): CheckoutSession!
+
+    #
+    # Saas (authenticated: subscription checkout is never anonymous)
+    #
+
+    createSubscriptionCheckoutSession(input: CreateSubscriptionCheckoutSessionInput!): CheckoutSession!
+
+    #
+    # Payments kernel (completeTestCheckoutSession public: the sandbox test
+    # checkout completes here; the subscription mutations are authenticated)
+    #
+
+    completeTestCheckoutSession(input: CompleteTestCheckoutSessionInput!): CheckoutSession!
+    "A Billing Portal URL for the caller's subscription (the in-app test billing page in local mode)."
+    createBillingPortalSession(input: CreateBillingPortalSessionInput!): BillingPortalSession!
+    "Cancels the caller's simulated subscription; refuses when PAYMENTS_MODE=stripe."
+    cancelTestSubscription: PaymentSubscription!
+
+    #
+    # Storage kernel (authenticated)
+    #
+
+    "Mints an upload slot: a PENDING row plus the URL and headers for the byte PUT."
+    createUpload(input: CreateUploadInput!): UploadSlot!
+    "Verifies the bytes arrived and flips the upload to READY (owner-only, idempotent)."
+    finalizeUpload(input: FinalizeUploadInput!): Upload!
+    "Server-side write: files inline bytes under the same allowlist, cap, and record as the browser flow."
+    writeFile(input: WriteFileInput!): Upload!
+    "Deletes the stored object and its row (owner-only)."
+    deleteUpload(input: DeleteUploadInput!): Boolean!
+
+    #
+    # Push kernel (authenticated: a registration always belongs to an app user)
+    #
+
+    "Registers (or rotates) a push destination for the caller, upserting on endpoint."
+    registerPushDevice(input: RegisterPushDeviceInput!): PushDevice!
+    "Removes the caller's registration for the endpoint; true when one was removed."
+    unregisterPushDevice(input: UnregisterPushDeviceInput!): Boolean!
+
+    #
+    # QuickBooks (authenticated)
+    #
+
+    connectQuickBooks(input: ConnectQuickBooksInput!): QuickBooksConnection!
+    disconnectQuickBooks: Boolean!
+    "Starts the INTUIT-mode live connect: returns the Intuit consent URL to send the user to."
+    beginQuickBooksAuthorization(input: BeginQuickBooksAuthorizationInput!): QuickBooksAuthorization!
+    "Finishes the INTUIT-mode live connect from Intuit's callback parameters."
+    completeQuickBooksAuthorization(input: CompleteQuickBooksAuthorizationInput!): QuickBooksConnection!
+    "Renders the company's statements to an xlsx workbook filed PRIVATE for the caller; download via fileUrl."
+    exportQuickBooksStatementsXlsx(input: ExportQuickBooksStatementsXlsxInput!): Upload!
+
+    #
+    # Cfo (authenticated)
+    #
+
+    "Invites an email into the practice as a client and sends the invite email (advisor-only)."
+    cfoInviteClient(input: CfoInviteClientInput!): CfoInvite!
+    "Revokes a pending invite (advisor-only)."
+    cfoRevokeInvite(input: CfoRevokeInviteInput!): CfoInvite!
+    "Connects the caller's own books; each member gets their own connection."
+    cfoConnectMyBooks(input: CfoConnectMyBooksInput!): QuickBooksConnection!
+    "Disconnects the caller's own books. Idempotent."
+    cfoDisconnectMyBooks: Boolean!
+    "Files a member's statements as a PRIVATE xlsx workbook for the caller; download via fileUrl."
+    cfoExportClientStatementsXlsx(input: CfoExportClientStatementsXlsxInput!): Upload!
+
+    #
+    # Credit (authenticated)
+    #
+
+    "Ingests a dropped LC PDF: extracts the MT700-family breakdown and persists it."
+    creditIngestLc(input: CreditIngestLcInput!): CreditLc!
+    "Ingests a supporting document dropped against a letter of credit."
+    creditAttachDocument(input: CreditAttachDocumentInput!): CreditDocument!
+    "Removes one attached document."
+    creditRemoveDocument(input: CreditRemoveDocumentInput!): Boolean!
+    "Deletes a letter of credit and its attached documents."
+    creditDeleteLc(input: CreditDeleteLcInput!): Boolean!
+
+    #
+    # Flow (authenticated)
+    #
+
+    "Creates a budget template; optionally seeds rows from the live books."
+    flowCreateTemplate(input: FlowCreateTemplateInput!): FlowTemplate!
+    flowRenameTemplate(input: FlowRenameTemplateInput!): FlowTemplate!
+    "Deletes a template and its lines."
+    flowDeleteTemplate(input: FlowDeleteTemplateInput!): Boolean!
+    "Appends a row to the grid, budgets all zero."
+    flowAddLine(input: FlowAddLineInput!): FlowLine!
+    "Updates a row's label, link, and/or planned amounts."
+    flowUpdateLine(input: FlowUpdateLineInput!): FlowLine!
+    flowRemoveLine(input: FlowRemoveLineInput!): Boolean!
+    "Renders the template to a PRIVATE xlsx workbook for the caller (Budget sheet + actuals-vs-budget sheet)."
+    flowExportTemplateXlsx(input: FlowExportTemplateXlsxInput!): Upload!
+    "Seeds a new template from a workbook's Budget sheet (the export's shape)."
+    flowImportTemplateXlsx(input: FlowImportTemplateXlsxInput!): FlowTemplate!
+
+    #
+    # QuickBooks per-user surface (authenticated): the caller's own books,
+    # distinct from the workspace-level connectQuickBooks above. Instant in
+    # QUICKBOOKS_MODE=local; each user gets a distinct sample company.
+    #
+
+    connectMyBooks(input: ConnectQuickBooksInput!): QuickBooksConnection!
+    disconnectMyBooks: Boolean!
+
+    #
+    # Entry (authenticated)
+    #
+
+    createEntryField(input: CreateEntryFieldInput!): EntryField!
+    updateEntryField(input: UpdateEntryFieldInput!): EntryField!
+    "Deletes a field definition; existing records keep their cell values."
+    deleteEntryField(input: DeleteEntryFieldInput!): Boolean!
+    createEntryRecord(input: CreateEntryRecordInput!): EntryRecord!
+    updateEntryRecord(input: UpdateEntryRecordInput!): EntryRecord!
+    deleteEntryRecord(input: DeleteEntryRecordInput!): Boolean!
+
+    #
+    # Songs (authenticated: the AI agent pack's living catalog)
+    #
+
+    createSong(input: CreateSongInput!): Song!
+    updateSong(input: UpdateSongInput!): Song!
+    deleteSong(input: DeleteSongInput!): Boolean!
+
+    #
+    # Drive (authenticated: the Files/Images utility packs' owner-scoped
+    # library over the storage kernel)
+    #
+
+    createDriveFolder(input: CreateDriveFolderInput!): DriveEntry!
+    "Binds a finalized upload into the tree as a FILE entry."
+    registerDriveFile(input: RegisterDriveFileInput!): DriveEntry!
+    renameDriveEntry(input: RenameDriveEntryInput!): DriveEntry!
+    "Reparents an entry; null parentId moves it to the library root."
+    moveDriveEntry(input: MoveDriveEntryInput!): DriveEntry!
+    "Moves an entry (folders take their subtree) to the trash."
+    trashDriveEntry(input: TrashDriveEntryInput!): DriveEntry!
+    "Restores from the trash; falls back to the root when the parent is gone."
+    restoreDriveEntry(input: RestoreDriveEntryInput!): DriveEntry!
+    "Permanently deletes the entry (and subtree), objects included."
+    deleteDriveEntry(input: DeleteDriveEntryInput!): Boolean!
+    setDriveEntryStarred(input: SetDriveEntryStarredInput!): DriveEntry!
+    setDriveEntryCaption(input: SetDriveEntryCaptionInput!): DriveEntry!
+    "Swaps a file's media for freshly filed uploads (the photo rotate path)."
+    replaceDriveEntryMedia(input: ReplaceDriveEntryMediaInput!): DriveEntry!
+    "Flips the underlying upload's visibility: the stable /file/<id> share link."
+    shareDriveEntry(input: ShareDriveEntryInput!): DriveEntry!
+    createDriveAlbum(input: CreateDriveAlbumInput!): DriveAlbum!
+    renameDriveAlbum(input: RenameDriveAlbumInput!): DriveAlbum!
+    "Deletes the album and its memberships; entries stay untouched."
+    deleteDriveAlbum(input: DeleteDriveAlbumInput!): Boolean!
+    addDriveAlbumEntry(input: AddDriveAlbumEntryInput!): DriveAlbum!
+    removeDriveAlbumEntry(input: RemoveDriveAlbumEntryInput!): Boolean!
+    "Empties the caller's whole library (the Clear-demo-library action)."
+    clearDriveLibrary: Boolean!
+
+    #
+    # Pitch (authenticated)
+    #
+
+    "Creates a deck with the full outline; slide copy defaults from the live books when connected."
+    pitchCreateDeck(input: PitchCreateDeckInput!): PitchDeck!
+    "Updates a deck's brand fields (name, company, tagline, logo, accent)."
+    pitchUpdateDeck(input: PitchUpdateDeckInput!): PitchDeck!
+    "Deletes a deck and its slides."
+    pitchDeleteDeck(input: PitchDeleteDeckInput!): Boolean!
+    "Updates a slide's copy or include toggle (the cover cannot be excluded)."
+    pitchUpdateSlide(input: PitchUpdateSlideInput!): PitchSlide!
+    "Renders the deck to a PRIVATE PDF for the caller via the documents kernel; download via fileUrl."
+    pitchExportDeckPdf(input: PitchExportDeckPdfInput!): Upload!
+
+    #
+    # Interpret (authenticated: uploads are PRIVATE and owner-checked)
+    #
+
+    "Reads an uploaded PDF and returns its interpretation. Stateless: nothing is persisted."
+    interpretDocument(input: InterpretDocumentInput!): DocumentInterpretation!
+
+    #
+    # Ai (public: the talk surface works without sign-in)
+    #
+
+    createAiVoiceSession: AiVoiceSession!
+}

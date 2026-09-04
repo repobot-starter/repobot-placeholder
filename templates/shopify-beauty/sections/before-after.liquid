@@ -1,0 +1,117 @@
+<section class="before-after">
+  {% if section.settings.eyebrow != blank %}
+    <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+  {% endif %}
+  <h2 class="before-after__title">{{ section.settings.title }}</h2>
+  <div class="before-after__rows">
+    {% for block in section.blocks %}
+      <div class="before-after__row" {{ block.shopify_attributes }}>
+        <figure class="before-after__pane">
+          {% if block.settings.before_image %}
+            <img
+              src="{{ block.settings.before_image | image_url: width: 720 }}"
+              alt="{{ block.settings.before_image.alt | escape }}"
+              loading="lazy"
+              width="720"
+              height="{{ 720 | divided_by: block.settings.before_image.aspect_ratio | ceil }}"
+            >
+          {% else %}
+            {{ 'image' | placeholder_svg_tag }}
+          {% endif %}
+          <figcaption class="before-after__caption">{{ 'sections.before_after.week_zero' | t }}</figcaption>
+        </figure>
+        <figure class="before-after__pane">
+          {% if block.settings.after_image %}
+            <img
+              src="{{ block.settings.after_image | image_url: width: 720 }}"
+              alt="{{ block.settings.after_image.alt | escape }}"
+              loading="lazy"
+              width="720"
+              height="{{ 720 | divided_by: block.settings.after_image.aspect_ratio | ceil }}"
+            >
+          {% else %}
+            {{ 'image' | placeholder_svg_tag }}
+          {% endif %}
+          <figcaption class="before-after__caption">
+            {{ 'sections.before_after.week_count' | t: weeks: block.settings.weeks }}
+          </figcaption>
+        </figure>
+      </div>
+    {% endfor %}
+  </div>
+  {% if section.settings.disclaimer != blank %}
+    <p class="before-after__disclaimer">{{ section.settings.disclaimer }}</p>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Before & after",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Real timelines"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "What weeks of use actually look like"
+    },
+    {
+      "type": "text",
+      "id": "disclaimer",
+      "label": "Disclaimer",
+      "default": "Unretouched photos from routine users. Skin varies; results and timelines will differ from person to person."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "pair",
+      "name": "Before / after pair",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "before_image",
+          "label": "Before image"
+        },
+        {
+          "type": "image_picker",
+          "id": "after_image",
+          "label": "After image"
+        },
+        {
+          "type": "range",
+          "id": "weeks",
+          "label": "Weeks of use",
+          "min": 1,
+          "max": 24,
+          "step": 1,
+          "default": 8
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Before & after",
+      "blocks": [
+        {
+          "type": "pair",
+          "settings": {
+            "weeks": 8
+          }
+        },
+        {
+          "type": "pair",
+          "settings": {
+            "weeks": 12
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

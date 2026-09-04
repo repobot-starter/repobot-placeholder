@@ -1,0 +1,56 @@
+<section class="newsletter" id="newsletter">
+  {% if section.settings.eyebrow != blank %}
+    <span class="eyebrow">{{ section.settings.eyebrow }}</span>
+  {% endif %}
+  <h2 class="newsletter__title">{{ section.settings.title }}</h2>
+  <p class="newsletter__copy">{{ section.settings.copy }}</p>
+  {% form 'customer', class: 'newsletter__form' %}
+    {% if form.posted_successfully? %}
+      <p class="newsletter__success">{{ 'sections.newsletter.success' | t }}</p>
+    {% else %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <input
+        class="newsletter__input"
+        type="email"
+        name="contact[email]"
+        value="{{ form.email }}"
+        required
+        autocomplete="email"
+        placeholder="{{ 'sections.newsletter.email_placeholder' | t }}"
+        aria-label="{{ 'sections.newsletter.email_label' | t }}"
+      >
+      <button class="button" type="submit">{{ 'sections.newsletter.submit' | t }}</button>
+    {% endif %}
+  {% endform %}
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The dispatch"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "First looks, twice a month."
+    },
+    {
+      "type": "text",
+      "id": "copy",
+      "label": "Copy",
+      "default": "New arrivals, restocks, and the occasional studio note. No noise between issues."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter"
+    }
+  ]
+}
+{% endschema %}

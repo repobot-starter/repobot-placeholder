@@ -1,0 +1,12 @@
+fragment PaymentSubscriptionFields on PaymentSubscription {
+    id
+    status
+    provider
+    productKey
+    productName
+    amountTotal
+    currency
+    recurringInterval
+    currentPeriodEnd
+    createdTime
+}

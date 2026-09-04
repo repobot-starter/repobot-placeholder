@@ -1,0 +1,115 @@
+# Letter-of-credit domain: drop an LC PDF for a SWIFT MT700-family breakdown,
+# drop supporting documents against it, and read the discrepancy report. All
+# operations require an authenticated user; rows are strictly per-user
+# (ownership is checked in the service). Ingestion rides the document-intake
+# kernel — real text extraction everywhere, structured extraction from the
+# model on AI deploys and from bundled fixtures in the sandbox.
+
+enum ShipmentTerm {
+    ALLOWED
+    NOT_ALLOWED
+    NOT_STATED
+}
+
+enum CreditDocumentKind {
+    COMMERCIAL_INVOICE
+    BILL_OF_LADING
+    PACKING_LIST
+    OTHER
+}
+
+enum CreditFindingSeverity {
+    OK
+    WARNING
+    DISCREPANCY
+}
+
+"""
+A letter of credit as ingested from the dropped PDF: the fields the credit
+desk actually checks. Dates are ISO yyyy-mm-dd; money follows the kernel
+money rule (integer minor units + ISO currency).
+"""
+type CreditLc {
+    id: Id!
+    "The source PDF in the storage kernel."
+    uploadId: Id!
+    "Field 20, the documentary credit number."
+    reference: String!
+    issuingBank: String
+    applicant: String
+    beneficiary: String
+    "Lowercase ISO currency code, e.g. \"usd\"."
+    currency: String!
+    amountMinorUnits: Int!
+    "Field 39A plus-side tolerance, whole percent."
+    tolerancePercent: Int!
+    issueDate: String
+    expiryDate: String!
+    latestShipmentDate: String
+    "Field 48: days after shipment the documents must be presented within."
+    presentationPeriodDays: Int
+    portOfLoading: String
+    portOfDischarge: String
+    partialShipments: ShipmentTerm!
+    transhipment: ShipmentTerm!
+    goodsDescription: String!
+    "The field 46A documents-required list."
+    documentsRequired: [String!]!
+    ingestedTime: Instant!
+    "Supporting documents dropped against this credit, oldest first."
+    documents: [CreditDocument!]!
+    "The discrepancy report, worst findings first. Deterministic."
+    findings: [CreditFinding!]!
+}
+
+"A supporting document dropped against a letter of credit."
+type CreditDocument {
+    id: Id!
+    uploadId: Id!
+    kind: CreditDocumentKind!
+    fileName: String
+    reference: String
+    "Lowercase ISO currency code, e.g. \"usd\"; null when the document states none."
+    currency: String
+    amountMinorUnits: Int
+    "The bill of lading's shipped-on-board date, ISO yyyy-mm-dd."
+    shipmentDate: String
+    portOfLoading: String
+    portOfDischarge: String
+    goodsDescription: String
+    attachedTime: Instant!
+}
+
+"One check from the discrepancy engine."
+type CreditFinding {
+    "Stable machine code, e.g. AMOUNT_OVER_TOLERANCE."
+    code: String!
+    severity: CreditFindingSeverity!
+    title: String!
+    detail: String!
+    "The document the finding is about; null for LC-level checks."
+    documentId: Id
+}
+
+input CreditIngestLcInput {
+    idempotencyKey: String!
+    "A READY application/pdf upload (the dropped LC)."
+    uploadId: Id!
+}
+
+input CreditAttachDocumentInput {
+    idempotencyKey: String!
+    lcId: Id!
+    "A READY application/pdf upload (the dropped supporting document)."
+    uploadId: Id!
+    "The dropped file's name, for the document list."
+    fileName: String
+}
+
+input CreditRemoveDocumentInput {
+    documentId: Id!
+}
+
+input CreditDeleteLcInput {
+    lcId: Id!
+}

@@ -1,0 +1,73 @@
+/*
+ * The résumé pack's killer feature: the same page typesets to a clean
+ * one-page Letter/A4 résumé. "Download résumé" is window.print() — no PDF
+ * pipeline, the browser IS the typesetter. Everything here is scoped under
+ * .resume-print (the ResumePage wrapper), so printing any other page of a
+ * composed app is untouched.
+ */
+
+@page {
+    margin: 10mm 13mm;
+}
+
+@media print {
+    /* Screen chrome off the paper: the sticky nav, the site footer, and
+       the CTA rows (a printed résumé needs no Download résumé button; the
+       links section already carries every address as text). */
+    .resume-print nav[aria-label="Site"],
+    .resume-print footer,
+    .resume-print a[href$="#print"],
+    .resume-print [data-rb-section="hero"] a {
+        display: none !important;
+    }
+
+    /* The scroll reveal must not leave below-the-fold sections invisible
+       on paper: force every observed block into its settled state. */
+    .resume-print [data-mkreveal] {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    /* Typeset density: shrink the whole composition to document scale and
+       tighten the section rhythm (the design-system section paddings all
+       run through --marketing-space-scale). zoom affects layout in
+       Chromium's print path, which is what page.pdf() and every "Save as
+       PDF" dialog use. */
+    .resume-print {
+        zoom: 0.48;
+    }
+    /* The zoomed composition ends above the sheet's edge; whatever ground
+       the screen register painted on the résumé's ancestors — html, body,
+       the app's theme root (true black under the resume-dev remix) — would
+       show past it as a dark band. `:has` selects ancestors only, so this
+       whitens the chain without touching the page's own sections. */
+    html:has(.resume-print),
+    body:has(.resume-print),
+    div:has(.resume-print) {
+        background: #ffffff !important;
+    }
+    .resume-print [data-marketing-preset] {
+        --marketing-space-scale: 0.28 !important;
+        --marketing-display-scale: 0.7 !important;
+        /* Paper is paper: a printed résumé is ink on white regardless of the
+           screen register — the resume-dev remix reads dark on screen, and
+           its light accents would vanish on stock. Force the whole marketing
+           palette to document ink. */
+        --marketing-color-pageBg: #ffffff !important;
+        --marketing-color-surface: #ffffff !important;
+        --marketing-color-line: #d9d9d9 !important;
+        --marketing-color-text: #141414 !important;
+        --marketing-color-subtle: #555555 !important;
+        --marketing-color-accent: #1f1f1f !important;
+        --marketing-color-accentSoft: #efefef !important;
+        --marketing-color-onAccent: #ffffff !important;
+        --marketing-background-page: none !important;
+    }
+
+    /* Keep a role or a card from straddling the page break. */
+    .resume-print li,
+    .resume-print article {
+        break-inside: avoid;
+    }
+}

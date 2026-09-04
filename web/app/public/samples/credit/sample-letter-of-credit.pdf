@@ -1,0 +1,105 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 5 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 7 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 752 >>
+stream
+BT
+/F1 12 Tf
+14 TL
+72 720 Td
+(FIRST MERIDIAN BANK) Tj
+T*
+(IRREVOCABLE DOCUMENTARY CREDIT \(MT700\)) Tj
+T*
+() Tj
+T*
+(:20:  Documentary credit number: LC-2026-0815) Tj
+T*
+(:31C: Date of issue: 2026-07-15) Tj
+T*
+(:31D: Date and place of expiry: 2027-06-30, Hamburg) Tj
+T*
+(:50:  Applicant: Atlas Trading GmbH, Hamburg) Tj
+T*
+(:59:  Beneficiary: Pacific Textiles Ltd, Shanghai) Tj
+T*
+(:32B: Currency and amount: USD 184,500.00) Tj
+T*
+(:39A: Tolerance: plus 5 percent) Tj
+T*
+(:43P: Partial shipments: NOT ALLOWED) Tj
+T*
+(:43T: Transhipment: ALLOWED) Tj
+T*
+(:44E: Port of loading: Shanghai) Tj
+T*
+(:44F: Port of discharge: Hamburg) Tj
+T*
+(:44C: Latest date of shipment: 2027-05-31) Tj
+T*
+(:48:  Period for presentation: 21 days after shipment date) Tj
+T*
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 7 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 471 >>
+stream
+BT
+/F1 12 Tf
+14 TL
+72 720 Td
+(:45A: Description of goods:) Tj
+T*
+(100% cotton knitted T-shirts, 14,000 pieces,) Tj
+T*
+(as per proforma invoice PI-2244) Tj
+T*
+() Tj
+T*
+(:46A: Documents required:) Tj
+T*
+(1. Signed commercial invoice in triplicate) Tj
+T*
+(2. Full set clean on board ocean bills of lading) Tj
+T*
+(3. Packing list in duplicate) Tj
+T*
+() Tj
+T*
+(This is a bundled sample document for the sandbox demo.) Tj
+T*
+(REPOBOT-INTAKE-FIXTURE: credit-sample-lc) Tj
+T*
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000121 00000 n 
+0000000247 00000 n 
+0000001049 00000 n 
+0000001175 00000 n 
+0000001696 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R >>
+startxref
+1766
+%%EOF

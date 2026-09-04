@@ -1,0 +1,459 @@
+name: CI
+
+# Main-only: promotion PRs are auto-merged without waiting on GitHub checks
+# (the pre-merge gate is the workspace pod's kernel checks), and the platform
+# only consumes this workflow's result on main (task completion waits on it).
+# PR-triggered runs were therefore pure Actions spend — worse, an open
+# promotion PR turned every workspace-branch push into a full run.
+on:
+    push:
+        branches: [main]
+    # Weekly cache-warm rebake: the customer postures' web-bundle build
+    # caches carry a 30-day TTL, so a kernel that sits unchanged for a month
+    # loses its pre-built bundle layers and the next template publish pays
+    # the full install+prebuild+vite leg again. This run exists purely to
+    # refresh those cache entries for the current main tip: every job except
+    # the web-bundle path skips on schedule (each root job carries a
+    # github.event_name guard; the rest skip because their needs skipped),
+    # no kernel snapshot pin moves, and redeploy-platform-dev never fires.
+    # In composed clones the schedule fires too, but every job skips (the
+    # repo guard plus the schedule guards), so a clone run is zero jobs.
+    schedule:
+        - cron: "0 9 * * 1" # Mondays 09:00 UTC
+
+# Rapid successive merges to main would otherwise stack full runs; cancelling
+# the superseded run only gives up a verdict on a commit that is no longer
+# the tip (a later covering green still counts for task completion).
+# The event name is in the group so the scheduled cache-warm run and a real
+# push run never cancel each other — the platform waits on the push run's
+# verdict, and a Monday 09:00 tick must not throw it away.
+concurrency:
+    group: ci-${{ github.ref }}-${{ github.event_name }}
+    cancel-in-progress: true
+
+jobs:
+    backend:
+        name: Backend build and test
+        # The scheduled cache-warm run re-bakes bundles for a main tip that
+        # already went green on push; nothing here needs re-proving.
+        if: github.event_name != 'schedule'
+        runs-on: ubuntu-latest
+        services:
+            postgres:
+                # postgres:16 plus the vector extension, so CI exercises the
+                # retrieval kernel's pgvector path (docs/ai.md, Retrieval).
+                image: pgvector/pgvector:pg16
+                env:
+                    POSTGRES_USER: postgres
+                    POSTGRES_PASSWORD: postgres
+                    POSTGRES_DB: postgres
+                ports:
+                    - 5433:5432
+                options: >-
+                    --health-cmd pg_isready
+                    --health-interval 5s
+                    --health-timeout 5s
+                    --health-retries 10
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: npm
+            - run: npm ci
+            - name: Codegen (protos + GraphQL types + JSON schema definitions)
+              run: bash firebase/functions/prebuild.sh
+            - name: Generated code freshness (generated/ is committed; run npm run codegen and commit)
+              run: |
+                  git add -N firebase/functions/generated
+                  git diff --exit-code -- firebase/functions/generated
+            - name: Lint
+              run: npm --workspace firebase/functions run lint
+            - name: Build
+              run: npm --workspace firebase/functions run build
+            - name: Apply SQL migrations to test database
+              run: npm --workspace firebase/functions run migrate:test
+            - name: Drizzle drift check (TS schema must match SQL migrations)
+              run: bash firebase/functions/scripts/drift-check.sh
+              env:
+                  DATABASE_URL: postgres://postgres:postgres@127.0.0.1:5433/postgres
+            - name: Blackbox tests
+              run: npm --workspace firebase/functions run test
+            - name: Prettier check
+              run: npx prettier --check "firebase/functions/src/**/*.ts" "firebase/functions/test/**/*.ts"
+
+    web:
+        name: Web build
+        if: github.event_name != 'schedule'
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: npm
+            - run: npm ci
+            - name: Codegen
+              run: bash web/core/prebuild.sh && bash web/app/prebuild.sh
+            # Pack taxonomy + the approval bar: approved packs must be
+            # compose-ready (valid landing seeds + content contract), so a
+            # template can't reach the picker with the Imagine flow dark.
+            - name: Pack catalog gate
+              run: node scripts/verify-pack-catalogs.mjs
+            # The stale cross-project preview-token class (8cff2e6): sessions
+            # and authenticated fetches must ride the shared self-healing
+            # helpers, never a hand-rolled token + raw fetch.
+            - name: Auth plumbing gate
+              run: node scripts/check-auth-plumbing.mjs && npm run test:auth-plumbing
+            # Every approved pack + standalone template must carry a
+            # resolvable agent map (the AGENT_MAP section compose stamps
+            # into AGENTS.md; the platform's runtime brief and publish gate
+            # detect the marker). Missing/stale maps and dangling paths
+            # fail here, so a template cannot merge without a valid map.
+            - name: Agent map gate
+              run: node scripts/check-agent-maps.mjs
+            # The pre-built web-bundle key contract (cross-repo lockstep with
+            # the platform deployer's cache key; see the web-bundles job).
+            - name: Web-bundle key contract
+              run: npm run test:bake-web
+            - name: Dev-up port selection contract (emulator never rides a foreign port)
+              run: npm run test:dev-ports
+            # Every package the web source can import — including through
+            # lazy chunks (recharts via ChartCard) — must be pre-optimized at
+            # dev-server boot, or the first scaffolded/agent-written page
+            # that introduces it mid-session breaks loaded dynamic imports.
+            - name: Cold-boot dep cache covers every web import
+              run: npm run test:dep-cache
+            - name: Generated code freshness (src/generated is committed; run npm run codegen and commit)
+              run: |
+                  git add -N web/app/src/generated
+                  git diff --exit-code -- web/app/src/generated
+            - name: Typecheck core + design system
+              run: npm --workspace web/core run typecheck && npm --workspace web/design-system run typecheck
+            - name: Lint app
+              run: npm --workspace web/app run lint
+            # The full web suite, not just the pinned theme-agnostic subset:
+            # a red web test previously rode a "green" main all the way to a
+            # template publish gate mid-deploy (watchRootManifests close
+            # hang), which is exactly the late discovery CI bakes exist to
+            # prevent.
+            - name: Test app
+              run: npm --workspace web/app run test
+            - name: Build app
+              run: npm --workspace web/app run build
+            # Pinned template tests must pass under ANY committed
+            # repobot.theme.json (projects choose theirs at setup and cannot
+            # edit pinned tests) — reruns them with every default inverted.
+            - name: Pinned tests are theme-agnostic
+              run: node scripts/check-theme-agnostic-tests.mjs
+
+    # Approved packs must survive the way customers actually view them: the
+    # workspace preview gateway, where any absolute loopback URL in the
+    # client bundle is unreachable (the viewer's machine answers 127.0.0.1,
+    # not the pod — the "Failed to fetch" dashboard bug a user found before
+    # any gate did). Boots the real dev stack and walks every approved pack
+    # in a browser with loopback escapes blocked; the templates artifact
+    # below will not publish without this green. Kernel repo only: composed
+    # trees carry one pack, not the approved catalog.
+    preview-parity:
+        name: Preview parity (approved packs vs proxied preview)
+        if: github.event_name != 'schedule' && github.repository == 'repobot-starter/repobot-tmp-base'
+        runs-on: ubuntu-latest
+        # The whole job is a stack boot plus four browser walks; anything
+        # past this is a hang, not a slow run.
+        timeout-minutes: 30
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: npm
+            - run: npm ci
+            - name: Boot the dev stack (embedded Postgres; emulator + web)
+              # --no-wait: without it dev-up tails service logs forever (its
+              # foreground-supervisor mode for sandbox pods), which pinned
+              # this step until the 6h job timeout on its first CI run.
+              run: DB_MODE=embedded bash scripts/dev-up.sh --no-wait
+            - name: Preview parity gate
+              run: node scripts/verify-preview-parity.mjs
+            - name: Stack logs on failure
+              if: failure()
+              run: tail -n 200 .dev/logs/*.log
+
+    docs:
+        name: Docs path check
+        if: github.event_name != 'schedule'
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+            - run: node scripts/check-doc-paths.mjs
+
+    # The kernel bake happens HERE, on native amd64, on every green main push
+    # — never on a workstation, never under qemu (the cross-bake that used to
+    # eat 15-20 laptop minutes per kernel commit). The snapshot is named by
+    # the RUNTIME FINGERPRINT (scripts/kernel-fingerprint.sh), so a
+    # tests-only or docs-only commit resolves to the already-published
+    # artifact and this job exits in seconds without installing anything.
+    # A deploy then just consumes the store: deploy-stack.sh looks up main's
+    # fingerprint, finds the artifact CI already published, and pins it.
+    # One-time GCP/GitHub wiring: scripts/setup-kernel-ci-publisher.sh.
+    bake:
+        name: Bake + publish kernel snapshot (dev store, ${{ matrix.platform }})
+        # Gates first: a red main must never publish a bootable artifact.
+        needs: [backend, web, docs, secrets]
+        # KERNEL REPO ONLY. This workflow ships inside every composed template
+        # and project repo, where the OIDC trust below does not exist — there
+        # the job fails, the run goes red, and every production publish parks
+        # behind the red-CI gate (the same trap the gitleaks-action note
+        # below describes). Clones have no kernel to bake; skip, don't fail.
+        if: github.repository == 'repobot-starter/repobot-tmp-base'
+        # BOTH pod architectures bake here: amd64 for the dev/prod GKE pods,
+        # arm64 for local stacks on Apple Silicon (Docker Desktop runs arm64
+        # pods; dev-local-up.sh downloads its snapshot from the dev store).
+        # CI is the ONLY place kernels bake — build-kernel-snapshot.sh
+        # refuses to run anywhere else — so if arm64 stopped publishing,
+        # local bring-ups would stall on a missing artifact, not quietly
+        # start baking on someone's laptop again.
+        strategy:
+            matrix:
+                include:
+                    - platform: amd64
+                      runner: ubuntu-latest
+                    - platform: arm64
+                      runner: ubuntu-24.04-arm
+        runs-on: ${{ matrix.runner }}
+        permissions:
+            contents: read
+            id-token: write
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: npm
+            - name: Authenticate to GCP (OIDC, no stored keys)
+              uses: google-github-actions/auth@v2
+              with:
+                  workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+                  service_account: ${{ vars.GCP_KERNEL_PUBLISHER_SERVICE_ACCOUNT }}
+            # The installed-dependency + initialized-Postgres bake layers,
+            # keyed the same way bake-kernel-tree.sh keys them — a lockfile /
+            # migrations change misses; everything else restores.
+            - uses: actions/cache@v4
+              with:
+                  path: ~/.repobot-bake-dep-cache
+                  key: bake-dep-${{ runner.arch }}-${{ hashFiles('package-lock.json', 'firebase/functions/migrations/**', 'scripts/lib/embedded-pg.mjs') }}
+            - name: Bake + publish (content-addressed; a no-op when this fingerprint is already in the store)
+              run: |
+                  export REPOBOT_BAKE_DEP_CACHE="${HOME}/.repobot-bake-dep-cache"
+                  bash scripts/build-kernel-snapshot.sh --publish "${{ vars.KERNEL_SNAPSHOT_STORE_DEV || 'gs://repobot-dev-271523-kernel-snapshots' }}"
+
+    # The compose gate, matrixed per approved pack: composition rewrites the
+    # root contract documents, so a kernel test that pins kernel-default
+    # state can pass on the kernel yet fail on every composed tree (the
+    # repobot-photography-published-red incident). Proving trees HERE — in
+    # parallel, before the templates artifact publishes — is what lets the
+    # platform's template publish push artifact trees as-is instead of
+    # recomposing and re-proving the whole catalog serially mid-deploy
+    # (an hour per kernel bump at catalog size).
+    compose-matrix:
+        name: Approved pack matrix
+        if: github.event_name != 'schedule' && github.repository == 'repobot-starter/repobot-tmp-base'
+        runs-on: ubuntu-latest
+        outputs:
+            packs: ${{ steps.list.outputs.packs }}
+        steps:
+            - uses: actions/checkout@v4
+            - id: list
+              run: echo "packs=$(node -e 'process.stdout.write(JSON.stringify(JSON.parse(require("node:fs").readFileSync("packs/approved.json","utf8")).packs))')" >> "$GITHUB_OUTPUT"
+
+    compose-gate:
+        name: Compose gate (${{ matrix.pack }})
+        needs: [compose-matrix]
+        if: github.repository == 'repobot-starter/repobot-tmp-base'
+        runs-on: ubuntu-latest
+        timeout-minutes: 30
+        strategy:
+            fail-fast: false
+            matrix:
+                pack: ${{ fromJSON(needs.compose-matrix.outputs.packs) }}
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: npm
+            - run: npm ci
+            - name: Compose + test the ${{ matrix.pack }} tree
+              run: bash .github/scripts/compose-gate.sh ${{ matrix.pack }}
+
+    # The composed-templates artifact rides the same store under the same
+    # rt-* fingerprint as the kernel snapshot: every approved pack composed
+    # into the tree the platform's template picker installs and previews
+    # from. Template content therefore ships exactly like kernel code —
+    # artifact publish + pin bump — and never goes stale inside a runtime
+    # image (the platform's pods fetch this artifact for template-mode
+    # boots when pinned). Platform-independent (source-only trees), so one
+    # lane suffices; content addressing makes no-op commits exit in seconds.
+    # compose-gate is a hard dependency: only proven trees may publish —
+    # the platform's template publish pushes these trees to the template
+    # repos without re-testing them.
+    templates:
+        name: Compose + publish templates artifact (dev store)
+        needs: [backend, web, docs, secrets, preview-parity, compose-gate]
+        if: github.repository == 'repobot-starter/repobot-tmp-base'
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            id-token: write
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: npm
+            - name: Authenticate to GCP (OIDC, no stored keys)
+              uses: google-github-actions/auth@v2
+              with:
+                  workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+                  service_account: ${{ vars.GCP_KERNEL_PUBLISHER_SERVICE_ACCOUNT }}
+            - name: Compose + publish (content-addressed; a no-op when this fingerprint is already in the store)
+              run: |
+                  sudo apt-get install -y --no-install-recommends zstd
+                  bash scripts/build-templates-artifact.sh --publish "${{ vars.KERNEL_SNAPSHOT_STORE_DEV || 'gs://repobot-dev-271523-kernel-snapshots' }}"
+
+    # Pre-built template web bundles: every pack in packs/prebuilt-web.json
+    # (the approved client-only templates), built once HERE from the trees
+    # the templates job just published and stored in the customer postures'
+    # web-bundle build caches under the platform deployer's own key scheme
+    # (scripts/bake-web-bundles.sh documents the contract; run-deploy.sh's
+    # template-tier restore reads it). Because the trees are byte-identical
+    # to what provisioning installs, a fresh project's FIRST publish — the
+    # one no per-environment cache entry can ever exist for — restores a
+    # bundle instead of paying the ~55s install+prebuild+vite leg.
+    #
+    # Sharded so wall time stays flat at catalog size; content addressing
+    # (the deployer key IS a content hash) makes a commit that moved no
+    # template's tree exit in seconds per shard. Deliberately NOT a
+    # dependency of redeploy-platform-dev: a publish that races the bake
+    # just misses the cache and builds like today — never wrong, only slow.
+    # One-time wiring (publisher SA grants + the store list variable):
+    # scripts/setup-kernel-ci-publisher.sh.
+    web-bundle-shards:
+        name: Web-bundle shard matrix
+        needs: [templates]
+        # On push, run only after templates published (as before). On the
+        # scheduled cache-warm run, templates is skipped along with the rest
+        # of the gate chain — the artifact for this tip is already in the
+        # store (content-addressed; bake-web-bundles.sh fetches it by
+        # fingerprint) — so accept the skip and run anyway. !cancelled() is
+        # what stops GitHub from propagating the skip through needs.
+        if: >-
+            !cancelled() &&
+            github.repository == 'repobot-starter/repobot-tmp-base' &&
+            vars.WEB_BUNDLE_CACHE_STORES != '' &&
+            (needs.templates.result == 'success' ||
+             (github.event_name == 'schedule' && needs.templates.result == 'skipped'))
+        runs-on: ubuntu-latest
+        outputs:
+            shards: ${{ steps.list.outputs.shards }}
+        steps:
+            - uses: actions/checkout@v4
+            - id: list
+              # ~7 packs per shard: each build is ~1 CI minute, so a shard
+              # stays under ten minutes even when every tree moved.
+              run: |
+                  echo "shards=$(node -e '
+                      const { packs } = JSON.parse(require("node:fs").readFileSync("packs/prebuilt-web.json", "utf8"))
+                      const shards = []
+                      for (let i = 0; i < packs.length; i += 7) shards.push(packs.slice(i, i + 7).join(" "))
+                      process.stdout.write(JSON.stringify(shards))
+                  ')" >> "$GITHUB_OUTPUT"
+
+    web-bundles:
+        name: Bake + publish web bundles (${{ matrix.shard }})
+        needs: [web-bundle-shards]
+        if: github.repository == 'repobot-starter/repobot-tmp-base' && vars.WEB_BUNDLE_CACHE_STORES != ''
+        runs-on: ubuntu-latest
+        timeout-minutes: 30
+        permissions:
+            contents: read
+            id-token: write
+        strategy:
+            fail-fast: false
+            matrix:
+                shard: ${{ fromJSON(needs.web-bundle-shards.outputs.shards) }}
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  # node 20 on purpose: the deployer image's major is hashed
+                  # into every cache key (bake-web-bundles.sh refuses to
+                  # build under any other major).
+                  node-version: 20
+                  cache: npm
+            - run: npm ci
+            - name: Authenticate to GCP (OIDC, no stored keys)
+              uses: google-github-actions/auth@v2
+              with:
+                  workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+                  service_account: ${{ vars.GCP_KERNEL_PUBLISHER_SERVICE_ACCOUNT }}
+            - name: Bake + publish (content-addressed; a no-op when every store holds these trees' bundles)
+              run: |
+                  sudo apt-get install -y --no-install-recommends zstd
+                  export REPOBOT_TEMPLATES_STORE="${{ vars.KERNEL_SNAPSHOT_STORE_DEV || 'gs://repobot-dev-271523-kernel-snapshots' }}"
+                  bash scripts/bake-web-bundles.sh --publish "${{ vars.WEB_BUNDLE_CACHE_STORES }}" ${{ matrix.shard }}
+
+    # Close the cross-repo deploy loop, event-driven end to end: the moment
+    # both artifacts a platform deploy consumes (kernel snapshot + templates)
+    # are published for this commit, trigger the platform's Deploy dev run —
+    # the same one a push to the platform's dev branch starts. Without this,
+    # a deploy that raced a kernel push and refused on the missing snapshot
+    # stayed refused until a human noticed the bake had finished and re-ran
+    # it. The dispatch is a no-op deploy when nothing else changed (pins
+    # resolve to what's already rolled), and the platform side queues runs
+    # (concurrency group deploy-dev), so a dispatch landing mid-deploy waits
+    # its turn instead of overlapping. Token: PLATFORM_DEPLOY_DISPATCH_TOKEN,
+    # a PAT with Actions write on the platform repo; the job skips cleanly
+    # where it isn't wired (clones, forks).
+    redeploy-platform-dev:
+        name: Trigger the platform dev deploy
+        needs: [bake, templates]
+        # The schedule guard is belt-and-braces: on schedule this job is
+        # already skipped structurally (bake and templates skip, and this
+        # if has no status function to override that), but the cache-warm
+        # run must NEVER dispatch a platform deploy, so say so explicitly.
+        if: github.event_name != 'schedule' && github.repository == 'repobot-starter/repobot-tmp-base'
+        runs-on: ubuntu-latest
+        steps:
+            - name: Dispatch Deploy dev on the platform repo
+              env:
+                  GH_TOKEN: ${{ secrets.PLATFORM_DEPLOY_DISPATCH_TOKEN }}
+              run: |
+                  if [ -z "${GH_TOKEN}" ]; then
+                      echo "PLATFORM_DEPLOY_DISPATCH_TOKEN is not set; skipping the dispatch."
+                      exit 0
+                  fi
+                  gh workflow run deploy-dev.yml --repo repobot-starter/repobot --ref dev
+
+    secrets:
+        name: Secret scan
+        if: github.event_name != 'schedule'
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+            # The gitleaks CLI, not gitleaks-action: the action requires a paid
+            # license for organization-owned repos, which made this job (and
+            # the whole run) permanently red on every hosted customer repo.
+            # --config is explicit (not gitleaks' repo-root auto-detection)
+            # so the allowlist for machine-generated hash manifests applies
+            # deterministically across gitleaks versions.
+            - name: Run gitleaks
+              run: |
+                  curl -sSfL https://github.com/gitleaks/gitleaks/releases/download/v8.24.3/gitleaks_8.24.3_linux_x64.tar.gz | tar -xz gitleaks
+                  ./gitleaks git --no-banner --redact --exit-code 1 --config .gitleaks.toml .

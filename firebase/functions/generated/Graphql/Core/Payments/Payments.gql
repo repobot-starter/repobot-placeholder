@@ -1,0 +1,117 @@
+# Payments kernel: one-off and subscription checkout sessions with a
+# simulated sandbox mode, a purchase ledger, and a subscription state table.
+# One-off checkout operations are public (buyers are anonymous; see
+# publicOperationRootFields in GraphqlServer.ts); everything touching
+# subscriptions is authenticated — recurring billing entitles an account.
+# Domains that sell things (shop for one-off, saas for subscriptions) own
+# their product catalogs and compose these types — see docs/payments.md.
+
+enum CheckoutSessionStatus {
+    PENDING
+    PAID
+}
+
+enum CheckoutProvider {
+    "Sandbox-only simulated checkout (PAYMENTS_MODE=local); no real payment."
+    LOCAL
+    "Stripe hosted Checkout (PAYMENTS_MODE=stripe)."
+    STRIPE
+}
+
+enum CheckoutMode {
+    "A one-off charge (the default; buyers are anonymous)."
+    PAYMENT
+    "Recurring billing; the session belongs to an authenticated user."
+    SUBSCRIPTION
+}
+
+enum SubscriptionInterval {
+    MONTH
+    YEAR
+}
+
+enum SubscriptionStatus {
+    ACTIVE
+    PAST_DUE
+    CANCELED
+}
+
+type CheckoutSession {
+    id: Id!
+    provider: CheckoutProvider!
+    status: CheckoutSessionStatus!
+    mode: CheckoutMode!
+    "Where to send the buyer to pay: the in-app test checkout or Stripe's hosted page."
+    checkoutUrl: String!
+    "Product snapshot taken at checkout time."
+    productKey: String!
+    productName: String!
+    "Total in the currency's minor units."
+    amountTotal: Int!
+    currency: String!
+    "Recurring billing period; null for one-off payments."
+    recurringInterval: SubscriptionInterval
+    "True when the product has a session-gated download (see docs/payments.md)."
+    deliveryAvailable: Boolean!
+    createdTime: Instant!
+}
+
+input CompleteTestCheckoutSessionInput {
+    sessionId: Id!
+}
+
+"""
+One user's subscription: written exactly once when its checkout session
+reaches PAID, then moved through ACTIVE / PAST_DUE / CANCELED by Stripe's
+lifecycle events. Never anonymous.
+"""
+type PaymentSubscription {
+    id: Id!
+    status: SubscriptionStatus!
+    provider: CheckoutProvider!
+    "Product snapshot taken at activation time."
+    productKey: String!
+    productName: String!
+    "Per-period total in the currency's minor units."
+    amountTotal: Int!
+    currency: String!
+    recurringInterval: SubscriptionInterval!
+    "End of the current billing period as reported by Stripe; null for LOCAL subscriptions."
+    currentPeriodEnd: Instant
+    createdTime: Instant!
+}
+
+input CreateBillingPortalSessionInput {
+    "The web app's origin (window.location.origin); the portal's return URL is built from it."
+    origin: String!
+}
+
+type BillingPortalSession {
+    "Where to send the user to manage billing: Stripe's Billing Portal, or the in-app test billing page in local mode."
+    url: String!
+}
+
+"One PAID checkout, written exactly once no matter which observer saw payment first."
+type Purchase {
+    id: Id!
+    checkoutSessionId: Id!
+    provider: CheckoutProvider!
+    productKey: String!
+    productName: String!
+    "Total in the currency's minor units."
+    amountTotal: Int!
+    currency: String!
+    "Buyer email from the payment provider when available (receipts are sent here); null for LOCAL test checkouts."
+    buyerEmail: String
+    createdTime: Instant!
+}
+
+# Connection
+type PurchaseConnection {
+    nodes: [Purchase]!
+    pageInfo: PageInfo!
+}
+
+input PurchaseConnectionInput {
+    connection: ConnectionInput!
+}

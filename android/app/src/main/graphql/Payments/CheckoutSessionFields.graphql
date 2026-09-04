@@ -1,0 +1,12 @@
+fragment CheckoutSessionFields on CheckoutSession {
+    id
+    provider
+    status
+    checkoutUrl
+    productKey
+    productName
+    amountTotal
+    currency
+    deliveryAvailable
+    createdTime
+}

@@ -1,0 +1,10 @@
+{
+    "name": "webpreviewspike-host",
+    "version": "0.0.0",
+    "type": "module",
+    "private": true,
+    "description": "Static host page for the FolioView wasm spike. `npm install` here, then serve the WebPreviewSpike directory and open /web/index.html.",
+    "dependencies": {
+        "@bjorn3/browser_wasi_shim": "0.3.0"
+    }
+}

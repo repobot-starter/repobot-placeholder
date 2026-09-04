@@ -1,0 +1,154 @@
+{
+    "key": "fund-index",
+    "templateKey": "repobot-fund-index",
+    "title": "Ordinal",
+    "description": "A venture fund site as a numbered index, paper-on-ink: a dark monospace register where the home page files the fund's focus areas as 001\u2013006 sector vignettes (numerals computed from order, never typed), renders its underwriting formula at display scale, runs a metrics band mixing stated figures with computed counts, and numbers its principles down a timeline rail; the portfolio is a filterable spec sheet whose counts, sector chips, and status pills (\u201cNew\u201d, \u201cAcquired\u201d, \u201cPublic\u201d) compute themselves from the investment data, the team is a compact list of technical briefs, the log renders dated research notes newest-first (computed), and the disclosures get properly typeset \u2014 a multi-page site edited in one content file, with zero image assets.",
+    "marketingExampleTitle": "Index fund site",
+    "category": "venture-funds",
+    "homePath": "/",
+    "previewPath": "/fund-index",
+    "homeViewDir": "web/app/src/View/FundIndex",
+    "base": "landing",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false,
+    "theme": {
+        "$comment": "The achromatic overlay (the dj pack's move): mode dark opens the site as pure paper-on-ink \u2014 true-black ground (the pack's blackout pin, FundIndexPage.styles.css.ts), graph-paper hairlines (the appearance toggle still swaps to the ink-on-paper spec-sheet reading) \u2014 and the register's own inks ride as the project brand so app-side surfaces stay monochrome instead of the kernel default blue. Values match mono-utility's text inks \u2014 the landing style overrides pin accent to text, so the overlay and the pages agree.",
+        "mode": "dark",
+        "brand": {
+            "primary": "#1b1d1b",
+            "primaryDark": "#e6ece7"
+        }
+    },
+    "contentContract": {
+        "$comment": "The pack's content slots, as data (packs/README.md 'Content contract'). Declares what a composer (agent or tool) must bind for a generated variant of this pack to present as real: slot paths into the typed content module, their kinds, and minimums. The demo fund is a Boston complex-sectors firm, but the slots are register-agnostic \u2014 any technical fund binds the same shape. Focus areas and principles are ordered arrays whose 001/002/003 numerals compute from position; statuses and dates are content, and the counts, badges, and newest-first orderings computed from them (portfolio.ts) follow wherever the data goes. Stated metrics (AUM, fund number) are strings the fund words however it likes \u2014 counted metrics never appear here because they are never hand-written.",
+        "module": "web/app/src/View/FundIndex/content.ts",
+        "slots": {
+            "firm.name": { "kind": "text" },
+            "firm.tagline": { "kind": "text" },
+            "firm.location": { "kind": "text" },
+            "firm.email": { "kind": "text" },
+            "home.headline": { "kind": "text" },
+            "home.subheadline": { "kind": "text" },
+            "home.formula.expression": { "kind": "text" },
+            "home.formula.caption": { "kind": "text" },
+            "focusAreas": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "title": { "kind": "text" },
+                    "body": { "kind": "text" }
+                }
+            },
+            "principles": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "title": { "kind": "text" },
+                    "body": { "kind": "text" }
+                }
+            },
+            "statedMetrics": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "value": { "kind": "text" },
+                    "label": { "kind": "text" }
+                }
+            },
+            "companies": {
+                "kind": "collection",
+                "min": 6,
+                "item": {
+                    "name": { "kind": "text" },
+                    "oneLiner": { "kind": "text" },
+                    "sectors": { "kind": "text[]", "min": 1 },
+                    "investedAt": { "kind": "text" },
+                    "status": { "kind": "text" }
+                }
+            },
+            "team": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "name": { "kind": "text" },
+                    "role": { "kind": "text" },
+                    "bio": { "kind": "text" }
+                }
+            },
+            "log": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "title": { "kind": "text" },
+                    "date": { "kind": "text" },
+                    "excerpt": { "kind": "text" },
+                    "href": { "kind": "text" }
+                }
+            },
+            "contact.headline": { "kind": "text" },
+            "contact.body": { "kind": "text" },
+            "disclosures.headline": { "kind": "text" },
+            "disclosures.updated": { "kind": "text" },
+            "disclosures.paragraphs": { "kind": "text[]", "min": 3 }
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (web/app/src/View/FundIndex/FundIndexPage.tsx, useSitePageConfig). pages seeds each page's layout skeleton \u2014 ids match fundIndexLanding.ts; the platform's structural editor edits these. The preset is mono-utility in its dark reading WORN ACHROMATIC (the dj pack's move) \u2014 the style overrides pin accent to the register's own text ink, so the spec-sheet surface is pure paper-on-ink in dark and ink-on-paper in light: the index school of fund sites, precise, numbered, and colorless.",
+        "style": {
+            "preset": "mono-utility",
+            "overrides": {
+                "--marketing-color-accent": "var(--marketing-color-text)",
+                "--marketing-color-accentSoft": "color-mix(in srgb, var(--marketing-color-text) 14%, transparent)",
+                "--marketing-color-onAccent": "var(--marketing-color-pageBg)"
+            }
+        },
+        "routes": {
+            "/": "home",
+            "/portfolio": "portfolio",
+            "/team": "team",
+            "/log": "log",
+            "/contact": "contact",
+            "/disclosures": "disclosures"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "statement" },
+                    { "id": "focus", "type": "showcase", "variant": "card-grid" },
+                    { "id": "formula", "type": "testimonials", "variant": "single-featured" },
+                    { "id": "metrics", "type": "social-proof", "variant": "metrics-row" },
+                    { "id": "principles", "type": "steps", "variant": "timeline" },
+                    { "id": "deck-banner", "type": "cta-banner", "variant": "card" }
+                ]
+            },
+            "portfolio": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "statement" },
+                    { "id": "companies", "type": "showcase", "variant": "filterable-grid" }
+                ]
+            },
+            "team": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "statement" },
+                    { "id": "people", "type": "team", "variant": "list" }
+                ]
+            },
+            "log": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "statement" },
+                    { "id": "entries", "type": "blog-list", "variant": "list" }
+                ]
+            },
+            "contact": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "statement" },
+                    { "id": "channels", "type": "lead-form", "variant": "contact-block" }
+                ]
+            },
+            "disclosures": {
+                "sections": [{ "id": "disclosures", "type": "rich-prose", "variant": "narrow" }]
+            }
+        }
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "key": "shopify",
+    "templateKey": "repobot-shopify",
+    "title": "Shopify theme",
+    "description": "A Shopify Online Store 2.0 theme scaffold with repobot standards: sections, testing, CI, and live storefront preview via your connected store.",
+    "platform": "SHOPIFY",
+    "comment": "Standalone template (not a pack on the web kernel): a Shopify theme has its own repo shape. Published by scripts/publish-templates.sh alongside pack-composed templates."
+}

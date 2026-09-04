@@ -1,0 +1,16 @@
+Meeting notes — Tuesday standup
+
+Attendees: R. Okafor, J. Lindqvist, M. Vasquez
+
+- Print vendor confirmed the uncoated stock; spot colors locked.
+- Moodboard 02 read as "too nautical-gift-shop" — pulling back the rope
+  motifs, keeping the tide palette.
+- Budget: Q3 sheet updated (Finance/q3-budget.csv). Photography line
+  moved under production.
+- Next review Thursday. Bring the 12 mm wordmark tests printed, not
+  on screen.
+
+Action items:
+  [ ] Wordmark round two (J.)
+  [ ] Dieline template from the vendor (M.)
+  [x] Update budget sheet (R.)

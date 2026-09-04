@@ -1,0 +1,30 @@
+# Shared cursor-pagination contract. Every list query takes a domain
+# *ConnectionInput wrapping this ConnectionInput plus optional filters,
+# and returns a domain *Connection with nodes + pageInfo.
+
+input ConnectionInput {
+    pagination: PaginationInput!
+    sort: [SortOrderInput!]!
+}
+
+type PageInfo {
+    hasPreviousPage: Boolean!
+    hasNextPage: Boolean!
+    startCursor: String
+    endCursor: String
+}
+
+input PaginationInput {
+    first: Int!
+    after: String
+}
+
+input SortOrderInput {
+    fieldName: String!
+    direction: SortDirection!
+}
+
+enum SortDirection {
+    asc
+    desc
+}

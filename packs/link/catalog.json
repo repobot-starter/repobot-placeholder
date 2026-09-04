@@ -1,0 +1,14 @@
+{
+    "key": "link",
+    "templateKey": "repobot-link",
+    "title": "Link",
+    "description": "A polished link-in-bio page: profile, links, social chips, and four theme palettes — all edited in one content file.",
+    "marketingExampleTitle": "Link-in-bio page",
+    "homePath": "/",
+    "previewPath": "/link",
+    "homeViewDir": "web/app/src/View/Link",
+    "base": "content",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

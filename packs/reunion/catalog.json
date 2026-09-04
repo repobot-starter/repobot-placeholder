@@ -1,0 +1,176 @@
+{
+    "key": "reunion",
+    "templateKey": "repobot-reunion",
+    "title": "Family reunion",
+    "description": "A family gathering's home base: the weekend at a glance with a live countdown, the activities, a scrapbook memory wall relatives keep revisiting, and one head-count form (attendance, crew size, lodging, potluck dish) that delivers replies straight to the organizers. Flexes to class reunions, milestone-birthday campouts, and the annual cousins' weekend.",
+    "marketingExampleTitle": "Family reunion",
+    "category": "weddings-and-events",
+    "homePath": "/",
+    "previewPath": "/reunion",
+    "homeViewDir": "web/app/src/View/Reunion",
+    "base": "landing",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false,
+    "forms": {
+        "$comment": "Managed-form kinds, formKey -> kind (append-only vocabulary: RSVP | LEAD | MAILING_LIST | PROOFING). Compose stamps these into repobot.deploy.json as formKinds; the dashboard renders declared kinds as typed views and keeps the raw Inbox for undeclared keys.",
+        "reunion-rsvp": "RSVP"
+    },
+    "theme": {
+        "$comment": "The picnic register's brand overlay: the preset's tomato accent (ember orange in dark) as the project brand, so app-side surfaces wear the same backyard-party register as the site's pages instead of the kernel default blue. Values match the picnic preset's own light/dark accents — the marketing pages resolve brand over preset accent, so keeping them identical means the overlay re-brands the app without shifting the pages.",
+        "brand": { "primary": "#e0472e", "primaryDark": "#ff8c66" }
+    },
+    "contentContract": {
+        "$comment": "The pack's content slots, as data (packs/README.md 'Content contract'). Declares what a composer (agent or tool) must bind for a generated variant of this pack to present as real: slot paths into the typed content module, their kinds, and minimums. The demo weekend is a fortieth family reunion at a New Hampshire lake, but the slots fit any recurring gathering — a class reunion or a fiftieth-birthday campout binds the same shape. The countdown labels are computed from reunion.startDateIso by the clock engine (countdown.ts) and follow wherever the date goes. Authored alongside the module and guarded by the pack's content tests — the module satisfies the contract; the contract never drifts ahead of it.",
+        "module": "web/app/src/View/Reunion/content.ts",
+        "slots": {
+            "reunion.title": { "kind": "text" },
+            "reunion.subtitle": { "kind": "text" },
+            "reunion.familyName": { "kind": "text" },
+            "reunion.startDateIso": { "kind": "text" },
+            "reunion.datesLabel": { "kind": "text" },
+            "reunion.venueShort": { "kind": "text" },
+            "reunion.email": { "kind": "text" },
+            "reunion.organizers": { "kind": "text" },
+            "reunion.heroImage": { "kind": "media" },
+            "home.welcomeTitle": { "kind": "text" },
+            "home.welcomeBody": { "kind": "text" },
+            "weekend.headline": { "kind": "text" },
+            "weekend.days": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "label": { "kind": "text" },
+                    "title": { "kind": "text" },
+                    "description": { "kind": "text" }
+                }
+            },
+            "activities.headline": { "kind": "text" },
+            "activities.items": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "title": { "kind": "text" },
+                    "body": { "kind": "text" },
+                    "image": { "kind": "media" }
+                }
+            },
+            "memories.headline": { "kind": "text" },
+            "memories.intro": { "kind": "text" },
+            "memories.shareNote": { "kind": "text" },
+            "memories.photos": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "image": { "kind": "media" },
+                    "caption": { "kind": "text" }
+                }
+            },
+            "rsvp.headline": { "kind": "text" },
+            "rsvp.body": { "kind": "text" },
+            "rsvp.replyByIso": { "kind": "text" },
+            "rsvp.replyByLabel": { "kind": "text" },
+            "rsvp.confirmation": { "kind": "text" },
+            "rsvp.faqs": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "question": { "kind": "text" },
+                    "answer": { "kind": "text" }
+                }
+            }
+        }
+    },
+    "content": {
+        "$comment": "Business-content contract seed, merged over repobot.content.json at compose (the same overlay path as landing/theme — scripts/lib/pack-switch.mjs applyPackOverlays). The guestlist domain is the reunion's PRIVATE roster — who's invited, how many seats, the note that matters at the door — and deliberately seeds EMPTY: the roster is the owner's from day one, never demo data. No pack page renders it; it exists so the platform's Manage panel keeps the roster next to the RSVP inbox it pairs with (the catalog's reunion-rsvp form).",
+        "guestlist": {
+            "entries": []
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (web/app/src/View/Reunion/ReunionPage.tsx, useSitePageConfig). pages seeds each page's layout skeleton — ids match reunionLanding.ts; the platform's structural editor edits these. The preset is picnic (the backyard-party register: sunny cream, one tomato accent, marigold and sky washes, name-tag pill controls, snapshots that tilt like photos passed around the table) — 2 PM on the lawn, deliberately apart from ballroom's 8 PM grand room and heirloom's morning stationery.",
+        "style": { "preset": "picnic" },
+        "routes": {
+            "/": "home",
+            "/memories": "memories",
+            "/rsvp": "rsvp"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "masthead-overlay"
+                    },
+                    {
+                        "id": "welcome",
+                        "type": "rich-prose",
+                        "variant": "narrow"
+                    },
+                    {
+                        "id": "weekend",
+                        "type": "steps",
+                        "variant": "numbered-cards"
+                    },
+                    {
+                        "id": "activities",
+                        "type": "card-grid",
+                        "variant": "3up"
+                    },
+                    {
+                        "id": "memories",
+                        "type": "gallery",
+                        "variant": "scrapbook"
+                    },
+                    {
+                        "id": "rsvp-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "memories": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "wall",
+                        "type": "gallery",
+                        "variant": "scrapbook"
+                    },
+                    {
+                        "id": "share",
+                        "type": "rich-prose",
+                        "variant": "narrow"
+                    },
+                    {
+                        "id": "rsvp-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "rsvp": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "rsvp-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    }
+                ]
+            }
+        }
+    }
+}

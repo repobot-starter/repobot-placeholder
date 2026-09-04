@@ -1,0 +1,14 @@
+{
+    "key": "blank",
+    "templateKey": "repobot-placeholder",
+    "title": "Spaceboy starter",
+    "description": "The spaceboy starting page — a boy on a hill, holding the moon on a string. Chat with the agent to build anything from scratch.",
+    "marketingExampleTitle": null,
+    "homePath": "/",
+    "previewPath": "/",
+    "homeViewDir": "web/app/src/View/Blank",
+    "base": "app",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": true
+}

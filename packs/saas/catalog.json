@@ -1,0 +1,239 @@
+{
+    "key": "saas",
+    "templateKey": "repobot-saas",
+    "title": "SaaS Foundation",
+    "description": "A complete SaaS skeleton: marketing landing and pricing pages, sign-up and sign-in, and a signed-in dashboard with an overview, data tables, and account settings.",
+    "marketingExampleTitle": "SaaS web application",
+    "homePath": "/",
+    "previewPath": "/overview",
+    "homeViewDir": "web/app/src/View/Site",
+    "base": "app",
+    "isBase": true,
+    "clientOnly": false,
+    "capabilities": ["AUTH", "DATABASE", "EMAIL", "IOS", "ANDROID", "STORAGE", "JOBS", "AI", "DOCUMENTS"],
+    "authMethods": ["email-code", "password"],
+    "theme": {
+        "$comment": "The monolith register's overlay: mode dark opens the site on true black (the appearance toggle swaps to the white-negative variant \u2014 the inversion is the art direction), no fontFamily so the preset's own display voice (Space Grotesk) survives (a pack font override would flatten the marketing display face too), and the brand resolves to ink-on-ground so CTAs and app chrome read as hard white/black plates. The palette de-tints the whole app: the kernel's blue-gray dark surfaces become true black with neutral-gray structure, and the light mode drops the kernel's blue cast \u2014 the product is black and white, the same conviction as the register. Charts speak in line-work grays \u2014 the register has no accent hue to lean on.",
+        "mode": "dark",
+        "character": "plain",
+        "brand": { "primary": "#0a0a0a", "primaryDark": "#ffffff" },
+        "navigation": { "variant": "centered" },
+        "palette": {
+            "background": "#fafafa",
+            "backgroundDark": "#000000",
+            "surface": "#ffffff",
+            "surfaceDark": "#0d0d0d",
+            "surfaceHover": "#f0f0f0",
+            "surfaceHoverDark": "#1a1a1a",
+            "border": "#e4e4e4",
+            "borderDark": "#262626",
+            "textPrimary": "#111111",
+            "textPrimaryDark": "#f5f5f5",
+            "textSecondary": "#5c5c5c",
+            "textSecondaryDark": "#9c9c9c",
+            "muted": "#f0f0f0",
+            "mutedDark": "#161616",
+            "input": "#e4e4e4",
+            "inputDark": "#2e2e2e",
+            "skeleton": "#ececec",
+            "skeletonDark": "#1a1a1a",
+            "charts": ["#0a0a0a", "#5e5e5e", "#9c9c9c", "#333333", "#7a7a7a", "#c4c4c4"],
+            "chartsDark": ["#ffffff", "#b0b0b0", "#7a7a7a", "#e0e0e0", "#949494", "#565656"]
+        }
+    },
+    "isDefault": false,
+    "contentContract": {
+        "$comment": "The pack's content slots, as data (packs/README.md 'Content contract'). The saas pack is manifest-driven: its marketing content lives in repobot.project.json's inline landing configs (marketing.pages[...].landing), not a TS content module, so slot paths read into the page content blocks. Product media slots expect real dashboard captures processed by `npm run image -- responsive` into web/app/public/saas/ — the hero capture and bento crops are what make the page read as a real product (the fragments slot feeds the panel-collage hero when a remix rolls back to it).",
+        "module": "repobot.project.json",
+        "slots": {
+            "siteName": { "kind": "text" },
+            "home.hero.headline": { "kind": "text" },
+            "home.hero.subheadline": { "kind": "text" },
+            "home.hero.media": { "kind": "media" },
+            "home.hero.fragments": { "kind": "media[]", "min": 2 },
+            "home.socialProof.items": { "kind": "text[]", "min": 5 },
+            "home.features": {
+                "kind": "collection",
+                "min": 5,
+                "item": {
+                    "title": { "kind": "text" },
+                    "description": { "kind": "text" }
+                }
+            },
+            "home.highlights": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "headline": { "kind": "text" },
+                    "body": { "kind": "text" },
+                    "media": { "kind": "media" }
+                }
+            },
+            "home.quotes": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "quote": { "kind": "text" },
+                    "author": { "kind": "text" },
+                    "title": { "kind": "text" }
+                }
+            },
+            "home.faq": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "question": { "kind": "text" },
+                    "answer": { "kind": "text" }
+                }
+            },
+            "features.hero.headline": { "kind": "text" },
+            "features.hero.subheadline": { "kind": "text" },
+            "features.items": {
+                "kind": "collection",
+                "min": 6,
+                "item": {
+                    "title": { "kind": "text" },
+                    "description": { "kind": "text" }
+                }
+            },
+            "features.highlights": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "headline": { "kind": "text" },
+                    "body": { "kind": "text" },
+                    "media": { "kind": "media" }
+                }
+            },
+            "pricing.metrics": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "value": { "kind": "text" },
+                    "label": { "kind": "text" }
+                }
+            },
+            "pricing.tiers": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "name": { "kind": "text" },
+                    "monthly": { "kind": "number" },
+                    "description": { "kind": "text" },
+                    "features": { "kind": "text[]", "min": 3 }
+                }
+            },
+            "pricing.faq": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "question": { "kind": "text" },
+                    "answer": { "kind": "text" }
+                }
+            }
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware marketing pages: routes maps each marketing route to the manifest page id its inline config lives under (marketing.pages in repobot.project.json, rendered by SitePage). pages seeds each page's layout skeleton — section ids follow the default id rule (the section type), matching how the layout document identifies inline-config sections. style rides the overlay the same way photography's does. The preset is monolith (the severe register: strict black and white, monumental statement type with stroke-only accent words, hairline frames, the capability ticker) — the edge-of-the-field voice.",
+        "style": { "preset": "monolith" },
+        "routes": {
+            "/": "home",
+            "/features": "features",
+            "/pricing": "pricing"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "social-proof",
+                        "type": "social-proof",
+                        "variant": "ticker"
+                    },
+                    {
+                        "id": "feature-grid",
+                        "type": "feature-grid",
+                        "variant": "bento"
+                    },
+                    {
+                        "id": "highlights",
+                        "type": "highlights",
+                        "variant": "alternating"
+                    },
+                    {
+                        "id": "testimonials",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "cta-banner",
+                        "type": "cta-banner",
+                        "variant": "full-bleed"
+                    }
+                ]
+            },
+            "features": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "feature-grid",
+                        "type": "feature-grid",
+                        "variant": "icon-list"
+                    },
+                    {
+                        "id": "highlights",
+                        "type": "highlights",
+                        "variant": "alternating"
+                    },
+                    {
+                        "id": "cta-banner",
+                        "type": "cta-banner",
+                        "variant": "full-bleed"
+                    }
+                ]
+            },
+            "pricing": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "social-proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "pricing",
+                        "type": "pricing",
+                        "variant": "tiers"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "cta-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            }
+        }
+    }
+}

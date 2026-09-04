@@ -1,0 +1,464 @@
+{
+    "key": "care",
+    "templateKey": "repobot-care",
+    "title": "Primary Care",
+    "description": "A primary-care practice's site with real online appointment booking: providers with credentials and portraits, services, an in-network insurance strip, hours and a map-ready address, owner-curated patient reviews, a new-patient guide, and a booking page that projects each provider's actual weekly availability into concrete bookable times (new patient 45 min, follow-up 15, physical 30) — capacity-1 slots on the managed booking domain, double-booking impossible. The booking form is deliberately clinically empty: name, contact, visit type, new/returning — no symptoms, no health questions; patient health information never touches the site. Five pages, all facts in one content file, art-directed in the luxe-light register worn in the practice's own calm teal.",
+    "marketingExampleTitle": "Primary care practice site",
+    "category": "healthcare",
+    "homePath": "/",
+    "previewPath": "/care",
+    "homeViewDir": "web/app/src/View/Care",
+    "base": "landing",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false,
+    "theme": {
+        "$comment": "The luxe-light register worn in the practice's own calm teal: mode light opens the site in its native daylight appearance, and the teal rides as the project brand so app-side surfaces wear the same register as the marketing pages instead of the kernel default blue. The marketing pages resolve brand over preset accent, so the overlay re-inks luxe-light's fintech blue into the clinic's teal on pages and app alike.",
+        "mode": "light",
+        "brand": {
+            "primary": "#0f766e",
+            "primaryDark": "#2dd4bf"
+        }
+    },
+    "contentContract": {
+        "$comment": "The pack's content slots, as data (packs/README.md 'Content contract'). The two structured exports are contract-shaped on purpose: codePractice and codeAppointments are the code fallbacks for the business-content contract's practice and appointments domains, so a composer binds the same shapes the platform's Manage editors write. Hours and availability windows are NUMBERS (weekday index and minutes since midnight) that the hours badge and the slot projection compute from — a composer must bind them as numbers, never prose. The booking surface derived from codeAppointments is clinically empty by design; nothing in these slots may carry clinical content.",
+        "module": "web/app/src/View/Care/content.ts",
+        "slots": {
+            "practice.name": { "kind": "text" },
+            "practice.tagline": { "kind": "text" },
+            "practice.city": { "kind": "text" },
+            "practice.address": { "kind": "text" },
+            "practice.phone": { "kind": "text" },
+            "practice.email": { "kind": "text" },
+            "clinicHours": {
+                "kind": "collection",
+                "min": 5,
+                "item": {
+                    "day": { "kind": "number" },
+                    "open": { "kind": "number" },
+                    "close": { "kind": "number" }
+                }
+            },
+            "codePractice.providers": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "providerId": { "kind": "text" },
+                    "name": { "kind": "text" },
+                    "credentials": { "kind": "text" },
+                    "role": { "kind": "text" },
+                    "bio": { "kind": "text" }
+                }
+            },
+            "codePractice.services": {
+                "kind": "collection",
+                "min": 6,
+                "item": {
+                    "name": { "kind": "text" },
+                    "description": { "kind": "text" }
+                }
+            },
+            "codePractice.insurance": { "kind": "text[]", "min": 6 },
+            "codePractice.reviews": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "quote": { "kind": "text" },
+                    "name": { "kind": "text" },
+                    "detail": { "kind": "text" }
+                }
+            },
+            "codePractice.newPatient": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "title": { "kind": "text" },
+                    "body": { "kind": "text" }
+                }
+            },
+            "codeAppointments.types": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "typeId": { "kind": "text" },
+                    "name": { "kind": "text" },
+                    "durationMinutes": { "kind": "number" },
+                    "description": { "kind": "text" }
+                }
+            },
+            "codeAppointments.providers": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "providerId": { "kind": "text" },
+                    "name": { "kind": "text" },
+                    "windows": {
+                        "kind": "collection",
+                        "min": 1,
+                        "item": {
+                            "day": { "kind": "number" },
+                            "start": { "kind": "number" },
+                            "end": { "kind": "number" }
+                        }
+                    }
+                }
+            },
+            "providerPhotos": { "kind": "media[]", "min": 3 },
+            "home.headline": { "kind": "text" },
+            "home.subheadline": { "kind": "text" },
+            "home.hero": { "kind": "media" },
+            "story.headline": { "kind": "text" },
+            "story.paragraphs": { "kind": "text[]", "min": 2 },
+            "story.image": { "kind": "media" },
+            "booking.headline": { "kind": "text" },
+            "booking.intro": { "kind": "text" },
+            "booking.privacyNote": { "kind": "text" }
+        }
+    },
+    "content": {
+        "$comment": "Business-content contract seed, merged over repobot.content.json at compose (the same overlay path as landing/theme). The practice domain mirrors content.ts codePractice section for section and the appointments domain mirrors codeAppointments entry for entry (the seed-fidelity tests pin both), so the Manage practice editor and provider calendar open on exactly the facts the site already shows, and the platform projects exactly the capacity-1 slots the sandbox simulation offers. The appointments seed is booking mode 2's input: the platform generates a booking_session per provider x window x visit type occurrence, capacity 1, with the provider-wide overlap lock making double-booking impossible.",
+        "practice": {
+            "providers": [
+                {
+                    "providerId": "dr-mercer",
+                    "name": "Dr. June Mercer",
+                    "credentials": "MD",
+                    "role": "Family medicine · Founder",
+                    "bio": "Twenty-two years of family medicine, the last eleven on Alder Street. June opened the practice around one rule: appointments start on time and end when you're done. She sees every age and keeps a soft spot for stubborn diagnoses."
+                },
+                {
+                    "providerId": "dr-okonkwo",
+                    "name": "Dr. Daniel Okonkwo",
+                    "credentials": "MD",
+                    "role": "Family medicine",
+                    "bio": "Board-certified in family medicine with a focus on chronic conditions — diabetes, blood pressure, asthma. Daniel is the provider who draws the diagram until the plan makes sense to you, not just to him."
+                },
+                {
+                    "providerId": "reyes-pa",
+                    "name": "Alma Reyes",
+                    "credentials": "PA-C",
+                    "role": "Physician assistant",
+                    "bio": "Alma runs most of the clinic's same-day schedule: ear infections, sprains, the flu that couldn't wait. Ten years of urgent-care experience, and the calmest room in the building."
+                },
+                {
+                    "providerId": "chen-np",
+                    "name": "Elliot Chen",
+                    "credentials": "FNP-C",
+                    "role": "Nurse practitioner",
+                    "bio": "Elliot leads annual physicals and preventive care, and keeps the clinic's Saturday hours. Patients describe him as the reason they finally stopped skipping their yearly visit."
+                }
+            ],
+            "services": [
+                {
+                    "name": "Annual physicals",
+                    "description": "A yearly preventive visit that doesn't feel like a formality: screenings, labs, and time for the conversation."
+                },
+                {
+                    "name": "Same-day sick visits",
+                    "description": "Call before 10 AM and you'll usually be seen the same day — by a provider who can read your chart, not a stranger."
+                },
+                {
+                    "name": "Chronic condition care",
+                    "description": "Diabetes, blood pressure, asthma, thyroid — steady management with one provider who tracks the whole picture."
+                },
+                {
+                    "name": "Women's health",
+                    "description": "Well-woman exams, contraception counseling, and menopause care, handled in-house by your own provider."
+                },
+                {
+                    "name": "Immunizations",
+                    "description": "Flu, shingles, tetanus, and travel vaccines — on the schedule or as a walk-in nurse visit."
+                },
+                {
+                    "name": "School & sports physicals",
+                    "description": "Forms signed on the spot. Book a quick visit before the season starts, not the night the form is due."
+                },
+                {
+                    "name": "On-site lab draws",
+                    "description": "Blood work drawn here at your visit — no second trip across town, results reviewed by your provider."
+                },
+                {
+                    "name": "Telehealth follow-ups",
+                    "description": "Follow-up visits and medication check-ins by video, when the exam room adds nothing but the drive."
+                }
+            ],
+            "insurance": [
+                "Aetna",
+                "Blue Cross Blue Shield",
+                "Cigna",
+                "UnitedHealthcare",
+                "Humana",
+                "Medicare",
+                "Premera Blue Cross",
+                "Regence",
+                "Kaiser Permanente",
+                "Apple Health (Medicaid)"
+            ],
+            "locations": [
+                {
+                    "locationId": "alder-street",
+                    "label": "Alder Street clinic",
+                    "address": "1204 Alder Street, Suite 210, Bellingham, WA 98225",
+                    "phone": "(360) 555-0175",
+                    "hours": [
+                        { "day": 1, "open": 480, "close": 1020 },
+                        { "day": 2, "open": 480, "close": 1020 },
+                        { "day": 3, "open": 480, "close": 1020 },
+                        { "day": 4, "open": 480, "close": 1020 },
+                        { "day": 5, "open": 480, "close": 1020 },
+                        { "day": 6, "open": 540, "close": 780 }
+                    ]
+                }
+            ],
+            "reviews": [
+                {
+                    "quote": "Dr. Mercer has looked after three generations of this family. She remembers my mother's knee and my son's asthma without opening the chart.",
+                    "name": "Carol W.",
+                    "detail": "Patient since 2013"
+                },
+                {
+                    "quote": "Called at 8 AM with a feverish kid, saw Alma at 10:15, prescription filled by noon. That's why we stay.",
+                    "name": "Dev P.",
+                    "detail": "Patient since 2020"
+                },
+                {
+                    "quote": "Dr. Okonkwo actually explained my A1C instead of just handing me a printout. First time a number ever made sense.",
+                    "name": "Marisol T.",
+                    "detail": "Patient since 2018"
+                },
+                {
+                    "quote": "Booked online on a Tuesday night, physical with Elliot that Saturday. The forms took five minutes on my phone.",
+                    "name": "Aaron K.",
+                    "detail": "New patient, 2025"
+                }
+            ],
+            "newPatient": [
+                {
+                    "title": "Before your first visit",
+                    "body": "Book online, then finish your intake forms from the confirmation email — about five minutes on your phone, no clipboard in the waiting room."
+                },
+                {
+                    "title": "What to bring",
+                    "body": "A photo ID, your insurance card, and your medication list — or just the bottles. We'll copy what we need at the desk."
+                },
+                {
+                    "title": "Your first visit",
+                    "body": "New-patient visits run 45 minutes: your history, a full exam, and a plan you helped write. Bring questions; they're the point."
+                },
+                {
+                    "title": "Records & refills",
+                    "body": "Sign one release and we'll request your records from your previous clinic. Existing prescriptions carry over without a gap."
+                }
+            ]
+        },
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "new-patient",
+                    "name": "New patient visit",
+                    "durationMinutes": 45,
+                    "description": "A full first visit: your history, an exam, and a plan."
+                },
+                {
+                    "typeId": "follow-up",
+                    "name": "Follow-up visit",
+                    "durationMinutes": 15,
+                    "description": "A focused check-in on something we're already treating."
+                },
+                {
+                    "typeId": "annual-physical",
+                    "name": "Annual physical",
+                    "durationMinutes": 30,
+                    "description": "Your yearly preventive visit — screenings, labs, and the conversation."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "dr-mercer",
+                    "name": "Dr. June Mercer",
+                    "windows": [
+                        { "day": 1, "start": 540, "end": 720 },
+                        { "day": 3, "start": 540, "end": 720 },
+                        { "day": 4, "start": 780, "end": 960 }
+                    ]
+                },
+                {
+                    "providerId": "dr-okonkwo",
+                    "name": "Dr. Daniel Okonkwo",
+                    "windows": [
+                        { "day": 2, "start": 540, "end": 720 },
+                        { "day": 4, "start": 540, "end": 720 },
+                        { "day": 5, "start": 780, "end": 960 }
+                    ]
+                },
+                {
+                    "providerId": "reyes-pa",
+                    "name": "Alma Reyes, PA-C",
+                    "windows": [
+                        { "day": 1, "start": 780, "end": 960 },
+                        { "day": 3, "start": 780, "end": 960 },
+                        { "day": 5, "start": 540, "end": 720 }
+                    ]
+                },
+                {
+                    "providerId": "chen-np",
+                    "name": "Elliot Chen, FNP",
+                    "windows": [
+                        { "day": 2, "start": 780, "end": 960 },
+                        { "day": 6, "start": 540, "end": 720 }
+                    ]
+                }
+            ]
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (web/app/src/View/Care/CarePage.tsx, useSitePageConfig). pages seeds each page's layout skeleton — ids match careLanding.ts; the platform's structural editor edits these. The preset is luxe-light (the polished light register: near-white ground, deep ink type, hairline rules, crisp two-layer elevation), worn in the practice's teal via the theme brand — calm and credible, deliberately apart from chalk's training floor and monolith's monumental statement. The services page routes at /what-we-treat because /services is the services pack's preview route, which every checkout keeps.",
+        "style": {
+            "preset": "luxe-light"
+        },
+        "routes": {
+            "/": "home",
+            "/providers": "providers",
+            "/what-we-treat": "services",
+            "/new-patients": "new-patients",
+            "/book": "book"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "split-media"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "services",
+                        "type": "card-grid",
+                        "variant": "3up"
+                    },
+                    {
+                        "id": "providers",
+                        "type": "team",
+                        "variant": "portraits"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "providers": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "providers",
+                        "type": "team",
+                        "variant": "portraits"
+                    },
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "card-grid",
+                        "variant": "4up"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "new-patients": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "first-visit",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "how",
+                        "type": "steps",
+                        "variant": "numbered-cards"
+                    },
+                    {
+                        "id": "privacy",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    }
+                ]
+            }
+        }
+    }
+}

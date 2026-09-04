@@ -1,0 +1,108 @@
+<section class="featured-collection">
+  <h2 class="section-heading">{{ section.settings.title }}</h2>
+  <div class="product-grid">
+    {% assign collection = collections[section.settings.collection] %}
+    {% if collection.products.size > 0 %}
+      {% for product in collection.products limit: section.settings.limit %}
+        <a class="product-card" href="{{ product.url }}">
+          {% if product.featured_image %}
+            <img
+              src="{{ product.featured_image | image_url: width: 480 }}"
+              alt="{{ product.featured_image.alt | escape }}"
+              loading="lazy"
+              width="480"
+              height="{{ 480 | divided_by: product.featured_image.aspect_ratio | ceil }}"
+            >
+          {% endif %}
+          <h3>{{ product.title }}</h3>
+          {% assign material_line = '' %}
+          {% for tag in product.tags %}
+            {% assign tag_down = tag | downcase %}
+            {% if tag_down contains 'material:' or tag_down contains 'finish:' %}
+              {% assign tag_value = tag | split: ':' | last | strip %}
+              {% if material_line == '' %}
+                {% assign material_line = tag_value %}
+              {% else %}
+                {% assign material_line = material_line | append: ' · ' | append: tag_value %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+          {% if material_line != blank %}
+            <p class="product-card__material">{{ material_line }}</p>
+          {% endif %}
+          {% render 'price', product: product %}
+        </a>
+      {% endfor %}
+    {% else %}
+      {%- comment -%}
+        Onboarding demo cards: shown until a collection with products is
+        bound, so a fresh store still previews like the finished thing.
+        Imagery ships with the theme; copy mirrors the demo catalog.
+      {%- endcomment -%}
+      {% for demo_index in (1..3) %}
+        {% case demo_index %}
+          {% when 1 %}
+            {% assign demo_image = 'demo-side-table.jpg' %}
+            {% assign demo_title = 'sections.featured_collection.demo_table_title' %}
+            {% assign demo_material = 'sections.featured_collection.demo_table_material' %}
+            {% assign demo_price = 69500 %}
+          {% when 2 %}
+            {% assign demo_image = 'demo-lounge-chair.jpg' %}
+            {% assign demo_title = 'sections.featured_collection.demo_chair_title' %}
+            {% assign demo_material = 'sections.featured_collection.demo_chair_material' %}
+            {% assign demo_price = 149500 %}
+          {% else %}
+            {% assign demo_image = 'demo-floor-lamp.jpg' %}
+            {% assign demo_title = 'sections.featured_collection.demo_lamp_title' %}
+            {% assign demo_material = 'sections.featured_collection.demo_lamp_material' %}
+            {% assign demo_price = 39500 %}
+        {% endcase %}
+        <a class="product-card" href="{{ routes.all_products_collection_url }}">
+          <img
+            src="{{ demo_image | asset_url }}"
+            alt="{{ demo_title | t }}"
+            loading="lazy"
+            width="480"
+            height="480"
+          >
+          <h3>{{ demo_title | t }}</h3>
+          <p class="product-card__material">{{ demo_material | t }}</p>
+          <span class="price">{{ demo_price | money }}</span>
+        </a>
+      {% endfor %}
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Pieces that stay put"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "label": "Products to show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured collection"
+    }
+  ]
+}
+{% endschema %}

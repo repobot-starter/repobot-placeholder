@@ -1,0 +1,62 @@
+{
+    "general": {
+        "meta": {
+            "tags": "Tagged \"{{ tags }}\"",
+            "page": "Page {{ page }}"
+        }
+    },
+    "sections": {
+        "header": {
+            "cart": "Cart",
+            "nav_shop": "Shop",
+            "nav_subscribe": "Subscribe",
+            "nav_about": "About"
+        },
+        "footer": {
+            "tagline": "Roasted Tuesdays. At your door by the weekend.",
+            "powered_by": "Powered by a Repobot starter theme."
+        },
+        "featured_collection": {
+            "shop_cta": "Shop",
+            "demo_light_title": "Ethiopia Yirgacheffe",
+            "demo_light_notes": "Jasmine · bergamot · honey",
+            "demo_medium_title": "Colombia Huila",
+            "demo_medium_notes": "Red apple · caramel · clean cup",
+            "demo_dark_title": "Midnight Ember",
+            "demo_dark_notes": "Molasses · toasted almond · cedar"
+        },
+        "collection": {
+            "empty": "No products in this collection yet."
+        },
+        "cart": {
+            "title": "Your cart",
+            "quantity": "Quantity",
+            "total": "Total",
+            "update": "Update",
+            "checkout": "Check out",
+            "empty": "Your cart is empty.",
+            "continue_shopping": "Continue shopping"
+        },
+        "not_found": {
+            "title": "Page not found",
+            "body": "The page you were looking for doesn't exist.",
+            "back_home": "Back to home"
+        }
+    },
+    "products": {
+        "product": {
+            "add_to_cart": "Add to cart",
+            "sold_out": "Sold out",
+            "tasting_notes": {
+                "aroma": "Aroma",
+                "body": "Body",
+                "finish": "Finish"
+            },
+            "details": {
+                "origin": "Origin",
+                "altitude": "Altitude",
+                "process": "Process"
+            }
+        }
+    }
+}

@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>GraphQLPreview check</title>
+  </head>
+  <body>
+    <pre id="log">loading wasm…</pre>
+    <script type="importmap">
+      {
+        "imports": {
+          "@bjorn3/browser_wasi_shim": "../../web/node_modules/@bjorn3/browser_wasi_shim/dist/index.js"
+        }
+      }
+    </script>
+    <script type="module">
+      // Mirror console output into the page so the result is visible without
+      // devtools; the puppeteer harness reads the console directly.
+      const log = document.getElementById("log");
+      const original = console.log.bind(console);
+      console.log = (...args) => {
+        log.textContent += "\n" + args.join(" ");
+        original(...args);
+      };
+      import { init } from "../.build/plugins/PackageToJS/outputs/Package/index.js";
+      await init();
+    </script>
+  </body>
+</html>

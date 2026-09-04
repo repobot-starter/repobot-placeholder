@@ -1,0 +1,1237 @@
+<!doctype html>
+<!-- Template Studio: served by the dev-only middleware in templateStudio.ts
+     at /__studio. Deliberately dependency-free (inline CSS/JS, no framework)
+     so it adds nothing to the app's module graph and never breaks with it.
+
+     The sidebar is a copy of the app's template picker (DesignSidebar.tsx's
+     Template section): a category stack of compact art cards, a category's
+     template rows, and a detail flyout beside the sidebar whose one button
+     activates the pack. Data comes from /__studio/api/shelf — the platform
+     checkout's own templateBrowseCategories.ts + templateCatalog.ts — so
+     categories, art, names, and copy validate against what the app ships.
+     The stage on the right is always the live preview; with no template
+     active the blank pack's placeholder page is what shows, like the app. -->
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Template Studio</title>
+        <style>
+            :root {
+                /* Studio palette, mapped onto the app's --ui-* roles. */
+                --bg: #0d1117;
+                --panel: #161b22;
+                --panel-2: #1c2330;
+                --border: #2d333b;
+                --text: #e6edf3;
+                --muted: #8b949e;
+                --accent: #58a6ff;
+                --accent-text: #0b1220;
+                --accent-soft: rgba(88, 166, 255, 0.15);
+                --warn: #d29922;
+                --ok: #3fb950;
+                --danger: #f85149;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+                font-family:
+                    ui-sans-serif,
+                    system-ui,
+                    -apple-system,
+                    "Segoe UI",
+                    Roboto,
+                    sans-serif;
+                background: var(--bg);
+                color: var(--text);
+                display: flex;
+                height: 100vh;
+                overflow: hidden;
+                font-size: 14px;
+            }
+
+            /* ---- Sidebar: the app's Design-sidebar picker chrome ---- */
+            aside.picker {
+                width: 360px;
+                min-width: 360px;
+                background: var(--panel);
+                border-right: 1px solid var(--border);
+                display: flex;
+                flex-direction: column;
+                min-height: 0;
+            }
+            body.side-collapsed aside.picker,
+            body.side-collapsed aside.detail {
+                display: none;
+            }
+            .picker-header {
+                height: 48px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 8px;
+                padding: 0 14px;
+                border-bottom: 1px solid var(--border);
+                flex-shrink: 0;
+                min-width: 0;
+            }
+            .picker-header .lead {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                min-width: 0;
+            }
+            .picker-title {
+                font-size: 13px;
+                font-weight: 600;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .back-button {
+                border: none;
+                background: transparent;
+                color: var(--muted);
+                cursor: pointer;
+                padding: 4px;
+                margin-left: -6px;
+                display: none;
+                font: inherit;
+                font-size: 15px;
+                line-height: 1;
+            }
+            .back-button.shown {
+                display: inline-flex;
+            }
+            .back-button:hover {
+                color: var(--text);
+            }
+            .picker-status {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                font-size: 11px;
+                color: var(--muted);
+                white-space: nowrap;
+            }
+            .dot {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                display: inline-block;
+                flex: none;
+            }
+            .dot.ok {
+                background: var(--ok);
+            }
+            .dot.down {
+                background: var(--warn);
+            }
+            .picker-body {
+                flex: 1;
+                min-height: 0;
+                overflow-y: auto;
+                padding: 12px 14px 16px;
+                display: flex;
+                flex-direction: column;
+                gap: 14px;
+            }
+            .hint {
+                margin: 0;
+                font-size: 13px;
+                color: var(--muted);
+                line-height: 1.5;
+            }
+            .side-footer {
+                border-top: 1px solid var(--border);
+                padding: 10px 14px;
+            }
+            .side-footer button {
+                width: 100%;
+                background: var(--panel-2);
+                border: 1px solid var(--border);
+                color: var(--muted);
+                border-radius: 6px;
+                padding: 7px;
+                cursor: pointer;
+                font: inherit;
+                font-size: 12px;
+            }
+            .side-footer button:hover {
+                color: var(--text);
+                border-color: var(--muted);
+            }
+
+            /* ---- Level 1: the category stack (compact art cards) ---- */
+            .category-list {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+            .category-card {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 8px;
+                border-radius: 12px;
+                border: 1px solid var(--border);
+                background: var(--panel-2);
+                color: var(--text);
+                cursor: pointer;
+                text-align: left;
+                width: 100%;
+                overflow: hidden;
+                font: inherit;
+            }
+            .category-card:hover {
+                border-color: var(--muted);
+            }
+            .category-art {
+                width: 88px;
+                height: 58px;
+                border-radius: 8px;
+                display: block;
+                overflow: hidden;
+                flex-shrink: 0;
+                border: 1px solid var(--border);
+            }
+            .category-art img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+            .category-meta {
+                display: grid;
+                gap: 3px;
+                min-width: 0;
+            }
+            .option-name {
+                font-size: 13px;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                min-width: 0;
+            }
+            .option-name .label {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            .option-desc {
+                margin: 0;
+                font-size: 11px;
+                color: var(--muted);
+                line-height: 1.4;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+            .badge {
+                font-size: 10px;
+                padding: 1px 7px;
+                border-radius: 999px;
+                border: 1px solid var(--border);
+                color: var(--muted);
+                white-space: nowrap;
+                flex: none;
+            }
+            .badge.warn {
+                color: var(--warn);
+                border-color: var(--warn);
+            }
+
+            /* ---- Level 2: a category's template option rows ---- */
+            .option-row {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                padding: 8px;
+                border-radius: 10px;
+                border: 1px solid var(--border);
+                background: var(--panel-2);
+                color: var(--text);
+                cursor: pointer;
+                text-align: left;
+                width: 100%;
+                font: inherit;
+            }
+            .option-row:hover {
+                border-color: var(--muted);
+            }
+            .option-row.selected {
+                border-color: var(--accent);
+            }
+            .option-thumb {
+                width: 64px;
+                height: 40px;
+                border-radius: 6px;
+                object-fit: cover;
+                border: 1px solid var(--border);
+                flex-shrink: 0;
+                background: var(--bg);
+            }
+
+            /* ---- The detail flyout beside the sidebar ---- */
+            aside.detail {
+                width: 460px;
+                min-width: 460px;
+                max-width: min(45vw, 560px);
+                background: var(--panel);
+                border-right: 1px solid var(--border);
+                display: none;
+                flex-direction: column;
+                min-height: 0;
+            }
+            aside.detail.open {
+                display: flex;
+            }
+            .detail-scroll {
+                flex: 1;
+                min-height: 0;
+                overflow-y: auto;
+            }
+            .detail-hero {
+                box-sizing: border-box;
+                width: calc(100% - 28px);
+                margin: 12px 14px 0;
+                aspect-ratio: 16 / 10;
+                object-fit: cover;
+                object-position: 50% 78%;
+                border-radius: 10px;
+                border: 1px solid var(--border);
+                background: var(--panel-2);
+                display: block;
+            }
+            .detail-body {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                padding: 12px 14px 16px;
+            }
+            .detail-title-row {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                margin-top: 2px;
+            }
+            .detail-name {
+                font-size: 17px;
+                font-weight: 650;
+                line-height: 1.25;
+            }
+            .detail-tagline {
+                margin: 0;
+                font-size: 13px;
+                font-weight: 500;
+                color: var(--accent);
+                line-height: 1.4;
+            }
+            .detail-desc {
+                margin: 0;
+                font-size: 13px;
+                color: var(--muted);
+                line-height: 1.55;
+            }
+            .detail-section-title {
+                margin: 6px 0 0;
+                font-size: 11px;
+                font-weight: 650;
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+                color: var(--muted);
+            }
+            .detail-list {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+            .detail-list li {
+                display: flex;
+                align-items: flex-start;
+                gap: 8px;
+                font-size: 13px;
+                line-height: 1.5;
+            }
+            .detail-check {
+                color: var(--accent);
+                flex-shrink: 0;
+                margin-top: 1px;
+            }
+            .detail-idea-dot {
+                width: 5px;
+                height: 5px;
+                border-radius: 999px;
+                background: var(--muted);
+                flex-shrink: 0;
+                margin-top: 8px;
+            }
+            .detail-footer {
+                flex-shrink: 0;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                padding: 10px 14px 14px;
+                border-top: 1px solid var(--border);
+            }
+            .install-button {
+                height: 38px;
+                width: 100%;
+                border-radius: 999px;
+                border: 0;
+                background: var(--accent);
+                color: var(--accent-text);
+                font-size: 13px;
+                font-weight: 600;
+                cursor: pointer;
+                font-family: inherit;
+            }
+            .install-button.parked {
+                cursor: default;
+                opacity: 0.6;
+            }
+            .detail-footnote {
+                margin: 0;
+                font-size: 11px;
+                color: var(--muted);
+                line-height: 1.5;
+                text-align: center;
+            }
+            .close-button {
+                border: none;
+                background: transparent;
+                color: var(--muted);
+                cursor: pointer;
+                padding: 4px;
+                display: inline-flex;
+                font: inherit;
+                font-size: 14px;
+                line-height: 1;
+            }
+            .close-button:hover {
+                color: var(--text);
+            }
+
+            /* ---- Fallback flat pack list (no platform checkout) ---- */
+            .group-title {
+                padding: 6px 0 2px;
+                font-size: 11px;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                color: var(--muted);
+            }
+            .pack {
+                width: 100%;
+                text-align: left;
+                background: none;
+                border: none;
+                color: var(--text);
+                padding: 8px 4px;
+                cursor: pointer;
+                display: block;
+                border-left: 2px solid transparent;
+                font: inherit;
+            }
+            .pack:hover {
+                background: var(--panel-2);
+            }
+            .pack.active {
+                background: var(--accent-soft);
+                border-left-color: var(--accent);
+            }
+            .pack .row {
+                display: flex;
+                align-items: baseline;
+                gap: 8px;
+            }
+            .pack .title {
+                font-weight: 600;
+            }
+            .pack .key {
+                color: var(--muted);
+                font-size: 11px;
+                font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            }
+
+            /* ---- Main stage ---- */
+            main {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                min-width: 0;
+            }
+            .toolbar {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 10px 16px;
+                background: var(--panel);
+                border-bottom: 1px solid var(--border);
+                min-height: 52px;
+            }
+            .side-toggle {
+                background: none;
+                border: 1px solid var(--border);
+                color: var(--muted);
+                border-radius: 6px;
+                width: 28px;
+                height: 28px;
+                cursor: pointer;
+                font: inherit;
+                font-size: 13px;
+                line-height: 1;
+                flex: none;
+            }
+            .side-toggle:hover {
+                color: var(--text);
+                border-color: var(--muted);
+            }
+            .toolbar .name {
+                font-weight: 600;
+                white-space: nowrap;
+            }
+            .toolbar .desc {
+                color: var(--muted);
+                font-size: 12px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                flex: 1;
+                min-width: 0;
+            }
+            .toolbar a {
+                color: var(--accent);
+                text-decoration: none;
+                font-size: 12px;
+                white-space: nowrap;
+            }
+            .toolbar a:hover {
+                text-decoration: underline;
+            }
+            .widths {
+                display: flex;
+                gap: 2px;
+                background: var(--panel-2);
+                border: 1px solid var(--border);
+                border-radius: 6px;
+                padding: 2px;
+            }
+            .widths button {
+                background: none;
+                border: none;
+                color: var(--muted);
+                font-size: 11px;
+                padding: 4px 9px;
+                border-radius: 4px;
+                cursor: pointer;
+                font: inherit;
+            }
+            .widths button.on {
+                background: var(--accent-soft);
+                color: var(--accent);
+            }
+            .notice {
+                display: none;
+                padding: 8px 16px;
+                font-size: 12px;
+                border-bottom: 1px solid var(--border);
+            }
+            .notice.warn {
+                display: block;
+                color: var(--warn);
+                background: rgba(210, 153, 34, 0.08);
+            }
+            .notice.error {
+                display: block;
+                color: var(--danger);
+                background: rgba(248, 81, 73, 0.08);
+            }
+            .notice.info {
+                display: block;
+                color: var(--muted);
+                background: var(--panel);
+            }
+            .notice code {
+                font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+                font-size: 11px;
+            }
+            .stage {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                background: var(--bg);
+                overflow: hidden;
+                padding: 0;
+            }
+            .stage.framed {
+                padding: 16px;
+            }
+            .frame-wrap {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                min-width: 0;
+            }
+            iframe {
+                border: none;
+                width: 100%;
+                height: 100%;
+                background: #fff;
+            }
+            .stage.framed iframe {
+                border: 1px solid var(--border);
+                border-radius: 8px;
+            }
+            .spin {
+                opacity: 0.5;
+                pointer-events: none;
+            }
+        </style>
+    </head>
+    <body>
+        <aside class="picker">
+            <div class="picker-header">
+                <span class="lead">
+                    <button class="back-button" id="back-button" type="button" aria-label="Back">‹</button>
+                    <span class="picker-title" id="picker-title">Template</span>
+                </span>
+                <span class="picker-status">
+                    <span class="dot down" id="backend-dot"></span>
+                    <span id="backend-label">checking…</span>
+                </span>
+            </div>
+            <nav class="picker-body" id="picker-body"></nav>
+            <div class="side-footer">
+                <button id="reset-blank" type="button">Reset to blank (no template)</button>
+            </div>
+        </aside>
+        <aside class="detail" id="detail">
+            <div class="picker-header">
+                <span class="lead">
+                    <span class="picker-title" id="detail-title"></span>
+                </span>
+                <button
+                    class="close-button"
+                    id="detail-close"
+                    type="button"
+                    aria-label="Close template details"
+                >
+                    ✕
+                </button>
+            </div>
+            <div class="detail-scroll" id="detail-scroll"></div>
+            <div class="detail-footer">
+                <button class="install-button" id="install-button" type="button"></button>
+                <p class="detail-footnote" id="detail-footnote"></p>
+            </div>
+        </aside>
+        <main>
+            <div class="toolbar">
+                <button
+                    class="side-toggle"
+                    id="side-toggle"
+                    type="button"
+                    title="Toggle template picker"
+                    aria-label="Toggle template picker"
+                >
+                    ☰
+                </button>
+                <span class="name" id="active-name">—</span>
+                <span class="desc" id="active-desc"></span>
+                <a id="link-preview" href="/" target="_blank" rel="noopener">open in new tab ↗</a>
+                <div class="widths" id="widths">
+                    <button type="button" data-width="" class="on">Desktop</button>
+                    <button type="button" data-width="768px">Tablet</button>
+                    <button type="button" data-width="390px">Mobile</button>
+                </div>
+            </div>
+            <div class="notice" id="notice"></div>
+            <div class="notice" id="scaffold-notice"></div>
+            <div class="stage" id="stage">
+                <div class="frame-wrap" id="frame-wrap">
+                    <iframe id="preview" src="/" title="Template preview"></iframe>
+                </div>
+            </div>
+        </main>
+        <script>
+            // Fallback grouping when no platform checkout is found (the shelf
+            // is empty): the flat pack list from before the picker mirror.
+            const GROUPS = [
+                { label: "Web", bases: ["content", "landing"] },
+                { label: "Web apps", bases: ["app", "store"] },
+                { label: "Games", bases: ["game"] },
+            ]
+
+            const els = {
+                pickerBody: document.getElementById("picker-body"),
+                pickerTitle: document.getElementById("picker-title"),
+                backButton: document.getElementById("back-button"),
+                backendDot: document.getElementById("backend-dot"),
+                backendLabel: document.getElementById("backend-label"),
+                detail: document.getElementById("detail"),
+                detailTitle: document.getElementById("detail-title"),
+                detailScroll: document.getElementById("detail-scroll"),
+                detailClose: document.getElementById("detail-close"),
+                installButton: document.getElementById("install-button"),
+                detailFootnote: document.getElementById("detail-footnote"),
+                name: document.getElementById("active-name"),
+                desc: document.getElementById("active-desc"),
+                linkPreview: document.getElementById("link-preview"),
+                notice: document.getElementById("notice"),
+                scaffoldNotice: document.getElementById("scaffold-notice"),
+                iframe: document.getElementById("preview"),
+                frameWrap: document.getElementById("frame-wrap"),
+                stage: document.getElementById("stage"),
+                widths: document.getElementById("widths"),
+                resetBlank: document.getElementById("reset-blank"),
+            }
+
+            let state = { packs: [], activeKey: "", backendUp: false, scaffoldCreated: [] }
+            let activating = false
+            // Dev-only: the Shopify theme currently on the stage (its
+            // frame-stripped proxy URL in the main iframe). Cleared by any
+            // pack activation.
+            let themePreview = undefined
+            // Dev-only: local `shopify theme dev` servers (ports 9611-9615,
+            // /__studio/api/theme-dev). The standalone Shopify themes aren't
+            // packs, so their shelf rows link out to these when they're up.
+            let themeDev = { servers: [] }
+            // The app-shelf mirror (/__studio/api/shelf): the platform repo's
+            // browse categories + catalog, resolved server-side from its own
+            // source files. Empty when no platform checkout is around.
+            let shelf = { platformRoot: null, categories: [] }
+            // Picker navigation, the same two lifted states as the app's
+            // DesignSidebar: the open category (the header is the navigation
+            // spine) and the open detail's template key.
+            let pickedCategorySlug = undefined
+            let pickedTemplateKey = undefined
+
+            function packByKey(key) {
+                return state.packs.find((pack) => pack.key === key)
+            }
+
+            function shelfItems() {
+                return shelf.categories.flatMap((category) => category.items)
+            }
+
+            function pickedCategory() {
+                return shelf.categories.find((category) => category.slug === pickedCategorySlug)
+            }
+
+            function pickedItem() {
+                return shelfItems().find((item) => item.templateKey === pickedTemplateKey)
+            }
+
+            function themeDevFor(templateKey) {
+                return themeDev.servers.find((server) => server.templateKey === templateKey)
+            }
+
+            // The Shopify-stores category is the only one whose templates
+            // preview via local theme-dev servers rather than pack switches.
+            function categoryThemeDevServers(category) {
+                return category.slug === "shopify-stores" ? themeDev.servers : []
+            }
+
+            function setNotice(el, kind, text) {
+                el.className = "notice" + (kind ? " " + kind : "")
+                el.textContent = text || ""
+            }
+
+            function el(tag, className, text) {
+                const node = document.createElement(tag)
+                if (className) node.className = className
+                if (text !== undefined) node.textContent = text
+                return node
+            }
+
+            /* ---- The picker (sidebar body), two levels like the app ---- */
+
+            function renderPicker() {
+                const category = pickedCategory()
+                els.pickerTitle.textContent = category ? category.title : "Template"
+                els.backButton.classList.toggle("shown", Boolean(category))
+                els.pickerBody.textContent = ""
+                if (shelf.categories.length === 0) {
+                    renderFallbackList()
+                    return
+                }
+                if (!category) {
+                    renderCategoryStack()
+                } else {
+                    renderCategoryOptions(category)
+                }
+            }
+
+            // Level 1: the category stack — compact cards with the banner art
+            // as a left thumbnail (the app's list-row convention).
+            function renderCategoryStack() {
+                els.pickerBody.appendChild(
+                    el(
+                        "p",
+                        "hint",
+                        "Pick the kind of thing you're building — switching keeps your look, capabilities, and data.",
+                    ),
+                )
+                const list = el("div", "category-list")
+                for (const category of shelf.categories) {
+                    // A category with no approved catalog items still shows
+                    // when its templates have local theme-dev link-outs.
+                    if (category.items.length === 0 && categoryThemeDevServers(category).length === 0) {
+                        continue
+                    }
+                    list.appendChild(renderCategoryCard(category))
+                }
+                els.pickerBody.appendChild(list)
+            }
+
+            function renderCategoryCard(category) {
+                const isCurrent = category.items.some((item) => item.packKey === state.activeKey)
+                const card = el("button", "category-card")
+                card.type = "button"
+                const art = el("span", "category-art")
+                art.style.background = category.artGradient
+                if (category.imageSrc) {
+                    const img = document.createElement("img")
+                    img.src = category.imageSrc
+                    img.alt = ""
+                    img.loading = "lazy"
+                    art.appendChild(img)
+                }
+                card.appendChild(art)
+                const meta = el("span", "category-meta")
+                const name = el("span", "option-name")
+                name.appendChild(el("span", "label", category.title))
+                if (isCurrent) name.appendChild(el("span", "badge", "Current"))
+                meta.appendChild(name)
+                meta.appendChild(el("p", "option-desc", category.description))
+                card.appendChild(meta)
+                card.addEventListener("click", () => {
+                    pickedCategorySlug = category.slug
+                    pickedTemplateKey = undefined
+                    renderPicker()
+                    renderDetail()
+                })
+                return card
+            }
+
+            // Level 2: the category's template rows — thumb, name, badges,
+            // two-line description. A row opens (or swaps) the detail flyout.
+            function renderCategoryOptions(category) {
+                els.pickerBody.appendChild(el("p", "hint", category.description))
+                for (const item of category.items) {
+                    const row = el(
+                        "button",
+                        "option-row" + (item.templateKey === pickedTemplateKey ? " selected" : ""),
+                    )
+                    row.type = "button"
+                    const img = document.createElement("img")
+                    img.className = "option-thumb"
+                    img.src = item.imageSrc
+                    img.alt = ""
+                    img.loading = "lazy"
+                    row.appendChild(img)
+                    const meta = el("span", "category-meta")
+                    const name = el("span", "option-name")
+                    name.appendChild(el("span", "label", item.name))
+                    if (item.packKey === state.activeKey) {
+                        name.appendChild(el("span", "badge", "Current"))
+                    }
+                    const server = themeDevFor(item.templateKey)
+                    if (server) {
+                        name.appendChild(
+                            el("span", "badge" + (server.up ? "" : " warn"), server.up ? "live :" + server.port : "dev server down"),
+                        )
+                    } else if (!item.available) {
+                        name.appendChild(el("span", "badge warn", "not in checkout"))
+                    }
+                    meta.appendChild(name)
+                    meta.appendChild(el("p", "option-desc", item.description))
+                    row.appendChild(meta)
+                    row.addEventListener("click", () => {
+                        pickedTemplateKey = item.templateKey
+                        renderPicker()
+                        renderDetail()
+                    })
+                    els.pickerBody.appendChild(row)
+                }
+                renderThemeDevOnlyRows(category)
+            }
+
+            // Dev-only: Shopify themes that have a local theme-dev port but no
+            // approved catalog row in this category. There is no pack to
+            // activate and no detail data, so a row links straight out to the
+            // live storefront preview when its server is up.
+            function renderThemeDevOnlyRows(category) {
+                const itemKeys = new Set(category.items.map((item) => item.templateKey))
+                const extras = categoryThemeDevServers(category).filter(
+                    (server) => !itemKeys.has(server.templateKey),
+                )
+                if (extras.length === 0) return
+                els.pickerBody.appendChild(
+                    el(
+                        "p",
+                        "hint",
+                        "Kernel themes not yet approved into the app's catalog — shown here dev-only. " +
+                            "Rows open the local `shopify theme dev` preview (ports 9611-9615).",
+                    ),
+                )
+                for (const server of extras) {
+                    const row = el("button", "option-row")
+                    row.type = "button"
+                    const meta = el("span", "category-meta")
+                    const name = el("span", "option-name")
+                    name.appendChild(el("span", "label", server.title))
+                    name.appendChild(
+                        el(
+                            "span",
+                            "badge" + (server.up ? "" : " warn"),
+                            server.up ? "live :" + server.port + " ↗" : "dev server down :" + server.port,
+                        ),
+                    )
+                    meta.appendChild(name)
+                    meta.appendChild(el("p", "option-desc", server.description))
+                    row.appendChild(meta)
+                    row.addEventListener("click", () => {
+                        if (server.up) window.open(server.url, "_blank", "noopener")
+                    })
+                    els.pickerBody.appendChild(row)
+                }
+            }
+
+            // No platform checkout: the flat approved-pack list, grouped by
+            // base, so the studio still works kernel-only.
+            function renderFallbackList() {
+                els.pickerBody.appendChild(
+                    el(
+                        "p",
+                        "hint",
+                        "No platform checkout found (set .dev/platform-root to mirror the app's picker) — showing this kernel's approved packs.",
+                    ),
+                )
+                for (const group of GROUPS) {
+                    const packs = state.packs.filter(
+                        (pack) => pack.key !== "blank" && group.bases.includes(pack.base),
+                    )
+                    if (packs.length === 0) continue
+                    els.pickerBody.appendChild(el("div", "group-title", group.label))
+                    for (const pack of packs) {
+                        const button = el("button", "pack" + (pack.key === state.activeKey ? " active" : ""))
+                        button.type = "button"
+                        const row = el("div", "row")
+                        row.appendChild(el("span", "title", pack.title || pack.templateKey || pack.key))
+                        row.appendChild(el("span", "key", pack.key))
+                        button.appendChild(row)
+                        button.addEventListener("click", () => activate(pack.key))
+                        els.pickerBody.appendChild(button)
+                    }
+                }
+            }
+
+            /* ---- The detail flyout, the app's TemplateDetailFlyout ---- */
+
+            function renderDetail() {
+                const item = pickedItem()
+                els.detail.classList.toggle("open", Boolean(item))
+                if (!item) return
+                els.detailTitle.textContent = item.name
+                els.detailScroll.textContent = ""
+
+                const hero = document.createElement("img")
+                hero.className = "detail-hero"
+                hero.src = item.imageSrc
+                hero.alt = ""
+                els.detailScroll.appendChild(hero)
+
+                const body = el("div", "detail-body")
+                const titleRow = el("div", "detail-title-row")
+                titleRow.appendChild(el("span", "detail-name", item.name))
+                if (item.packKey === state.activeKey) {
+                    titleRow.appendChild(el("span", "badge", "Current"))
+                }
+                body.appendChild(titleRow)
+                if (item.tagline) body.appendChild(el("p", "detail-tagline", item.tagline))
+                body.appendChild(el("p", "detail-desc", item.description))
+
+                if (item.highlights.length > 0) {
+                    body.appendChild(el("h3", "detail-section-title", "What you can do"))
+                    const list = el("ul", "detail-list")
+                    for (const highlight of item.highlights) {
+                        const li = document.createElement("li")
+                        li.appendChild(el("span", "detail-check", "✓"))
+                        li.appendChild(el("span", "", highlight))
+                        list.appendChild(li)
+                    }
+                    body.appendChild(list)
+                }
+                if (item.ideas.length > 0) {
+                    body.appendChild(el("h3", "detail-section-title", "Great for"))
+                    const list = el("ul", "detail-list")
+                    for (const idea of item.ideas) {
+                        const li = document.createElement("li")
+                        li.appendChild(el("span", "detail-idea-dot"))
+                        li.appendChild(el("span", "", idea))
+                        list.appendChild(li)
+                    }
+                    body.appendChild(list)
+                }
+                els.detailScroll.appendChild(body)
+                renderInstallButton(item)
+            }
+
+            function renderInstallButton(item) {
+                // Shopify themes aren't packs: previewing one puts its live
+                // storefront (via the studio's frame-stripping proxy) on the
+                // stage, the same place pack activation paints.
+                const server = themeDevFor(item.templateKey)
+                if (server) {
+                    const previewing = themePreview && themePreview.key === server.key
+                    els.installButton.className =
+                        "install-button" + (server.up && !previewing ? "" : " parked")
+                    els.installButton.disabled = !server.up || previewing
+                    els.installButton.textContent = previewing
+                        ? "Previewing this theme"
+                        : server.up
+                          ? "Preview this theme"
+                          : "Theme dev server down"
+                    els.detailFootnote.textContent = server.up
+                        ? previewing
+                            ? "The live storefront is on the stage. Picking any template swaps it back."
+                            : "Paints the live storefront (`shopify theme dev`, port " +
+                              server.port +
+                              ") onto the preview stage."
+                        : "Start `shopify theme dev` for templates/" +
+                          server.key +
+                          " on port " +
+                          server.port +
+                          " to preview this theme live."
+                    els.installButton.onclick = () => {
+                        if (!server.up || previewing) return
+                        themePreview = server
+                        els.iframe.src = server.previewUrl
+                        renderToolbar()
+                        renderDetail()
+                    }
+                    return
+                }
+                const isCurrent = item.packKey === state.activeKey
+                const parked = activating || isCurrent || !item.available
+                els.installButton.className = "install-button" + (parked ? " parked" : "")
+                els.installButton.disabled = parked
+                els.installButton.textContent = activating
+                    ? "Switching…"
+                    : isCurrent
+                      ? "Your current template"
+                      : item.available
+                        ? "Use this template"
+                        : "Not in this checkout"
+                els.detailFootnote.textContent = isCurrent
+                    ? "Your preview is on this template now."
+                    : item.available
+                      ? "Switching repaints the preview on the right in a few seconds."
+                      : "The app ships this template, but its pack isn't in this kernel checkout."
+                els.installButton.onclick = () => {
+                    if (parked || !item.available) return
+                    activate(item.packKey)
+                }
+            }
+
+            /* ---- Shared chrome ---- */
+
+            function renderToolbar() {
+                if (themePreview) {
+                    els.name.textContent = themePreview.title + " · " + themePreview.key
+                    els.desc.textContent = "live Shopify storefront (`shopify theme dev`)"
+                    els.linkPreview.href = themePreview.url
+                    return
+                }
+                const active = packByKey(state.activeKey)
+                els.name.textContent = active
+                    ? (active.title || active.key) + (active.key === "blank" ? "" : " · " + active.key)
+                    : state.activeKey
+                els.desc.textContent = (active && active.description) || ""
+                els.linkPreview.href = (active && active.homePath) || "/"
+            }
+
+            function renderBackend() {
+                els.backendDot.className = "dot " + (state.backendUp ? "ok" : "down")
+                els.backendLabel.textContent = state.backendUp ? "backend up" : "backend down"
+                els.backendLabel.title = state.backendUp
+                    ? "functions emulator reachable"
+                    : "run npm run dev:up for full-stack packs"
+            }
+
+            function renderScaffoldNotice() {
+                if (state.scaffoldCreated.length === 0) {
+                    setNotice(els.scaffoldNotice, "", "")
+                    return
+                }
+                setNotice(
+                    els.scaffoldNotice,
+                    "info",
+                    "Scaffold-generated stub files in your working tree (never auto-deleted; " +
+                        "`git clean -f` removes them): " +
+                        state.scaffoldCreated.join(", "),
+                )
+            }
+
+            function render() {
+                renderPicker()
+                renderDetail()
+                renderToolbar()
+                renderBackend()
+                renderScaffoldNotice()
+            }
+
+            async function refresh() {
+                try {
+                    const response = await fetch("/__studio/api/state")
+                    const next = await response.json()
+                    const changed = JSON.stringify(next) !== JSON.stringify(state)
+                    state = next
+                    if (changed) render()
+                } catch {
+                    // Dev server restarting; the next poll picks it back up.
+                }
+            }
+
+            let themeDevJson = ""
+            async function refreshThemeDev() {
+                let text
+                try {
+                    const response = await fetch("/__studio/api/theme-dev")
+                    text = await response.text()
+                } catch {
+                    return
+                }
+                if (text === themeDevJson) return
+                themeDevJson = text
+                themeDev = JSON.parse(text)
+                renderPicker()
+                renderDetail()
+            }
+
+            let shelfJson = ""
+            async function refreshShelf() {
+                let text
+                try {
+                    const response = await fetch("/__studio/api/shelf")
+                    text = await response.text()
+                } catch {
+                    return
+                }
+                if (text === shelfJson) return
+                shelfJson = text
+                shelf = JSON.parse(text)
+                renderPicker()
+                renderDetail()
+            }
+
+            async function activate(key) {
+                if (activating) return
+                // A pack activation always reclaims the stage from a theme
+                // preview.
+                if (themePreview) {
+                    themePreview = undefined
+                    els.iframe.src = "/"
+                }
+                const pack = packByKey(key)
+                if (pack && pack.clientOnly === false && !state.backendUp) {
+                    setNotice(
+                        els.notice,
+                        "warn",
+                        "This is a full-stack template and the functions emulator is not running — " +
+                            "start the stack with `npm run dev:up` for a working preview.",
+                    )
+                } else {
+                    setNotice(els.notice, "", "")
+                }
+                activating = true
+                els.pickerBody.classList.add("spin")
+                const picked = pickedItem()
+                if (picked) renderInstallButton(picked)
+                try {
+                    const response = await fetch("/__studio/api/activate", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ key }),
+                    })
+                    const result = await response.json()
+                    if (!response.ok) {
+                        setNotice(els.notice, "error", "Activation failed: " + result.error)
+                        return
+                    }
+                    state.activeKey = key
+                    state.scaffoldCreated = result.scaffoldCreated || state.scaffoldCreated
+                    // The dev server's manifest watcher reloads the app on its
+                    // own within ~300ms; navigating after it has settled lands
+                    // the iframe on the new pack's home path.
+                    const homePath = (result.pack && result.pack.homePath) || "/"
+                    setTimeout(() => {
+                        els.iframe.src = homePath
+                    }, 700)
+                } catch (error) {
+                    setNotice(els.notice, "error", "Activation failed: " + error)
+                } finally {
+                    activating = false
+                    els.pickerBody.classList.remove("spin")
+                    render()
+                }
+            }
+
+            els.backButton.addEventListener("click", () => {
+                pickedCategorySlug = undefined
+                pickedTemplateKey = undefined
+                renderPicker()
+                renderDetail()
+            })
+
+            els.detailClose.addEventListener("click", () => {
+                pickedTemplateKey = undefined
+                renderPicker()
+                renderDetail()
+            })
+
+            els.resetBlank.addEventListener("click", () => activate("blank"))
+
+            // Sidebar collapse: more room for the preview; sticky per browser.
+            const SIDE_COLLAPSED_KEY = "studio.sideCollapsed"
+            if (localStorage.getItem(SIDE_COLLAPSED_KEY) === "1") {
+                document.body.classList.add("side-collapsed")
+            }
+            document.getElementById("side-toggle").addEventListener("click", () => {
+                const collapsed = document.body.classList.toggle("side-collapsed")
+                localStorage.setItem(SIDE_COLLAPSED_KEY, collapsed ? "1" : "0")
+            })
+
+            els.widths.addEventListener("click", (event) => {
+                const button = event.target.closest("button[data-width]")
+                if (!button) return
+                for (const sibling of els.widths.querySelectorAll("button")) {
+                    sibling.classList.toggle("on", sibling === button)
+                }
+                const width = button.dataset.width
+                els.frameWrap.style.maxWidth = width || "none"
+                els.stage.classList.toggle("framed", Boolean(width))
+            })
+
+            refresh()
+            setInterval(refresh, 3000)
+            refreshShelf()
+            // The shelf changes only when the platform's catalog files do;
+            // the server caches by mtime, so a slow poll keeps edits visible.
+            setInterval(refreshShelf, 15000)
+            refreshThemeDev()
+            // Theme-dev servers come and go with local terminals; the probe
+            // is a cheap port check, so poll it at the same slow cadence.
+            setInterval(refreshThemeDev, 10000)
+        </script>
+    </body>
+</html>

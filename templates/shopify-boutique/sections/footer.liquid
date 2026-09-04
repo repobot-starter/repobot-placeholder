@@ -1,0 +1,14 @@
+<footer class="site-footer">
+  <p class="site-footer__note">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. {{ 'sections.footer.powered_by' | t }}</p>
+  <p class="site-footer__newsletter">
+    {{ 'sections.footer.newsletter_note' | t }}
+    <a href="#newsletter">{{ 'sections.footer.newsletter_link' | t }}</a>
+  </p>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": []
+}
+{% endschema %}

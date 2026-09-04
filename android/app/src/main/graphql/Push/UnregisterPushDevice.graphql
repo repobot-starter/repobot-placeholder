@@ -1,0 +1,3 @@
+mutation UnregisterPushDevice($input: UnregisterPushDeviceInput!) {
+    unregisterPushDevice(input: $input)
+}

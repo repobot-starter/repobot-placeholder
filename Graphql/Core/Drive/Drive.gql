@@ -1,0 +1,184 @@
+# Drive domain: the owner-scoped file tree and photo library the Files and
+# Images utility packs share, built on the storage kernel (docs/storage.md).
+# Entries never carry bytes — FILE entries bind a finalized upload; the
+# browser flow is createUpload -> PUT -> finalizeUpload -> registerDriveFile.
+
+enum DriveEntryKind {
+    FILE
+    FOLDER
+}
+
+type DriveEntry {
+    id: Id!
+    name: String!
+    kind: DriveEntryKind!
+    "The parent folder id; null at the library root."
+    parentId: Id
+    starred: Boolean!
+    "Set while the entry sits in the trash; restore clears it."
+    trashedTime: Instant
+    "Photo lens: the EXIF capture time, extracted client-side at upload."
+    capturedTime: Instant
+    caption: String
+    "The bound upload; null for folders."
+    uploadId: Id
+    "The sibling WebP thumbnail's upload; null without one."
+    thumbUploadId: Id
+    "The upload's content type; null for folders."
+    contentType: String
+    "The upload's verified byte count; null for folders."
+    sizeBytes: Int
+    "A ready-to-fetch URL for the bytes (stable when shared, short-lived otherwise); null for folders."
+    fileUrl: String
+    "A ready-to-fetch URL for the thumbnail; null without one."
+    thumbUrl: String
+    "True when the underlying upload is PUBLIC (anyone with the /file URL can read it)."
+    shared: Boolean!
+    createdTime: Instant!
+    updatedTime: Instant!
+}
+
+type DriveEntryConnection {
+    nodes: [DriveEntry]!
+    pageInfo: PageInfo!
+}
+
+input DriveEntryConnectionInput {
+    filters: DriveEntryConnectionFilters
+    connection: ConnectionInput!
+}
+
+input DriveEntryConnectionFilters {
+    "Children of this folder. Overrides rootOnly."
+    folderId: Id
+    "When true (and no folderId), only entries at the library root."
+    rootOnly: Boolean
+    "Case-insensitive substring match across name and caption."
+    search: String
+    kind: DriveEntryKind
+    "True keeps only starred entries."
+    starred: Boolean
+    "True lists the trash; otherwise trashed entries are excluded."
+    inTrash: Boolean
+    "Entries that appear in this album (owner-checked)."
+    albumId: Id
+}
+
+input CreateDriveFolderInput {
+    idempotencyKey: String!
+    fields: CreateDriveFolderFields!
+}
+
+input CreateDriveFolderFields {
+    name: String!
+    "The destination folder; null/omitted creates at the library root."
+    parentId: Id
+}
+
+input RegisterDriveFileInput {
+    idempotencyKey: String!
+    fields: RegisterDriveFileFields!
+}
+
+input RegisterDriveFileFields {
+    "A finalized (READY) upload of the caller's, not yet registered."
+    uploadId: Id!
+    "The destination folder; null/omitted registers at the library root."
+    parentId: Id
+    name: String!
+    "Photo lens: the EXIF capture time the client extracted before finalize."
+    capturedTime: Instant
+    caption: String
+    "Photo lens: a sibling WebP thumbnail filed through the kernel."
+    thumbUploadId: Id
+}
+
+input RenameDriveEntryInput {
+    objectId: Id!
+    idempotencyKey: String!
+    name: String!
+}
+
+input MoveDriveEntryInput {
+    objectId: Id!
+    idempotencyKey: String!
+    "The destination folder; null moves the entry to the library root."
+    parentId: Id
+}
+
+input TrashDriveEntryInput {
+    objectId: Id!
+}
+
+input RestoreDriveEntryInput {
+    objectId: Id!
+}
+
+input DeleteDriveEntryInput {
+    objectId: Id!
+}
+
+input SetDriveEntryStarredInput {
+    objectId: Id!
+    starred: Boolean!
+}
+
+input SetDriveEntryCaptionInput {
+    objectId: Id!
+    "Null clears the caption."
+    caption: String
+}
+
+input ReplaceDriveEntryMediaInput {
+    objectId: Id!
+    idempotencyKey: String!
+    "The freshly filed replacement upload (READY, caller-owned)."
+    uploadId: Id!
+    "The replacement thumbnail; null/omitted drops the old one."
+    thumbUploadId: Id
+}
+
+input ShareDriveEntryInput {
+    objectId: Id!
+    "True flips the underlying upload PUBLIC; false back to PRIVATE."
+    shared: Boolean!
+}
+
+type DriveAlbum {
+    id: Id!
+    name: String!
+    "How many entries the album holds."
+    entryCount: Int!
+    createdTime: Instant!
+    updatedTime: Instant!
+}
+
+input CreateDriveAlbumInput {
+    idempotencyKey: String!
+    fields: CreateDriveAlbumFields!
+}
+
+input CreateDriveAlbumFields {
+    name: String!
+}
+
+input RenameDriveAlbumInput {
+    objectId: Id!
+    idempotencyKey: String!
+    name: String!
+}
+
+input DeleteDriveAlbumInput {
+    objectId: Id!
+}
+
+input AddDriveAlbumEntryInput {
+    idempotencyKey: String!
+    albumId: Id!
+    entryId: Id!
+}
+
+input RemoveDriveAlbumEntryInput {
+    albumId: Id!
+    entryId: Id!
+}

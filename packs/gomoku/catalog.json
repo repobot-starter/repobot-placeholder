@@ -1,0 +1,14 @@
+{
+    "key": "gomoku",
+    "templateKey": "repobot-gomoku",
+    "title": "Gomoku",
+    "description": "Five in a row on a 15x15 board against a three-level CPU, or a friend in hotseat.",
+    "marketingExampleTitle": "Classic gomoku",
+    "homePath": "/",
+    "previewPath": "/gomoku",
+    "homeViewDir": "web/app/src/View/Games/Gomoku",
+    "base": "game",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

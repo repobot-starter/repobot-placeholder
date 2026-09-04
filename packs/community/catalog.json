@@ -1,0 +1,217 @@
+{
+    "key": "community",
+    "templateKey": "repobot-community",
+    "title": "Community organization",
+    "description": "A neighborhood-association site in a quiet newsletter register: gallery-white pages with tracked small-caps type, program spreads with documentary photography, a calendar that splits upcoming from past by itself with a computed next-up badge, annual membership dues as flat-rate tiers, a join form, and a board roster — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Neighborhood association website",
+    "category": "community",
+    "homePath": "/",
+    "previewPath": "/community",
+    "homeViewDir": "web/app/src/View/Community",
+    "base": "landing",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false,
+    "theme": {
+        "$comment": "The atelier register's brand overlay: atelier carries no accent hue — its accent IS the ink (near-black in light mode, near-paper in dark), so CTAs render as quiet ink buttons. Setting brand to those same inks re-brands app surfaces into the register without shifting the marketing pages. Mode is light: atelier's native mode.",
+        "mode": "light",
+        "brand": { "primary": "#211f1c", "primaryDark": "#e9e7e2" }
+    },
+    "contentContract": {
+        "$comment": "The pack's content slots, as data (packs/README.md 'Content contract'). Declares what a composer (agent or tool) must bind for a generated variant of this pack to present as real: slot paths into the typed content module, their kinds, and minimums. events feeds the computed calendar (upcoming/past split, next-up badge) — its start slots are ISO local datetimes a composer must bind exactly, never prose. stats values are strings on purpose (shapes like \"$24\" and \"1974\" are typography, not arithmetic); membership tier prices are numbers because the pricing section renders them as dollar amounts. Authored alongside the module and guarded by the pack's content tests — the module satisfies the contract; the contract never drifts ahead of it.",
+        "module": "web/app/src/View/Community/content.ts",
+        "slots": {
+            "assoc.name": { "kind": "text" },
+            "assoc.fullName": { "kind": "text" },
+            "assoc.tagline": { "kind": "text" },
+            "assoc.email": { "kind": "text" },
+            "assoc.meetingLine": { "kind": "text" },
+            "home.headline": { "kind": "text" },
+            "home.subheadline": { "kind": "text" },
+            "home.hero": { "kind": "media" },
+            "home.featuredQuote.quote": { "kind": "text" },
+            "home.featuredQuote.author": { "kind": "text" },
+            "stats": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "value": { "kind": "text" },
+                    "label": { "kind": "text" }
+                }
+            },
+            "programs": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "title": { "kind": "text" },
+                    "eyebrow": { "kind": "text" },
+                    "description": { "kind": "text" },
+                    "image": { "kind": "media" }
+                }
+            },
+            "events": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "title": { "kind": "text" },
+                    "start": { "kind": "text" },
+                    "location": { "kind": "text" },
+                    "description": { "kind": "text" }
+                }
+            },
+            "membership.headline": { "kind": "text" },
+            "membership.body": { "kind": "text" },
+            "membership.tiers": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "name": { "kind": "text" },
+                    "description": { "kind": "text" }
+                }
+            },
+            "membership.steps": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "title": { "kind": "text" },
+                    "description": { "kind": "text" }
+                }
+            },
+            "board": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "name": { "kind": "text" },
+                    "role": { "kind": "text" },
+                    "bio": { "kind": "text" }
+                }
+            },
+            "about.headline": { "kind": "text" },
+            "about.body": { "kind": "text" },
+            "about.history.headline": { "kind": "text" },
+            "about.history.body": { "kind": "text" },
+            "about.history.image": { "kind": "media" },
+            "about.meetings.headline": { "kind": "text" },
+            "about.meetings.body": { "kind": "text" },
+            "about.meetings.image": { "kind": "media" }
+        }
+    },
+    "content": {
+        "$comment": "Business-content contract seed, merged over repobot.content.json at compose (the same overlay path as landing/theme — scripts/lib/pack-switch.mjs applyPackOverlays). The events domain mirrors content.ts events entry for entry (the seed-fidelity tests pin it), minus the photographs — imagery stays code-owned and the pack joins it back by slug (View/Community/calendar.ts). Upcoming vs. past and the \"Next up\" highlight stay computed at render time by the events engine wherever the facts come from.",
+        "events": {
+            "entries": [
+                {
+                    "slug": "spring-cleanup-2026",
+                    "title": "Spring park cleanup",
+                    "start": "2026-04-18T09:00",
+                    "end": "2026-04-18T12:00",
+                    "location": "Fernhill Park",
+                    "description": "Sixty neighbors, forty bags of winter, and the flower beds turned before lunch. The park stewards' biggest turnout yet."
+                },
+                {
+                    "slug": "garden-opening-2026",
+                    "title": "Garden season opening day",
+                    "start": "2026-05-02T10:00",
+                    "end": "2026-05-02T13:00",
+                    "location": "The garden",
+                    "description": "Plot assignments, a compost delivery to shovel, and the first seedling swap of the year. Every bed claimed by noon."
+                },
+                {
+                    "slug": "porch-concert-jul",
+                    "title": "Porch concert: the Alder Street duo",
+                    "start": "2026-07-18T19:00",
+                    "end": "2026-07-18T21:00",
+                    "location": "Alder Street",
+                    "description": "Guitar and upright bass from the porch steps, a hundred neighbors on the lawn, and the hat came back full — the summer's high-water mark."
+                },
+                {
+                    "slug": "block-party-2026",
+                    "title": "The Fernhill block party",
+                    "start": "2026-09-12T15:00",
+                    "end": "2026-09-12T21:00",
+                    "location": "Sycamore Street",
+                    "description": "The fifty-second annual: long tables down the centerline, every household brings a dish, the association brings the permits and the string lights. Rain date the following Saturday."
+                },
+                {
+                    "slug": "porch-concert-sep",
+                    "title": "Porch concert: closing night",
+                    "start": "2026-09-25T18:30",
+                    "end": "2026-09-25T20:30",
+                    "location": "Porch TBA",
+                    "description": "The season's last sets before the weather calls it. Bring a chair and a jacket; the hat proceeds book next summer's musicians."
+                },
+                {
+                    "slug": "fall-workday-2026",
+                    "title": "Fall planting workday",
+                    "start": "2026-10-17T09:00",
+                    "end": "2026-10-17T12:00",
+                    "location": "Fernhill Park",
+                    "description": "Twelve street trees and four hundred bulbs go in the ground before the frost. The city delivers the trees; we bring the shovels and the cider."
+                },
+                {
+                    "slug": "general-meeting-nov",
+                    "title": "General meeting: budget night",
+                    "start": "2026-11-03T19:00",
+                    "end": "2026-11-03T20:30",
+                    "location": "Grange Hall",
+                    "description": "The year's books line by line, next year's dues vote, and the floor open to any member with two minutes and an idea. Coffee's on at 6:30."
+                },
+                {
+                    "slug": "luminaria-2026",
+                    "title": "Luminaria night",
+                    "start": "2026-12-19T17:00",
+                    "end": "2026-12-19T20:00",
+                    "location": "All twelve blocks",
+                    "description": "Paper bags, sand, and a thousand candles down every sidewalk in the commons. Kits at the tool library the week before; lighting starts at dusk."
+                }
+            ]
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (web/app/src/View/Community/CommunityPage.tsx, useSitePageConfig). pages seeds each page's layout skeleton — ids match communityLanding.ts; the platform's structural editor edits these. The preset is atelier (gallery-white walls, Inter tracked uppercase, hairline rules, zero radius, near-ink accent) — the newsletter register: photography carries all the warmth, type does the art direction, and every CTA is a quiet ink button.",
+        "style": { "preset": "atelier" },
+        "routes": {
+            "/": "home",
+            "/events": "events",
+            "/join": "join",
+            "/about": "about"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "masthead-overlay" },
+                    { "id": "ledger", "type": "stats", "variant": "row" },
+                    { "id": "programs", "type": "showcase", "variant": "card-grid" },
+                    { "id": "calendar", "type": "showcase", "variant": "card-grid" },
+                    { "id": "voice", "type": "testimonials", "variant": "single-featured" },
+                    { "id": "join-banner", "type": "cta-banner", "variant": "card" }
+                ]
+            },
+            "events": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "statement" },
+                    { "id": "upcoming", "type": "showcase", "variant": "card-grid" },
+                    { "id": "past", "type": "showcase", "variant": "card-grid" },
+                    { "id": "join-banner", "type": "cta-banner", "variant": "card" }
+                ]
+            },
+            "join": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "statement" },
+                    { "id": "dues", "type": "pricing", "variant": "tiers" },
+                    { "id": "how", "type": "steps", "variant": "timeline" },
+                    { "id": "signup", "type": "lead-form", "variant": "detail-form" }
+                ]
+            },
+            "about": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "statement" },
+                    { "id": "history", "type": "content-split", "variant": "media-right" },
+                    { "id": "meetings", "type": "content-split", "variant": "media-left" },
+                    { "id": "board", "type": "team", "variant": "list" },
+                    { "id": "join-banner", "type": "cta-banner", "variant": "card" }
+                ]
+            }
+        }
+    }
+}

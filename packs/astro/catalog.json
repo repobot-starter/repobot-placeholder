@@ -1,0 +1,14 @@
+{
+    "key": "astro",
+    "templateKey": "repobot-astro",
+    "title": "Astro",
+    "description": "A neon space shooter: thrust, blast splitting asteroids, clear the sector.",
+    "marketingExampleTitle": "Neon space shooter",
+    "homePath": "/",
+    "previewPath": "/astro",
+    "homeViewDir": "web/app/src/View/Games/Astro",
+    "base": "game",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

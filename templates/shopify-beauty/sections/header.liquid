@@ -1,0 +1,59 @@
+<header class="site-header">
+  <a class="site-header__brand" href="{{ routes.root_url }}">
+    {%- if section.settings.logo != blank -%}
+      <img
+        class="site-header__logo"
+        src="{{ section.settings.logo | image_url: width: 360 }}"
+        alt="{{ section.settings.logo.alt | default: shop.name | escape }}"
+        width="180"
+        height="{{ 180 | divided_by: section.settings.logo.aspect_ratio | ceil }}"
+      >
+    {%- else -%}
+      <span class="site-header__wordmark">{{ section.settings.logo_text | default: shop.name }}</span>
+    {%- endif -%}
+  </a>
+  <nav class="site-header__nav" role="navigation">
+    {% if section.settings.menu != blank %}
+      {% for link in section.settings.menu.links %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {% endfor %}
+    {% else %}
+      {%- comment -%}
+        Fallback nav when no menu is picked: only routes that exist on any
+        store — the all-products collection and homepage section anchors.
+      {%- endcomment -%}
+      <a href="{{ routes.all_products_collection_url }}">{{ 'sections.header.nav_shop' | t }}</a>
+      <a href="{{ routes.root_url }}#routine">{{ 'sections.header.nav_routines' | t }}</a>
+      <a href="{{ routes.root_url }}#ingredients">{{ 'sections.header.nav_ingredients' | t }}</a>
+    {% endif %}
+  </nav>
+  <a class="site-header__cart" href="{{ routes.cart_url }}">
+    {{ 'sections.header.cart' | t }} ({{ cart.item_count }})
+  </a>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo text",
+      "info": "Falls back to the store name when empty.",
+      "default": "Purelune"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "info": "When empty, the header shows Shop / Routine / Ingredients."
+    }
+  ]
+}
+{% endschema %}

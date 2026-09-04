@@ -1,0 +1,32 @@
+{
+    "sections": {
+        "main": {
+            "type": "main-product",
+            "blocks": {
+                "specifications": {
+                    "type": "specifications",
+                    "settings": {
+                        "label_1": "Dimensions",
+                        "value_1": "W 210 × D 92 × H 78 cm",
+                        "label_2": "Materials",
+                        "value_2": "Solid walnut frame, wool bouclé upholstery",
+                        "label_3": "Weight",
+                        "value_3": "42 kg",
+                        "label_4": "Care",
+                        "value_4": "Vacuum weekly; blot spills — never rub"
+                    }
+                },
+                "swatches": {
+                    "type": "swatches",
+                    "settings": {
+                        "title": "Finishes & fabrics",
+                        "note": "Every wood finish and fabric we offer is a variant of this piece — pick a combination above and the price and lead time follow."
+                    }
+                }
+            },
+            "block_order": ["specifications", "swatches"],
+            "settings": {}
+        }
+    },
+    "order": ["main"]
+}
