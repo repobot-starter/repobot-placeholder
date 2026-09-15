@@ -1,0 +1,48 @@
+{
+    "key": "files",
+    "templateKey": "repobot-files",
+    "title": "Locker",
+    "description": "Cloud file storage of your own: a spec-sheet file locker where every account gets a private library — folder tree, drag-and-drop uploads (whole folders walk in), inline previews for images, PDFs, text, audio, and video, starring, trash, search, and one-click public share links that revoke as easily as they mint. Ships with a seeded demo library so the first open shows a working locker, and a clear-library action that hands it back empty. Files ride the storage kernel end to end: bytes PUT straight to signed cloud-storage URLs up to 100MB, never proxied through functions.",
+    "marketingExampleTitle": "Cloud file storage",
+    "homePath": "/",
+    "previewPath": "/files",
+    "homeViewDir": "web/app/src/View/Files",
+    "base": "app",
+    "isFeature": true,
+    "clientOnly": false,
+    "capabilities": ["AUTH", "STORAGE", "IOS", "ANDROID"],
+    "authMethods": ["email-code"],
+    "isDefault": false,
+    "theme": {
+        "$comment": "Mono-utility worn as an application, dark reading: the fund-index/dj spec-sheet register (graph paper, hairlines, Plex Mono labels) as working chrome instead of marketing, printed in reverse — light ink on a near-black ground, same darkroom family as the images pack. The register's inks ride as the project brand so kernel surfaces (login, settings) stay ink-on-ground instead of default blue. The palette carries the spec sheet's exact grounds so the AppShell chrome and the locker's panels read as one surface — its dark values are the pack's pre-AppShell art constants verbatim; the light values are the same sheet printed the right way round.",
+        "mode": "dark",
+        "character": "plain",
+        "brand": {
+            "primary": "#e6ece7",
+            "primaryDark": "#e6ece7"
+        },
+        "palette": {
+            "background": "#f4f4f1",
+            "backgroundDark": "#050505",
+            "surface": "#fbfbf9",
+            "surfaceDark": "#121212",
+            "surfaceHover": "#ebebe6",
+            "surfaceHoverDark": "#1a1a1a",
+            "border": "#d9d9d2",
+            "borderDark": "#272727",
+            "textPrimary": "#1c1c1a",
+            "textPrimaryDark": "#e8e8e4",
+            "textSecondary": "#6d6d66",
+            "textSecondaryDark": "#9a9a94",
+            "muted": "#ebebe6",
+            "mutedDark": "#1a1a1a",
+            "input": "#d9d9d2",
+            "inputDark": "#272727",
+            "skeleton": "#e6e6e0",
+            "skeletonDark": "#1a1a1a",
+            "charts": ["#1c1c1a", "#5c5c56", "#8a8a82", "#3a3a36", "#71716a", "#b0b0a8"],
+            "chartsDark": ["#e8e8e4", "#b0b0aa", "#82827c", "#cfcfc9", "#9a9a94", "#5a5a54"]
+        },
+        "shell": { "variant": "sidebar" }
+    }
+}

@@ -1,0 +1,14 @@
+---
+description: Two-layer authorization - Apollo execution gate plus per-resource service checks
+globs: firebase/functions/src/**/*.ts
+alwaysApply: false
+---
+
+# Authorization
+
+- Layer 1 (authentication) is the Apollo plugin gate in `src/Graphql/GraphqlServer.ts`: every operation requires an authenticated principal before execution starts. Never add per-operation auth by weakening the gate; public queries go in the `publicQueryRootFields` allowlist.
+- Layer 2 (authorization) lives in services, never resolvers: mutating service methods take `actingUserId` on their request object and check membership/roles up front (exemplar: `ProjectService.updateProject` → `requireProjectRole`).
+- Resolvers only translate `context.principal` into `actingUserId`, throwing `UNAUTHENTICATED` when there is no application user.
+- `UNAUTHENTICATED` = unknown caller; `PERMISSION_DENIED` = known caller, insufficient role. Never swap them.
+- New restricted domains need blackbox tests for: anonymous, non-member, insufficient role, allowed role (see `test/Project/AuthorizationTest.ts`).
+- Full guide: `docs/authorization.md`.

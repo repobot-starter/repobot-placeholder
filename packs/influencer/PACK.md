@@ -1,0 +1,34 @@
+# Pack: influencer
+
+Client-only category starter: a creator's personal-brand site at `web/app/src/View/Influencer/`. The first starter of the `creator` category — and the **flagship of BOTH creator content domains**: the link-in-bio hub is the business-content contract's `links` domain (`web/app/src/View/Landing/linksDocument.ts`) and the shoppable style gallery is its `looks` domain (`looksDocument.ts`) — the creator-family siblings of the interiors pack's projects portfolio. The demo creator is an Austin personal-style creator, but the shape fits any creator-led personal brand: the looks are the proof; the partnership inquiry is the ask.
+
+## What ships
+
+- A multi-page creator site on the landing kernel's `editorial` register (the magazine look: warm paper, serif display, hairline rules, still motion — a personal-style creator's own printed page) with a rust brand overlay:
+    - **Home** — masthead hero over the signature golden-hour street photograph; recent looks on a browsable rail (the contract's `featured` flags decide which outfits lead); the **five-platform audience row** as linkable tiles with follower counts; the top of the link hub as a "Right now" teaser (entry order — the hub's current drop leads); the audience line over a trust-metrics strip; a featured brand testimonial; a closing partnership banner
+    - **Looks** (`/looks`) — the looks domain at full strength: every outfit in a **filterable grid** whose **category chips derive from the looks themselves** (`lookCategories`) — the domain's taxonomy axis is data, so a creator minting a new shelf in Manage grows the filter row without a code change — and a **"Shop the looks" strip** that flattens every look's `productLinks` (label + https URL pairs, the domain's shoppable half) into one linkable row
+    - **Links** (`/links`) — the link-in-bio hub, the links domain at full strength: every entry a linked card in **document order** (ORDER IS THE CONTENT — the owner's arrangement is the hub), with **group chips derived from the entries' categories** (`linkCategories`), badge pills ("New", "Free", "Code NOA10"), and the domain's hard URL rule — **https only**, never http or a scriptable scheme, capped length — enforced identically by the kernel's graceful read and the platform's strict write
+    - **About** (`/about`) — the creator's portrait beside the two-rules story with trust bullets, an uppercase collaborations strip (campaigns and press), and the brand-side review grid
+    - **Contact** (`/contact`) — the partnership ask: a campaign-inquiry form (name/company/email/campaign/budget/timing/message) delivering through the platform's managed forms pipeline (`formKey: "influencer-collab"`), with the business email as copyable plain text (never a `mailto:` link)
+- **Everything renders from `content.ts`** — creator, platforms, links (with badges and categories), looks (with categories, product links, the featured flags), metrics, collaborations, testimonials, story, contact copy: one typed file; no backend, no CMS
+- **The hub and the gallery are contract-first**: `links` in `content.ts` IS the links-domain shape, and `looks` IS the looks-domain shape plus each look's code-owned photograph. The catalog seeds the same entries (looks minus images) into `repobot.content.json`, the platform's Manage surface writes the same domains, and `inventory.ts` joins photographs back **by reference via `slug`** — the contract moves words and links, never bytes. A look added in Manage renders under the signature photograph until an image is produced for its slug
+- Demo creator: a coherent fictional personal-style creator (Noa Castillo, Austin, Texas) with eight hub links across three groups, six looks across four shelves — everyday, vintage flips, evening, travel — processed through `npm run image -- responsive` into `web/app/public/influencer/`; every image ships intrinsic dimensions and a WebP `srcSet`, so pages load layout-shift-free and phones never download desktop files
+- When the pack is active it owns `/`, `/looks`, `/links`, `/about`, and `/contact`; otherwise the same pages preview under `/influencer`, `/influencer/looks`, ...
+
+Set [`../active.json`](../active.json) to `{ "key": "influencer" }` to make this pack the home surface.
+
+## Agent recipe: make it yours
+
+- Change the creator: edit `creator`, `home`, `about`, and `contact` in `web/app/src/View/Influencer/content.ts`. The handle and audience line render in the footer, the metrics strip, and the about bullets — keep them real.
+- Change the vertical: the slots are creator-agnostic. A fitness or food creator swaps the links, looks, and copy; the pages follow. The strings in `landingCopy` are the few the vertical owns — retrade those too.
+- Reshape the hub: reorder or append `links` in `content.ts` (or let the owner do it in Manage — same domain, same render path). **Order is the content** — put the current drop first. Group chips derive from each link's `category`; a badge is a short pill, never a sentence. Every URL must be https (the kernel drops anything else).
+- Reshape the looks: append to `looks` in `content.ts` (or in Manage). The filter chips derive from each look's `category` — keep the spellings consistent; a new category is a new chip, not a code change. `featured: true` puts a look on the home rail; `productLinks` (at most 8 per look, https only) land in the Shop-the-looks strip on their own.
+- Swap in real photographs: run each original through `npm run image -- responsive <file> --out-dir web/app/public/influencer --alt "..."` and paste the emitted media entry into the look's `image` slot. Never commit raw camera files into media slots.
+- Content tests guard the file: every image carries dimensions + alt text, slugs stay unique and contract-valid (both domains' parsers must accept every entry), the catalog seeds stay twins of the code exports, every URL is https, and the derived taxonomies stay non-trivial.
+
+## Non-goals for this pack
+
+- Per-look detail pages (the grid IS the gallery in this phase; a look's story lives in its caption and product links)
+- Affiliate-link tracking, analytics pixels, or shop checkouts — product links are plain external `https` links; monetization plumbing belongs to the destination platforms
+- Booking (a creator sells campaigns through the inquiry form, not calendar slots — the interiors pack is the booking exemplar)
+- Server-side state — the shipped site is fully client-side; inquiries deliver through the platform's managed forms pipeline (email + dashboard), no backend needed

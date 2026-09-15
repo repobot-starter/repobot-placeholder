@@ -1,0 +1,8 @@
+{
+    "key": "shopify-home",
+    "templateKey": "repobot-shopify-home",
+    "title": "Shopify home",
+    "description": "A home-and-furniture example store on the repobot Shopify standards: spec tables, room-scene lookbooks, and swatch-aware product cards ready to swap for a real catalog.",
+    "platform": "SHOPIFY",
+    "comment": "Standalone template (not a pack on the web kernel): a Shopify theme has its own repo shape. Published by scripts/publish-templates.sh alongside pack-composed templates."
+}

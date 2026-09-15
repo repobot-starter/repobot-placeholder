@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>{{companyName}} — Investor Deck</title>
+    </head>
+    <body>
+        <main class="deck">
+            <section class="slide cover">
+                <header class="slide-head">
+                    <span class="head-kicker">Investor deck</span>
+                    <span class="head-brand">{{companyName}}</span>
+                </header>
+                <div class="cover-body">
+                    {{#hasLogo}}
+                    <img class="cover-logo" src="{{logoDataUri}}" alt="{{companyName}} logo" />
+                    {{/hasLogo}}
+                    <h1 class="cover-name">{{companyName}}</h1>
+                    {{#tagline}}
+                    <p class="cover-tagline">{{tagline}}</p>
+                    {{/tagline}}
+                    <span class="cover-rule" style="background: {{accentColor}}"></span>
+                </div>
+                <footer class="slide-foot">
+                    <span>{{companyName}}</span>
+                    <span>Prepared {{preparedDate}} · Live from the books</span>
+                </footer>
+            </section>
+
+            {{#hasTraction}}
+            <section class="slide">
+                <header class="slide-head">
+                    <span class="head-title"
+                        ><span class="head-chip" style="background: {{accentColor}}"></span
+                        >{{tractionTitle}}</span
+                    >
+                    <span class="head-brand">{{companyName}}</span>
+                </header>
+                <p class="slide-body">{{tractionBody}}</p>
+                <div class="stat-grid">
+                    {{#tractionStats}}
+                    <div class="stat">
+                        <div class="stat-value" style="color: {{accentColor}}">{{value}}</div>
+                        <div class="stat-label">{{label}}</div>
+                    </div>
+                    {{/tractionStats}}
+                </div>
+                <footer class="slide-foot">
+                    <span>{{companyName}}</span>
+                    <span>Prepared {{preparedDate}} · Live from the books</span>
+                </footer>
+            </section>
+            {{/hasTraction}} {{#hasRevenue}}
+            <section class="slide">
+                <header class="slide-head">
+                    <span class="head-title"
+                        ><span class="head-chip" style="background: {{accentColor}}"></span
+                        >{{revenueTitle}}</span
+                    >
+                    <span class="head-brand">{{companyName}}</span>
+                </header>
+                <p class="slide-body">{{revenueBody}}</p>
+                <div class="chart">
+                    {{#revenueBars}}
+                    <div class="chart-column">
+                        <div class="chart-value">{{value}}</div>
+                        <div class="chart-track">
+                            <div
+                                class="chart-bar"
+                                style="height: {{heightPercent}}%; background: {{accentColor}}"
+                            ></div>
+                        </div>
+                        <div class="chart-label">{{label}}</div>
+                    </div>
+                    {{/revenueBars}}
+                </div>
+                <footer class="slide-foot">
+                    <span>{{companyName}}</span>
+                    <span>Prepared {{preparedDate}} · Live from the books</span>
+                </footer>
+            </section>
+            {{/hasRevenue}} {{#hasMargins}}
+            <section class="slide">
+                <header class="slide-head">
+                    <span class="head-title"
+                        ><span class="head-chip" style="background: {{accentColor}}"></span
+                        >{{marginsTitle}}</span
+                    >
+                    <span class="head-brand">{{companyName}}</span>
+                </header>
+                <p class="slide-body">{{marginsBody}}</p>
+                <div class="chart">
+                    {{#netIncomeBars}}
+                    <div class="chart-column">
+                        <div class="chart-value">{{value}}</div>
+                        <div class="chart-track">
+                            <div
+                                class="chart-bar"
+                                style="height: {{heightPercent}}%; background: {{accentColor}}"
+                            ></div>
+                        </div>
+                        <div class="chart-label">{{label}}</div>
+                    </div>
+                    {{/netIncomeBars}}
+                </div>
+                <footer class="slide-foot">
+                    <span>{{companyName}}</span>
+                    <span>Prepared {{preparedDate}} · Live from the books</span>
+                </footer>
+            </section>
+            {{/hasMargins}} {{#hasRunway}}
+            <section class="slide">
+                <header class="slide-head">
+                    <span class="head-title"
+                        ><span class="head-chip" style="background: {{accentColor}}"></span
+                        >{{runwayTitle}}</span
+                    >
+                    <span class="head-brand">{{companyName}}</span>
+                </header>
+                <p class="slide-body">{{runwayBody}}</p>
+                <div class="stat-row">
+                    {{#runwayStats}}
+                    <div class="stat">
+                        <div class="stat-value" style="color: {{accentColor}}">{{value}}</div>
+                        <div class="stat-label">{{label}}</div>
+                    </div>
+                    {{/runwayStats}}
+                </div>
+                <div class="chart chart-short">
+                    {{#cashBars}}
+                    <div class="chart-column">
+                        <div class="chart-track">
+                            <div
+                                class="chart-bar"
+                                style="height: {{heightPercent}}%; background: {{accentColor}}"
+                            ></div>
+                        </div>
+                        <div class="chart-label">{{label}}</div>
+                    </div>
+                    {{/cashBars}}
+                </div>
+                <footer class="slide-foot">
+                    <span>{{companyName}}</span>
+                    <span>Prepared {{preparedDate}} · Live from the books</span>
+                </footer>
+            </section>
+            {{/hasRunway}} {{#hasAsk}}
+            <section class="slide">
+                <header class="slide-head">
+                    <span class="head-title"
+                        ><span class="head-chip" style="background: {{accentColor}}"></span
+                        >{{askTitle}}</span
+                    >
+                    <span class="head-brand">{{companyName}}</span>
+                </header>
+                <p class="slide-body slide-body-large">{{askBody}}</p>
+                <footer class="slide-foot">
+                    <span>{{companyName}}</span>
+                    <span>Prepared {{preparedDate}} · Live from the books</span>
+                </footer>
+            </section>
+            {{/hasAsk}}
+        </main>
+    </body>
+</html>

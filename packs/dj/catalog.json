@@ -1,0 +1,195 @@
+{
+    "key": "dj",
+    "templateKey": "repobot-dj",
+    "title": "DJ / electronic artist",
+    "description": "A DJ site in a brutalist grid-and-mono register, paper-on-ink dark: a numbered mix shelf with native waveform players playing bundled original electronic loops (paste SoundCloud / Mixcloud / Spotify links and the players swap to the real transmissions), set dates that split upcoming/past at render time with a computed \"Tonight\" badge, and a booking form that carries the tech-rider ask. Mono-utility register worn achromatic — no hue anywhere.",
+    "marketingExampleTitle": "DJ / electronic artist site",
+    "category": "music",
+    "homePath": "/",
+    "previewPath": "/dj",
+    "homeViewDir": "web/app/src/View/Dj",
+    "base": "landing",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false,
+    "forms": {
+        "$comment": "Managed-form kinds, formKey -> kind (append-only vocabulary: RSVP | LEAD | MAILING_LIST | PROOFING). The list is the pack's subscriber base; booking inquiries run a lead pipeline.",
+        "mailing-list": "MAILING_LIST",
+        "booking": "LEAD"
+    },
+    "theme": {
+        "$comment": "The achromatic overlay: mode dark opens the site paper-on-ink (its native club-night appearance; the appearance toggle still swaps to the ink-on-paper spec sheet), and the register's own inks ride as the project brand so app-side surfaces stay monochrome instead of the kernel default blue. Values match mono-utility's text inks — the landing style overrides pin accent to text, so the overlay and the pages agree.",
+        "mode": "dark",
+        "brand": {
+            "primary": "#1b1d1b",
+            "primaryDark": "#e6ece7"
+        }
+    },
+    "contentContract": {
+        "$comment": "The pack's content slots, as data (packs/README.md 'Content contract'). Sets are plain ISO dates — the pages compute the upcoming/past split and the badge at render time. Mixes default to bundled original demo loops; a mix's optional embedUrl swaps its player to a click-to-load streaming embed.",
+        "module": "web/app/src/View/Dj/content.ts",
+        "slots": {
+            "artist.alias": { "kind": "text" },
+            "artist.tagline": { "kind": "text" },
+            "artist.location": { "kind": "text" },
+            "artist.email": { "kind": "text" },
+            "home.subheadline": { "kind": "text" },
+            "home.about.paragraphs": { "kind": "text[]", "min": 1 },
+            "heroImages.booth": { "kind": "media" },
+            "heroImages.portrait": { "kind": "media" },
+            "sets": {
+                "kind": "collection",
+                "min": 4,
+                "item": {
+                    "date": { "kind": "text" },
+                    "city": { "kind": "text" },
+                    "venue": { "kind": "text" }
+                }
+            },
+            "mixes": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "index": { "kind": "text" },
+                    "title": { "kind": "text" },
+                    "style": { "kind": "text" },
+                    "bpm": { "kind": "number" },
+                    "notes": { "kind": "text" },
+                    "cover": { "kind": "media" }
+                }
+            },
+            "booking.headline": { "kind": "text" },
+            "booking.body": { "kind": "text" },
+            "mailingList.title": { "kind": "text" },
+            "mailingList.body": { "kind": "text" }
+        }
+    },
+    "content": {
+        "$comment": "Business-content contract seed: compose copies this into repobot.content.json, the platform's Manage dates editor writes it, and the pack renders it over content.ts (datesDocument.ts). Entries mirror content.ts sets — same calendar, slugs minted by the platform's date-city rule; the upcoming/past split and the Tonight badge stay computed at render time.",
+        "dates": {
+            "entries": [
+                {
+                    "slug": "2026-09-05-berlin",
+                    "date": "2026-09-05",
+                    "city": "Berlin",
+                    "venue": "Verk",
+                    "region": "DE",
+                    "ticketUrl": "https://tickets.example/pulsewidth/verk-sep",
+                    "note": "Open to close"
+                },
+                {
+                    "slug": "2026-09-26-hamburg",
+                    "date": "2026-09-26",
+                    "city": "Hamburg",
+                    "venue": "Halle Nord",
+                    "region": "DE",
+                    "ticketUrl": "https://tickets.example/pulsewidth/halle-nord"
+                },
+                {
+                    "slug": "2026-10-09-amsterdam",
+                    "date": "2026-10-09",
+                    "city": "Amsterdam",
+                    "venue": "Mira",
+                    "region": "NL",
+                    "ticketUrl": "https://tickets.example/pulsewidth/mira",
+                    "note": "Festival week"
+                },
+                {
+                    "slug": "2026-10-31-essen",
+                    "date": "2026-10-31",
+                    "city": "Essen",
+                    "venue": "Schacht 9",
+                    "region": "DE",
+                    "ticketUrl": "https://tickets.example/pulsewidth/schacht-9"
+                },
+                {
+                    "slug": "2026-11-21-prague",
+                    "date": "2026-11-21",
+                    "city": "Prague",
+                    "venue": "Ankra",
+                    "region": "CZ",
+                    "ticketUrl": "https://tickets.example/pulsewidth/ankra"
+                },
+                {
+                    "slug": "2026-12-31-berlin",
+                    "date": "2026-12-31",
+                    "city": "Berlin",
+                    "venue": "Verk",
+                    "region": "DE",
+                    "ticketUrl": "https://tickets.example/pulsewidth/verk-nye",
+                    "note": "All night long"
+                },
+                {
+                    "slug": "2026-07-11-tbilisi",
+                    "date": "2026-07-11",
+                    "city": "Tbilisi",
+                    "venue": "Bunkeri",
+                    "region": "GE"
+                },
+                {
+                    "slug": "2026-06-20-warsaw",
+                    "date": "2026-06-20",
+                    "city": "Warsaw",
+                    "venue": "Stroboskop Hala",
+                    "region": "PL"
+                },
+                {
+                    "slug": "2026-05-01-berlin",
+                    "date": "2026-05-01",
+                    "city": "Berlin",
+                    "venue": "Verk",
+                    "region": "DE",
+                    "note": "May Day"
+                },
+                {
+                    "slug": "2025-12-31-berlin",
+                    "date": "2025-12-31",
+                    "city": "Berlin",
+                    "venue": "Verk",
+                    "region": "DE",
+                    "note": "All night long"
+                },
+                {
+                    "slug": "2025-10-10-london",
+                    "date": "2025-10-10",
+                    "city": "London",
+                    "venue": "The Coal Store",
+                    "region": "UK"
+                }
+            ]
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps '/' and '/book' to the page ids their configs merge under (web/app/src/View/Dj/DjPage.tsx, useSitePageConfig); pages seed the layout skeletons — ids match djLanding.ts, and the hero badge plus the next-set banner are computed from the sets at render time. Mixes and Dates are the pack's bespoke surfaces (the hybrid mix players, the computed dates table) and stay outside the document merge. style must ride the overlay; the preset is mono-utility WORN ACHROMATIC — the style overrides pin accent to the register's own text ink, so the surface is paper-on-ink in dark and ink-on-paper in light, deliberately apart from broadside's printed poster and marquee's stage night.",
+        "style": {
+            "preset": "mono-utility",
+            "overrides": {
+                "--marketing-color-accent": "var(--marketing-color-text)",
+                "--marketing-color-accentSoft": "color-mix(in srgb, var(--marketing-color-text) 14%, transparent)",
+                "--marketing-color-onAccent": "var(--marketing-color-pageBg)"
+            }
+        },
+        "routes": {
+            "/": "home",
+            "/book": "book"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "statement" },
+                    { "id": "booth-frame", "type": "gallery", "variant": "sequence" },
+                    { "id": "mixes", "type": "showcase", "variant": "collections" },
+                    { "id": "profile", "type": "content-split", "variant": "media-left" },
+                    { "id": "next-set", "type": "cta-banner", "variant": "full-bleed" },
+                    { "id": "mailing-list", "type": "lead-form", "variant": "inline-email" }
+                ]
+            },
+            "book": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "statement" },
+                    { "id": "booking-form", "type": "lead-form", "variant": "detail-form" }
+                ]
+            }
+        }
+    }
+}

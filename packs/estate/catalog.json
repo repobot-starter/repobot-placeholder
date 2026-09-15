@@ -1,0 +1,331 @@
+{
+    "key": "estate",
+    "templateKey": "repobot-estate",
+    "title": "Real estate agent",
+    "description": "A real-estate agent site: a listings grid whose status badges (\u201cNew this week\u201d, \u201cSale pending\u201d, \u201cSold\u201d) and days-on-market lines compute themselves from the listing dates, neighborhood guides, the agent's story and credentials, and an inquiry form with click-to-call \u2014 a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Real estate agent",
+    "category": "real-estate",
+    "homePath": "/",
+    "previewPath": "/estate",
+    "homeViewDir": "web/app/src/View/Estate",
+    "base": "landing",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false,
+    "forms": {
+        "$comment": "Managed-form kinds, formKey -> kind (append-only vocabulary: RSVP | LEAD | MAILING_LIST | PROOFING). Compose stamps these into repobot.deploy.json as formKinds; the dashboard renders declared kinds as typed views and keeps the raw Inbox for undeclared keys.",
+        "estate-inquiry": "LEAD"
+    },
+    "theme": {
+        "$comment": "The brownstone register's brand overlay: the preset's brick accent as the project brand, so app-side surfaces wear the same residential register as the marketing pages instead of the kernel default blue. Values match the brownstone preset's own light/dark accents \u2014 the marketing pages resolve brand over preset accent, so keeping them identical means the overlay re-brands the app without shifting the pages.",
+        "brand": { "primary": "#9c4a2f", "primaryDark": "#d98a64" }
+    },
+    "contentContract": {
+        "$comment": "The pack's content slots, as data (packs/README.md 'Content contract'). Declares what a composer (agent or tool) must bind for a generated variant of this pack to present as real: slot paths into the typed content module, their kinds, and minimums. The demo agent works Providence's East Side, but the slots are market-agnostic \u2014 any city's agent binds the same shape. Listing statuses and dates are content; the badges computed from them (listings.ts) follow wherever the data goes. Authored alongside the module and guarded by the pack's content tests \u2014 the module satisfies the contract; the contract never drifts ahead of it.",
+        "module": "web/app/src/View/Estate/content.ts",
+        "slots": {
+            "agency.name": { "kind": "text" },
+            "agency.agent": { "kind": "text" },
+            "agency.tagline": { "kind": "text" },
+            "agency.location": { "kind": "text" },
+            "agency.phone": { "kind": "text" },
+            "agency.email": { "kind": "text" },
+            "agency.address": { "kind": "text" },
+            "agency.license": { "kind": "text" },
+            "home.headline": { "kind": "text" },
+            "home.subheadline": { "kind": "text" },
+            "home.heroImage": { "kind": "media" },
+            "listings": {
+                "kind": "collection",
+                "min": 4,
+                "item": {
+                    "title": { "kind": "text" },
+                    "neighborhood": { "kind": "text" },
+                    "price": { "kind": "text" },
+                    "description": { "kind": "text" },
+                    "image": { "kind": "media" },
+                    "status": { "kind": "text" },
+                    "listedAt": { "kind": "text" }
+                }
+            },
+            "neighborhoods": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "name": { "kind": "text" },
+                    "tagline": { "kind": "text" },
+                    "description": { "kind": "text" },
+                    "image": { "kind": "media" }
+                }
+            },
+            "metrics": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "value": { "kind": "text" },
+                    "label": { "kind": "text" }
+                }
+            },
+            "testimonials": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "quote": { "kind": "text" },
+                    "name": { "kind": "text" },
+                    "detail": { "kind": "text" }
+                }
+            },
+            "about.headline": { "kind": "text" },
+            "about.photo": { "kind": "media" },
+            "about.paragraphs": { "kind": "text[]", "min": 2 },
+            "about.credentials": { "kind": "text[]", "min": 1 },
+            "contact.headline": { "kind": "text" },
+            "contact.body": { "kind": "text" }
+        }
+    },
+    "content": {
+        "$comment": "Business-content contract seed, merged over repobot.content.json at compose (the same overlay path as landing/theme — scripts/lib/pack-switch.mjs applyPackOverlays). The listings domain mirrors content.ts entry for entry (the seed-fidelity tests pin it), minus the photographs — imagery stays code-owned and the pack joins it back by slug (View/Estate/inventory.ts) — plus the featured flags the home rail keys on (derived from content.ts home.featuredListings, so the document and code paths agree on which cards lead). Statuses and badges stay computed from the dates by the listings engine wherever the facts come from.",
+        "listings": {
+            "entries": [
+                {
+                    "slug": "benefit-street",
+                    "title": "14 Benefit Street",
+                    "neighborhood": "College Hill",
+                    "price": "$1,285,000",
+                    "beds": 4,
+                    "baths": 3,
+                    "sqft": 2940,
+                    "description": "A 1790s brick rowhouse with its fanlight, twelve-pane windows, and heart-pine floors intact — plus a chef's kitchen and a walled garden out back.",
+                    "status": "available",
+                    "listedAt": "2026-08-24",
+                    "featured": true
+                },
+                {
+                    "slug": "atwells-loft",
+                    "title": "66 Atwells Avenue, Loft 4C",
+                    "neighborhood": "Federal Hill",
+                    "price": "$612,000",
+                    "beds": 2,
+                    "baths": 2,
+                    "sqft": 1560,
+                    "description": "A corner loft in a converted mill: arched factory windows, exposed brick, timber beams, and a kitchen worth the walk up Atwells.",
+                    "status": "available",
+                    "listedAt": "2026-08-16",
+                    "featured": true
+                },
+                {
+                    "slug": "ives-townhouse",
+                    "title": "18 Ives Street",
+                    "neighborhood": "Fox Point",
+                    "price": "$749,000",
+                    "beds": 3,
+                    "baths": 2.5,
+                    "sqft": 1920,
+                    "description": "New construction that behaves on an old street: cedar and standing-seam over three smart stories, with a roof deck facing the harbor.",
+                    "status": "available",
+                    "listedAt": "2026-08-02",
+                    "featured": true
+                },
+                {
+                    "slug": "transit-cottage",
+                    "title": "82 Transit Street",
+                    "neighborhood": "Fox Point",
+                    "price": "$539,000",
+                    "beds": 2,
+                    "baths": 1,
+                    "sqft": 1180,
+                    "description": "A butter-yellow clapboard cottage two blocks up from the water — window boxes, iron stoop rail, and morning light in every room.",
+                    "status": "available",
+                    "listedAt": "2026-07-30"
+                },
+                {
+                    "slug": "orchard-colonial",
+                    "title": "40 Orchard Avenue",
+                    "neighborhood": "Wayland Square",
+                    "price": "$1,150,000",
+                    "beds": 5,
+                    "baths": 3.5,
+                    "sqft": 3480,
+                    "description": "A center-hall colonial under old maples: portico entry, twin chimneys, a proper back lawn, and three finished floors of family house.",
+                    "status": "available",
+                    "listedAt": "2026-08-10",
+                    "featured": true
+                },
+                {
+                    "slug": "pratt-victorian",
+                    "title": "27 Pratt Street",
+                    "neighborhood": "College Hill",
+                    "price": "$875,000",
+                    "beds": 4,
+                    "baths": 2.5,
+                    "sqft": 2610,
+                    "description": "A Queen Anne with the turret, the wraparound porch, and the fish-scale gable — lovingly kept, two owners in sixty years.",
+                    "status": "pending",
+                    "listedAt": "2026-07-12"
+                },
+                {
+                    "slug": "westminster-penthouse",
+                    "title": "One Westminster, Penthouse 12",
+                    "neighborhood": "Downcity",
+                    "price": "$1,975,000",
+                    "beds": 3,
+                    "baths": 3,
+                    "sqft": 2410,
+                    "description": "Corner glass over the river: herringbone oak, a dusk view that sells itself, and the city's best walk-to-dinner address.",
+                    "status": "pending",
+                    "listedAt": "2026-06-28"
+                },
+                {
+                    "slug": "governor-cottage",
+                    "title": "9 Governor Street",
+                    "neighborhood": "Fox Point",
+                    "price": "$685,000",
+                    "beds": 3,
+                    "baths": 2,
+                    "sqft": 1610,
+                    "description": "A brick garden cottage behind an iron gate — deep porch, slate roof, and the kind of garden that took thirty years. Closed over asking.",
+                    "status": "sold",
+                    "listedAt": "2026-05-06",
+                    "soldAt": "2026-06-12"
+                },
+                {
+                    "slug": "camp-bungalow",
+                    "title": "44 Camp Street",
+                    "neighborhood": "Mount Hope",
+                    "price": "$565,000",
+                    "beds": 3,
+                    "baths": 1.5,
+                    "sqft": 1540,
+                    "description": "A 1920s craftsman bungalow with its tapered columns and rafter tails intact, a porch swing included. Eleven offers; sold in eighteen days.",
+                    "status": "sold",
+                    "listedAt": "2026-04-14",
+                    "soldAt": "2026-05-02"
+                }
+            ]
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (web/app/src/View/Estate/EstatePage.tsx, useSitePageConfig). pages seeds each page's layout skeleton \u2014 ids match estateLanding.ts; the platform's structural editor edits these. The preset is brownstone (the residential register: limestone paper, deep navy serif, brick accent, stone grain) \u2014 the open-house folder from a good agency, deliberately apart from sitework's jobsite clipboard.",
+        "style": { "preset": "brownstone" },
+        "routes": {
+            "/": "home",
+            "/listings": "listings",
+            "/neighborhoods": "neighborhoods",
+            "/about": "about",
+            "/contact": "contact"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "masthead-overlay"
+                    },
+                    {
+                        "id": "featured-listings",
+                        "type": "showcase",
+                        "variant": "media-rail"
+                    },
+                    {
+                        "id": "proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "neighborhoods",
+                        "type": "showcase",
+                        "variant": "collections"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "listings": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "listings",
+                        "type": "showcase",
+                        "variant": "filterable-grid"
+                    },
+                    {
+                        "id": "track-record",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "neighborhoods": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "neighborhoods",
+                        "type": "highlights",
+                        "variant": "alternating"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "contact": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "contact-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

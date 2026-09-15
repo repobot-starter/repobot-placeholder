@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>iOS preview — SwiftUI wasm renderer</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        background: #16181d;
+        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+      }
+      /* Bundled app fonts (ios/App/Fonts): the preview must resolve
+         Font.custom() names exactly like the device build. */
+      @font-face {
+        font-family: "Inter";
+        src: url("../../App/Fonts/Inter.ttf");
+        font-weight: 100 900;
+      }
+      @font-face {
+        font-family: "Manrope";
+        src: url("../../App/Fonts/Manrope.ttf");
+        font-weight: 200 800;
+      }
+      @font-face {
+        font-family: "Source Serif 4";
+        src: url("../../App/Fonts/SourceSerif4.ttf");
+        font-weight: 200 900;
+      }
+      @font-face {
+        font-family: "Space Grotesk";
+        src: url("../../App/Fonts/SpaceGrotesk.ttf");
+        font-weight: 300 700;
+      }
+      @font-face {
+        font-family: "IBM Plex Mono";
+        src: url("../../App/Fonts/IBMPlexMono-Regular.ttf");
+        font-weight: 400;
+      }
+      @font-face {
+        font-family: "IBM Plex Mono";
+        src: url("../../App/Fonts/IBMPlexMono-SemiBold.ttf");
+        font-weight: 600;
+      }
+      #tabs {
+        display: flex;
+        gap: 8px;
+      }
+      #tabs a {
+        color: #9aa3b2;
+        text-decoration: none;
+        font-size: 13px;
+        padding: 5px 14px;
+        border-radius: 999px;
+        border: 1px solid #2a2f3a;
+      }
+      #tabs a.active {
+        color: #fff;
+        background: #2a2f3a;
+      }
+      /* iPhone 15-ish frame */
+      #phone {
+        width: 390px;
+        height: 844px;
+        max-height: calc(100vh - 110px);
+        background: #fff;
+        border-radius: 44px;
+        border: 10px solid #000;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+      }
+      #swiftui-root {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+      }
+      #stats {
+        color: #9aa3b2;
+        font-size: 12px;
+        font-variant-numeric: tabular-nums;
+      }
+      #stats b {
+        color: #e8ecf3;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="tabs">
+      <a href="?screen=folio" data-screen="folio">Folio</a>
+      <a href="?screen=quiz" data-screen="quiz">Quiz</a>
+      <a href="?screen=menu" data-screen="menu">Menu</a>
+    </div>
+    <div id="phone"><div id="swiftui-root"></div></div>
+    <div id="stats">loading wasm…</div>
+    <script type="importmap">
+      {
+        "imports": {
+          "@bjorn3/browser_wasi_shim": "./node_modules/@bjorn3/browser_wasi_shim/dist/index.js"
+        }
+      }
+    </script>
+    <script type="module">
+      const t0 = performance.now();
+      const stats = document.getElementById("stats");
+
+      const screen = new URLSearchParams(location.search).get("screen") ?? "folio";
+      for (const tab of document.querySelectorAll("#tabs a")) {
+        tab.classList.toggle("active", tab.dataset.screen === screen);
+      }
+
+      window.__previewFirstRender = () => {
+        const ms = performance.now() - t0;
+        stats.innerHTML = `cold start (fetch + instantiate + first render): <b>${ms.toFixed(0)}ms</b>`;
+      };
+
+      import { init } from "../.build/plugins/PackageToJS/outputs/Package/index.js";
+      await init();
+    </script>
+  </body>
+</html>

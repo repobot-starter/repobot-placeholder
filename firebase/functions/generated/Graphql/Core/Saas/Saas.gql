@@ -1,0 +1,18 @@
+# Saas domain: the subscription exemplar composing the payments kernel — the
+# recurring-billing sibling of the Shop domain. The saas pack owns its
+# server-side plan catalog; subscription and checkout session types live in
+# Payments/Payments.gql. Unlike the shop's anonymous checkout, the mutation
+# here is authenticated (NOT in the public allowlist): recurring billing
+# entitles an account. See docs/payments.md.
+
+input CreateSubscriptionCheckoutSessionInput {
+    idempotencyKey: String!
+    fields: CreateSubscriptionCheckoutSessionFields!
+}
+
+input CreateSubscriptionCheckoutSessionFields {
+    "The web app's origin (window.location.origin); success/cancel redirects are built from it."
+    origin: String!
+    "Which catalog plan to subscribe to; omitted means the default plan."
+    productKey: String
+}

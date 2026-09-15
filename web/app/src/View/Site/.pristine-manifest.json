@@ -1,0 +1,9 @@
+{
+    "blueprints.ts": "15ab438a98e93a58c0c87c9332156ec915efcc0ab5cc7f0cb31ebf7bf38774dc",
+    "packRegisters.gen.ts": "a7e93ec54c16368a8c605a8b1ae683b21c998f8af43aee8870d03c8d37049652",
+    "packShell.ts": "b6587bc6ccedbb3340057305de21c9e8f4ff2f41dcc841bd76bb11afb64f88d0",
+    "PublishedFreeFooter.tsx": "1f1c9844cb7086108374dd6362e0d63e5c6425bc2b77b21dd17f01c8d3d55beb",
+    "saasShell.ts": "97a27e831a824892c03847a066e5442fa546661516dcf95f6509a3549f4666ae",
+    "sectionsFromManifest.ts": "030cc8846237916ded0f7d52c6f61074323b53d0604791fcaba1f57a2ed9a8c8",
+    "SitePage.tsx": "b7beab6bc837b31682975f4a10419dbedda3df99b6624f9d81e2331ae0d3d74c"
+}

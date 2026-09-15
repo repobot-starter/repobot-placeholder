@@ -1,0 +1,75 @@
+# CFO practice domain: app-level ADVISOR/CLIENT roles, email invites, and the
+# advisor's cross-client view over per-user accounting connections. All
+# operations require an authenticated user; advisor-only operations are
+# role-checked in the service. Statement types are the QuickBooks domain's.
+
+enum CfoRole {
+    ADVISOR
+    CLIENT
+}
+
+enum CfoInviteStatus {
+    PENDING
+    ACCEPTED
+    REVOKED
+}
+
+type CfoMembership {
+    id: Id!
+    role: CfoRole!
+    user: User!
+    joinedTime: Instant!
+}
+
+type CfoInvite {
+    id: Id!
+    "Lowercased; the invitee signs up with this address to join."
+    email: String!
+    role: CfoRole!
+    status: CfoInviteStatus!
+    invitedTime: Instant!
+}
+
+"""
+One member's books: identity plus the live state of their accounting
+connection. The advisor reads every client's; a client reads their own.
+Statement fields resolve lazily — they cost nothing unless selected.
+"""
+type CfoClient {
+    membership: CfoMembership!
+    "The member's accounting connection; null until they connect."
+    connection: QuickBooksConnection
+    "Headline numbers for the member's company; null until they connect."
+    snapshot: QuickBooksCompanySnapshot
+    "Trailing thirteen months of P&L; empty until they connect."
+    profitAndLoss: [QuickBooksProfitAndLossPeriod!]!
+    "Trailing thirteen month-end balance sheets; empty until they connect."
+    balanceSheet: [QuickBooksBalanceSheetPeriod!]!
+}
+
+input CfoInviteClientInput {
+    idempotencyKey: String!
+    email: String!
+    "The product name for the invite email (the composed site's name)."
+    siteName: String!
+    "Where the invite email's button points (the composed site's /login)."
+    signInUrl: String!
+}
+
+input CfoRevokeInviteInput {
+    inviteId: Id!
+}
+
+input CfoConnectMyBooksInput {
+    idempotencyKey: String!
+    "Which accounting provider to connect; defaults to QUICKBOOKS."
+    provider: AccountingProvider
+}
+
+input CfoExportClientStatementsXlsxInput {
+    idempotencyKey: String!
+    "Whose books to export: the advisor may pass any client; a client only themself."
+    clientUserId: Id!
+    "Which statements to include; defaults to ALL."
+    statement: QuickBooksStatementExportKind
+}

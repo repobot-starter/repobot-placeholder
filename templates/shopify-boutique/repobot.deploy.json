@@ -1,0 +1,7 @@
+{
+    "templateKey": "repobot-shopify-boutique",
+    "platform": "SHOPIFY",
+    "clientOnly": true,
+    "capabilities": [],
+    "comment": "Shopify themes preview through the connected store (shopify theme dev) and deploy from the workspace Deploy button: development pushes an unpublished theme, production publishes the repobot-managed theme live after the reviewed release. The Shopify CLI (npm run push) remains available for manual pushes."
+}

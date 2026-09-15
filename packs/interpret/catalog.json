@@ -1,0 +1,47 @@
+{
+    "key": "interpret",
+    "templateKey": "repobot-interpret",
+    "title": "AI Document Interpreter",
+    "description": "Drop a PDF and get an interpretation: what the document is, a plain-language summary, the key points, and the fields worth extracting — the model reads it on AI deploys, and the sandbox produces a deterministic reading of the real text for free.",
+    "marketingExampleTitle": "AI document interpreter",
+    "homePath": "/",
+    "previewPath": "/interpret",
+    "homeViewDir": "web/app/src/View/Interpreter",
+    "base": "app",
+    "isFeature": true,
+    "clientOnly": false,
+    "capabilities": ["AI", "STORAGE", "AUTH", "BACKEND"],
+    "isDefault": false,
+    "theme": {
+        "$comment": "A reading room on a pure-black ground (the recent achromatic restyle, preserved verbatim as the seed): two panes, white lamp-light held to a whisper, no hue anywhere — the document is the only color. The palette's dark values are the page's pre-AppShell art constants so the shell chrome and the room read as one surface; the light values are the same room with the blinds open. The shell defaults to minimal because the tool is one screen with nothing to navigate — its old chrome was a wordmark and a status chip; content is flush so the two panes keep owning the viewport's height.",
+        "mode": "dark",
+        "character": "plain",
+        "brand": {
+            "primary": "#111111",
+            "primaryDark": "#fafafa"
+        },
+        "palette": {
+            "background": "#f5f5f3",
+            "backgroundDark": "#000000",
+            "surface": "#ffffff",
+            "surfaceDark": "#0d0d0d",
+            "surfaceHover": "#ececea",
+            "surfaceHoverDark": "#1e1e1e",
+            "border": "#dfdfdb",
+            "borderDark": "#141414",
+            "textPrimary": "#171717",
+            "textPrimaryDark": "#f2f2f2",
+            "textSecondary": "#6c6c6c",
+            "textSecondaryDark": "#9b9b9b",
+            "muted": "#ececea",
+            "mutedDark": "#161616",
+            "input": "#dfdfdb",
+            "inputDark": "#1e1e1e",
+            "skeleton": "#e8e8e6",
+            "skeletonDark": "#161616",
+            "charts": ["#171717", "#5d5d5d", "#8b8b8b", "#3b3b3b", "#6c6c6c", "#b1b1b1"],
+            "chartsDark": ["#f2f2f2", "#b1b1b1", "#838383", "#d1d1d1", "#9b9b9b", "#575757"]
+        },
+        "shell": { "variant": "minimal", "content": "flush" }
+    }
+}

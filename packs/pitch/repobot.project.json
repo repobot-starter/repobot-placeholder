@@ -1,0 +1,368 @@
+{
+    "$comment": "The pitch pack's project IA (docs/project-ia.md). Stamped to the repo root by compose-pack.sh, which then runs scaffold-ia to wire the dashboard destinations; the destination entry pages already exist in the kernel (View/Pitch*) so the scaffolder keeps them and only wires routes and nav. Marketing pages carry inline landing configs (real Deckline starter copy, CTAs into /login) that win over the blueprint defaults; edit content here, not in hand-built pages.",
+    "marketing": {
+        "preset": "aurora-dark",
+        "siteName": "Deckline",
+        "pages": [
+            {
+                "id": "home",
+                "path": "/",
+                "title": "Home",
+                "blueprint": "landing",
+                "description": "Investor decks that build themselves from your live books: connect your accounting, brand the deck, export a polished PDF.",
+                "landing": {
+                    "style": {
+                        "preset": "aurora-dark"
+                    },
+                    "shell": {
+                        "nav": {
+                            "content": {
+                                "logo": {
+                                    "name": "Deckline"
+                                },
+                                "links": [
+                                    {
+                                        "label": "Features",
+                                        "anchor": "feature-grid"
+                                    },
+                                    {
+                                        "label": "Pricing",
+                                        "href": "/pricing"
+                                    }
+                                ],
+                                "cta": {
+                                    "label": "Sign in",
+                                    "href": "/login"
+                                }
+                            }
+                        },
+                        "footer": {
+                            "variant": "simple",
+                            "content": {
+                                "blurb": "Deckline",
+                                "links": [
+                                    {
+                                        "label": "Pricing",
+                                        "href": "/pricing"
+                                    },
+                                    {
+                                        "label": "Sign in",
+                                        "href": "/login"
+                                    }
+                                ],
+                                "note": "© Deckline. All rights reserved."
+                            }
+                        }
+                    },
+                    "sections": [
+                        {
+                            "type": "hero",
+                            "variant": "centered-stack",
+                            "content": {
+                                "backdrop": {
+                                    "art": "aurora"
+                                },
+                                "badge": "For founders raising on real numbers",
+                                "headline": "The deck writes itself from your books",
+                                "subheadline": "Deckline connects to your QuickBooks or Xero and turns the numbers into an investor deck: traction, revenue, margins, and runway slides fill themselves from live data. You edit the story, upload the logo, and export a polished PDF.",
+                                "primaryCta": {
+                                    "label": "Build your deck",
+                                    "href": "/login"
+                                },
+                                "secondaryCta": {
+                                    "label": "See pricing",
+                                    "href": "/pricing"
+                                }
+                            }
+                        },
+                        {
+                            "type": "social-proof",
+                            "variant": "metrics-row",
+                            "content": {
+                                "label": "Why founders switch",
+                                "metrics": [
+                                    {
+                                        "value": "0",
+                                        "label": "numbers copy-pasted into slides"
+                                    },
+                                    {
+                                        "value": "< 5 min",
+                                        "label": "from connecting books to a full draft"
+                                    },
+                                    {
+                                        "value": "Always",
+                                        "label": "current — charts re-render at every export"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "feature-grid",
+                            "variant": "cards-3up",
+                            "content": {
+                                "kicker": "What you get",
+                                "title": "A deck that stays true to the books",
+                                "features": [
+                                    {
+                                        "emoji": "📈",
+                                        "title": "Slides that fill themselves",
+                                        "description": "Traction stats, a thirteen-month revenue chart, net-income margins, and a cash-runway slide — computed from your live accounting connection, never typed in."
+                                    },
+                                    {
+                                        "emoji": "🎨",
+                                        "title": "Your brand on every page",
+                                        "description": "Upload your logo, pick an accent color, and set the tagline once. The cover and every chart carry the brand through the exported PDF."
+                                    },
+                                    {
+                                        "emoji": "📄",
+                                        "title": "One-click PDF export",
+                                        "description": "Export the deck as a print-quality PDF — one slide per page, charts rendered fresh from the books at the moment you export."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "steps",
+                            "variant": "numbered-cards",
+                            "content": {
+                                "kicker": "How it works",
+                                "title": "From books to deck in three steps",
+                                "steps": [
+                                    {
+                                        "title": "Connect your books",
+                                        "description": "QuickBooks or Xero, one click, read-only. Deckline never writes to your ledger."
+                                    },
+                                    {
+                                        "title": "Shape the story",
+                                        "description": "Every slide arrives pre-written from the numbers. Edit the copy, toggle slides in or out, brand the cover."
+                                    },
+                                    {
+                                        "title": "Export and send",
+                                        "description": "Download the PDF. Raise. When the numbers move, export again — the charts are always current."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "testimonials",
+                            "variant": "quote-grid",
+                            "content": {
+                                "kicker": "From founders",
+                                "title": "Decks that closed",
+                                "quotes": [
+                                    {
+                                        "quote": "I used to rebuild the traction slide every time a partner asked for the deck. Now I export a fresh PDF and the numbers are just right.",
+                                        "author": "Lena K.",
+                                        "title": "Founder, SaaS"
+                                    },
+                                    {
+                                        "quote": "The runway slide answered the first question every investor asks before they asked it.",
+                                        "author": "Tomas R.",
+                                        "title": "Founder, logistics"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "faq",
+                            "variant": "accordion",
+                            "content": {
+                                "kicker": "Good to know",
+                                "title": "Questions before you connect",
+                                "items": [
+                                    {
+                                        "question": "Does Deckline change anything in my books?",
+                                        "answer": "No — the connection is read-only. Deckline reads your P&L and balance sheet to fill the slides and never writes to the ledger."
+                                    },
+                                    {
+                                        "question": "Can I edit what the slides say?",
+                                        "answer": "Yes — every slide's title and body are yours to rewrite. Only the charts and stats come from the books."
+                                    },
+                                    {
+                                        "question": "What if I don't want a slide?",
+                                        "answer": "Toggle it off. The deck keeps the outline so you can bring it back later; the export only prints what's on."
+                                    },
+                                    {
+                                        "question": "What format is the export?",
+                                        "answer": "A print-quality PDF, one slide per page, with your logo and accent color throughout."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "cta-banner",
+                            "variant": "card",
+                            "content": {
+                                "title": "Raise on real numbers",
+                                "body": "Free to start — connect your books and export your first deck today.",
+                                "cta": {
+                                    "label": "Build your deck",
+                                    "href": "/login"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "id": "pricing",
+                "path": "/pricing",
+                "title": "Pricing",
+                "blueprint": "pricing",
+                "description": "Start free, upgrade when the raise gets serious.",
+                "landing": {
+                    "style": {
+                        "preset": "aurora-dark"
+                    },
+                    "shell": {
+                        "nav": {
+                            "content": {
+                                "logo": {
+                                    "name": "Deckline"
+                                },
+                                "links": [
+                                    {
+                                        "label": "Home",
+                                        "href": "/"
+                                    }
+                                ],
+                                "cta": {
+                                    "label": "Sign in",
+                                    "href": "/login"
+                                }
+                            }
+                        },
+                        "footer": {
+                            "variant": "simple",
+                            "content": {
+                                "blurb": "Deckline",
+                                "links": [
+                                    {
+                                        "label": "Home",
+                                        "href": "/"
+                                    },
+                                    {
+                                        "label": "Sign in",
+                                        "href": "/login"
+                                    }
+                                ],
+                                "note": "© Deckline. All rights reserved."
+                            }
+                        }
+                    },
+                    "sections": [
+                        {
+                            "type": "hero",
+                            "variant": "statement",
+                            "content": {
+                                "headline": "Cheaper than a designer's afternoon",
+                                "subheadline": "Every plan includes live-data slides, branding, and PDF export. Pay more only when the whole team pitches."
+                            }
+                        },
+                        {
+                            "type": "pricing",
+                            "variant": "tiers",
+                            "content": {
+                                "kicker": "Plans",
+                                "title": "Pick what fits the raise today",
+                                "tiers": [
+                                    {
+                                        "name": "Founder",
+                                        "monthly": 0,
+                                        "yearlyPerMonth": 0,
+                                        "description": "For your first deck.",
+                                        "features": ["1 deck", "Live-data slides", "PDF export"]
+                                    },
+                                    {
+                                        "name": "Raising",
+                                        "monthly": 19,
+                                        "yearlyPerMonth": 16,
+                                        "description": "For an active fundraise.",
+                                        "features": [
+                                            "Everything in Founder",
+                                            "Unlimited decks",
+                                            "Logo + brand controls",
+                                            "Priority support"
+                                        ],
+                                        "highlighted": true,
+                                        "badge": "Most popular"
+                                    },
+                                    {
+                                        "name": "Team",
+                                        "monthly": 49,
+                                        "yearlyPerMonth": 41,
+                                        "description": "For teams that pitch together.",
+                                        "features": [
+                                            "Everything in Raising",
+                                            "Multiple members",
+                                            "Admin controls"
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "faq",
+                            "variant": "accordion",
+                            "content": {
+                                "kicker": "Billing",
+                                "title": "Common questions",
+                                "items": [
+                                    {
+                                        "question": "Can I change plans later?",
+                                        "answer": "Yes — upgrades apply immediately and downgrades apply at the next billing cycle."
+                                    },
+                                    {
+                                        "question": "What counts as a deck?",
+                                        "answer": "A deck on your account. Delete one and the slot frees up immediately."
+                                    },
+                                    {
+                                        "question": "Do you charge per connected account?",
+                                        "answer": "No — the books connection is included on every plan."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "cta-banner",
+                            "variant": "card",
+                            "content": {
+                                "title": "The numbers are ready",
+                                "body": "Start on the free plan — no card required.",
+                                "cta": {
+                                    "label": "Build your deck",
+                                    "href": "/login"
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "dashboard": {
+        "destinations": [
+            {
+                "id": "pitch-decks",
+                "path": "/decks",
+                "label": "Decks",
+                "blueprint": "custom",
+                "description": "The signed-in home: create a deck (name, company, tagline — slides arrive pre-written from the live books), open one in the builder, or delete one."
+            },
+            {
+                "id": "pitch-builder",
+                "path": "/builder",
+                "label": "Builder",
+                "blueprint": "custom",
+                "description": "The deck builder for one deck (?deck=<id>): brand controls (logo upload, accent swatches, tagline), live chart previews from the books, slide-by-slide copy editing with include toggles, and one-click PDF export."
+            },
+            {
+                "id": "pitch-books",
+                "path": "/books",
+                "label": "My books",
+                "blueprint": "custom",
+                "description": "The member's connection surface: connect QuickBooks or Xero (instant in the sandbox), see the headline numbers the decks will use, disconnect any time."
+            }
+        ]
+    }
+}

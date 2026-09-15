@@ -1,0 +1,14 @@
+mutation CreateUpload($input: CreateUploadInput!) {
+    createUpload(input: $input) {
+        uploadId
+        uploadUrl
+        headersJson
+        upload {
+            id
+            contentType
+            sizeBytes
+            visibility
+            status
+        }
+    }
+}

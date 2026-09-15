@@ -1,0 +1,36 @@
+# The push kernel's device-registration surface (see docs/push.md). Both
+# mutations are authenticated app-user operations (never in the public
+# allowlists): a registration always belongs to an accountable user. Sending
+# never goes through GraphQL — domains call the push service directly.
+
+enum PushDevicePlatform {
+    "A browser, via Web Push (the only channel with a live transport today)."
+    WEB
+    "An iPhone/iPad via APNs. Registration rails exist; the transport is the C1b follow-up."
+    IOS
+    "An Android device via FCM. Registration rails exist; the transport is the C1b follow-up."
+    ANDROID
+}
+
+"One registered push destination (a browser subscription; native devices in C1b)."
+type PushDevice {
+    id: Id!
+    platform: PushDevicePlatform!
+    "The transport identity: the Web Push subscription endpoint (native device tokens in C1b)."
+    endpoint: String!
+    createdTime: Instant!
+    "Bumped every time the endpoint is (re-)registered."
+    rotatedTime: Instant!
+}
+
+input RegisterPushDeviceInput {
+    platform: PushDevicePlatform!
+    "Unique per browser/device; registration upserts on it."
+    endpoint: String!
+    "The full browser PushSubscription JSON (endpoint + keys.p256dh + keys.auth) for WEB."
+    subscriptionJson: String!
+}
+
+input UnregisterPushDeviceInput {
+    endpoint: String!
+}

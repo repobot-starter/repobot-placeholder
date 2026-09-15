@@ -1,0 +1,68 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services pack composed with a makeup-artist content seed and a mulberry brand over the sitework register. Everything else — pages, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-makeup",
+    "remixOf": "services",
+    "templateKey": "repobot-services-makeup",
+    "title": "Makeup artist",
+    "description": "A bridal and occasion makeup artist's studio site: a rate card with honest 'from' pricing, draggable before/after face transformations shot on the same backdrop, the artist's editorial-trained story and kit-hygiene credentials, a live open badge with click-to-call, real online booking for consultations, studio sessions, and bridal trials — weekend wedding dates stay contract-only — and an event inquiry form. A multi-page site edited in one content file.",
+    "marketingExampleTitle": "Makeup artist",
+    "contentSeed": "web/app/src/View/Services/makeupRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twin) — the composed template's booking widget and Manage calendar open on this studio's own chair, not the base demo business's.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "consultation",
+                    "name": "Free 15-minute consultation",
+                    "durationMinutes": 15,
+                    "description": "Your date, your venue, your inspiration photos — and a real quote before you commit to anything."
+                },
+                {
+                    "typeId": "studio-session",
+                    "name": "Studio session",
+                    "durationMinutes": 75,
+                    "description": "An in-studio appointment — event glam, a natural look, or the first hour of a lesson."
+                },
+                {
+                    "typeId": "bridal-trial",
+                    "name": "Bridal trial",
+                    "durationMinutes": 90,
+                    "description": "The full wedding look, built and adjusted in the studio mirror — then worn out the door."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "ivy-calloway",
+                    "name": "Ivy Calloway",
+                    "windows": [
+                        {
+                            "day": 3,
+                            "start": 600,
+                            "end": 1020
+                        },
+                        {
+                            "day": 4,
+                            "start": 600,
+                            "end": 1020
+                        },
+                        {
+                            "day": 5,
+                            "start": 540,
+                            "end": 1020
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "Mulberry over the sitework register's plan-grid ground — the trades voice worn by a one-artist beauty studio, visibly apart from the family's contractor orange, landscape moss, painting plum, and the hair studio's rosewood crimson. Marketing pages resolve brand over preset accent, so the overlay re-skins the pages and the app surfaces together. navigation re-pins the shared servicesShell chrome (a declared theme variant outranks the shell prop): the base contractor wears the full-width band, the landscape remix the centered masthead, the painting remix the inline card, and the hair studio the pill links — so the makeup studio takes the split letterhead, the editorial masthead read, per the nav-variety audit.",
+        "brand": {
+            "primary": "#7e2a56",
+            "primaryDark": "#f0a6c8"
+        },
+        "navigation": {
+            "variant": "split"
+        }
+    }
+}

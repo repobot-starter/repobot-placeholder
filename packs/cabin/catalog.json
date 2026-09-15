@@ -1,0 +1,14 @@
+{
+    "key": "cabin",
+    "templateKey": "repobot-cabin",
+    "title": "Cabin",
+    "description": "Flight-attendant time management: serve snacks, calm surprise passengers, and land a five-star cabin.",
+    "marketingExampleTitle": "Airline cabin crew game",
+    "homePath": "/",
+    "previewPath": "/cabin",
+    "homeViewDir": "web/app/src/View/Games/Cabin",
+    "base": "game",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

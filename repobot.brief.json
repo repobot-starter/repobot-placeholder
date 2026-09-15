@@ -1,0 +1,13 @@
+{
+    "$comment": "Project brief: the durable record of what the user asked for at setup and what 'done' means. business = facts about the project; content = seed data asks draw from; asks = the promise ledger (compiled | checkable | judged). Written by the setup flow, amended (never rewritten) by later sessions; status is derived by running the assertions, never stored here. See docs/brief-spec.md.",
+    "business": {
+        "name": null,
+        "oneLiner": null,
+        "audience": null,
+        "tone": null,
+        "locale": "en-US",
+        "currency": "usd"
+    },
+    "content": {},
+    "asks": []
+}

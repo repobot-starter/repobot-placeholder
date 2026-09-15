@@ -1,0 +1,113 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the interiors pack composed with an architecture-studio content seed and a graphite-slate brand over the atelier register — the remix the base module's landingCopy comment always named. Everything else — pages, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "interiors-architecture",
+    "remixOf": "interiors",
+    "templateKey": "repobot-interiors-architecture",
+    "title": "Architect",
+    "description": "An architecture studio's portfolio site on the projects-domain shape: a filterable body of built work whose category chips derive from the projects themselves (New build, Addition, Renovation, ADU, Commercial), three engagement models with honest fee numbers, the principal's story and credentials, plain-language FAQs on cost and timeline, real online booking for free discovery calls and paid two-hour site consultations, and a project-inquiry lead form — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Architecture studio",
+    "contentSeed": "web/app/src/View/Interiors/architectureRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so these projects and appointments seeds replace the base pack's at compose and mirror THIS remix's contentSeed module entry for entry MINUS the photographs (the contract moves words and categories, never bytes; the pack joins its code-owned images back by slug — inventory.ts). The remix-seed tests pin both twins, so the composed template's Manage editors and booking widget open on the studio's real body of work.",
+        "projects": {
+            "entries": [
+                {
+                    "slug": "lakeside-passive-house",
+                    "title": "Lakeside Passive House",
+                    "category": "New build",
+                    "location": "Lake Minnetonka",
+                    "year": 2026,
+                    "scope": "New residence — 2,900 sq ft, certified Passive House",
+                    "description": "A timber house that heats itself on sun and body warmth through a Minnesota January: glulam frame, triple glazing to the water, and a board-formed concrete hearth holding the center. The mechanical room is a closet.",
+                    "featured": true
+                },
+                {
+                    "slug": "north-loop-workshop",
+                    "title": "North Loop Warehouse Offices",
+                    "category": "Commercial",
+                    "location": "North Loop",
+                    "year": 2025,
+                    "scope": "Adaptive reuse — 14,000 sq ft",
+                    "description": "A 1908 warehouse turned working offices without erasing the building that was already there: trusses cleaned and left bare, meeting rooms inserted as glass boxes that touch nothing structural, and the original freight stair kept in service.",
+                    "featured": true
+                },
+                {
+                    "slug": "linden-hills-addition",
+                    "title": "Linden Hills Addition",
+                    "category": "Addition",
+                    "location": "Linden Hills",
+                    "year": 2025,
+                    "scope": "Rear addition — 640 sq ft",
+                    "description": "A cedar-and-glass volume off the back of a 1926 stucco house — new kitchen, garden room, and a step down to the yard — sized so the original house still reads first from the street. The new defers to the old on purpose.",
+                    "featured": true
+                },
+                {
+                    "slug": "superior-shore-cabin",
+                    "title": "Superior Shore Cabin",
+                    "category": "New build",
+                    "location": "North Shore, Lake Superior",
+                    "year": 2024,
+                    "scope": "Off-grid cabin — 480 sq ft",
+                    "description": "One room, one roof plane, one window the size of the wall it lives in — charred-timber cladding against the weather and granite footings that touch the shore lightly. Everything the site needed, nothing it didn't."
+                },
+                {
+                    "slug": "kingfield-backyard-studio",
+                    "title": "Kingfield Backyard Studio",
+                    "category": "ADU",
+                    "location": "Kingfield",
+                    "year": 2024,
+                    "scope": "Accessory dwelling — 384 sq ft",
+                    "description": "A permitted backyard dwelling in cedar and board-formed concrete under a mature hackberry: a full-glass corner to the garden, a murphy bed wall, and rent that pays its own mortgage. Small, precise, legal."
+                },
+                {
+                    "slug": "mill-district-loft",
+                    "title": "Mill District Loft",
+                    "category": "Renovation",
+                    "location": "Mill District",
+                    "year": 2026,
+                    "scope": "Loft renovation — 2,200 sq ft",
+                    "description": "A concrete loft reorganized around one new move: a blackened-steel and white-oak stair to the mezzanine, freeing the window wall for living. The concrete was left to be concrete; the craft went into what touches it."
+                }
+            ]
+        },
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "discovery-call",
+                    "name": "Discovery call",
+                    "durationMinutes": 20,
+                    "description": "A free call about your site, budget, and timeline — and whether we're the right studio."
+                },
+                {
+                    "typeId": "site-consultation",
+                    "name": "Site consultation",
+                    "durationMinutes": 120,
+                    "description": "Two working hours on your site or in the studio: constraints, options, and a written summary the next day."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "simone-aldana",
+                    "name": "Simone Aldana",
+                    "windows": [
+                        { "day": 1, "start": 780, "end": 1020 },
+                        { "day": 3, "start": 540, "end": 780 },
+                        { "day": 4, "start": 780, "end": 1020 },
+                        { "day": 5, "start": 540, "end": 900 }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "Graphite slate over the atelier register's gallery white — the interiors family's quiet portfolio voice re-inked from the base studio's warm bronze into an architect's cool ink, so the two studios hang apart on the same wall. mode light opens the site in its native daylight appearance; marketing pages resolve brand over preset accent, so the overlay re-inks pages and app surfaces together. navigation re-pins the shared interiorsShell chrome (a declared theme variant outranks the shell prop): the base studio wears the centered gallery masthead, so the architecture practice takes the contained inline card — a mounted plaque over the gallery white — per the nav-variety audit.",
+        "mode": "light",
+        "brand": {
+            "primary": "#334155",
+            "primaryDark": "#94a3b8"
+        },
+        "navigation": {
+            "variant": "inline"
+        }
+    }
+}

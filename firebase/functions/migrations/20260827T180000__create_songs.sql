@@ -1,0 +1,72 @@
+-- Songs domain: a living most-popular-songs catalog the AI agent reads and
+-- writes. Matches src/Data/Songs/Song.ts exactly.
+
+CREATE TABLE songs (
+    id text PRIMARY KEY,
+    row_created_at timestamptz NOT NULL DEFAULT now(),
+    row_updated_at timestamptz NOT NULL DEFAULT now(),
+    chart_rank integer NOT NULL,
+    title text NOT NULL,
+    artist text NOT NULL,
+    year integer NOT NULL,
+    genre text NOT NULL,
+    streams_billions double precision,
+    notes text,
+    CONSTRAINT songs_chart_rank_unique UNIQUE (chart_rank),
+    CONSTRAINT songs_chart_rank_positive CHECK (chart_rank >= 1),
+    CONSTRAINT songs_year_check CHECK (year >= 1900 AND year <= 2100)
+);
+
+-- Seed: twenty-four canonical hits, so the first paint — and the agent's
+-- first sentence — already has something to be opinionated about. Fixed ids
+-- keep the seed deterministic (and re-runnable per database).
+
+INSERT INTO songs (id, chart_rank, title, artist, year, genre, streams_billions, notes) VALUES
+    ('sng_00000000-0000-4000-8000-000000000001', 1, 'Bohemian Rhapsody', 'Queen', 1975, 'Rock', 2.8,
+     'Six minutes, no chorus, an opera in the middle — and still the song a room of strangers will sing together.'),
+    ('sng_00000000-0000-4000-8000-000000000002', 2, 'Billie Jean', 'Michael Jackson', 1983, 'Pop', 2.4,
+     'The bassline that taught radio what a groove was. Jackson later said the floor lit up under him the first time he moonwalked it.'),
+    ('sng_00000000-0000-4000-8000-000000000003', 3, 'Imagine', 'John Lennon', 1971, 'Pop', 1.6,
+     'A piano, a wish, and the most covered secular hymn of the last fifty years.'),
+    ('sng_00000000-0000-4000-8000-000000000004', 4, 'Like a Rolling Stone', 'Bob Dylan', 1965, 'Rock', 0.9,
+     'Six minutes of sneer that split folk in half and invented the modern album single.'),
+    ('sng_00000000-0000-4000-8000-000000000005', 5, 'Smells Like Teen Spirit', 'Nirvana', 1991, 'Grunge', 2.1,
+     'The quiet-loud template that retired hair metal overnight. Cobain was already tired of it by the time it went number one.'),
+    ('sng_00000000-0000-4000-8000-000000000006', 6, 'Hey Jude', 'The Beatles', 1968, 'Rock', 1.5,
+     'A seven-minute na-na-na that McCartney wrote to comfort John''s son. The coda is longer than most hits.'),
+    ('sng_00000000-0000-4000-8000-000000000007', 7, 'Respect', 'Aretha Franklin', 1967, 'Soul', 0.8,
+     'Otis Redding wrote it; Aretha took it, spelled it, and made it a civil-rights anthem he later said she ''just took away''.'),
+    ('sng_00000000-0000-4000-8000-000000000008', 8, 'What''s Going On', 'Marvin Gaye', 1971, 'Soul', 0.7,
+     'Motown did not want to release a protest record. It became the label''s conscience anyway.'),
+    ('sng_00000000-0000-4000-8000-000000000009', 9, 'Stairway to Heaven', 'Led Zeppelin', 1971, 'Rock', 1.3,
+     'Never a single, always the song. The acoustic-to-solo climb is still the reason guitar shops post ''no Stairway'' signs.'),
+    ('sng_00000000-0000-4000-8000-000000000010', 10, 'Hotel California', 'Eagles', 1977, 'Rock', 2.0,
+     'A desert mirage with dual-guitar fireworks. Don Henley has spent decades insisting it is not about a real hotel.'),
+    ('sng_00000000-0000-4000-8000-000000000011', 11, 'Superstition', 'Stevie Wonder', 1972, 'Funk', 1.1,
+     'Clavinet as a rhythm section. Written in a hotel room; the riff arrived before the lyrics.'),
+    ('sng_00000000-0000-4000-8000-000000000012', 12, 'Purple Haze', 'Jimi Hendrix', 1967, 'Rock', 0.6,
+     '''Scuse me while I kiss the sky. The chord that still does not have a polite name.'),
+    ('sng_00000000-0000-4000-8000-000000000013', 13, 'I Will Always Love You', 'Whitney Houston', 1992, 'Pop', 1.8,
+     'Dolly Parton wrote it as a goodbye to Porter Wagoner. Whitney''s a cappella opening is the movie moment people still wait for.'),
+    ('sng_00000000-0000-4000-8000-000000000014', 14, 'Thriller', 'Michael Jackson', 1982, 'Pop', 1.4,
+     'A fourteen-minute video, Vincent Price, and the night MTV became a cultural event instead of a cable channel.'),
+    ('sng_00000000-0000-4000-8000-000000000015', 15, 'Yesterday', 'The Beatles', 1965, 'Pop', 1.2,
+     'McCartney woke up with the melody and spent weeks asking if he had stolen it. He had not. Most covered song in history.'),
+    ('sng_00000000-0000-4000-8000-000000000016', 16, 'Blinding Lights', 'The Weeknd', 2019, 'Synth-pop', 4.5,
+     'The 80s as a night drive. Billboard''s biggest song of all time on the Hot 100 chart — a modern claim the rest of this list has to live with.'),
+    ('sng_00000000-0000-4000-8000-000000000017', 17, 'Shape of You', 'Ed Sheeran', 2017, 'Pop', 6.0,
+     'A tropical-house earworm that sat at number one until even Sheeran was ready for it to leave.'),
+    ('sng_00000000-0000-4000-8000-000000000018', 18, 'Despacito', 'Luis Fonsi', 2017, 'Reggaeton', 8.2,
+     'The Daddy Yankee remix that made Spanish the language of the global charts again. YouTube''s first video past eight billion.'),
+    ('sng_00000000-0000-4000-8000-000000000019', 19, 'Rolling in the Deep', 'Adele', 2010, 'Soul', 2.3,
+     'A breakup recorded like a gospel stomp. The drum loop is two bars; the feeling is the whole album.'),
+    ('sng_00000000-0000-4000-8000-000000000020', 20, 'Lose Yourself', 'Eminem', 2002, 'Hip-hop', 2.2,
+     'Written for 8 Mile, won the Oscar, and still the dare: opportunity comes once in a lifetime.'),
+    ('sng_00000000-0000-4000-8000-000000000021', 21, 'Sweet Child O'' Mine', 'Guns N'' Roses', 1987, 'Rock', 2.5,
+     'Slash''s opening riff started as a warmup joke. Axl heard a lullaby. The joke became the band''s first number one.'),
+    ('sng_00000000-0000-4000-8000-000000000022', 22, 'Wonderwall', 'Oasis', 1995, 'Britpop', 2.7,
+     'The acoustic song every guitar is asked to play. Noel Gallagher has spent years pretending to be tired of it.'),
+    ('sng_00000000-0000-4000-8000-000000000023', 23, 'My Heart Will Go On', 'Celine Dion', 1997, 'Pop', 1.9,
+     'The Titanic theme James Horner hid from the director until the film needed a song. Dion recorded it in one take with a cold.'),
+    ('sng_00000000-0000-4000-8000-000000000024', 24, 'Old Town Road', 'Lil Nas X', 2019, 'Country-rap', 1.7,
+     'A $20 beat, a Twitter meme, a Billboard fight about genre, and the longest-running number one in Hot 100 history.');

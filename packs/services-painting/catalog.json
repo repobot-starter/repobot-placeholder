@@ -1,0 +1,47 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services pack composed with a painting-company content seed and a plum brand over the sitework register. Everything else — pages, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-painting",
+    "remixOf": "services",
+    "templateKey": "repobot-services-painting",
+    "title": "House painting",
+    "description": "A painting company site: interior and exterior services with honest starting prices, draggable before/after repaint transformations, a live open/closed badge with click-to-call, testimonials, credentials, and a quote-request form \u2014 a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Painting company",
+    "contentSeed": "web/app/src/View/Services/paintingRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twin) — the composed template's booking widget and Manage calendar open on this trade's own provider, not the base demo business's.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "estimate-visit",
+                    "name": "Free estimate visit",
+                    "durationMinutes": 60,
+                    "description": "A walkthrough of the job — we measure, listen, and follow up with a fixed written quote."
+                },
+                {
+                    "typeId": "service-call",
+                    "name": "Service call",
+                    "durationMinutes": 120,
+                    "description": "A scheduled block for touch-ups and small jobs — scuffed trim, one-room refreshes, handled."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "tom-barrera",
+                    "name": "Tom Barrera",
+                    "windows": [
+                        { "day": 1, "start": 540, "end": 960 },
+                        { "day": 2, "start": 540, "end": 960 },
+                        { "day": 3, "start": 540, "end": 960 },
+                        { "day": 4, "start": 540, "end": 960 },
+                        { "day": 5, "start": 540, "end": 960 }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "Plum over the sitework register's plan-grid ground \u2014 the same trades voice as the category's contractor starter, visibly a different company. Marketing pages resolve brand over preset accent, so the overlay re-skins the pages and the app surfaces together. navigation re-pins the shared servicesShell chrome (a declared theme variant outranks the shell prop): the base contractor wears the full-width band, so the painting remix keeps the inline floating card \u2014 the nav-variety audit spreads the nine-template services family across the vocabulary.",
+        "brand": { "primary": "#7e22ce", "primaryDark": "#c084fc" },
+        "navigation": { "variant": "inline" }
+    }
+}

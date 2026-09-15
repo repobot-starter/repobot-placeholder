@@ -1,0 +1,92 @@
+# The storage kernel's API (see docs/storage.md). All four operations are
+# authenticated — files always have an accountable principal behind them.
+# URL shape: signed GCS URLs are absolute; URLs served by the storage
+# function are paths starting with "/" that clients resolve against the
+# storage endpoint derived from the GraphQL URL.
+
+enum UploadVisibility {
+    "Anyone with the file URL can read it (stable /file/<id> serving URL)."
+    PUBLIC
+    "Only the owner can mint a short-lived download URL."
+    PRIVATE
+}
+
+enum UploadStatus {
+    "The slot exists; bytes have not been verified yet."
+    PENDING
+    "Bytes are verified and the file is servable."
+    READY
+}
+
+type Upload {
+    id: Id!
+    contentType: String!
+    "Declared at create time; the actual byte count once READY."
+    sizeBytes: Int!
+    visibility: UploadVisibility!
+    status: UploadStatus!
+    "The download-friendly name the file was filed with, when the caller supplied one."
+    fileName: String
+    createdTime: Instant!
+}
+
+"Everything the client needs to PUT the file bytes."
+type UploadSlot {
+    uploadId: Id!
+    "Absolute signed GCS URL (gcs mode) or a /upload path on the storage function (local mode)."
+    uploadUrl: String!
+    "Headers to send verbatim on the PUT, JSON-encoded ({\"Content-Type\": ...})."
+    headersJson: String!
+    upload: Upload!
+}
+
+input CreateUploadInput {
+    idempotencyKey: String!
+    fields: CreateUploadFields!
+}
+
+"Admission profiles (Services/Storage/StorageConfig.ts): each surface's allowlist and size cap."
+enum UploadProfile {
+    "The original avatar-era rules: a small allowlist at 20MB."
+    DEFAULT
+    "The drive surface (Files/Images packs): broad document and media types at 100MB."
+    DRIVE
+}
+
+input CreateUploadFields {
+    "Must be on the profile's content-type allowlist (Services/Storage/StorageConfig.ts)."
+    contentType: String!
+    "Declared size; validated against the profile's cap, re-checked at finalize."
+    sizeBytes: Int!
+    visibility: UploadVisibility!
+    "The admission profile; DEFAULT when omitted."
+    profile: UploadProfile
+}
+
+input FinalizeUploadInput {
+    uploadId: Id!
+}
+
+input WriteFileInput {
+    idempotencyKey: String!
+    fields: WriteFileFields!
+}
+
+input WriteFileFields {
+    "Must be on the kernel's content-type allowlist (Services/Storage/StorageConfig.ts)."
+    contentType: String!
+    "The file bytes, base64-encoded; decoded size is held to the same cap as a browser upload."
+    bytesBase64: String!
+    visibility: UploadVisibility!
+    "Optional download-friendly name recorded on the upload (e.g. a generated document's)."
+    fileName: String
+}
+
+input DeleteUploadInput {
+    uploadId: Id!
+}
+
+"A resolved download URL. PRIVATE URLs expire; PUBLIC URLs are stable."
+type FileUrl {
+    url: String!
+}

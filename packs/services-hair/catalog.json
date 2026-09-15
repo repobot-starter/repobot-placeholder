@@ -1,0 +1,72 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services pack composed with a hair-stylist content seed and a rosewood brand over the sitework register. Everything else — pages, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-hair",
+    "remixOf": "services",
+    "templateKey": "repobot-services-hair",
+    "title": "Hair stylist",
+    "description": "A hair stylist's studio site: a priced service menu with honest 'from' pricing, draggable before/after color transformations, the stylist's one-chair story and credentials, a live open badge with click-to-call, real online booking for consultations and chair appointments, and a new-guest inquiry form — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Hair stylist",
+    "contentSeed": "web/app/src/View/Services/hairRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twin) — the composed template's booking widget and Manage calendar open on this studio's own chair, not the base demo business's.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "consultation",
+                    "name": "Free 15-minute consultation",
+                    "durationMinutes": 15,
+                    "description": "For corrections and big changes — photos, honest talk, and your exact quote."
+                },
+                {
+                    "typeId": "chair-appointment",
+                    "name": "Chair appointment",
+                    "durationMinutes": 90,
+                    "description": "A cut, color, or blowout block — the exact service is confirmed at the chair."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "jules-farrow",
+                    "name": "Jules Farrow",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 600,
+                            "end": 1080
+                        },
+                        {
+                            "day": 3,
+                            "start": 600,
+                            "end": 1080
+                        },
+                        {
+                            "day": 4,
+                            "start": 600,
+                            "end": 1080
+                        },
+                        {
+                            "day": 5,
+                            "start": 540,
+                            "end": 1020
+                        },
+                        {
+                            "day": 6,
+                            "start": 540,
+                            "end": 900
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "Rosewood over the sitework register's plan-grid ground — the trades voice worn by a one-chair color studio, visibly apart from the family's contractor orange, landscape moss, and painting plum. Marketing pages resolve brand over preset accent, so the overlay re-skins the pages and the app surfaces together. navigation re-pins the shared servicesShell chrome (a declared theme variant outranks the shell prop): the base contractor wears the full-width band and the landscape remix the centered masthead, so the studio takes the pill-links treatment — the boutique read — per the nav-variety audit.",
+        "brand": {
+            "primary": "#9f1239",
+            "primaryDark": "#fda4af"
+        },
+        "navigation": {
+            "variant": "pill-links"
+        }
+    }
+}

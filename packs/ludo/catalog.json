@@ -1,0 +1,14 @@
+{
+    "key": "ludo",
+    "templateKey": "repobot-ludo",
+    "title": "Ludo",
+    "description": "The classic four-color race: roll sixes, capture rivals, and bring all four tokens home. Any seat can be human or CPU.",
+    "marketingExampleTitle": "Classic ludo",
+    "homePath": "/",
+    "previewPath": "/ludo",
+    "homeViewDir": "web/app/src/View/Games/Ludo",
+    "base": "game",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

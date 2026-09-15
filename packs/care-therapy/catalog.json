@@ -1,0 +1,255 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the care pack composed with a marriage & family therapy content seed and a warm clay brand over the luxe-light register. Everything else — pages, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "care-therapy",
+    "remixOf": "care",
+    "templateKey": "repobot-care-therapy",
+    "title": "Marriage & family therapist",
+    "description": "A marriage & family therapy practice site built to feel like the waiting room: therapist bios with credentials, services for couples, families, and teens, plain-language FAQs on cost and confidentiality, an in-network insurance strip, evening hours, and real online session booking — free consultations, intakes, and 50-minute sessions projected from each therapist's actual week, capacity-1, double-booking impossible. The booking form is deliberately clinically empty: name, contact, session type — what brings you in never touches the site.",
+    "marketingExampleTitle": "Marriage & family therapist",
+    "contentSeed": "web/app/src/View/Care/therapyRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so these practice and appointments seeds replace the base pack's at compose and mirror THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twins) — the composed template's Manage editors and booking widget open on the therapy practice, not the base clinic.",
+        "practice": {
+            "providers": [
+                {
+                    "providerId": "dr-brennan",
+                    "name": "Dr. Maya Brennan",
+                    "credentials": "PhD, LMFT",
+                    "role": "Couples therapy · Founder",
+                    "bio": "Eighteen years of couples work, trained in Emotionally Focused Therapy and Gottman Method Level 3. Maya founded Stillwater around one belief: the relationship is the client. She's direct, warm, and unafraid of the hard conversation you've been avoiding."
+                },
+                {
+                    "providerId": "delgado-lmft",
+                    "name": "Sam Delgado",
+                    "credentials": "LMFT",
+                    "role": "Families & teens",
+                    "bio": "Sam works with whole families and the teenagers in them — school refusal, blended-family friction, the silence at the dinner table. Structural family therapy, a decade of school-counseling experience, and sessions in English or Spanish."
+                },
+                {
+                    "providerId": "okafor-lmft",
+                    "name": "Ruth Okafor",
+                    "credentials": "LMFT",
+                    "role": "Individuals · Grief & life transitions",
+                    "bio": "Ruth sees the individuals inside family systems — new parents, adult children of aging parents, anyone carrying a loss. Clients describe her as the calmest hour of their week. ACT and narrative therapy, with homework you'll actually do."
+                }
+            ],
+            "services": [
+                {
+                    "name": "Couples therapy",
+                    "description": "Weekly 50-minute sessions for couples at any stage — gridlocked conflict, rebuilding trust, or a strong marriage you want to keep that way."
+                },
+                {
+                    "name": "Family therapy",
+                    "description": "The whole household in one room, working on the patterns between people rather than blaming any one of them."
+                },
+                {
+                    "name": "Individual therapy",
+                    "description": "One-on-one work on anxiety, life transitions, and the relationships you bring with you — because individuals live in systems too."
+                },
+                {
+                    "name": "Teen & adolescent therapy",
+                    "description": "A place for 13-to-18-year-olds that isn't the principal's office — with parents involved exactly as much as helps."
+                },
+                {
+                    "name": "Premarital counseling",
+                    "description": "Six structured sessions before the wedding: money, family, conflict, and the conversations easier to have now than at year five."
+                },
+                {
+                    "name": "Parenting support",
+                    "description": "Practical, judgment-free coaching for the season you're in — toddler storms, co-parenting after divorce, launching young adults."
+                },
+                {
+                    "name": "Grief & loss",
+                    "description": "Room to grieve at your own pace — a death, a divorce, a diagnosis — with a therapist who won't rush you to the silver lining."
+                },
+                {
+                    "name": "Telehealth sessions",
+                    "description": "Secure video sessions anywhere in Wisconsin, for the weeks when getting to Monroe Street is the obstacle."
+                }
+            ],
+            "insurance": [
+                "Anthem Blue Cross Blue Shield",
+                "UnitedHealthcare",
+                "Cigna",
+                "Aetna",
+                "Dean Health Plan",
+                "Quartz",
+                "Group Health Cooperative",
+                "Medicare"
+            ],
+            "locations": [
+                {
+                    "locationId": "monroe-street",
+                    "label": "Monroe Street office",
+                    "address": "743 Monroe Street, Suite 204, Madison, WI 53711",
+                    "phone": "(608) 555-0142",
+                    "hours": [
+                        {
+                            "day": 1,
+                            "open": 540,
+                            "close": 1200
+                        },
+                        {
+                            "day": 2,
+                            "open": 540,
+                            "close": 1200
+                        },
+                        {
+                            "day": 3,
+                            "open": 540,
+                            "close": 1200
+                        },
+                        {
+                            "day": 4,
+                            "open": 540,
+                            "close": 1200
+                        },
+                        {
+                            "day": 5,
+                            "open": 540,
+                            "close": 1020
+                        },
+                        {
+                            "day": 6,
+                            "open": 540,
+                            "close": 780
+                        }
+                    ]
+                }
+            ],
+            "reviews": [
+                {
+                    "quote": "We came in barely speaking and planning who'd keep the house. Two years later we still do our Thursday check-ins from the worksheets Dr. Brennan gave us. She saved us the hard way — by making us do the work.",
+                    "name": "J. & M.",
+                    "detail": "Couples clients, shared with consent"
+                },
+                {
+                    "quote": "Sam is the first counselor our son didn't stonewall. He talked to him like a person, not a problem, and taught the rest of us to do the same.",
+                    "name": "The K. family",
+                    "detail": "Family clients, shared with consent"
+                },
+                {
+                    "quote": "Ruth sat with me through the worst year of my life and never once handed me a platitude. That hour was the one place I didn't have to be okay.",
+                    "name": "A. R.",
+                    "detail": "Individual client, shared with consent"
+                }
+            ],
+            "newPatient": [
+                {
+                    "title": "Do you take insurance?",
+                    "body": "We're in network with the plans listed above, and for everything else we provide a superbill for out-of-network reimbursement. Session fees are on the confirmation email — no surprises at the door."
+                },
+                {
+                    "title": "What happens in the first session?",
+                    "body": "Mostly, you talk and we listen: what's bringing you in, what you've tried, what better would look like. You'll leave with a plan — how often we'll meet, what we're working toward, and how we'll know it's working."
+                },
+                {
+                    "title": "How long does therapy take?",
+                    "body": "It depends on the work, and you'll always know where we are. Many couples come weekly for three to six months, then taper. We review goals every eight sessions — staying is a choice we make together, never a default."
+                },
+                {
+                    "title": "Is what we say confidential?",
+                    "body": "Yes, with the legal exceptions every therapist carries (safety, court orders), which we'll walk through in plain language before you say a word. Booking online asks nothing about your story — that stays in the room."
+                }
+            ]
+        },
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "free-consult",
+                    "name": "Free 15-minute consultation",
+                    "durationMinutes": 15,
+                    "description": "A short phone call to see whether we're the right fit — no charge, no pressure."
+                },
+                {
+                    "typeId": "intake-session",
+                    "name": "First session (intake)",
+                    "durationMinutes": 75,
+                    "description": "A longer first session: your story, your goals, and a plan for the work."
+                },
+                {
+                    "typeId": "therapy-session",
+                    "name": "Therapy session",
+                    "durationMinutes": 50,
+                    "description": "The standard 50-minute session — individual, couples, or family."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "dr-brennan",
+                    "name": "Dr. Maya Brennan",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 720,
+                            "end": 1140
+                        },
+                        {
+                            "day": 3,
+                            "start": 720,
+                            "end": 1140
+                        },
+                        {
+                            "day": 4,
+                            "start": 540,
+                            "end": 840
+                        }
+                    ]
+                },
+                {
+                    "providerId": "delgado-lmft",
+                    "name": "Sam Delgado, LMFT",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 780,
+                            "end": 1200
+                        },
+                        {
+                            "day": 4,
+                            "start": 780,
+                            "end": 1200
+                        },
+                        {
+                            "day": 6,
+                            "start": 540,
+                            "end": 720
+                        }
+                    ]
+                },
+                {
+                    "providerId": "okafor-lmft",
+                    "name": "Ruth Okafor, LMFT",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 540,
+                            "end": 780
+                        },
+                        {
+                            "day": 3,
+                            "start": 540,
+                            "end": 780
+                        },
+                        {
+                            "day": 5,
+                            "start": 600,
+                            "end": 960
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "Warm clay over the luxe-light register's near-white ground — the care family's calm, credible light voice re-inked from clinical teal to the therapy room's terracotta. mode light opens the site in its native daylight appearance; marketing pages resolve brand over preset accent, so the overlay re-inks pages and app surfaces together. navigation re-pins the shared careShell chrome (a declared theme variant outranks the shell prop): the base clinic wears the full-width administrative band, so the therapy practice takes the centered masthead — the warmer, more editorial read — per the nav-variety audit.",
+        "mode": "light",
+        "brand": {
+            "primary": "#9a4b32",
+            "primaryDark": "#e2a18c"
+        },
+        "navigation": {
+            "variant": "centered"
+        }
+    }
+}
