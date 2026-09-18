@@ -1,0 +1,299 @@
+{
+    "key": "influencer",
+    "templateKey": "repobot-influencer",
+    "title": "Influencer",
+    "description": "A creator's personal-brand site — the flagship of BOTH creator content domains: a link-in-bio hub whose entries render in the owner's order with derived group chips (the business-content contract's links domain — https-only URLs, badges, categories, all editable from Manage without touching code), and a shoppable looks gallery whose filter chips derive from the looks themselves, each outfit carrying its own product links (the looks domain — photographs stay code-owned and join by slug). Around them: a golden-hour hero, the five-platform audience row, honest trust metrics, brand-side testimonials, the creator's two-rules story, and a campaign-inquiry lead form. Five pages, all facts in one content file, art-directed in the editorial register's warm paper with a rust brand.",
+    "marketingExampleTitle": "Creator personal-brand site",
+    "category": "creator",
+    "homePath": "/",
+    "previewPath": "/influencer",
+    "homeViewDir": "web/app/src/View/Influencer",
+    "base": "landing",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false,
+    "forms": {
+        "$comment": "Managed-form kinds, formKey -> kind (append-only vocabulary: RSVP | LEAD | MAILING_LIST | PROOFING). Compose stamps these into repobot.deploy.json as formKinds; the dashboard renders declared kinds as typed views and keeps the raw Inbox for undeclared keys.",
+        "influencer-collab": "LEAD"
+    },
+    "theme": {
+        "$comment": "The editorial register's warm magazine paper with a rust brand: mode light opens the site in its native daylight appearance, and the rust rides as the project brand so app-side surfaces wear the same register as the marketing pages instead of the kernel default blue. The marketing pages resolve brand over preset accent, so the overlay re-inks editorial's terracotta into the creator's deeper rust on pages and app alike — the golden-hour street photography's own palette.",
+        "mode": "light",
+        "brand": {
+            "primary": "#a8432e",
+            "primaryDark": "#e07b57"
+        }
+    },
+    "contentContract": {
+        "$comment": "The pack's content slots, as data (packs/README.md 'Content contract'). The two structured exports are contract-shaped on purpose: `links` IS the business-content contract's links domain shape (the hub renders in entry order — ORDER IS THE CONTENT — and URLs must be https), and `looks` is the looks domain shape plus each look's code-owned photograph (looksDocument.ts owns the merge; images join by slug and never ride the contract). `category` is each domain's taxonomy axis: a free short label the pages derive group/filter chips from — a composer must keep it short and reusable across entries, never a sentence. Product links are label + https URL pairs, at most 8 per look.",
+        "module": "web/app/src/View/Influencer/content.ts",
+        "slots": {
+            "creator.name": { "kind": "text" },
+            "creator.handle": { "kind": "text" },
+            "creator.tagline": { "kind": "text" },
+            "creator.location": { "kind": "text" },
+            "creator.email": { "kind": "text" },
+            "creator.credentialLine": { "kind": "text" },
+            "home.headline": { "kind": "text" },
+            "home.subheadline": { "kind": "text" },
+            "home.heroImage": { "kind": "media" },
+            "platforms": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "name": { "kind": "text" },
+                    "handle": { "kind": "text" },
+                    "followers": { "kind": "text" },
+                    "url": { "kind": "text" }
+                }
+            },
+            "links": {
+                "kind": "collection",
+                "min": 5,
+                "item": {
+                    "slug": { "kind": "text" },
+                    "title": { "kind": "text" },
+                    "url": { "kind": "text" },
+                    "description": { "kind": "text" },
+                    "badge": { "kind": "text" },
+                    "category": { "kind": "text" }
+                }
+            },
+            "looks": {
+                "kind": "collection",
+                "min": 4,
+                "item": {
+                    "slug": { "kind": "text" },
+                    "title": { "kind": "text" },
+                    "category": { "kind": "text" },
+                    "description": { "kind": "text" },
+                    "productLinks": {
+                        "kind": "collection",
+                        "min": 1,
+                        "item": {
+                            "label": { "kind": "text" },
+                            "url": { "kind": "text" }
+                        }
+                    },
+                    "image": { "kind": "media" }
+                }
+            },
+            "metrics": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "value": { "kind": "text" },
+                    "label": { "kind": "text" }
+                }
+            },
+            "collaborations": { "kind": "text[]", "min": 3 },
+            "testimonials": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "quote": { "kind": "text" },
+                    "name": { "kind": "text" },
+                    "detail": { "kind": "text" }
+                }
+            },
+            "linksPage.headline": { "kind": "text" },
+            "linksPage.subheadline": { "kind": "text" },
+            "looksPage.headline": { "kind": "text" },
+            "looksPage.subheadline": { "kind": "text" },
+            "about.headline": { "kind": "text" },
+            "about.photo": { "kind": "media" },
+            "about.paragraphs": { "kind": "text[]", "min": 2 },
+            "contact.headline": { "kind": "text" },
+            "contact.body": { "kind": "text" }
+        }
+    },
+    "content": {
+        "$comment": "Business-content contract seed (repobot.content.json domains this pack ships). links mirrors content.ts's `links` export entry for entry, in the same order — ORDER IS THE CONTENT, the hub renders top to bottom. looks mirrors the `looks` export entry for entry MINUS the photographs — the contract moves words and product links, never bytes; the pack joins its code-owned images back by slug (inventory.ts). The content tests pin both twins, so the composed template's Manage editors open on exactly the hub and gallery the site already shows.",
+        "links": {
+            "entries": [
+                {
+                    "slug": "fall-capsule-video",
+                    "title": "This week's video — the fall capsule",
+                    "url": "https://www.youtube.com/@noacastillo",
+                    "description": "12 pieces, 30 outfits, zero new purchases required.",
+                    "badge": "New",
+                    "category": "Watch & read"
+                },
+                {
+                    "slug": "sunday-edit-newsletter",
+                    "title": "The Sunday Edit",
+                    "url": "https://noacastillo.substack.com",
+                    "description": "One email a week: what I wore, what I returned, what's worth it.",
+                    "category": "Watch & read"
+                },
+                {
+                    "slug": "on-rotation-podcast",
+                    "title": "On Rotation — ep. 41 with a vintage dealer",
+                    "url": "https://open.spotify.com/show/noacastillo-on-rotation",
+                    "description": "How to read a thrift rack in ninety seconds.",
+                    "category": "Watch & read"
+                },
+                {
+                    "slug": "closet-on-depop",
+                    "title": "My closet on Depop",
+                    "url": "https://www.depop.com/noacastillo",
+                    "description": "Everything I've worn on the feed, one owner, priced to move.",
+                    "category": "Shop"
+                },
+                {
+                    "slug": "street-preset-pack",
+                    "title": "Lightroom presets — the Street Pack",
+                    "url": "https://noacastillo.gumroad.com/l/street-pack",
+                    "description": "The six presets every photo on this site runs through.",
+                    "category": "Shop"
+                },
+                {
+                    "slug": "capsule-checklist",
+                    "title": "The fall capsule checklist",
+                    "url": "https://noacastillo.gumroad.com/l/fall-capsule",
+                    "description": "The 12-piece list from this week's video, printable.",
+                    "badge": "Free",
+                    "category": "Shop"
+                },
+                {
+                    "slug": "sezane-code",
+                    "title": "Sézane — my picks",
+                    "url": "https://www.sezane.com",
+                    "description": "The trench and the loafers, restocked. Code takes 10% off.",
+                    "badge": "Code NOA10",
+                    "category": "Partners"
+                },
+                {
+                    "slug": "girlfriend-collective",
+                    "title": "Girlfriend Collective — travel knits",
+                    "url": "https://girlfriend.com",
+                    "description": "The charcoal co-ord from the carry-on video.",
+                    "category": "Partners"
+                }
+            ]
+        },
+        "looks": {
+            "entries": [
+                {
+                    "slug": "canal-street-trench",
+                    "title": "Canal Street Trench",
+                    "category": "Everyday",
+                    "description": "The trench that does the whole season: thrown over a white tee and straight-leg jeans, with the woven tote that fits a laptop and a bakery stop.",
+                    "productLinks": [
+                        { "label": "The trench", "url": "https://www.sezane.com" },
+                        { "label": "The loafers", "url": "https://www.sezane.com" },
+                        { "label": "The woven tote", "url": "https://www.depop.com/noacastillo" }
+                    ],
+                    "featured": true
+                },
+                {
+                    "slug": "market-day-linen",
+                    "title": "Market-Day Linen",
+                    "category": "Everyday",
+                    "description": "The Saturday uniform: a loose oatmeal linen set and flat sandals — looks put-together at the flower stall, survives the walk home in August.",
+                    "productLinks": [
+                        { "label": "The linen set", "url": "https://www.sezane.com" },
+                        { "label": "The sandals", "url": "https://www.depop.com/noacastillo" }
+                    ],
+                    "featured": true
+                },
+                {
+                    "slug": "thrifted-blazer",
+                    "title": "Thrifted Blazer, Three Ways",
+                    "category": "Vintage flip",
+                    "description": "An $18 houndstooth blazer from the Burnet Road bins, sleeves rolled, over a breton stripe and cuffed vintage jeans. The video shows the other two ways.",
+                    "productLinks": [
+                        { "label": "Similar blazer", "url": "https://www.depop.com/noacastillo" },
+                        { "label": "The breton tee", "url": "https://www.sezane.com" }
+                    ],
+                    "featured": true
+                },
+                {
+                    "slug": "gallery-opening-slip",
+                    "title": "Gallery Opening Slip",
+                    "category": "Evening",
+                    "description": "The champagne slip dress with a leather jacket over the shoulders — dressy enough for the opening, tough enough for the bike rack outside.",
+                    "productLinks": [
+                        { "label": "The slip dress", "url": "https://www.sezane.com" },
+                        { "label": "The leather jacket", "url": "https://www.depop.com/noacastillo" }
+                    ]
+                },
+                {
+                    "slug": "carry-on-only",
+                    "title": "Carry-On Only",
+                    "category": "Travel",
+                    "description": "The airport co-ord: a charcoal knit set that reads as an outfit at the gate and as pajamas at altitude. Everything else fits in the weekender.",
+                    "productLinks": [
+                        { "label": "The knit co-ord", "url": "https://girlfriend.com" },
+                        { "label": "The weekender", "url": "https://www.depop.com/noacastillo" }
+                    ]
+                },
+                {
+                    "slug": "sunday-denim-flip",
+                    "title": "Sunday Denim Flip",
+                    "category": "Vintage flip",
+                    "description": "A '90s denim jacket and patchwork-hem jeans, both from the same estate sale rack — proof that double denim works when the washes argue a little.",
+                    "productLinks": [
+                        { "label": "Similar jacket", "url": "https://www.depop.com/noacastillo" },
+                        { "label": "The western boots", "url": "https://www.depop.com/noacastillo" }
+                    ]
+                }
+            ]
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (web/app/src/View/Influencer/InfluencerPage.tsx, useSitePageConfig). pages seeds each page's layout skeleton — ids match influencerLanding.ts; the platform's structural editor edits these. The preset is editorial (the magazine register: warm paper, serif display, hairline rules, still motion) — a personal-style creator's own printed page, deliberately apart from folio's cooler portfolio read. The looks page lives at /looks and the hub at /links: both are the pack's own vocabulary, colliding with no other pack's preview route.",
+        "style": {
+            "preset": "editorial"
+        },
+        "routes": {
+            "/": "home",
+            "/looks": "looks",
+            "/links": "links",
+            "/about": "about",
+            "/contact": "contact"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "masthead-overlay" },
+                    { "id": "featured-looks", "type": "showcase", "variant": "media-rail" },
+                    { "id": "platforms", "type": "showcase", "variant": "collections" },
+                    { "id": "right-now", "type": "showcase", "variant": "card-grid" },
+                    { "id": "proof", "type": "social-proof", "variant": "metrics-row" },
+                    { "id": "kind-words", "type": "testimonials", "variant": "single-featured" },
+                    { "id": "contact-banner", "type": "cta-banner" }
+                ]
+            },
+            "looks": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "statement" },
+                    { "id": "looks", "type": "showcase", "variant": "filterable-grid" },
+                    { "id": "shop-the-looks", "type": "showcase", "variant": "collections" },
+                    { "id": "contact-banner", "type": "cta-banner" }
+                ]
+            },
+            "links": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "statement" },
+                    { "id": "link-hub", "type": "showcase", "variant": "filterable-grid" },
+                    { "id": "contact-banner", "type": "cta-banner" }
+                ]
+            },
+            "about": {
+                "sections": [
+                    { "id": "story", "type": "content-split", "variant": "media-left" },
+                    { "id": "collaborations", "type": "social-proof", "variant": "text-logos" },
+                    { "id": "kind-words", "type": "testimonials", "variant": "quote-grid" },
+                    { "id": "contact-banner", "type": "cta-banner" }
+                ]
+            },
+            "contact": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "statement" },
+                    { "id": "contact-form", "type": "lead-form", "variant": "detail-form" }
+                ]
+            }
+        }
+    }
+}

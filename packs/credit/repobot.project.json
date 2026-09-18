@@ -1,0 +1,365 @@
+{
+    "$comment": "The credit pack's project IA (docs/project-ia.md). Stamped to the repo root by compose-pack.sh, which then runs scaffold-ia to wire the dashboard destinations; the destination entry pages already exist in the kernel (View/Credit*) so the scaffolder keeps them and only wires routes and nav. Marketing pages carry inline landing configs (real Docket starter copy, CTAs into /login) that win over the blueprint defaults; edit content here, not in hand-built pages.",
+    "marketing": {
+        "preset": "luxe-light",
+        "siteName": "Docket",
+        "pages": [
+            {
+                "id": "home",
+                "path": "/",
+                "title": "Home",
+                "blueprint": "landing",
+                "description": "The letter-of-credit checking desk: drop the LC, drop the documents, read the discrepancy report.",
+                "landing": {
+                    "style": {
+                        "preset": "luxe-light"
+                    },
+                    "shell": {
+                        "nav": {
+                            "content": {
+                                "logo": {
+                                    "name": "Docket"
+                                },
+                                "links": [
+                                    {
+                                        "label": "Features",
+                                        "anchor": "feature-grid"
+                                    },
+                                    {
+                                        "label": "Pricing",
+                                        "href": "/pricing"
+                                    }
+                                ],
+                                "cta": {
+                                    "label": "Sign in",
+                                    "href": "/login"
+                                }
+                            }
+                        },
+                        "footer": {
+                            "variant": "simple",
+                            "content": {
+                                "blurb": "Docket",
+                                "links": [
+                                    {
+                                        "label": "Pricing",
+                                        "href": "/pricing"
+                                    },
+                                    {
+                                        "label": "Sign in",
+                                        "href": "/login"
+                                    }
+                                ],
+                                "note": "© Docket. All rights reserved."
+                            }
+                        }
+                    },
+                    "sections": [
+                        {
+                            "type": "hero",
+                            "variant": "centered-stack",
+                            "content": {
+                                "backdrop": {
+                                    "art": "horizon"
+                                },
+                                "badge": "Built for exporters and trade-finance teams",
+                                "headline": "Drop the LC. Know your deadlines.",
+                                "subheadline": "Docket reads a letter of credit the moment you drop it: latest shipment date, presentation window, tolerance, and the documents it calls for. Then drag your invoice, bill of lading, and packing list against it — and get the discrepancy report before the bank writes it.",
+                                "primaryCta": {
+                                    "label": "Get started free",
+                                    "href": "/login"
+                                },
+                                "secondaryCta": {
+                                    "label": "See pricing",
+                                    "href": "/pricing"
+                                }
+                            }
+                        },
+                        {
+                            "type": "social-proof",
+                            "variant": "metrics-row",
+                            "content": {
+                                "label": "Why credit desks switch",
+                                "metrics": [
+                                    {
+                                        "value": "70%",
+                                        "label": "of first presentations carry discrepancies"
+                                    },
+                                    {
+                                        "value": "< 30 sec",
+                                        "label": "from dropped PDF to full breakdown"
+                                    },
+                                    {
+                                        "value": "$0",
+                                        "label": "discrepancy fees on a clean presentation"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "feature-grid",
+                            "variant": "cards-3up",
+                            "content": {
+                                "kicker": "What you get",
+                                "title": "The credit check the bank does — before the bank does it",
+                                "features": [
+                                    {
+                                        "emoji": "📄",
+                                        "title": "Instant MT700 breakdown",
+                                        "description": "Drop the LC PDF and read the fields that matter: amount and tolerance, expiry, latest shipment date with a live countdown, presentation period, ports, and the full documents-required list."
+                                    },
+                                    {
+                                        "emoji": "📎",
+                                        "title": "Documents against the credit",
+                                        "description": "Drag the commercial invoice, bill of lading, and packing list onto the credit. Each is read, classified, and lined up against the LC's terms automatically."
+                                    },
+                                    {
+                                        "emoji": "🚨",
+                                        "title": "The discrepancy report",
+                                        "description": "Dates, amounts, currencies, ports, and tolerance are checked deterministically — late shipment, over-drawing, port mismatches — so you fix documents before presentation, not after refusal."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "steps",
+                            "variant": "numbered-cards",
+                            "content": {
+                                "kicker": "How it works",
+                                "title": "Three drops to a clean presentation",
+                                "steps": [
+                                    {
+                                        "title": "Drop the letter of credit",
+                                        "description": "The SWIFT fields are extracted on the spot — no rekeying, no reading forty pages of bank boilerplate."
+                                    },
+                                    {
+                                        "title": "Drop the shipping documents",
+                                        "description": "Invoice, bill of lading, packing list — each one is read and checked against the credit as it lands."
+                                    },
+                                    {
+                                        "title": "Fix what the report flags",
+                                        "description": "Every finding says exactly what disagrees with what, so corrections happen before the documents go to the bank."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "testimonials",
+                            "variant": "quote-grid",
+                            "content": {
+                                "kicker": "From the desk",
+                                "title": "Teams that stopped paying discrepancy fees",
+                                "quotes": [
+                                    {
+                                        "quote": "We shipped against an LC with a presentation window we'd misread by a week. Docket would have caught it on day one — now it does.",
+                                        "author": "Lena K.",
+                                        "title": "Export manager, textiles"
+                                    },
+                                    {
+                                        "quote": "The invoice was 6% over with a 5% tolerance. The bank's refusal cost us $250 and nine days. Docket flags it the second the invoice lands.",
+                                        "author": "Tomás V.",
+                                        "title": "Trade finance lead"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "faq",
+                            "variant": "accordion",
+                            "content": {
+                                "kicker": "Good to know",
+                                "title": "Questions before you drop anything",
+                                "items": [
+                                    {
+                                        "question": "Which letters of credit does Docket read?",
+                                        "answer": "Documentary credits in the SWIFT MT700 family, dropped as PDFs — the fields banks actually check: 31D expiry, 44C latest shipment, 48 presentation period, 39A tolerance, 46A documents required."
+                                    },
+                                    {
+                                        "question": "What documents can I check against a credit?",
+                                        "answer": "Commercial invoices, bills of lading, and packing lists are classified and checked automatically; anything else attaches for the record."
+                                    },
+                                    {
+                                        "question": "Is the discrepancy check deterministic?",
+                                        "answer": "Yes — dates, amounts, currencies, ports, and tolerance are rule-based, so the same documents always produce the same report."
+                                    },
+                                    {
+                                        "question": "Is my trade data safe?",
+                                        "answer": "Documents are stored privately per user, read over an encrypted connection, and never shared. Delete a credit and its documents go with it."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "cta-banner",
+                            "variant": "card",
+                            "content": {
+                                "title": "Present clean the first time",
+                                "body": "Free to start — drop your first letter of credit in the next two minutes.",
+                                "cta": {
+                                    "label": "Create your free account",
+                                    "href": "/login"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "id": "pricing",
+                "path": "/pricing",
+                "title": "Pricing",
+                "blueprint": "pricing",
+                "description": "Start free, pay as the desk gets busy.",
+                "landing": {
+                    "style": {
+                        "preset": "luxe-light"
+                    },
+                    "shell": {
+                        "nav": {
+                            "content": {
+                                "logo": {
+                                    "name": "Docket"
+                                },
+                                "links": [
+                                    {
+                                        "label": "Home",
+                                        "href": "/"
+                                    }
+                                ],
+                                "cta": {
+                                    "label": "Sign in",
+                                    "href": "/login"
+                                }
+                            }
+                        },
+                        "footer": {
+                            "variant": "simple",
+                            "content": {
+                                "blurb": "Docket",
+                                "links": [
+                                    {
+                                        "label": "Home",
+                                        "href": "/"
+                                    },
+                                    {
+                                        "label": "Sign in",
+                                        "href": "/login"
+                                    }
+                                ],
+                                "note": "© Docket. All rights reserved."
+                            }
+                        }
+                    },
+                    "sections": [
+                        {
+                            "type": "hero",
+                            "variant": "statement",
+                            "content": {
+                                "headline": "Cheaper than one discrepancy fee",
+                                "subheadline": "Every plan includes the full breakdown, document checking, and the discrepancy report. Pay more only as the volume grows."
+                            }
+                        },
+                        {
+                            "type": "pricing",
+                            "variant": "tiers",
+                            "content": {
+                                "kicker": "Plans",
+                                "title": "Pick what fits the desk today",
+                                "tiers": [
+                                    {
+                                        "name": "Starter",
+                                        "monthly": 0,
+                                        "yearlyPerMonth": 0,
+                                        "description": "For trying Docket on your next shipment.",
+                                        "features": [
+                                            "3 active letters of credit",
+                                            "Full MT700 breakdown",
+                                            "Discrepancy report"
+                                        ]
+                                    },
+                                    {
+                                        "name": "Desk",
+                                        "monthly": 39,
+                                        "yearlyPerMonth": 32,
+                                        "description": "For a working export desk.",
+                                        "features": [
+                                            "Everything in Starter",
+                                            "Unlimited letters of credit",
+                                            "Unlimited supporting documents",
+                                            "Priority support"
+                                        ],
+                                        "highlighted": true,
+                                        "badge": "Most popular"
+                                    },
+                                    {
+                                        "name": "Trade team",
+                                        "monthly": 99,
+                                        "yearlyPerMonth": 82,
+                                        "description": "For teams presenting weekly.",
+                                        "features": [
+                                            "Everything in Desk",
+                                            "Multiple team members",
+                                            "Admin controls"
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "faq",
+                            "variant": "accordion",
+                            "content": {
+                                "kicker": "Billing",
+                                "title": "Common questions",
+                                "items": [
+                                    {
+                                        "question": "Can I change plans later?",
+                                        "answer": "Yes — upgrades apply immediately and downgrades apply at the next billing cycle."
+                                    },
+                                    {
+                                        "question": "What counts as an active letter of credit?",
+                                        "answer": "A credit on your desk that hasn't been deleted. Delete one and the slot frees up immediately."
+                                    },
+                                    {
+                                        "question": "Do you charge per document?",
+                                        "answer": "No — supporting documents are unlimited on every paid plan."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "cta-banner",
+                            "variant": "card",
+                            "content": {
+                                "title": "Ready when the credit lands",
+                                "body": "Start on the free plan — no card required.",
+                                "cta": {
+                                    "label": "Get started free",
+                                    "href": "/login"
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "dashboard": {
+        "destinations": [
+            {
+                "id": "credit-desk",
+                "path": "/desk",
+                "label": "Desk",
+                "blueprint": "custom",
+                "description": "The signed-in home: drop a letter of credit for the SWIFT breakdown, and see every credit on the desk with its deadlines and discrepancy count at a glance. Bundled sample PDFs make the demo credential-free."
+            },
+            {
+                "id": "credit-review",
+                "path": "/review",
+                "label": "Review",
+                "blueprint": "custom",
+                "description": "One credit in full: the MT700 field breakdown with countdowns, a drop zone for supporting documents (invoice, B/L, packing list), what each was read as, and the discrepancy report — worst findings first."
+            }
+        ]
+    }
+}

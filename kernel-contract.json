@@ -1,0 +1,13 @@
+{
+    "schema": "repobot.kernel-contract.v1",
+    "version": 6,
+    "minCompatibleVersion": 1,
+    "surfacePaths": [
+        "web/design-system/src/theme/runtimeSiteDocuments.ts",
+        "web/design-system/src/theme/themeConfig.ts",
+        "web/app/src/View/Landing/landingDocument.ts",
+        "web/app/src/View/Landing/contentDocument.ts",
+        "web/app/src/Config/publishedSiteBranding.ts",
+        "web/app/index.html"
+    ]
+}

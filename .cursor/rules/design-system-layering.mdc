@@ -1,0 +1,30 @@
+---
+description: Design system layering, styling, and story requirements
+globs: web/design-system/src/**/*.ts,web/design-system/src/**/*.tsx
+alwaysApply: false
+---
+
+# Design System Rules
+
+## Layering
+
+- `web/design-system/src/primitives/` — lowest-level styled building blocks on Radix UI. No network/router/store imports, no domain concepts.
+- `web/design-system/src/components/` — reusable compositions (AppShell, UiQueryView, modals, states). Domain-agnostic only.
+- Business/domain UI never lives here — it belongs in `web/app`. The generic `SchemaFormRuntime` and `UiQueryView` are allowed because they are domain-agnostic.
+
+## Styling
+
+- vanilla-extract only. Every component extracts styles to a sibling `X.styles.css.ts` file.
+- Style values come from the theme contract in `web/design-system/src/theme/` — never hardcode colors, spacing, radii, or font sizes. `scripts/check-theme-hardcoding.mjs` (run by check:all and compose) blocks raw hex colors outside `theme/`.
+- No inline style objects, no styled-components, no component-library CSS frameworks.
+
+## Theming
+
+- Token values derive from the root `repobot.theme.json` via `theme/themeConfig.ts`. Change the contract file (or the resolver's derivations) — never hand-edit value sets in `tokens.css.ts`.
+- Pack views in `web/app/src/View/` keep their own art palettes, but accent/brand constants and body fonts must route through the `packBrand` / `packFont` overlay from `@base/design-system/theme` (see packs/README.md). Genuinely art-directed exceptions carry a `// theme-exempt: <reason>` comment.
+- The `/theme` gallery (`web/app/src/View/ThemeGallery/`) must showcase every exported primitive/component — extend it when adding one.
+- App code imports components from `@ui` (the registry at `web/app/src/Theme/ui.ts`), never from `@base/design-system` directly; that seam is how ejected overrides in `web/app/src/Theme/overrides/` take effect. `.styles.css.ts` files may still deep-import `@base/design-system/tokens` and `@base/design-system/theme`.
+
+## Stories
+
+- Every primitive and component ships a `X.stories.tsx` next to it. A component without a story is unfinished.

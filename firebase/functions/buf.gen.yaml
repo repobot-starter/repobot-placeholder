@@ -1,0 +1,7 @@
+# Generates TypeScript protobuf classes (protobuf-es v2) into the directory
+# passed to `buf generate -o` (see prebuild.sh).
+version: v2
+plugins:
+    - local: protoc-gen-es
+      out: .
+      opt: target=ts

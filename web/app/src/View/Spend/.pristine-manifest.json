@@ -1,0 +1,11 @@
+{
+    "BudgetsPage.styles.css.ts": "7cb5d41d4b2712728e93f362565d59f1fff1cfac2f48542d038f62eb6a203e19",
+    "BudgetsPage.tsx": "6feaa6edcc054a3799287d2ac051e125e5e87ed5682326d3f196f832bf55489e",
+    "CardsPage.styles.css.ts": "67681e7ca6a91d59bfe6dbb15303df6657a0c2d0d3742424f7be838860bed6f8",
+    "CardsPage.tsx": "ee54c5e8cede87874e9f12c0639515b13bddd984145f094f0fb56f102ae810f9",
+    "OverviewPage.styles.css.ts": "b8b5e0f128583da88a6210d8509b471401e0230ba062d9bd9bf6f0c5f726b88a",
+    "OverviewPage.tsx": "eafa9f28ecc98ce066d5d891773748ebbc50c997b4db64c7413107ce079e75d5",
+    "spendData.ts": "c69cc64cec1e9daa751ffeccbc29a085b15342a114c3eca59faaf324a6f3f6d1",
+    "TransactionsPage.styles.css.ts": "09e1b7a04d036f157a31a47d735ed39f999fa6e8655009ac84c30b94fef0dc64",
+    "TransactionsPage.tsx": "03cdc5a503a21574779f9709cad48c096938e90d1a050f394d152133da623b6a"
+}

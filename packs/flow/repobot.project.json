@@ -1,0 +1,372 @@
+{
+    "$comment": "The flow pack's project IA (docs/project-ia.md). Stamped to the repo root by compose-pack.sh, which then runs scaffold-ia to wire the dashboard destinations; the destination entry pages already exist in the kernel (View/Flow*) so the scaffolder keeps them and only wires routes and nav. Marketing pages carry inline landing configs (real Flowline starter copy, CTAs into /login) that win over the blueprint defaults; edit content here, not in hand-built pages.",
+    "marketing": {
+        "preset": "luxe-light",
+        "siteName": "Flowline",
+        "pages": [
+            {
+                "id": "home",
+                "path": "/",
+                "title": "Home",
+                "blueprint": "landing",
+                "description": "Budgets that read your books: linked grids over live accounting data, always-current variance, Excel in and out.",
+                "landing": {
+                    "style": {
+                        "preset": "luxe-light"
+                    },
+                    "shell": {
+                        "nav": {
+                            "content": {
+                                "logo": {
+                                    "name": "Flowline"
+                                },
+                                "links": [
+                                    {
+                                        "label": "Features",
+                                        "anchor": "feature-grid"
+                                    },
+                                    {
+                                        "label": "Pricing",
+                                        "href": "/pricing"
+                                    }
+                                ],
+                                "cta": {
+                                    "label": "Sign in",
+                                    "href": "/login"
+                                }
+                            }
+                        },
+                        "footer": {
+                            "variant": "simple",
+                            "content": {
+                                "blurb": "Flowline",
+                                "links": [
+                                    {
+                                        "label": "Pricing",
+                                        "href": "/pricing"
+                                    },
+                                    {
+                                        "label": "Sign in",
+                                        "href": "/login"
+                                    }
+                                ],
+                                "note": "© Flowline. All rights reserved."
+                            }
+                        }
+                    },
+                    "sections": [
+                        {
+                            "type": "hero",
+                            "variant": "centered-stack",
+                            "content": {
+                                "backdrop": {
+                                    "art": "horizon"
+                                },
+                                "badge": "Built for finance teams who live in spreadsheets",
+                                "headline": "Budgets that read your books",
+                                "subheadline": "Flowline connects to your QuickBooks or Xero and turns budgeting into a live grid: rows link to real P&L categories, actuals fill themselves in every month, and variance is computed the moment the numbers move. Excel in, Excel out.",
+                                "primaryCta": {
+                                    "label": "Get started free",
+                                    "href": "/login"
+                                },
+                                "secondaryCta": {
+                                    "label": "See pricing",
+                                    "href": "/pricing"
+                                }
+                            }
+                        },
+                        {
+                            "type": "social-proof",
+                            "variant": "metrics-row",
+                            "content": {
+                                "label": "Why teams switch",
+                                "metrics": [
+                                    {
+                                        "value": "0 hrs",
+                                        "label": "spent rekeying actuals into the budget"
+                                    },
+                                    {
+                                        "value": "< 1 min",
+                                        "label": "from connecting books to a seeded plan"
+                                    },
+                                    {
+                                        "value": "100%",
+                                        "label": "of grids round-trip through Excel"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "feature-grid",
+                            "variant": "cards-3up",
+                            "content": {
+                                "kicker": "What you get",
+                                "title": "The budgeting loop, without the copy-paste",
+                                "features": [
+                                    {
+                                        "emoji": "🔗",
+                                        "title": "Rows linked to live data",
+                                        "description": "Link any grid row to a P&L category on your books. Actuals auto-populate month after month, and variance against plan is computed on the spot — favorable in green, over in red."
+                                    },
+                                    {
+                                        "emoji": "🌱",
+                                        "title": "Plans seeded from reality",
+                                        "description": "Start a budget from your latest actuals instead of a wall of zeros: one linked row per category, prefilled with last month's numbers, ready to adjust."
+                                    },
+                                    {
+                                        "emoji": "📥",
+                                        "title": "Excel both ways",
+                                        "description": "Download any template as a workbook — the plan plus an actuals-vs-budget sheet — and import a budget from Excel to seed a new grid. The export always round-trips."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "steps",
+                            "variant": "numbered-cards",
+                            "content": {
+                                "kicker": "How it works",
+                                "title": "From connection to living budget in three steps",
+                                "steps": [
+                                    {
+                                        "title": "Connect your books",
+                                        "description": "QuickBooks or Xero, one click, read-only. Flowline never writes to your ledger."
+                                    },
+                                    {
+                                        "title": "Build or seed a grid",
+                                        "description": "Pick the months, link rows to your real P&L categories, or seed the whole plan from your latest actuals."
+                                    },
+                                    {
+                                        "title": "Watch variance, not spreadsheets",
+                                        "description": "Actuals land by themselves every month. You adjust the plan; the grid does the bookkeeping."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "testimonials",
+                            "variant": "quote-grid",
+                            "content": {
+                                "kicker": "From working teams",
+                                "title": "Teams that closed the loop",
+                                "quotes": [
+                                    {
+                                        "quote": "Our monthly budget review used to start with two hours of pasting exports into the master sheet. Now the actuals are just there when we open the grid.",
+                                        "author": "Priya S.",
+                                        "title": "Head of finance, agency"
+                                    },
+                                    {
+                                        "quote": "I seeded the FY plan from live actuals in one click and spent the afternoon on strategy instead of data entry.",
+                                        "author": "Marcus D.",
+                                        "title": "Founder, studio"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "faq",
+                            "variant": "accordion",
+                            "content": {
+                                "kicker": "Good to know",
+                                "title": "Questions before you connect",
+                                "items": [
+                                    {
+                                        "question": "Does Flowline change anything in my books?",
+                                        "answer": "No — the connection is read-only. Flowline reads your P&L to populate actuals and never writes to the ledger."
+                                    },
+                                    {
+                                        "question": "What can grid rows link to?",
+                                        "answer": "Any income or expense category your P&L serves. Unlinked rows work too — they are plain plan lines without live actuals."
+                                    },
+                                    {
+                                        "question": "Can I keep working in Excel?",
+                                        "answer": "Yes — export any template as a workbook and import a budget from Excel to seed a grid. The exported Budget sheet always round-trips."
+                                    },
+                                    {
+                                        "question": "What about Google Sheets sync?",
+                                        "answer": "Live two-way Sheets sync is on the roadmap; the linked-data model is built so a Sheets connection slots in without changing your grids."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "cta-banner",
+                            "variant": "card",
+                            "content": {
+                                "title": "Stop rekeying actuals",
+                                "body": "Free to start — connect your books and seed your first plan in the next five minutes.",
+                                "cta": {
+                                    "label": "Create your free account",
+                                    "href": "/login"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "id": "pricing",
+                "path": "/pricing",
+                "title": "Pricing",
+                "blueprint": "pricing",
+                "description": "Start free, pay as the planning grows.",
+                "landing": {
+                    "style": {
+                        "preset": "luxe-light"
+                    },
+                    "shell": {
+                        "nav": {
+                            "content": {
+                                "logo": {
+                                    "name": "Flowline"
+                                },
+                                "links": [
+                                    {
+                                        "label": "Home",
+                                        "href": "/"
+                                    }
+                                ],
+                                "cta": {
+                                    "label": "Sign in",
+                                    "href": "/login"
+                                }
+                            }
+                        },
+                        "footer": {
+                            "variant": "simple",
+                            "content": {
+                                "blurb": "Flowline",
+                                "links": [
+                                    {
+                                        "label": "Home",
+                                        "href": "/"
+                                    },
+                                    {
+                                        "label": "Sign in",
+                                        "href": "/login"
+                                    }
+                                ],
+                                "note": "© Flowline. All rights reserved."
+                            }
+                        }
+                    },
+                    "sections": [
+                        {
+                            "type": "hero",
+                            "variant": "statement",
+                            "content": {
+                                "headline": "Cheaper than the hours you spend pasting",
+                                "subheadline": "Every plan includes linked grids, live actuals, variance, and Excel round-trips. Pay more only as the team grows."
+                            }
+                        },
+                        {
+                            "type": "pricing",
+                            "variant": "tiers",
+                            "content": {
+                                "kicker": "Plans",
+                                "title": "Pick what fits the planning today",
+                                "tiers": [
+                                    {
+                                        "name": "Starter",
+                                        "monthly": 0,
+                                        "yearlyPerMonth": 0,
+                                        "description": "For trying Flowline on one budget.",
+                                        "features": [
+                                            "2 templates",
+                                            "Linked rows with live actuals",
+                                            "Excel export"
+                                        ]
+                                    },
+                                    {
+                                        "name": "Planning",
+                                        "monthly": 29,
+                                        "yearlyPerMonth": 24,
+                                        "description": "For a team that budgets every month.",
+                                        "features": [
+                                            "Everything in Starter",
+                                            "Unlimited templates",
+                                            "Excel import",
+                                            "Priority support"
+                                        ],
+                                        "highlighted": true,
+                                        "badge": "Most popular"
+                                    },
+                                    {
+                                        "name": "Finance team",
+                                        "monthly": 79,
+                                        "yearlyPerMonth": 66,
+                                        "description": "For teams planning across entities.",
+                                        "features": [
+                                            "Everything in Planning",
+                                            "Multiple members",
+                                            "Admin controls"
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "faq",
+                            "variant": "accordion",
+                            "content": {
+                                "kicker": "Billing",
+                                "title": "Common questions",
+                                "items": [
+                                    {
+                                        "question": "Can I change plans later?",
+                                        "answer": "Yes — upgrades apply immediately and downgrades apply at the next billing cycle."
+                                    },
+                                    {
+                                        "question": "What counts as a template?",
+                                        "answer": "A budget or forecast grid on your account. Delete one and the slot frees up immediately."
+                                    },
+                                    {
+                                        "question": "Do you charge per connected account?",
+                                        "answer": "No — the books connection is included on every plan."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "cta-banner",
+                            "variant": "card",
+                            "content": {
+                                "title": "Ready when the plan is due",
+                                "body": "Start on the free plan — no card required.",
+                                "cta": {
+                                    "label": "Get started free",
+                                    "href": "/login"
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "dashboard": {
+        "destinations": [
+            {
+                "id": "flow-templates",
+                "path": "/templates",
+                "label": "Templates",
+                "blueprint": "custom",
+                "description": "The signed-in home: create a budget/forecast grid (optionally seeded from live actuals), import one from a workbook, open or delete existing templates."
+            },
+            {
+                "id": "flow-grid",
+                "path": "/grid",
+                "label": "Grid",
+                "blueprint": "custom",
+                "description": "The budget grid for one template (?template=<id>): budget cells edit in place, rows link to live P&L categories, actuals and colored variance render under every cell, workbook export one click away."
+            },
+            {
+                "id": "flow-books",
+                "path": "/books",
+                "label": "My books",
+                "blueprint": "custom",
+                "description": "The member's connection surface: connect QuickBooks or Xero (instant in the sandbox), see the linkable P&L categories, disconnect any time."
+            }
+        ]
+    }
+}

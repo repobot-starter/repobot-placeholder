@@ -1,0 +1,25 @@
+---
+description: Data-layer enum pattern and skipping redundant zod enum validators
+globs: firebase/functions/src/Data/**/*.ts
+alwaysApply: false
+---
+
+# Data-Layer Enums
+
+Enums follow one pattern end to end (exemplar: `allProjectStatuses` in `src/Data/Project/Project.ts`):
+
+- Declare an `as const` array named `all<Xyz>s` and derive the union type from it:
+
+```ts
+export const allProjectStatuses = ["ACTIVE", "ARCHIVED"] as const
+export type ProjectStatus = (typeof allProjectStatuses)[number]
+```
+
+- The column uses `text("status", { enum: allProjectStatuses })` — never a Postgres `ENUM` type.
+- The SQL migration mirrors the values with a `CHECK (status IN (...))` constraint, and the Drizzle table declares the same `check(...)` so drift-check stays green.
+- The matching GraphQL `enum` in `Graphql/` lists the same values; keep them in sync manually (drift shows up as codegen type errors).
+
+# Avoid Redundant Zod Enum Validation
+
+- When using `createInsertSchema`/`createUpdateSchema`, do not add explicit `z.enum(...)` overrides for columns that already declare `text("...", { enum: values })` — drizzle-zod infers them.
+- Keep overrides focused on fields that genuinely need custom validation.

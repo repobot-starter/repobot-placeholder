@@ -1,0 +1,33 @@
+{
+    "name": "Invoice",
+    "description": "A clean single-page invoice: business and client details, line items, totals, and optional notes. Money fields are preformatted strings (e.g. \"$1,250.00\") so the template never does currency math.",
+    "pageSize": "Letter",
+    "fields": {
+        "businessName": { "type": "string", "required": true },
+        "businessEmail": { "type": "string", "format": "email" },
+        "businessAddress": { "type": "string" },
+        "clientName": { "type": "string", "required": true },
+        "clientEmail": { "type": "string", "format": "email" },
+        "clientAddress": { "type": "string" },
+        "invoiceNumber": { "type": "string", "required": true },
+        "issueDate": { "type": "string", "format": "date", "required": true },
+        "dueDate": { "type": "string", "format": "date" },
+        "lineItems": {
+            "type": "array",
+            "required": true,
+            "items": {
+                "type": "object",
+                "fields": {
+                    "description": { "type": "string", "required": true },
+                    "quantity": { "type": "string", "required": true },
+                    "unitPrice": { "type": "string", "required": true },
+                    "lineTotal": { "type": "string", "required": true }
+                }
+            }
+        },
+        "subtotal": { "type": "string", "required": true },
+        "tax": { "type": "string" },
+        "total": { "type": "string", "required": true },
+        "notes": { "type": "string" }
+    }
+}

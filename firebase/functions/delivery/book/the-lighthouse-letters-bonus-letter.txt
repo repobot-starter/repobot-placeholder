@@ -1,0 +1,26 @@
+THE LIGHTHOUSE LETTERS — A Bonus Letter
+Thank you for your purchase.
+
+While the signed hardcover makes its way to you, here is a letter that did
+not make the final edition.
+
+    Dear M.,
+
+    The keeper before me left three rules pinned above the lamp: trim the
+    wick before you are tired, log the weather before you forget it, and
+    never write letters during a storm. I have kept the first two
+    faithfully. This letter is my apology for the third.
+
+    The light turned green again last night — the whole beam of it, for
+    four sweeps, the way you never believed me about. I have started
+    keeping the log in pencil so the sea air cannot smudge what I saw.
+
+    Come in spring. The stairs are seventy-eight now; I counted them
+    twice.
+
+        — E.
+
+(This file is the shop pack's session-gated delivery exemplar: it is served
+by the payments kernel's GET /delivery endpoint only after the checkout
+session is verified PAID. Replace it with your product's real deliverable,
+or delete the directory for products with nothing to deliver.)

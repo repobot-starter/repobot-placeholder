@@ -1,0 +1,24 @@
+---
+description: GraphQL resolvers must not access databases directly
+globs: firebase/functions/src/Graphql/**/*.ts
+alwaysApply: false
+---
+
+# GraphQL Resolver DB Boundary
+
+- Do not import `Data/*` database modules in resolver files for query execution.
+- Importing `Data/*` types/enums for typing is allowed; executing queries is not.
+- Resolver data access must go through service methods and the dataloaders on `GraphqlRequestContext`.
+
+## Allowed
+
+```typescript
+const project = await projectService.getProjectByIdOrThrow({ projectId: id })
+const user = await context.userDataloader.load(project.createdByUserId)
+```
+
+## Avoid
+
+```typescript
+const project = await projectDb.query.projectsTable.findFirst({ where: eq(projectsTable.id, id) })
+```

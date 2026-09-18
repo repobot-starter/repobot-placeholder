@@ -1,0 +1,277 @@
+{
+    "key": "services-recurring",
+    "templateKey": "repobot-services-recurring",
+    "title": "Cleaning & recurring services",
+    "description": "A subscription-trade site: pricing plans on the home page, a live open/closed badge, a line-by-line what's-included comparison, a proof gallery with a lightbox, and a booking form that asks for a frequency \u2014 a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Recurring service business",
+    "category": "services",
+    "homePath": "/",
+    "previewPath": "/cleaning",
+    "homeViewDir": "web/app/src/View/ServicesRecurring",
+    "base": "landing",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false,
+    "forms": {
+        "$comment": "Managed-form kinds, formKey -> kind (append-only vocabulary: RSVP | LEAD | MAILING_LIST | PROOFING). Compose stamps these into repobot.deploy.json as formKinds; the dashboard renders declared kinds as typed views and keeps the raw Inbox for undeclared keys.",
+        "booking-request": "LEAD"
+    },
+    "theme": {
+        "$comment": "The warm-boutique register's brand overlay: a fresh herbal green over the register's cream warmth \u2014 the clean-and-natural voice for a home-services subscription, deliberately apart from the trades register the category's other starters wear. Marketing pages resolve brand over preset accent, so the overlay re-skins the pages and the app surfaces together.",
+        "brand": { "primary": "#2f7a52", "primaryDark": "#8fd6ae" }
+    },
+    "contentContract": {
+        "$comment": "The pack's content slots, as data (packs/README.md 'Content contract'). Declares what a composer (agent or tool) must bind for a generated variant of this pack to present as real: slot paths into the typed content module, their kinds, and minimums. The demo business is a home cleaner, but the slots are trade-agnostic \u2014 lawn care, pool service, or pest control binds the same shape. Authored alongside the module and guarded by the pack's content tests \u2014 the module satisfies the contract; the contract never drifts ahead of it.",
+        "module": "web/app/src/View/ServicesRecurring/content.ts",
+        "slots": {
+            "business.name": { "kind": "text" },
+            "business.tagline": { "kind": "text" },
+            "business.location": { "kind": "text" },
+            "business.phone": { "kind": "text" },
+            "business.email": { "kind": "text" },
+            "business.address": { "kind": "text" },
+            "business.license": { "kind": "text" },
+            "home.headline": { "kind": "text" },
+            "home.subheadline": { "kind": "text" },
+            "home.heroImage": { "kind": "media" },
+            "plans": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "name": { "kind": "text" },
+                    "perVisit": { "kind": "text" },
+                    "description": { "kind": "text" },
+                    "features": { "kind": "text[]" }
+                }
+            },
+            "included": {
+                "kind": "collection",
+                "min": 4,
+                "item": {
+                    "title": { "kind": "text" },
+                    "description": { "kind": "text" }
+                }
+            },
+            "gallery": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "caption": { "kind": "text" },
+                    "image": { "kind": "media" }
+                }
+            },
+            "metrics": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "value": { "kind": "text" },
+                    "label": { "kind": "text" }
+                }
+            },
+            "testimonials": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "quote": { "kind": "text" },
+                    "name": { "kind": "text" },
+                    "detail": { "kind": "text" }
+                }
+            },
+            "serviceArea": { "kind": "text[]", "min": 1 },
+            "faq": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "question": { "kind": "text" },
+                    "answer": { "kind": "text" }
+                }
+            },
+            "about.headline": { "kind": "text" },
+            "about.photo": { "kind": "media" },
+            "about.paragraphs": { "kind": "text[]", "min": 2 },
+            "about.credentials": { "kind": "text[]", "min": 1 },
+            "book.headline": { "kind": "text" },
+            "book.body": { "kind": "text" },
+            "codeAppointments.types": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "typeId": { "kind": "text" },
+                    "name": { "kind": "text" },
+                    "durationMinutes": { "kind": "number" },
+                    "description": { "kind": "text" }
+                }
+            },
+            "codeAppointments.providers": {
+                "kind": "collection",
+                "min": 1,
+                "item": {
+                    "providerId": { "kind": "text" },
+                    "name": { "kind": "text" },
+                    "windows": {
+                        "kind": "collection",
+                        "min": 1,
+                        "item": {
+                            "day": { "kind": "number" },
+                            "start": { "kind": "number" },
+                            "end": { "kind": "number" }
+                        }
+                    }
+                }
+            },
+            "booking.headline": { "kind": "text" },
+            "booking.intro": { "kind": "text" }
+        }
+    },
+    "content": {
+        "$comment": "Business-content contract seed, merged over repobot.content.json at compose (the care pack's discipline). The appointments domain mirrors content.ts codeAppointments entry for entry (the pack's content tests pin the twin), so the Manage visit calendar opens on exactly the visits the site already offers, and the platform projects exactly the capacity-1 slots the sandbox simulation shows on the inquiry page. The seed is booking mode 2's input: the platform generates a booking_session per provider x window x visit type occurrence, capacity 1, with the provider-wide overlap lock making double-booking impossible. Durations are minutes; windows are weekday index (0 = Sunday) x minutes since midnight — one provider, because the founder does every walkthrough.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "walkthrough",
+                    "name": "In-home walkthrough",
+                    "durationMinutes": 45,
+                    "description": "A walk through the home together — we measure, note the priorities, and quote a flat rate."
+                },
+                {
+                    "typeId": "first-service",
+                    "name": "First service visit",
+                    "durationMinutes": 120,
+                    "description": "The first full visit — deep, top to bottom, so the standing schedule starts from clean."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "anh-tran",
+                    "name": "Anh Tran",
+                    "windows": [
+                        { "day": 1, "start": 540, "end": 900 },
+                        { "day": 2, "start": 540, "end": 900 },
+                        { "day": 3, "start": 540, "end": 900 },
+                        { "day": 4, "start": 540, "end": 900 },
+                        { "day": 5, "start": 540, "end": 900 }
+                    ]
+                }
+            ]
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (web/app/src/View/ServicesRecurring/ServicesRecurringPage.tsx, useSitePageConfig). pages seeds each page's layout skeleton \u2014 ids match servicesRecurringLanding.ts; the platform's structural editor edits these. The preset is warm-boutique (cream-and-terracotta local-business warmth) with the catalog's herbal-green brand overlay \u2014 the clean-and-natural voice.",
+        "style": { "preset": "warm-boutique" },
+        "routes": {
+            "/": "home",
+            "/plans": "plans",
+            "/about": "about",
+            "/book": "book"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "split-media"
+                    },
+                    {
+                        "id": "proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "included",
+                        "type": "feature-grid",
+                        "variant": "icon-list"
+                    },
+                    {
+                        "id": "plans",
+                        "type": "pricing",
+                        "variant": "tiers"
+                    },
+                    {
+                        "id": "standard",
+                        "type": "gallery",
+                        "variant": "uniform"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "service-area",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "plans": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "plans",
+                        "type": "pricing",
+                        "variant": "tiers"
+                    },
+                    {
+                        "id": "compare",
+                        "type": "comparison",
+                        "variant": "table"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "book-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "key": "carrom",
+    "templateKey": "repobot-carrom",
+    "title": "Carrom",
+    "description": "Flick the striker, pocket your coins, and cover the queen. Play the CPU or a friend in hotseat.",
+    "marketingExampleTitle": "Classic carrom",
+    "homePath": "/",
+    "previewPath": "/carrom",
+    "homeViewDir": "web/app/src/View/Games/Carrom",
+    "base": "game",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

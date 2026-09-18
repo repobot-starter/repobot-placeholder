@@ -1,0 +1,256 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the care pack composed with a dental-practice content seed and a clear sky-blue brand over the luxe-light register. Everything else — pages, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs). The care family's third remix, deliberately apart from care-therapy's couples warmth and care-psychology's scholarly evidence voice: clinical-but-warm dentistry that quotes prices in writing before treatment and treats nervous patients as its specialty.",
+    "key": "care-dental",
+    "remixOf": "care",
+    "templateKey": "repobot-care-dental",
+    "title": "Dentist",
+    "description": "A modern dental practice site built to disarm the two reasons people avoid dentists — surprise bills and fear: two dentists and a lead hygienist with real bios, dental-specific services from cleanings to implant restoration, written-price and financing copy that answers the money question first, a comfort menu for nervous patients, an in-network insurance strip, and real online booking — hour-long new-patient exams, 45-minute cleanings, same-day emergency visits, and free cosmetic consults projected from each provider's actual week, capacity-1, double-booking impossible. The booking form is deliberately clinically empty: name, contact, visit type — what's wrong with the tooth never touches the site.",
+    "marketingExampleTitle": "Dentist",
+    "contentSeed": "web/app/src/View/Care/dentalRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so these practice and appointments seeds replace the base pack's at compose and mirror THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twins) — the composed template's Manage editors and booking widget open on the dental practice, not the base clinic.",
+        "practice": {
+            "providers": [
+                {
+                    "providerId": "dr-nakamura",
+                    "name": "Dr. Mei Nakamura",
+                    "credentials": "DDS",
+                    "role": "Restorative & cosmetic dentistry · Founder",
+                    "bio": "Eighteen years of restorative work, the last nine on Waverly Court. Mei opened the practice on one rule: you hear the price and the plan before the chair reclines. She keeps the trickiest crown and veneer cases for herself and photographs her margins because she's proud of them."
+                },
+                {
+                    "providerId": "dr-ellison",
+                    "name": "Dr. Andre Ellison",
+                    "credentials": "DMD",
+                    "role": "General & family dentistry",
+                    "bio": "Andre sees every age and specializes in the patients who announce they hate the dentist. His answer is the same every time: numb slowly, narrate everything, and stop the moment a hand goes up. Most of his once-nervous patients now book cleanings without a reminder call."
+                },
+                {
+                    "providerId": "fuentes-rdh",
+                    "name": "Sofia Fuentes",
+                    "credentials": "RDH",
+                    "role": "Lead dental hygienist",
+                    "bio": "Twelve years of hygiene and the gentlest scaler in Dane County. Sofia runs the practice's cleaning schedule and its periodontal program — and she'll tell you honestly whether you need to floss more or just needed a better cleaning technique all along."
+                }
+            ],
+            "services": [
+                {
+                    "name": "Cleanings & prevention",
+                    "description": "Unhurried hygiene visits with honest coaching — the goal is fewer fillings, not more appointments."
+                },
+                {
+                    "name": "White fillings",
+                    "description": "Tooth-colored composite matched to your enamel, placed under proper isolation so it lasts."
+                },
+                {
+                    "name": "Crowns & bridges",
+                    "description": "Digitally scanned — no goopy impressions — with a written price before any tooth is prepared."
+                },
+                {
+                    "name": "Clear aligners",
+                    "description": "Straighter teeth without brackets: a scan, a plan you approve, and check-ins that respect your schedule."
+                },
+                {
+                    "name": "Whitening",
+                    "description": "Professional whitening with custom trays — real results, honest expectations, no drugstore roulette."
+                },
+                {
+                    "name": "Implant restoration",
+                    "description": "Crowns and bridges on implants, coordinated with a local surgeon we'd send our own families to."
+                },
+                {
+                    "name": "Same-day emergencies",
+                    "description": "A broken tooth or a toothache that won't wait — call before noon and we'll see you today."
+                },
+                {
+                    "name": "Comfort dentistry",
+                    "description": "Nitrous, noise-cancelling headphones, hand-signal stops, and a pace you control. Fear is a reason to come here, not to stay away."
+                }
+            ],
+            "insurance": [
+                "Delta Dental of Wisconsin",
+                "Cigna Dental",
+                "MetLife Dental",
+                "Guardian",
+                "Aetna Dental",
+                "UnitedHealthcare Dental",
+                "Anthem Blue Cross Blue Shield",
+                "Principal"
+            ],
+            "locations": [
+                {
+                    "locationId": "waverly-court",
+                    "label": "Waverly Court studio",
+                    "address": "744 Waverly Court, Suite 120, Madison, WI 53703",
+                    "phone": "(608) 555-0142",
+                    "hours": [
+                        {
+                            "day": 1,
+                            "open": 420,
+                            "close": 1020
+                        },
+                        {
+                            "day": 2,
+                            "open": 420,
+                            "close": 1020
+                        },
+                        {
+                            "day": 3,
+                            "open": 420,
+                            "close": 1020
+                        },
+                        {
+                            "day": 4,
+                            "open": 420,
+                            "close": 1020
+                        },
+                        {
+                            "day": 5,
+                            "open": 420,
+                            "close": 780
+                        }
+                    ]
+                }
+            ],
+            "reviews": [
+                {
+                    "quote": "I avoided dentists for nine years. Dr. Ellison talked me through every step, stopped twice when I raised my hand, and I walked out embarrassed only that I'd waited so long. I've kept every cleaning since.",
+                    "name": "K. R.",
+                    "detail": "Patient since 2024, shared with consent"
+                },
+                {
+                    "quote": "A crown somewhere else was going to be a mystery number on a bill later. Here it was a printed price before Dr. Nakamura touched the tooth — and the crown matches so well I can't find it in the mirror.",
+                    "name": "J. M.",
+                    "detail": "Restorative patient, shared with consent"
+                },
+                {
+                    "quote": "Cracked a molar on a Sunday popcorn kernel, called Monday at 7:05, sat down at 10:30. Sofia checked on me by text that evening. That's the whole review.",
+                    "name": "T. B.",
+                    "detail": "Emergency visit, shared with consent"
+                }
+            ],
+            "newPatient": [
+                {
+                    "title": "What will it cost?",
+                    "body": "We're in network with the plans above and we quote every treatment in writing before it starts — including the insurance estimate and your share. No insurance? Our membership plan covers two cleanings, exams, and x-rays for a flat yearly fee, and larger treatment can be split into monthly payments. Nobody learns a price from a bill here."
+                },
+                {
+                    "title": "Your first visit",
+                    "body": "New-patient exams run a full hour: digital x-rays, a gum health check, time with the dentist, and a written plan with prices — most visits include your cleaning too. You leave knowing exactly where your mouth stands and what, if anything, comes next."
+                },
+                {
+                    "title": "Nervous? Say so.",
+                    "body": "Tell us when you book — it changes how we schedule you, not how welcome you are. Longer appointment, slower numbing, nitrous if you want it, headphones if you'd rather not hear a thing, and a hand signal that stops everything instantly. Every step is narrated before it happens."
+                },
+                {
+                    "title": "Emergencies",
+                    "body": "A broken tooth, a lost crown, or a toothache that kept you up: call before noon and we'll see you the same day, usually within a couple of hours. We'll get you out of pain first and talk about the long-term fix once you can think straight again."
+                }
+            ]
+        },
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "new-patient-exam",
+                    "name": "New patient exam",
+                    "durationMinutes": 60,
+                    "description": "A full first hour: digital x-rays, a gum check, and a written plan with prices — usually your cleaning too."
+                },
+                {
+                    "typeId": "cleaning-checkup",
+                    "name": "Cleaning & check-up",
+                    "durationMinutes": 45,
+                    "description": "Your regular hygiene visit with Sofia, plus a check from the dentist — in and out in 45 minutes."
+                },
+                {
+                    "typeId": "emergency-visit",
+                    "name": "Same-day emergency",
+                    "durationMinutes": 30,
+                    "description": "Pain, a break, or a lost crown — we get you comfortable first and plan the fix second."
+                },
+                {
+                    "typeId": "cosmetic-consult",
+                    "name": "Cosmetic & aligner consult",
+                    "durationMinutes": 30,
+                    "description": "A free conversation about whitening, veneers, or clear aligners — options and honest prices, no commitment."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "dr-nakamura",
+                    "name": "Dr. Mei Nakamura",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 480,
+                            "end": 840
+                        },
+                        {
+                            "day": 3,
+                            "start": 480,
+                            "end": 840
+                        },
+                        {
+                            "day": 4,
+                            "start": 600,
+                            "end": 960
+                        }
+                    ]
+                },
+                {
+                    "providerId": "dr-ellison",
+                    "name": "Dr. Andre Ellison",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 480,
+                            "end": 960
+                        },
+                        {
+                            "day": 4,
+                            "start": 420,
+                            "end": 780
+                        },
+                        {
+                            "day": 5,
+                            "start": 420,
+                            "end": 720
+                        }
+                    ]
+                },
+                {
+                    "providerId": "fuentes-rdh",
+                    "name": "Sofia Fuentes, RDH",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 420,
+                            "end": 780
+                        },
+                        {
+                            "day": 2,
+                            "start": 420,
+                            "end": 780
+                        },
+                        {
+                            "day": 3,
+                            "start": 660,
+                            "end": 1020
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "Clear sky blue over the luxe-light register's near-white ground — the care family's calm, credible light voice re-inked from clinical teal to a fresh morning-sky blue, visibly apart from the therapy remix's warm clay and the psychology remix's scholarly slate. mode light opens the site in its native daylight appearance; marketing pages resolve brand over preset accent, so the overlay re-inks pages and app surfaces together. navigation re-pins the shared careShell chrome (a declared theme variant outranks the shell prop): the base clinic wears the full-width administrative band, the therapy remix the centered masthead, and the psychology remix the split letterhead — so the dental practice takes the contained inline card, the friendliest of the four reads, per the nav-variety audit.",
+        "mode": "light",
+        "brand": {
+            "primary": "#0369a1",
+            "primaryDark": "#7dd3fc"
+        },
+        "navigation": {
+            "variant": "inline"
+        }
+    }
+}

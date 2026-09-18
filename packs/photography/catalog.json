@@ -1,0 +1,270 @@
+{
+    "key": "photography",
+    "templateKey": "repobot-photography",
+    "title": "Portfolio",
+    "description": "A gallery-first photography portfolio: full-bleed crossfade hero, justified galleries with a lightbox, album collections, about, an inquiry form, real online session booking \u2014 clients pick a session type and a time from the photographer's actual weekly calendar \u2014 and a client-galleries page that walks clients through private proofing (gallery link, access code, picks sent straight to the studio), with a sample room to try. A multi-page site edited in one content file.",
+    "marketingExampleTitle": "Photography portfolio",
+    "category": "photography",
+    "homePath": "/",
+    "previewPath": "/photography",
+    "homeViewDir": "web/app/src/View/Photography",
+    "base": "content",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false,
+    "platformServices": ["proofing"],
+    "forms": {
+        "$comment": "Managed-form kinds, formKey -> kind (append-only vocabulary: RSVP | LEAD | MAILING_LIST | PROOFING). The portfolio's inquiry form is a lead pipeline. Live proofing selections now POST /__proofing/select (not the forms pipeline); proofing-selection stays declared PROOFING so historical Inbox rows still type as a proofing record, and the Inbox PROOFING tab can point at the Client galleries surface. platformServices above declares the proofing platform service (rooms + selections as platform rows behind the /__proofing doors) — compose merges it into the deploy manifest's contentDomains so the Manage rail gates the Client galleries surface.",
+        "inquiry": "LEAD",
+        "proofing-selection": "PROOFING"
+    },
+    "theme": {
+        "$comment": "The tourbook register's brand overlay: the preset's ink-on-paper accent as the project brand, so app-side surfaces wear the same monochrome register as the marketing pages instead of the kernel default blue. mode dark opens the site on the register's native face — the true-black darkroom ground with white ink, so the photographs are the only light on the page (the appearance toggle still swaps to the paper reading). Values match the tourbook preset's own light/dark accents \u2014 the marketing pages resolve brand over preset accent, so keeping them identical means the overlay re-brands the app without shifting the pages.",
+        "mode": "dark",
+        "brand": { "primary": "#141414", "primaryDark": "#ffffff" }
+    },
+    "contentContract": {
+        "$comment": "The pack's content slots, as data (packs/README.md 'Content contract'). Declares what a composer (agent or tool) must bind for a generated variant of this pack to present as real: slot paths into the typed content module, their kinds, and minimums. Authored alongside the module and guarded by the pack's content tests \u2014 the module satisfies the contract; the contract never drifts ahead of it.",
+        "module": "web/app/src/View/Photography/content.ts",
+        "slots": {
+            "photographer.name": { "kind": "text" },
+            "photographer.tagline": { "kind": "text" },
+            "photographer.location": { "kind": "text" },
+            "photographer.email": { "kind": "text" },
+            "heroSlides": { "kind": "media[]", "min": 1 },
+            "selectedWork": { "kind": "media[]", "min": 4 },
+            "albums": {
+                "kind": "collection",
+                "min": 1,
+                "item": {
+                    "title": { "kind": "text" },
+                    "eyebrow": { "kind": "text" },
+                    "description": { "kind": "text" },
+                    "images": { "kind": "media[]", "min": 4 }
+                }
+            },
+            "home.headline": { "kind": "text" },
+            "home.subheadline": { "kind": "text" },
+            "home.intro.title": { "kind": "text" },
+            "home.intro.paragraphs": { "kind": "text[]", "min": 1 },
+            "about.headline": { "kind": "text" },
+            "about.portrait": { "kind": "media" },
+            "about.paragraphs": { "kind": "text[]", "min": 2 },
+            "about.testimonials": {
+                "kind": "collection",
+                "min": 1,
+                "item": {
+                    "quote": { "kind": "text" },
+                    "name": { "kind": "text" },
+                    "detail": { "kind": "text" }
+                }
+            },
+            "inquire.headline": { "kind": "text" },
+            "inquire.body": { "kind": "text" },
+            "codeAppointments.types": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "typeId": { "kind": "text" },
+                    "name": { "kind": "text" },
+                    "durationMinutes": { "kind": "number" },
+                    "description": { "kind": "text" }
+                }
+            },
+            "codeAppointments.providers": {
+                "kind": "collection",
+                "min": 1,
+                "item": {
+                    "providerId": { "kind": "text" },
+                    "name": { "kind": "text" },
+                    "windows": {
+                        "kind": "collection",
+                        "min": 1,
+                        "item": {
+                            "day": { "kind": "number" },
+                            "start": { "kind": "number" },
+                            "end": { "kind": "number" }
+                        }
+                    }
+                }
+            },
+            "booking.headline": { "kind": "text" },
+            "booking.intro": { "kind": "text" },
+            "galleries.headline": { "kind": "text" },
+            "galleries.intro": { "kind": "text" },
+            "galleries.steps": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "title": { "kind": "text" },
+                    "body": { "kind": "text" }
+                }
+            }
+        }
+    },
+    "content": {
+        "$comment": "Business-content contract seed, merged over repobot.content.json at compose (the care pack's discipline). The appointments domain mirrors content.ts codeAppointments entry for entry (the booking tests pin the twin), so the Manage session calendar opens on exactly the sessions the site already offers, and the platform projects exactly the capacity-1 slots the sandbox simulation shows on /book. The seed is booking mode 2's input: the platform generates a booking_session per provider x window x session type occurrence, capacity 1, with the provider-wide overlap lock making double-booking impossible. Session durations are minutes; windows are weekday index (0 = Sunday) x minutes since midnight.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "portrait-session",
+                    "name": "Portrait session",
+                    "durationMinutes": 90,
+                    "description": "An unhurried ninety minutes, in the studio's north light or a place that matters to you. For one person or two \u2014 the exhale, not the smile."
+                },
+                {
+                    "typeId": "engagement-shoot",
+                    "name": "Engagement session",
+                    "durationMinutes": 120,
+                    "description": "Two hours on location \u2014 the coast at golden hour, or the streets you two actually walk. Less a shoot than a slow walk with a camera along."
+                },
+                {
+                    "typeId": "mini-session",
+                    "name": "Mini session",
+                    "durationMinutes": 30,
+                    "description": "Thirty minutes in the studio, one look: a portrait for the book jacket, the press page, or the mantel."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "mara-voss",
+                    "name": "Mara Voss",
+                    "windows": [
+                        { "day": 2, "start": 600, "end": 960 },
+                        { "day": 4, "start": 600, "end": 960 },
+                        { "day": 5, "start": 720, "end": 1080 },
+                        { "day": 6, "start": 540, "end": 780 }
+                    ]
+                }
+            ]
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (web/app/src/View/Photography/PhotographyPage.tsx, useSitePageConfig). pages seeds each page's layout skeleton \u2014 ids match photographyLanding.ts; the platform's structural editor edits these. style must ride the overlay: the compose merge keeps the kernel document's root style otherwise, and applySitePageDocument makes the document preset outrank every page's pinned one \u2014 photography shipped rendering editorial instead of its own register once. The preset is tourbook (the expedition register: grained monochrome paper, masthead type, ink accent, tilted prints \u2014 the photographs are the only color) \u2014 the adventurous voice, deliberately apart from atelier's gallery hush and the wedding pack's lanternlight.",
+        "style": { "preset": "tourbook" },
+        "routes": {
+            "/": "home",
+            "/work": "work",
+            "/galleries": "galleries",
+            "/about": "about",
+            "/book": "book",
+            "/inquire": "inquire"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "masthead-overlay"
+                    },
+                    {
+                        "id": "selected-work",
+                        "type": "gallery",
+                        "variant": "scrapbook"
+                    },
+                    {
+                        "id": "intro",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "collections",
+                        "type": "showcase",
+                        "variant": "collections"
+                    },
+                    {
+                        "id": "inquire-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "work": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "collections",
+                        "type": "showcase",
+                        "variant": "collections"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials"
+                    },
+                    {
+                        "id": "inquire-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "galleries": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "how-proofing",
+                        "type": "steps",
+                        "variant": "numbered-cards"
+                    },
+                    {
+                        "id": "sample-gallery",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "session-notes",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "inquire-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "inquire": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "inquiry-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,86 @@
+{
+    "name": "Pitch Deck",
+    "description": "A dark landscape investor deck, one slide per page: cover with brand, then optional traction, revenue, margins, runway, and ask slides — every page carrying a title bar and footer rail. Chart slides take precomputed CSS bars (label, formatted value, heightPercent 0-100) and money fields are preformatted strings so the template never does math.",
+    "pageSize": "Letter-landscape",
+    "fields": {
+        "companyName": { "type": "string", "required": true },
+        "tagline": { "type": "string" },
+        "accentColor": { "type": "string", "required": true },
+        "hasLogo": { "type": "boolean" },
+        "logoDataUri": { "type": "string" },
+        "preparedDate": { "type": "string", "format": "date" },
+
+        "hasTraction": { "type": "boolean" },
+        "tractionTitle": { "type": "string" },
+        "tractionBody": { "type": "string" },
+        "tractionStats": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "fields": {
+                    "label": { "type": "string", "required": true },
+                    "value": { "type": "string", "required": true }
+                }
+            }
+        },
+
+        "hasRevenue": { "type": "boolean" },
+        "revenueTitle": { "type": "string" },
+        "revenueBody": { "type": "string" },
+        "revenueBars": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "fields": {
+                    "label": { "type": "string", "required": true },
+                    "value": { "type": "string", "required": true },
+                    "heightPercent": { "type": "number", "required": true }
+                }
+            }
+        },
+
+        "hasMargins": { "type": "boolean" },
+        "marginsTitle": { "type": "string" },
+        "marginsBody": { "type": "string" },
+        "netIncomeBars": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "fields": {
+                    "label": { "type": "string", "required": true },
+                    "value": { "type": "string", "required": true },
+                    "heightPercent": { "type": "number", "required": true }
+                }
+            }
+        },
+
+        "hasRunway": { "type": "boolean" },
+        "runwayTitle": { "type": "string" },
+        "runwayBody": { "type": "string" },
+        "cashBars": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "fields": {
+                    "label": { "type": "string", "required": true },
+                    "value": { "type": "string", "required": true },
+                    "heightPercent": { "type": "number", "required": true }
+                }
+            }
+        },
+        "runwayStats": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "fields": {
+                    "label": { "type": "string", "required": true },
+                    "value": { "type": "string", "required": true }
+                }
+            }
+        },
+
+        "hasAsk": { "type": "boolean" },
+        "askTitle": { "type": "string" },
+        "askBody": { "type": "string" }
+    }
+}

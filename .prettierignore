@@ -1,0 +1,11 @@
+node_modules
+lib
+dist
+generated
+storybook-static
+.dev
+.devdata
+package-lock.json
+# Machine-committed by the setup flow; gating on its formatting fails
+# check:all's prettier step and forces a full gate re-run during setup.
+docs/setup-brief.md

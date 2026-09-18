@@ -1,0 +1,28 @@
+{
+    "sections": {
+        "main": {
+            "type": "main-product",
+            "blocks": {
+                "key_ingredients": {
+                    "type": "key_ingredients",
+                    "settings": {
+                        "ingredient_1": "Niacinamide 5%",
+                        "ingredient_2": "Hyaluronic acid",
+                        "ingredient_3": "Squalane"
+                    }
+                },
+                "how_to_use": {
+                    "type": "how_to_use",
+                    "settings": {
+                        "steps": "Apply two to three drops to clean, dry skin. Follow with moisturizer, and in the morning, finish with SPF.",
+                        "use_am": true,
+                        "use_pm": true
+                    }
+                }
+            },
+            "block_order": ["key_ingredients", "how_to_use"],
+            "settings": {}
+        }
+    },
+    "order": ["main"]
+}

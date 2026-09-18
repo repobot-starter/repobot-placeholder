@@ -1,0 +1,23 @@
+{
+    "functions": [
+        {
+            "source": "firebase/functions",
+            "codebase": "default",
+            "predeploy": ["npm --prefix firebase/functions run build"]
+        }
+    ],
+    "hosting": {
+        "public": "web/app/dist",
+        "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+        "rewrites": [{ "source": "**", "destination": "/index.html" }]
+    },
+    "emulators": {
+        "functions": {
+            "host": "127.0.0.1",
+            "port": 5001
+        },
+        "ui": {
+            "enabled": false
+        }
+    }
+}

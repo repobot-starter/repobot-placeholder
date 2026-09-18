@@ -1,0 +1,20 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the resume pack composed with a staff-engineer content seed and a monochrome mono register — the landing overlay re-seats the surface on the monolith preset, whose dark appearance is true black (#000000) with white ink, IBM Plex Mono replaces the display/body pairing through the packFont overlay, and the accent is achromatic white, so the wash machinery collapses accent washes to the black ground (resolvePresetOverlay's achromatic() check). Same skeleton, same computed date math, same print-to-one-page feature (the print stylesheet forces ink-on-paper regardless of the screen register); genuinely its own thumbnail. Everything structural — pages, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "resume-dev",
+    "remixOf": "resume",
+    "templateKey": "repobot-resume-dev",
+    "title": "Developer résumé",
+    "description": "A developer résumé / CV one-pager in a monochrome terminal register — true-black ground, white monospace type, no color anywhere: computed years of experience up top, roles with durations computed from their dates, a skills matrix, repositories with real links, and a links band; the same page still typesets to a clean one-page printed résumé, ink on white.",
+    "marketingExampleTitle": "Developer résumé site",
+    "contentSeed": "web/app/src/View/Resume/devRemix.content.ts",
+    "theme": {
+        "$comment": "The remix's register lives in this overlay plus the landing style below: mode dark selects the monolith preset's true-black appearance, fontFamily plex-mono rides the packFont overlay into the marketing type (body and display), and the achromatic brand pair keeps every accent ink-on-ground — white plates on black, black plates on the light appearance. Marketing pages resolve customer theme over preset, so the one overlay re-skins the page and the app surfaces together.",
+        "mode": "dark",
+        "fontFamily": "plex-mono",
+        "brand": { "primary": "#111111", "primaryDark": "#f2f2f2" }
+    },
+    "landing": {
+        "$comment": "The remix's register override (resolveCatalog merges this over the base pack's landing, keeping its routes and page seeds): monolith's dark mode is a true-black ground with white ink and an achromatic accent — the monochrome document the base's lamplit editorial dark can't be without degrading every other pack that rides it.",
+        "style": { "preset": "monolith" }
+    }
+}

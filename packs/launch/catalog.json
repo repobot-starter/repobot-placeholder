@@ -1,0 +1,74 @@
+{
+    "key": "launch",
+    "templateKey": "repobot-launch",
+    "title": "LaunchBot",
+    "description": "A startup landing page: badge hero over night photography, feature grid, image highlight rows, reviews, pricing with a billing toggle, FAQ, and a waitlist capture — all edited in one content file.",
+    "marketingExampleTitle": "Startup landing page",
+    "homePath": "/",
+    "previewPath": "/launch",
+    "homeViewDir": "web/app/src/View/Launch",
+    "base": "landing",
+    "isBase": true,
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false,
+    "theme": { "mode": "dark" },
+    "landing": {
+        "$comment": "Doc-aware pack home: routes maps the pack route to the page id its config merges under (web/app/src/View/Launch/LaunchPage.tsx, useSitePageConfig). pages.home seeds the layout skeleton - ids match launchLanding; the platform's structural editor edits these. Chrome (nav + footer) is SHELL chrome (launchShell.ts), never sections, so the platform's Site navigation control maps through. style must ride the overlay: the compose merge otherwise keeps the kernel document's editorial preset, which outranks the page's pinned dark-dev (applySitePageDocument). The top-level theme stamp sets mode: dark to match dark-dev's native appearance — the Feel appearance toggle flips it from an honest starting point.",
+        "style": { "preset": "dark-dev" },
+        "routes": {
+            "/": "home"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "centered-stack"
+                    },
+                    {
+                        "id": "social-proof",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "feature-grid",
+                        "type": "feature-grid",
+                        "variant": "cards-3up"
+                    },
+                    {
+                        "id": "highlights",
+                        "type": "highlights",
+                        "variant": "alternating"
+                    },
+                    {
+                        "id": "steps",
+                        "type": "steps",
+                        "variant": "numbered-cards"
+                    },
+                    {
+                        "id": "testimonials",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "pricing",
+                        "type": "pricing",
+                        "variant": "tiers"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "lead-form",
+                        "type": "lead-form",
+                        "variant": "inline-email"
+                    }
+                ]
+            }
+        }
+    }
+}

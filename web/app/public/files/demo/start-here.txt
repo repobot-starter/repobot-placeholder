@@ -1,0 +1,12 @@
+LOCKER — START HERE
+
+This library is yours alone: sign-in scopes every file to your account.
+
+Things to try:
+  - Drop files (or whole folders) anywhere on the page.
+  - Star what matters; find it again under Starred.
+  - Share link puts a file at a stable public URL; Unshare revokes it.
+  - Trash is reversible. "Delete forever" is not.
+  - Clear demo library (sidebar) removes everything, including this note.
+
+Uploads accept documents, images, audio, video, and archives up to 100 MB.

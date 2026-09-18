@@ -1,0 +1,7 @@
+mutation FinalizeUpload($input: FinalizeUploadInput!) {
+    finalizeUpload(input: $input) {
+        id
+        status
+        sizeBytes
+    }
+}

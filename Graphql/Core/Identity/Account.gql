@@ -1,0 +1,30 @@
+type Account {
+    id: Id!
+    name: String!
+    createdTime: Instant!
+}
+
+# Connection
+type AccountConnection {
+    nodes: [Account]!
+    pageInfo: PageInfo!
+}
+
+input AccountConnectionInput {
+    filters: AccountConnectionFilters
+    connection: ConnectionInput!
+}
+
+input AccountConnectionFilters {
+    name: String
+}
+
+# Create
+input CreateAccountInput {
+    idempotencyKey: String!
+    fields: CreateAccountFields!
+}
+
+input CreateAccountFields {
+    name: String!
+}

@@ -1,0 +1,46 @@
+{
+    "key": "chat",
+    "templateKey": "repobot-chat",
+    "title": "ChatBot",
+    "description": "An AI chat thread with streaming answers, visible reasoning, and tool calls — on web and iOS.",
+    "marketingExampleTitle": "AI chat starter",
+    "homePath": "/",
+    "previewPath": "/chat",
+    "homeViewDir": "web/app/src/View/AiChat",
+    "base": "content",
+    "clientOnly": false,
+    "capabilities": ["AI", "BACKEND", "DATABASE", "IOS"],
+    "isDefault": false,
+    "theme": {
+        "$comment": "A deep slate night sky with one violet accent and Sora type — the chat's art direction preserved verbatim as the seed. The palette's dark values are the page's pre-AppShell art constants so the shell chrome and the thread read as one surface; the light values are the same sky at noon. The violet rides as the project brand so kernel surfaces match. The shell defaults to minimal because the thread is the whole product — its old chrome was a wordmark and a New-chat pill; content is flush because the thread owns its own scroll region.",
+        "mode": "dark",
+        "character": "plain",
+        "brand": {
+            "primary": "#6d5ce8",
+            "primaryDark": "#8b7cf7"
+        },
+        "palette": {
+            "background": "#f4f5fa",
+            "backgroundDark": "#0e1016",
+            "surface": "#ffffff",
+            "surfaceDark": "#161927",
+            "surfaceHover": "#eceef6",
+            "surfaceHoverDark": "#1d2130",
+            "border": "#e0e3ee",
+            "borderDark": "#212530",
+            "textPrimary": "#1a1d29",
+            "textPrimaryDark": "#e8ebf4",
+            "textSecondary": "#646b80",
+            "textSecondaryDark": "#9599a8",
+            "muted": "#eceef6",
+            "mutedDark": "#181b28",
+            "input": "#e0e3ee",
+            "inputDark": "#212530",
+            "skeleton": "#e9ebf4",
+            "skeletonDark": "#1d2130",
+            "charts": ["#6d5ce8", "#8b7cf7", "#a9a0f2", "#4b3fb8", "#646b80", "#c6c1f5"],
+            "chartsDark": ["#8b7cf7", "#a9a0f2", "#6d5ce8", "#c6c1f5", "#9599a8", "#4b3fb8"]
+        },
+        "shell": { "variant": "minimal", "content": "flush" }
+    }
+}

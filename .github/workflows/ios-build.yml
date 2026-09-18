@@ -1,0 +1,100 @@
+# iOS builds for Repobot real-device installs. Dispatched by the Repobot
+# platform (IosBuildService) via the GitHub App — not triggered on push.
+#
+# kind=testflight (the only kind): signed dev-flavor device build shipped to
+#   TestFlight via the fastlane lane in ios/fastlane/. Needs the ASC_* repo
+#   secrets (injected by the platform from the project's Apple integration).
+#
+# Config values (app name, GraphQL endpoint, web origin) are stamped into
+# ios/App/Config/Config.dev.plist from the dispatch inputs; the platform
+# sources them from the environment's provisioned infrastructure. The auth
+# endpoint is derived from the GraphQL URL at runtime (same functions origin);
+# the web origin is the deployed web app's public URL, which the payments
+# kernel twin builds checkout/portal redirect URLs from (empty disables the
+# billing surfaces).
+name: iOS Build
+run-name: "iOS ${{ inputs.kind }} build ${{ inputs.build_id }}"
+
+on:
+    workflow_dispatch:
+        inputs:
+            kind:
+                description: "Build kind"
+                required: true
+                type: choice
+                options: [testflight]
+            build_id:
+                description: "Platform IosBuild id (correlates the run to the build record)"
+                required: true
+                type: string
+            app_name:
+                description: "Display name stamped into the app"
+                required: true
+                type: string
+            # Backend config inputs are optional: client-only packs
+            # legitimately build with empty values, and GitHub's dispatch API
+            # rejects an empty string for a `required: true` input as "not
+            # provided" (422).
+            graphql_url:
+                description: "GraphQL endpoint of the target environment (empty for client-only apps)"
+                required: false
+                type: string
+                default: ""
+            web_origin:
+                description: "Public origin of the deployed web app (payments redirect URLs; empty disables billing surfaces)"
+                required: false
+                type: string
+                default: ""
+            bundle_id:
+                description: "Bundle identifier (testflight builds; derived from deploySlug)"
+                required: false
+                type: string
+                default: ""
+
+permissions:
+    contents: read
+
+jobs:
+    testflight:
+        if: inputs.kind == 'testflight'
+        name: TestFlight build + upload
+        runs-on: macos-15
+        timeout-minutes: 60
+        steps:
+            - uses: actions/checkout@v4
+            # Newest non-beta Xcode on the image: a hard pin rots — GitHub
+            # removes older SDK runtimes from the image over time, and a
+            # pinned SDK with no matching runtime fails the build.
+            - name: Select Xcode
+              run: sudo xcode-select -s "$(ls -d /Applications/Xcode_*.app | grep -v -i beta | sort -V | tail -1)"
+            - name: Regenerate GraphQL types (schema composed from this checkout)
+              run: cd ios && ./prebuild.sh
+            - name: Stamp dev config
+              env:
+                  APP_NAME: ${{ inputs.app_name }}
+                  GRAPHQL_URL: ${{ inputs.graphql_url }}
+                  WEB_ORIGIN: ${{ inputs.web_origin }}
+              run: python3 scripts/lib/stamp-ios-config.py ios/App/Config/Config.dev.plist
+            # The project's own brand icon (marketing.brand.icon) becomes the
+            # home-screen icon; no brand kit keeps the kernel placeholder.
+            - name: Stamp app icon
+              run: |
+                  python3 -m pip install --quiet pillow
+                  python3 scripts/lib/stamp-app-icon.py
+            - name: Build and upload via fastlane
+              env:
+                  ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+                  ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+                  ASC_KEY_P8: ${{ secrets.ASC_KEY_P8 }}
+                  APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+                  APP_BUNDLE_ID: ${{ inputs.bundle_id }}
+                  APP_DISPLAY_NAME: ${{ inputs.app_name }}
+              run: |
+                  test -n "$ASC_KEY_ID" || { echo "ASC_* secrets are not set (connect Apple in Repobot first)"; exit 1; }
+                  test -n "$APP_BUNDLE_ID" || { echo "bundle_id input is required for testflight builds"; exit 1; }
+                  cd ios && bundle install --quiet && bundle exec fastlane ios testflight_deploy
+            - name: Publish result artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: testflight-result
+                  path: ios/fastlane/testflight-result.json
