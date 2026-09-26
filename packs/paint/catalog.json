@@ -1,0 +1,14 @@
+{
+    "key": "paint",
+    "templateKey": "repobot-paint",
+    "title": "Paint",
+    "description": "A paint studio: brushes, flood fill, shapes, stickers, and PNG export.",
+    "marketingExampleTitle": "Paint studio",
+    "homePath": "/",
+    "previewPath": "/paint",
+    "homeViewDir": "web/app/src/View/Games/Paint",
+    "base": "game",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

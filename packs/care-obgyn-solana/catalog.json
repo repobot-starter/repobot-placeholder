@@ -1,0 +1,416 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the care pack composed with a women's health practice content seed, re-registered in the seaglass register (sea glass and sand, terracotta, a narrow modern serif, stage cards under arched photographs) with its own pinned page skeletons. Everything else — pages' builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "care-obgyn-solana",
+    "remixOf": "care",
+    "templateKey": "repobot-care-obgyn-solana",
+    "title": "OB/GYN & Women's Health",
+    "description": "An OB/GYN practice's site with real online booking: Solana Women's Health, a four-physician practice on Ocean Avenue in Santa Monica, art-directed in sea glass and sand with terracotta — a narrow modern serif with a true italic over a quiet grotesk (real web fonts). The hero: a full-bleed photograph of a laughing expectant mother and her OB in an ocean-view suite, the headline in ink on the pale wall. Under it, five life-stage cards under arched photographs — annual care, fertility, pregnancy, postpartum, midlife — each with its emblem and what it covers. Self-pay prices, the plans the practice takes, a prenatal spotlight, the physicians as round medallions, patients' words, questions, and the visit panel follow.",
+    "marketingExampleTitle": "OB/GYN practice site",
+    "contentSeed": "web/app/src/View/Care/obgynSolanaRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so these practice and appointments seeds replace the base pack's at compose and mirror THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twins) — the composed template's Manage editors and booking widget open on the orthodontic studio, not the base clinic.",
+        "practice": {
+            "providers": [
+                {
+                    "providerId": "dr-patel",
+                    "name": "Alisha Patel, MD",
+                    "credentials": "FACOG",
+                    "role": "Gynecology & wellness",
+                    "bio": "Alisha founded Solana after a decade of fifteen-minute visits at a big hospital group. She sees annual care, contraception and the hard conversations, and keeps an hour free every week for the patients who need more time."
+                },
+                {
+                    "providerId": "dr-anderson",
+                    "name": "Claire Anderson, MD",
+                    "credentials": "FACOG",
+                    "role": "Obstetrics & fertility",
+                    "bio": "Claire runs the practice's fertility consults and preconception planning and delivers most of the babies who started with her. She draws everything on the whiteboard, twice."
+                },
+                {
+                    "providerId": "dr-ellison",
+                    "name": "Maya Ellison, MD",
+                    "credentials": "FACOG",
+                    "role": "Obstetrics & midlife health",
+                    "bio": "Maya splits her week between prenatal care and perimenopause, and is certified in menopause medicine. Patients say she is the first doctor who explained their symptoms instead of listing them."
+                },
+                {
+                    "providerId": "dr-reyes",
+                    "name": "Sophia Reyes, MD",
+                    "credentials": "FACOG",
+                    "role": "Gynecology & minimally invasive surgery",
+                    "bio": "Sophia handles the practice's procedures, from IUDs to laparoscopic surgery, and sees endometriosis and fibroid care. She sees patients in English and Spanish."
+                }
+            ],
+            "services": [
+                {
+                    "name": "Annual care",
+                    "description": "Well-woman exams, screenings, contraception and the questions you've been saving, in a visit that isn't rushed."
+                },
+                {
+                    "name": "Fertility",
+                    "description": "Preconception counseling, ovarian reserve testing, and egg-freezing consults, with a plan you can read."
+                },
+                {
+                    "name": "Pregnancy & birth",
+                    "description": "Prenatal care from the first heartbeat, your birth plan in writing, and delivery with a physician you know."
+                },
+                {
+                    "name": "Postpartum",
+                    "description": "Fourth-trimester visits, lactation support and mental health screening, for as long as the recovery takes."
+                },
+                {
+                    "name": "Midlife & menopause",
+                    "description": "Perimenopause, hormone therapy and bone health, with a physician certified in menopause medicine."
+                },
+                {
+                    "name": "Gynecologic surgery",
+                    "description": "IUD placement, fibroid and endometriosis care, and minimally invasive surgery with a short recovery."
+                }
+            ],
+            "insurance": [
+                "Aetna PPO",
+                "Anthem Blue Cross PPO",
+                "Blue Shield of California PPO",
+                "Cigna PPO",
+                "UnitedHealthcare PPO",
+                "Health Net PPO",
+                "FSA & HSA cards"
+            ],
+            "locations": [
+                {
+                    "locationId": "ocean-avenue",
+                    "label": "Ocean Avenue",
+                    "address": "2120 Ocean Avenue, Suite 300, Santa Monica, CA 90405",
+                    "phone": "(310) 555-0148",
+                    "hours": [
+                        {
+                            "day": 1,
+                            "open": 480,
+                            "close": 1020
+                        },
+                        {
+                            "day": 2,
+                            "open": 480,
+                            "close": 1020
+                        },
+                        {
+                            "day": 3,
+                            "open": 480,
+                            "close": 1140
+                        },
+                        {
+                            "day": 4,
+                            "open": 480,
+                            "close": 1020
+                        },
+                        {
+                            "day": 5,
+                            "open": 480,
+                            "close": 960
+                        },
+                        {
+                            "day": 6,
+                            "open": 540,
+                            "close": 780
+                        }
+                    ]
+                }
+            ],
+            "reviews": [
+                {
+                    "quote": "Dr. Anderson walked me through egg freezing on a whiteboard, twice, and never once looked at the clock. Two years later she delivered my daughter.",
+                    "name": "Renata M.",
+                    "detail": "Fertility, then pregnancy"
+                },
+                {
+                    "quote": "I went in for hot flashes and left with an actual plan. Dr. Ellison is the first doctor who explained what was happening instead of shrugging.",
+                    "name": "Denise K.",
+                    "detail": "Midlife care"
+                },
+                {
+                    "quote": "My postpartum visits felt like someone was checking on me, not just my stitches. They caught my anxiety early and got me help that week.",
+                    "name": "Hana T.",
+                    "detail": "Postpartum"
+                },
+                {
+                    "quote": "Same-week appointment, a real conversation, and a view of the ocean from the exam room. I've stopped dreading my annual.",
+                    "name": "Jess O.",
+                    "detail": "Patient since 2021"
+                }
+            ],
+            "newPatient": [
+                {
+                    "title": "Book online or call",
+                    "body": "Pick a physician and a time. New patients usually see someone the same week."
+                },
+                {
+                    "title": "Send your records",
+                    "body": "We'll email a short health history and request your past records for you, so the visit starts with a conversation."
+                },
+                {
+                    "title": "A longer first visit",
+                    "body": "Your first appointment is forty-five minutes: your history, your questions, and an exam only if you want one that day."
+                },
+                {
+                    "title": "A plan in writing",
+                    "body": "You leave with what we found, what's next, and any costs spelled out, plus a direct line to your care team."
+                }
+            ]
+        },
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "new-patient",
+                    "name": "New patient visit",
+                    "durationMinutes": 45,
+                    "description": "Your history, your questions, and an exam if you want one."
+                },
+                {
+                    "typeId": "annual-exam",
+                    "name": "Annual exam",
+                    "durationMinutes": 30,
+                    "description": "The well-woman visit, screenings and contraception."
+                },
+                {
+                    "typeId": "prenatal",
+                    "name": "Prenatal visit",
+                    "durationMinutes": 30,
+                    "description": "Heartbeat, measurements, and the week's questions."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "dr-patel",
+                    "name": "Alisha Patel, MD",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 480,
+                            "end": 720
+                        },
+                        {
+                            "day": 3,
+                            "start": 780,
+                            "end": 1140
+                        }
+                    ]
+                },
+                {
+                    "providerId": "dr-anderson",
+                    "name": "Claire Anderson, MD",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 480,
+                            "end": 720
+                        },
+                        {
+                            "day": 4,
+                            "start": 780,
+                            "end": 1020
+                        },
+                        {
+                            "day": 6,
+                            "start": 540,
+                            "end": 780
+                        }
+                    ]
+                },
+                {
+                    "providerId": "dr-ellison",
+                    "name": "Maya Ellison, MD",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 780,
+                            "end": 1020
+                        },
+                        {
+                            "day": 5,
+                            "start": 480,
+                            "end": 720
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The seaglass register in its own terracotta: mode light opens the site in its native appearance (the sand ground); dark is the practice after sunset over the water. Marketing pages resolve brand over preset accent, so the overlay re-inks pages and app surfaces together. navigation re-pins the shared careShell chrome to the inline bar — the practice's letterhead over the coast — apart from bright-side's pill cluster, atwater's split letterhead and fern & finch's centered title plate.",
+        "mode": "light",
+        "brand": {
+            "primary": "#b35a3b",
+            "primaryDark": "#c0603d"
+        },
+        "navigation": {
+            "variant": "inline"
+        }
+    },
+    "landing": {
+        "$comment": "A pinned layout (packs/README.md 'Derived templates'): style re-registers the base's pages in the seaglass register, and pages carries exactly the skeletons careLanding.ts emits from this remix's contentSeed — the full-bleed hero because home.layout asks for it, the stage cards (exhibits) because home fills them, and the content-gated sections (menu, spotlight, faq) because the seed writes them — so the composed template's document reproduces its code config section for section (tests/View/Care/careLanding.test.ts reads this through composedLandingSeed).",
+        "style": {
+            "preset": "seaglass"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "exhibits",
+                        "type": "showcase",
+                        "variant": "card-grid"
+                    },
+                    {
+                        "id": "menu",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "spotlight",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "providers",
+                        "type": "team",
+                        "variant": "portraits"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "providers": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "providers",
+                        "type": "team",
+                        "variant": "portraits"
+                    },
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "card-grid",
+                        "variant": "4up"
+                    },
+                    {
+                        "id": "menu",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "new-patients": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "first-visit",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "how",
+                        "type": "steps",
+                        "variant": "numbered-cards"
+                    },
+                    {
+                        "id": "privacy",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    }
+                ]
+            }
+        }
+    }
+}

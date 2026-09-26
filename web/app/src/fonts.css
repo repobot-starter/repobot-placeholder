@@ -1,0 +1,1042 @@
+/*
+ * Self-hosted web fonts for the repobot.theme.json `fontFamily` presets
+ * (inter, manrope, source-serif, space-grotesk, plex-mono). Variable woff2,
+ * latin subset, served from public/fonts (OFL — licenses alongside).
+ * The design system resolves preset keys to these families in
+ * web/design-system/src/theme/themeConfig.ts; native apps bundle the
+ * matching TTFs (ios/App/Fonts, android res/font).
+ */
+
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("/fonts/inter.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Manrope";
+    font-style: normal;
+    font-weight: 200 800;
+    font-display: swap;
+    src: url("/fonts/manrope.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Source Serif 4";
+    font-style: normal;
+    font-weight: 200 900;
+    font-display: swap;
+    src: url("/fonts/source-serif.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Space Grotesk";
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url("/fonts/space-grotesk.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "IBM Plex Mono";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/plex-mono-400.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "IBM Plex Mono";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url("/fonts/plex-mono-600.woff2") format("woff2");
+}
+
+/*
+ * Marketing-register display faces (not repobot.theme.json fontFamily
+ * presets, so no native bundles): only the register that names the family
+ * ever requests the file. Rubik italic is the memphis pop display; Anton is
+ * the tabloid preset's condensed headline type (OFL); Permanent Marker is
+ * the contact-sheet gallery's grease-pencil hand for frame notes
+ * (Apache-2.0); Barlow Condensed is the gameday preset's athletic block
+ * caps and Bangers the creature preset's poster lettering (both OFL).
+ * Archivo (instanced at 75% width, named "Archivo Snapshot" so a customer
+ * Archivo never collides) and Gochi Hand are the snapshot preset's
+ * shouted caps and felt-tip captions; Rye and Bitter the rodeo preset's
+ * wood-type display and slab reading face; the Group 2 service registers
+ * each bring a pair — plantroom (Sofia Sans Condensed + Sofia Sans),
+ * stormline (Schibsted Grotesk + Public Sans), plaster (Sorts Mill Goudy +
+ * Karla), basalt (Red Hat Display + Red Hat Text), whiteglove (Urbanist +
+ * DM Sans), palmbeach (Libre Caslon Text + Libre Franklin) (all OFL).
+ * Latin subset, plus latin-ext where a register's copy needs it.
+ */
+
+/* memphis: the chunky pop italic. Italic-only on purpose — the register
+   sets every display line slanted. */
+@font-face {
+    font-family: "Rubik";
+    font-style: italic;
+    font-weight: 300 900;
+    font-display: swap;
+    src: url("/fonts/rubik-italic.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Anton";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/anton.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Permanent Marker";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/permanent-marker.woff2") format("woff2");
+}
+
+/* gameday: the sportswear campaign's condensed block caps (OFL) — upright
+   for the numbers, italic for the lean. Registered under its own family
+   name: riso loads Google's full "Barlow Condensed" weight range, and
+   sharing the name would let each register pick up the other's faces. */
+@font-face {
+    font-family: "Barlow Condensed Gameday";
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url("/fonts/barlow-condensed-800.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Barlow Condensed Gameday";
+    font-style: italic;
+    font-weight: 800;
+    font-display: swap;
+    src: url("/fonts/barlow-condensed-italic-800.woff2") format("woff2");
+}
+
+/* creature: the creature-feature poster's hand-lettered caps (OFL). */
+@font-face {
+    font-family: "Bangers";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/bangers.woff2") format("woff2");
+}
+
+/* midcentury: the furniture catalog's condensed display caps (Oswald) and
+   its geometric Futura-revival text face (Jost), both variable, both OFL.
+   Jost registers under its own family name: the vanity register loads
+   Google's "Jost" (300-600), and sharing the name would let each register
+   pick up the other's faces. */
+@font-face {
+    font-family: "Oswald";
+    font-style: normal;
+    font-weight: 200 700;
+    font-display: swap;
+    src: url("/fonts/oswald.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Jost Midcentury";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("/fonts/jost.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Jost Midcentury";
+    font-style: italic;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("/fonts/jost-italic.woff2") format("woff2");
+}
+
+/* snapshot: the fridge door's condensed caps and the felt-tip hand (OFL). */
+@font-face {
+    font-family: "Archivo Snapshot";
+    font-style: normal;
+    font-weight: 700 900;
+    font-display: swap;
+    src: url("/fonts/archivo-condensed.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Gochi Hand";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/gochi-hand.woff2") format("woff2");
+}
+
+/* rodeo: the wood-type Western display and the slab reading face (OFL). */
+@font-face {
+    font-family: "Rye";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/rye.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Bitter";
+    font-style: normal;
+    font-weight: 400 800;
+    font-display: swap;
+    src: url("/fonts/bitter.woff2") format("woff2");
+}
+
+/* daybook: a light variable grotesk and a handwritten script for captions (OFL). */
+@font-face {
+    font-family: "Hanken Grotesk";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("/fonts/hanken-grotesk.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Ms Madi";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/ms-madi.woff2") format("woff2");
+}
+
+/* jharokha: a heavy high-contrast display serif drawn for Latin and Devanagari, over a carved-capital text face (OFL). */
+@font-face {
+    font-family: "Rozha One";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/rozha-one.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Marcellus";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/marcellus.woff2") format("woff2");
+}
+
+/* horizon: the widest cut of Lexend for tracked caps, its Deca width for text (OFL). */
+@font-face {
+    font-family: "Lexend Giga";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("/fonts/lexend-giga.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Lexend Deca";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("/fonts/lexend-deca.woff2") format("woff2");
+}
+
+/* shingle: Caslon at display size for the headlines, its text cut (with italic) for the story (OFL). */
+@font-face {
+    font-family: "Libre Caslon Display";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/libre-caslon-display.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Libre Caslon Text";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/libre-caslon-text-400.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Libre Caslon Text";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("/fonts/libre-caslon-text-700.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Libre Caslon Text";
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/libre-caslon-text-italic-400.woff2") format("woff2");
+}
+
+/* limestone: a Didone for the headlines and the stylists' italic names, over an old-style book face (OFL). */
+@font-face {
+    font-family: "Libre Bodoni";
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url("/fonts/libre-bodoni.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Libre Bodoni";
+    font-style: italic;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url("/fonts/libre-bodoni-italic.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Crimson Pro";
+    font-style: normal;
+    font-weight: 200 900;
+    font-display: swap;
+    src: url("/fonts/crimson-pro.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Crimson Pro";
+    font-style: italic;
+    font-weight: 200 900;
+    font-display: swap;
+    src: url("/fonts/crimson-pro-italic.woff2") format("woff2");
+}
+
+/* cognac: a sharp modern display serif over a screen-first text serif with a true italic (OFL). */
+@font-face {
+    font-family: "Gloock";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/gloock.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Spectral";
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url("/fonts/spectral-300.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Spectral";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/spectral-400.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Spectral";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("/fonts/spectral-500.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Spectral";
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/spectral-italic-400.woff2") format("woff2");
+}
+
+/* plantroom: a condensed engineering sans over its full-width twin (OFL). */
+@font-face {
+    font-family: "Sofia Sans Condensed";
+    font-style: normal;
+    font-weight: 400 800;
+    font-display: swap;
+    src: url("/fonts/sofia-sans-condensed.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Sofia Sans";
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url("/fonts/sofia-sans.woff2") format("woff2");
+}
+
+/* stormline: a working grotesque for the dispatch board and a plain civic text face (OFL). */
+@font-face {
+    font-family: "Schibsted Grotesk";
+    font-style: normal;
+    font-weight: 400 900;
+    font-display: swap;
+    src: url("/fonts/schibsted-grotesk.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Public Sans";
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url("/fonts/public-sans.woff2") format("woff2");
+}
+
+/* plaster: an old-style italic garden serif over a warm grotesque (OFL). */
+@font-face {
+    font-family: "Sorts Mill Goudy";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/sorts-mill-goudy.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Sorts Mill Goudy";
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/sorts-mill-goudy-italic.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Karla";
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url("/fonts/karla.woff2") format("woff2");
+}
+
+/* basalt: a light, wide-spaced display sans and its text twin; latin-ext carries
+   the macron in KŌEN (OFL). */
+@font-face {
+    font-family: "Red Hat Display";
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url("/fonts/red-hat-display.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Red Hat Display";
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url("/fonts/red-hat-display-latin-ext.woff2") format("woff2");
+    unicode-range:
+        U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF,
+        U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+    font-family: "Red Hat Text";
+    font-style: normal;
+    font-weight: 300 600;
+    font-display: swap;
+    src: url("/fonts/red-hat-text.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Red Hat Text";
+    font-style: normal;
+    font-weight: 300 600;
+    font-display: swap;
+    src: url("/fonts/red-hat-text-latin-ext.woff2") format("woff2");
+    unicode-range:
+        U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF,
+        U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* whiteglove: a black geometric display sans over a clean geometric text face (OFL). */
+@font-face {
+    font-family: "Urbanist";
+    font-style: normal;
+    font-weight: 400 800;
+    font-display: swap;
+    src: url("/fonts/urbanist.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "DM Sans";
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url("/fonts/dm-sans.woff2") format("woff2");
+}
+
+/* palmbeach: a classic Caslon for the club's headings over Franklin Gothic's revival (OFL). */
+@font-face {
+    font-family: "Libre Caslon Text";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/libre-caslon-text.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Libre Caslon Text";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("/fonts/libre-caslon-text-700.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Libre Caslon Text";
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/libre-caslon-text-italic.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Libre Franklin";
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url("/fonts/libre-franklin.woff2") format("woff2");
+}
+
+/* parlor: the engraved-card pair — Baskervville's transitional display
+   with its true italic for the accent line, and Mulish's open humanist
+   sans for the reading copy (both variable, OFL). */
+@font-face {
+    font-family: "Baskervville";
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url("/fonts/baskervville.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Baskervville";
+    font-style: italic;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url("/fonts/baskervville-italic.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Mulish";
+    font-style: normal;
+    font-weight: 200 900;
+    font-display: swap;
+    src: url("/fonts/mulish.woff2") format("woff2");
+}
+
+/* trailhead: the field-journal pair — Young Serif's soft, rounded
+   book-face for the display, and Literata's warm text serif for the
+   reading copy (variable, OFL). */
+@font-face {
+    font-family: "Young Serif";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/young-serif.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Literata";
+    font-style: normal;
+    font-weight: 200 900;
+    font-display: swap;
+    src: url("/fonts/literata.woff2") format("woff2");
+}
+
+/* hearth: the lounge pair — Gloock's bold, high-contrast display serif
+   for the headlines (cognac's cut, above), and Figtree's friendly
+   geometric sans for the reading copy (variable, OFL). */
+@font-face {
+    font-family: "Figtree";
+    font-style: normal;
+    font-weight: 300 900;
+    font-display: swap;
+    src: url("/fonts/figtree.woff2") format("woff2");
+}
+
+/* colophon: the press's pair — Spectral, a screen-first book serif with
+   a true italic, for the headlines and the reading copy, and Spectral SC's
+   drawn small capitals for the kickers, the labels, and the asks (static
+   cuts, OFL). Its Spectral is its own family of three cuts (400, italic,
+   semibold) over cognac's files: font matching picks from the family's
+   cuts, so sharing cognac's "Spectral" would move colophon's 500s and
+   cognac's bolds onto each other's weights. */
+@font-face {
+    font-family: "Spectral Colophon";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/spectral-400.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Spectral Colophon";
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/spectral-italic-400.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Spectral Colophon";
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url("/fonts/spectral-semibold.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Spectral SC";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("/fonts/spectral-sc.woff2") format("woff2");
+}
+
+/* boreal: one light humanist sans — Commissioner, a variable grotesk
+   with warm, slightly flared terminals — set light for the headlines and
+   at text weight for the reading copy (variable, OFL). */
+@font-face {
+    font-family: "Commissioner";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("/fonts/commissioner.woff2") format("woff2");
+}
+
+/* terrazzo: a clean geometric display (Figtree, hearth's cut above) and its
+   softer text companion (OFL). */
+@font-face {
+    font-family: "Plus Jakarta Sans";
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url("/fonts/plus-jakarta-sans.woff2") format("woff2");
+}
+
+/* picturebook: a soft-cornered storybook serif and a rounded text sans (OFL). */
+@font-face {
+    font-family: "Fraunces Soft";
+    font-style: normal;
+    font-weight: 300 800;
+    font-display: swap;
+    src: url("/fonts/fraunces-soft.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Nunito Text";
+    font-style: normal;
+    font-weight: 300 800;
+    font-display: swap;
+    src: url("/fonts/nunito-text.woff2") format("woff2");
+}
+
+/* seaglass: a narrow modern serif with a true italic and its grotesk companion (OFL). */
+@font-face {
+    font-family: "Instrument Serif";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/instrument-serif-400.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Instrument Serif";
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/instrument-serif-400-italic.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Instrument Sans";
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url("/fonts/instrument-sans.woff2") format("woff2");
+}
+
+/* limone: a hairline high-contrast display face and a humanist small-cap sans (OFL). */
+@font-face {
+    font-family: "Italiana";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/italiana-400.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Tenor Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/tenor-sans-400.woff2") format("woff2");
+}
+
+/* alpine: a wide heavy grotesque, a neutral reading grotesque, and a monospace legend (OFL). */
+@font-face {
+    font-family: "Anybody Wide";
+    font-style: normal;
+    font-weight: 400 900;
+    font-stretch: 125%;
+    font-display: swap;
+    src: url("/fonts/anybody-wide.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Albert Sans";
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url("/fonts/albert-sans.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "DM Mono";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/dm-mono-400.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "DM Mono";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("/fonts/dm-mono-500.woff2") format("woff2");
+}
+
+/* milkglass: a thin book serif and a light grotesque (OFL). Its Spectral
+   is its own family of the light cuts (200, 300, italic 300; the 300 is
+   cognac's file) so its matching never reaches cognac's heavier cuts. */
+@font-face {
+    font-family: "Spectral Milkglass";
+    font-style: normal;
+    font-weight: 200;
+    font-display: swap;
+    src: url("/fonts/spectral-200.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Spectral Milkglass";
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url("/fonts/spectral-300.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Spectral Milkglass";
+    font-style: italic;
+    font-weight: 300;
+    font-display: swap;
+    src: url("/fonts/spectral-300-italic.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Work Sans";
+    font-style: normal;
+    font-weight: 300 600;
+    font-display: swap;
+    src: url("/fonts/work-sans.woff2") format("woff2");
+}
+
+/* darkroom: an old-style book serif (Crimson Pro, limestone's variable cut
+   above) and engraved capitals (OFL). */
+@font-face {
+    font-family: "Cinzel";
+    font-style: normal;
+    font-weight: 400 600;
+    font-display: swap;
+    src: url("/fonts/cinzel.woff2") format("woff2");
+}
+
+/* buttercream: Fraunces at its softest over Figtree (hearth's face, above), with Figtree's italic (OFL). Its Fraunces Soft is
+   the same file as picturebook's under its own family, held to 300–600 so its headlines keep their weight. */
+@font-face {
+    font-family: "Fraunces Soft Buttercream";
+    font-style: normal;
+    font-weight: 300 600;
+    font-display: swap;
+    src: url("/fonts/fraunces-soft.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Figtree";
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/figtree-italic.woff2") format("woff2");
+}
+
+/* vineyard: Baskervville (parlor's faces, above) over the Caslon text cut above — nothing new to register. */
+/* adobe: Alegreya's calligraphic roman for the headlines (with italic), over its humanist sans for the text (OFL). */
+@font-face {
+    font-family: "Alegreya";
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: url("/fonts/alegreya.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Alegreya";
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/alegreya-italic.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Alegreya Sans";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/alegreya-sans-400.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Alegreya Sans";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("/fonts/alegreya-sans-500.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Alegreya Sans";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("/fonts/alegreya-sans-700.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Alegreya Sans";
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/alegreya-sans-italic.woff2") format("woff2");
+}
+
+/* fogline: Instrument Serif and Instrument Sans (seaglass's faces, above); only the sans italic is new here (OFL). */
+@font-face {
+    font-family: "Instrument Sans";
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/instrument-sans-italic.woff2") format("woff2");
+}
+
+/* limewash: Castoro's quiet Dutch roman for the display (with italic), over Spectral's text cut (OFL). */
+@font-face {
+    font-family: "Castoro";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/castoro.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Castoro";
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/castoro-italic.woff2") format("woff2");
+}
+
+/* miradouro: Noto Serif Display's high-contrast roman and italic for the display, over Manrope (above) (OFL). */
+@font-face {
+    font-family: "Noto Serif Display";
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url("/fonts/noto-serif-display.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Noto Serif Display";
+    font-style: italic;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url("/fonts/noto-serif-display-italic.woff2") format("woff2");
+}
+
+/* sprocket: Bricolage Grotesque (variable width; the register sets the condensed stretch), Geist and Geist Mono (OFL). */
+@font-face {
+    font-family: "Bricolage Grotesque";
+    font-style: normal;
+    font-weight: 300 800;
+    font-stretch: 75% 100%;
+    font-display: swap;
+    src: url("/fonts/bricolage-grotesque.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Geist";
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url("/fonts/geist.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Geist Mono";
+    font-style: normal;
+    font-weight: 400 600;
+    font-display: swap;
+    src: url("/fonts/geist-mono.woff2") format("woff2");
+}
+
+/* galley: Besley's sturdy Clarendon (with italic) for the display, over IBM Plex Sans; IBM Plex Mono (above) is the ticket voice (OFL). */
+@font-face {
+    font-family: "Besley";
+    font-style: normal;
+    font-weight: 400 800;
+    font-display: swap;
+    src: url("/fonts/besley.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Besley";
+    font-style: italic;
+    font-weight: 400 800;
+    font-display: swap;
+    src: url("/fonts/besley-italic.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "IBM Plex Sans";
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    src: url("/fonts/plex-sans.woff2") format("woff2");
+}
+
+/* baylight: Noto Serif Display's hairline light cut (with italic) for the display, over Be Vietnam Pro (OFL). The
+   2022 Noto static cuts register as "Noto Serif Display Baylight", apart from miradouro's variable face above. */
+@font-face {
+    font-family: "Noto Serif Display Baylight";
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url("/fonts/noto-serif-display-300.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Noto Serif Display Baylight";
+    font-style: italic;
+    font-weight: 300;
+    font-display: swap;
+    src: url("/fonts/noto-serif-display-300-italic.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Noto Serif Display Baylight";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/noto-serif-display-400.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Be Vietnam Pro";
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url("/fonts/be-vietnam-pro-300.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Be Vietnam Pro";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/be-vietnam-pro-400.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Be Vietnam Pro";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("/fonts/be-vietnam-pro-500.woff2") format("woff2");
+}
+
+/* schist: Geist in its light and regular cuts for display and text, Geist Mono for the plate numbers and labels (OFL).
+   Static cuts, registered as "Geist Schist" and "Geist Mono Schist" apart from sprocket's variable faces above. */
+@font-face {
+    font-family: "Geist Schist";
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url("/fonts/geist-300.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Geist Schist";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/geist-400.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Geist Schist";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("/fonts/geist-500.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Geist Mono Schist";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/geist-mono-400.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Geist Mono Schist";
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("/fonts/geist-mono-500.woff2") format("woff2");
+}
+
+/* galleyproof: Redaction 35 (the degraded proof serif) for display, Martian Mono for the facts (OFL). */
+@font-face {
+    font-family: "Redaction 35";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/redaction-35-400.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Redaction 35";
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/redaction-35-400-italic.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Martian Mono";
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url("/fonts/martian-mono-300.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Martian Mono";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/martian-mono-400.woff2") format("woff2");
+}

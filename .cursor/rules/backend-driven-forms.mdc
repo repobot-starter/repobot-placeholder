@@ -1,0 +1,23 @@
+---
+description: Entity CRUD forms are backend-driven SchemaForms; never hand-build them on the frontend
+globs: firebase/functions/src/Graphql/Resolvers/**/*.ts,web/app/src/**/*.tsx
+alwaysApply: false
+---
+
+# Backend-Driven Forms (SchemaForm)
+
+Entity create/edit forms are defined entirely on the backend and rendered generically by the client. To add or change a form you write backend code only.
+
+## Recipe
+
+1. The form's fields come from a GraphQL input type ending in `Fields` (for example `CreateProjectFields`). Codegen turns all such inputs into JSON Schema definitions.
+2. Add or edit a `*SchemaFormResolvers.ts` file next to the domain's resolvers, using `buildSchemaForm` from `firebase/functions/src/Utils/SchemaForms.ts` (display order, field titles, overrides, defaultData for update forms).
+3. Expose it as `<entity>CreateFormSchema` / `<entity>UpdateFormSchema` queries in `Graphql/`.
+4. The web app renders it through `UiQueryViewFormModal` / `SchemaFormRuntime` from `@base/design-system` — zero frontend form code.
+
+Exemplar: `firebase/functions/src/Graphql/Resolvers/Project/ProjectSchemaFormResolvers.ts` + the Projects page in `web/app/src/View/QueryView/Pages/Projects/`.
+
+## Never
+
+- Never hand-build an entity CRUD form with raw inputs in `web/app`.
+- The only hand-built form allowed is the login screen.

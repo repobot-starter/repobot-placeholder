@@ -1,0 +1,184 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services pack composed with a lime-plaster studio's content seed (Casa Cal, Santa Barbara), a burnt-clay brand, and the limewash register. Everything else — builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-painting-casacal",
+    "remixOf": "services",
+    "templateKey": "repobot-services-painting-casacal",
+    "title": "Plaster Studio",
+    "description": "A lime-plaster studio's site told in rooms: Casa Cal in Santa Barbara. The home is a stack of full-bleed room photographs at one size — a terracotta living room under \"Walls with weather in them.\", then a sage tadelakt bath, a bone limewash stair, and an ochre marmorino dining room, each with its room and finish written into the foot of the photograph — closing on one line and a \"Request a visit.\" link. The finishes with per-square-foot prices, before/after rooms, the studio's story, home-visit booking, and a request form keep their own pages. Bone, umber, and burnt clay in Castoro over Spectral. Flexes to limewash and Venetian-plaster studios, decorative painters, tile and stone makers, and any trade whose work is a room.",
+    "marketingExampleTitle": "Santa Barbara plaster studio",
+    "contentSeed": "web/app/src/View/Services/casacalRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twin) — the composed template's booking widget and Manage calendar open on this trade's own provider, not the base demo business's.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "home-visit",
+                    "name": "Home visit",
+                    "durationMinutes": 60,
+                    "description": "An hour at the house with Cal, free — the rooms, the light, the walls under the paint, and which finish suits each room."
+                },
+                {
+                    "typeId": "board-review",
+                    "name": "Sample-board review",
+                    "durationMinutes": 30,
+                    "description": "Your sample boards held to your walls, then a written estimate room by room."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "ines-calderon",
+                    "name": "Inés Calderón",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 540,
+                            "end": 900
+                        },
+                        {
+                            "day": 2,
+                            "start": 540,
+                            "end": 900
+                        },
+                        {
+                            "day": 3,
+                            "start": 540,
+                            "end": 900
+                        },
+                        {
+                            "day": 4,
+                            "start": 540,
+                            "end": 900
+                        },
+                        {
+                            "day": 5,
+                            "start": 540,
+                            "end": 780
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "Burnt clay as the brand: on the limewash register the accent is the one ask and the links — the rooms carry the color. Marketing pages resolve brand over preset accent, so keeping the values identical to the preset's own accents re-inks app surfaces without shifting the pages. mode light opens on the bone ground (the base contractor opens dark, and theme merges shallowly); the shared servicesShell's full-width chrome stays — framestack floats it over the first room.",
+        "brand": {
+            "primary": "#8a5234",
+            "primaryDark": "#b57652"
+        },
+        "mode": "light"
+    },
+    "landing": {
+        "$comment": "The pin: the limewash register and the stack home — the seed sets home.stack, so the home is the first room with its line (hero full-bleed-media), the other rooms edge to edge at the hero's size with their captions in the photographs (gallery sequence + captionStack overlay-start), and the closing line over the visit link (cta-banner colophon, align start). The other pages keep the base's skeletons with this seed's content; resolveCatalog puts these in place of the base's pages.",
+        "style": {
+            "preset": "limewash"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "rooms",
+                        "type": "gallery",
+                        "variant": "sequence"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner",
+                        "variant": "colophon"
+                    }
+                ]
+            },
+            "projects": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "transformations",
+                        "type": "gallery",
+                        "variant": "before-after"
+                    },
+                    {
+                        "id": "process",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "showcase",
+                        "variant": "card-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "quote": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "quote-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

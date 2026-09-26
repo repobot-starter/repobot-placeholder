@@ -1,0 +1,200 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services-emergency pack composed with a Phoenix air-conditioning content seed, hot orange over the sunbelt register, and its own pinned page skeletons. Sections, contract, and tests are the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-hvac-desert",
+    "remixOf": "services-emergency",
+    "templateKey": "repobot-services-hvac-desert",
+    "title": "Heating & cooling (HVAC)",
+    "description": "An air-conditioning site in 70s desert-modern: a giant sun-yellow 115° with an ice-blue script “72° inside” over the headline, a rooftop photo under a hard Phoenix sky, round fat letters, and a sunburst setting behind the mountains. The three prices hang as tags right under the hero, then the services, a job report with the burned part, four steps, reviews, the Valley, and the call — call-first on every page, with a quote form and tune-up booking.",
+    "marketingExampleTitle": "Desert-modern Phoenix AC",
+    "contentSeed": "web/app/src/View/ServicesEmergency/hvacDesertRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twin) — the composed template's booking widget and Manage calendar open on this trade's own provider, not the base demo business's.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "tune-up",
+                    "name": "AC tune-up",
+                    "durationMinutes": 60,
+                    "description": "Coil rinse, capacitor and contactor test, refrigerant check, and a new filter — $89, flat."
+                },
+                {
+                    "typeId": "system-estimate",
+                    "name": "New system estimate",
+                    "durationMinutes": 45,
+                    "description": "We measure the house, look at the ducts, and quote a heat pump or AC flat, rebates included."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "dana-begay",
+                    "name": "Dana Begay",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 360,
+                            "end": 840
+                        },
+                        {
+                            "day": 2,
+                            "start": 360,
+                            "end": 840
+                        },
+                        {
+                            "day": 3,
+                            "start": 360,
+                            "end": 840
+                        },
+                        {
+                            "day": 4,
+                            "start": 360,
+                            "end": 840
+                        },
+                        {
+                            "day": 5,
+                            "start": 360,
+                            "end": 840
+                        },
+                        {
+                            "day": 6,
+                            "start": 360,
+                            "end": 660
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "Hot orange over the sunbelt register's adobe-cream ground — a burnt orange deep enough for white button letters by day and a lifted one for the night sheet; the register's sun yellow, terracotta pink, and single ice blue ride as its spot colors. navigation re-pins the shared servicesEmergencyShell chrome (a declared theme variant outranks the shell prop): the plumber wears the inline painted bar and the electrician the full-width band, so the Valley takes the centered wordmark — a motel-sign masthead.",
+        "brand": {
+            "primary": "#c2410c",
+            "primaryDark": "#ff7a3d"
+        },
+        "navigation": {
+            "variant": "centered"
+        }
+    },
+    "landing": {
+        "$comment": "Pins this remix to the sunbelt register and its own page skeletons, chosen from the sections the base pack's builders emit for this seed: the photo beside the headline with the giant 115° readout (split-media, over the builder's full-bleed default), the three prices hung as tags right under it, the proof strip, the services grid, the job report, four numbered steps, the featured review, the Valley, and the call under a setting sun (the full-bleed banner). resolveCatalog merges a remix's landing over the base's, so the base pack keeps its own register and home stack; the base's routes are inherited.",
+        "style": {
+            "preset": "sunbelt"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "split-media"
+                    },
+                    {
+                        "id": "price-book",
+                        "type": "pricing",
+                        "variant": "price-tags"
+                    },
+                    {
+                        "id": "dispatch-proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "services",
+                        "type": "card-grid",
+                        "variant": "3up"
+                    },
+                    {
+                        "id": "job-report",
+                        "type": "content-split",
+                        "variant": "report"
+                    },
+                    {
+                        "id": "when-you-call",
+                        "type": "steps",
+                        "variant": "numbered-cards"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "service-area",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "call-banner",
+                        "type": "cta-banner",
+                        "variant": "full-bleed"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "price-book",
+                        "type": "pricing",
+                        "variant": "price-tags"
+                    },
+                    {
+                        "id": "services",
+                        "type": "showcase",
+                        "variant": "card-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq"
+                    },
+                    {
+                        "id": "call-banner",
+                        "type": "cta-banner",
+                        "variant": "full-bleed"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "call-banner",
+                        "type": "cta-banner",
+                        "variant": "full-bleed"
+                    }
+                ]
+            },
+            "request": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "request-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "key": "pdf",
+    "templateKey": "repobot-pdf",
+    "title": "PDF Generator",
+    "description": "A PDF workbench: pick a document type, live-edit its JSON data, CSS, and HTML beside a paper preview, and download a real PDF — schema-driven from the documents kernel, so a new document type is a new template directory, not new code.",
+    "marketingExampleTitle": "PDF generator",
+    "homePath": "/",
+    "previewPath": "/pdf",
+    "homeViewDir": "web/app/src/View/PdfGenerator",
+    "base": "app",
+    "isFeature": true,
+    "clientOnly": false,
+    "capabilities": ["DOCUMENTS", "AUTH", "BACKEND"],
+    "isDefault": false,
+    "theme": {
+        "$comment": "A print shop at night, in black and white (the recent achromatic restyle, preserved verbatim as the seed): pure-black bench, monospace signage, lamp-white accent, and the document as the only color on screen. The palette's dark values are the page's pre-AppShell art constants so the shell chrome and the bench read as one surface; the light values are the same press with the lights on. The shell defaults to top-nav because the press is one workbench whose only navigation is the document-type picker — its old chrome was a lone topbar; content is flush because the workbench owns its own scroll regions (editor and pasteboard).",
+        "mode": "dark",
+        "character": "plain",
+        "brand": {
+            "primary": "#111111",
+            "primaryDark": "#fafafa"
+        },
+        "palette": {
+            "background": "#f4f4f2",
+            "backgroundDark": "#000000",
+            "surface": "#ffffff",
+            "surfaceDark": "#111111",
+            "surfaceHover": "#ececea",
+            "surfaceHoverDark": "#1a1a1a",
+            "border": "#dededa",
+            "borderDark": "#1a1a1a",
+            "textPrimary": "#161616",
+            "textPrimaryDark": "#ececec",
+            "textSecondary": "#6b6b6b",
+            "textSecondaryDark": "#9a9a9a",
+            "muted": "#ececea",
+            "mutedDark": "#161616",
+            "input": "#dededa",
+            "inputDark": "#1a1a1a",
+            "skeleton": "#e8e8e6",
+            "skeletonDark": "#161616",
+            "charts": ["#161616", "#5c5c5c", "#8a8a8a", "#3a3a3a", "#6b6b6b", "#b0b0b0"],
+            "chartsDark": ["#ececec", "#b0b0b0", "#828282", "#d0d0d0", "#9a9a9a", "#565656"]
+        },
+        "shell": { "variant": "top-nav", "content": "flush" }
+    }
+}

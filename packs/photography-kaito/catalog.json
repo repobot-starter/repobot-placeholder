@@ -1,0 +1,182 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the photography pack composed with a New York headshot photographer's content seed (Kaito Mori), an ink brand, and the seamless register. home.layout \"stack\" in the seed turns the home page into the photographer's stack — every headshot at one size, full bleed, on white caption bands set at the column's left edge, closed by the price line and a text link. Everything else — builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "photography-kaito",
+    "remixOf": "photography",
+    "templateKey": "repobot-photography-kaito",
+    "title": "Headshot photographer",
+    "description": "A headshot photographer's site on white: one full-bleed stack of faces on tomato, cobalt and sage seamless, every frame the same size, each named on a white band, then the session and its price in one line and a text link to book. Client selects galleries and a live studio calendar behind it — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "New York headshot photographer",
+    "contentSeed": "web/app/src/View/Photography/kaitoRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twin) — the composed template's /book page and Manage calendar open on Kaito's own sessions, not the base demo photographer's.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "headshot-session",
+                    "name": "Headshot session",
+                    "durationMinutes": 90,
+                    "description": "Ninety minutes, three looks on three colors of seamless, retouched selects in two days. $650."
+                },
+                {
+                    "typeId": "quick-refresh",
+                    "name": "Quick refresh",
+                    "durationMinutes": 45,
+                    "description": "One look, one color, forty-five minutes — for a new haircut or a new season. $325."
+                },
+                {
+                    "typeId": "press-portrait",
+                    "name": "Press portrait",
+                    "durationMinutes": 120,
+                    "description": "Two hours for musicians and authors: studio headshots plus a few frames with the instrument or the book. $850."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "kaito-mori",
+                    "name": "Kaito Mori",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 600,
+                            "end": 1020
+                        },
+                        {
+                            "day": 2,
+                            "start": 600,
+                            "end": 1020
+                        },
+                        {
+                            "day": 4,
+                            "start": 720,
+                            "end": 1140
+                        },
+                        {
+                            "day": 6,
+                            "start": 600,
+                            "end": 900
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The seamless register's brand overlay: the preset's own ink accents as the project brand, so app surfaces wear the same white-wall register as the marketing pages (the pages resolve brand over preset accent; identical values mean no shift). mode light opens on the white wall — the base photographer opens dark, and theme merges shallowly. navigation re-pins the shared photographyShell chrome to the burger overlay: the name alone on the white wall, the links and the ask folded away, so the seamless colors are the only thing on the page.",
+        "brand": {
+            "primary": "#111111",
+            "primaryDark": "#f2f2f2"
+        },
+        "mode": "light",
+        "navigation": {
+            "variant": "burger-overlay"
+        }
+    },
+    "landing": {
+        "$comment": "The seamless register over the base's routes. pages replaces the base's skeletons wholesale, so all six routed pages are pinned: home is the stack (gallery sequence with a band captionStack, closed by the colophon banner); the rest keep the base's compositions.",
+        "style": {
+            "preset": "seamless"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "stack",
+                        "type": "gallery",
+                        "variant": "sequence"
+                    },
+                    {
+                        "id": "closing",
+                        "type": "cta-banner",
+                        "variant": "colophon"
+                    }
+                ]
+            },
+            "work": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "collections",
+                        "type": "showcase",
+                        "variant": "collections"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials"
+                    },
+                    {
+                        "id": "inquire-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "galleries": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "how-proofing",
+                        "type": "steps",
+                        "variant": "numbered-cards"
+                    },
+                    {
+                        "id": "sample-gallery",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "session-notes",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "inquire-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "inquire": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "inquiry-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

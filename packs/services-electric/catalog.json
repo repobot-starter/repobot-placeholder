@@ -1,0 +1,73 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services-emergency pack composed with an electrician content seed and an amber brand over the sitework register. Everything else — pages, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-electric",
+    "remixOf": "services-emergency",
+    "templateKey": "repobot-services-electric",
+    "title": "Electrician",
+    "description": "An electrician site built for the emergency call: a phone number that never leaves the viewport, flat printed prices, response-time proof, a four-step dispatch story, and a callback form for everything that can wait — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Electrician",
+    "contentSeed": "web/app/src/View/ServicesEmergency/electricRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twin) — the composed template's booking widget and Manage calendar open on this trade's own provider, not the base demo business's.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "urgent-service-call",
+                    "name": "Urgent service call",
+                    "durationMinutes": 90,
+                    "description": "The first opening for a problem that can't wait long — but isn't a right-now emergency."
+                },
+                {
+                    "typeId": "inspection",
+                    "name": "Whole-home inspection",
+                    "durationMinutes": 60,
+                    "description": "A scheduled top-to-bottom look at the panel and wiring — what's fine, what's aging, what's next."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "marcus-bell",
+                    "name": "Marcus Bell",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 540,
+                            "end": 960
+                        },
+                        {
+                            "day": 2,
+                            "start": 540,
+                            "end": 960
+                        },
+                        {
+                            "day": 3,
+                            "start": 540,
+                            "end": 960
+                        },
+                        {
+                            "day": 4,
+                            "start": 540,
+                            "end": 960
+                        },
+                        {
+                            "day": 5,
+                            "start": 540,
+                            "end": 960
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "Amber over the sitework register's plan-grid ground — the dispatch shape's utility-blue plumber recolored to the electrical trade's high-visibility voice. mode dark opens the site on the register's night shift (floodlit-yard ground, bone type, the amber at vest brightness — the trade that works when the lights are out; the appearance toggle still swaps to the daylight sheet). Marketing pages resolve brand over preset accent, so the overlay re-skins the pages and the app surfaces together. navigation re-pins the shared servicesEmergencyShell chrome (a declared theme variant outranks the shell prop): the base plumber wears the split dispatch bar, so the electrician takes the full-width translucent band — flush chrome over the night-shift ground — per the nav-variety audit.",
+        "mode": "dark",
+        "brand": {
+            "primary": "#b45309",
+            "primaryDark": "#fbbf24"
+        },
+        "navigation": {
+            "variant": "full-width"
+        }
+    }
+}

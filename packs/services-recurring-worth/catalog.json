@@ -1,0 +1,193 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services-recurring pack composed with an estate pool service content seed (The Worth Pool Co., Palm Beach), re-registered in the palmbeach register with its own page skeletons. Everything structural — builders, routes, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-recurring-worth",
+    "remixOf": "services-recurring",
+    "templateKey": "repobot-services-recurring-worth",
+    "title": "Estate pool care",
+    "description": "A Palm Beach pool company's site in club pink and palm green with a classic serif, framed in bamboo: a full-bleed photograph of the estate pool carries the headline; under it the season calendar — November's opening, weekly care through April, May's deep clean, hurricane watch from June — with the window we're in marked, then the plans with their prices, the standard, clients' words, the island, and the ask.",
+    "marketingExampleTitle": "Palm Beach estate pool service",
+    "contentSeed": "web/app/src/View/ServicesRecurring/worthRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twin) — the composed template's booking widget and Manage calendar open on this business's own provider, not the base demo business's.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "water-test",
+                    "name": "Water test & equipment check",
+                    "durationMinutes": 45,
+                    "description": "A first visit to test the water, check the pumps, filters and heaters, and quote weekly care."
+                },
+                {
+                    "typeId": "first-service",
+                    "name": "First weekly visit",
+                    "durationMinutes": 90,
+                    "description": "The first full service — brushed, vacuumed and balanced, so weekly care starts from clean."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "tess-worth",
+                    "name": "Tess Worth",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 480,
+                            "end": 840
+                        },
+                        {
+                            "day": 2,
+                            "start": 480,
+                            "end": 840
+                        },
+                        {
+                            "day": 3,
+                            "start": 480,
+                            "end": 840
+                        },
+                        {
+                            "day": 4,
+                            "start": 480,
+                            "end": 840
+                        },
+                        {
+                            "day": 5,
+                            "start": 480,
+                            "end": 840
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The palmbeach register's palm green, pinned as the brand so the app surfaces match the marketing pages: the green pills on the pink sheet, lifted for the night sheet. navigation declares the centered deck (a declared theme variant outranks the shared shell's): the company's name centered over the links like a club's crest.",
+        "brand": {
+            "primary": "#23845f",
+            "primaryDark": "#6fd3aa"
+        },
+        "mode": "light",
+        "navigation": {
+            "variant": "centered"
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (ServicesRecurringPage.tsx, useSitePageConfig); pages seeds each page's skeleton — ids match servicesRecurringLanding.ts. The preset is palmbeach (flamingo-pink ground, palm-green ink, Libre Caslon over Libre Franklin, gold rules, the cabana treatment and its bamboo page frame). Home: the full-bleed pool hero; the season calendar (schedule week-grid, the current window marked); the measured numbers; what every visit includes; the plans; the standard; clients' words; the island; the booking banner.",
+        "style": {
+            "preset": "palmbeach"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "season",
+                        "type": "schedule",
+                        "variant": "week-grid"
+                    },
+                    {
+                        "id": "proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "included",
+                        "type": "feature-grid",
+                        "variant": "icon-list"
+                    },
+                    {
+                        "id": "plans",
+                        "type": "pricing",
+                        "variant": "tiers"
+                    },
+                    {
+                        "id": "standard",
+                        "type": "gallery",
+                        "variant": "uniform"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "service-area",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "plans": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "plans",
+                        "type": "pricing",
+                        "variant": "tiers"
+                    },
+                    {
+                        "id": "compare",
+                        "type": "comparison",
+                        "variant": "table"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "book-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

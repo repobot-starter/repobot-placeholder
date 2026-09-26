@@ -1,0 +1,109 @@
+<section class="hero">
+  <div class="hero__content">
+    {% if section.settings.eyebrow != blank %}
+      <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+    {% endif %}
+    <h1 class="hero__title">{{ section.settings.title }}</h1>
+    <p class="hero__subtitle">{{ section.settings.subtitle }}</p>
+    <div class="hero__actions">
+      {% if section.settings.cta_link != blank %}
+        <a class="hero__cta" href="{{ section.settings.cta_link }}">{{ section.settings.cta_label }}</a>
+      {% endif %}
+      {%- comment -%}
+        Fallback lives here, not in the schema: Shopify only allows
+        /collections and /collections/all as url-setting defaults.
+      {%- endcomment -%}
+      {%- assign secondary_cta_url = section.settings.secondary_cta_link | default: '#featured' -%}
+      {% if section.settings.secondary_cta_label != blank %}
+        <a class="hero__cta hero__cta--ghost" href="{{ secondary_cta_url }}">
+          {{ section.settings.secondary_cta_label }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+  <div class="hero__media" aria-hidden="true">
+    {%- comment -%}
+      image_picker settings can't carry defaults, so the demo gear photograph
+      ships as a theme asset and renders whenever no image has been picked.
+    {%- endcomment -%}
+    {%- if section.settings.image != blank -%}
+      <img
+        class="hero__image"
+        src="{{ section.settings.image | image_url: width: 1600 }}"
+        alt="{{ section.settings.image.alt | default: shop.name | escape }}"
+        width="1600"
+        height="{{ 1600 | divided_by: section.settings.image.aspect_ratio | ceil }}"
+        loading="eager"
+      >
+    {%- else -%}
+      <img
+        class="hero__image"
+        src="{{ 'hero-carry.jpg' | asset_url }}"
+        alt=""
+        width="1600"
+        height="900"
+        loading="eager"
+      >
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image",
+      "info": "Falls back to the theme's demo gear photograph when empty."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Everyday carry, considered"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Built for every day you carry it"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Lightweight, water-resistant gear that keeps you organized — from the morning commute to the weekend away."
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Button link",
+      "default": "/collections/all"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button label",
+      "default": "Shop the collection"
+    },
+    {
+      "type": "url",
+      "id": "secondary_cta_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_cta_label",
+      "label": "Secondary button label",
+      "default": "New arrivals"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero"
+    }
+  ]
+}
+{% endschema %}

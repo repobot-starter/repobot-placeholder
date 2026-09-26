@@ -1,0 +1,186 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services pack composed with a Mediterranean garden studio content seed (Olivetta Garden Studio, Montecito), re-registered in the plaster register with its own page skeletons. Everything else — builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-landscape-olivetta",
+    "remixOf": "services",
+    "templateKey": "repobot-services-landscape-olivetta",
+    "title": "Mediterranean garden design",
+    "description": "A Montecito garden studio's site kept like a garden journal: warm plaster ground, olive ink and an italic serif. A full-bleed photograph of the villa garden carries the headline; under it the season's stories — spring's lavender walk leading, summer, autumn and winter after it, each jumping to the gardens — then clients' words, the towns, and the invitation to begin a garden.",
+    "marketingExampleTitle": "Mediterranean estate garden studio",
+    "contentSeed": "web/app/src/View/Services/olivettaRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twin) — the composed template's booking widget and Manage calendar open on this business's own provider, not the base demo business's.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "garden-walk",
+                    "name": "Garden walk",
+                    "durationMinutes": 90,
+                    "description": "Livia walks the property with you — the light, the soil, the views — and talks through what the garden could become."
+                },
+                {
+                    "typeId": "proposal-review",
+                    "name": "Proposal review",
+                    "durationMinutes": 60,
+                    "description": "At the studio on Coast Village Road: the plan, the drawings and the proposal, line by line."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "livia-marchetti",
+                    "name": "Livia Marchetti",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 540,
+                            "end": 960
+                        },
+                        {
+                            "day": 3,
+                            "start": 540,
+                            "end": 960
+                        },
+                        {
+                            "day": 4,
+                            "start": 540,
+                            "end": 960
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The plaster register's olive, pinned as the brand so the app surfaces match the marketing pages: the olive of the asks and the datelines, lifted for the night sheet. navigation declares the centered deck (a declared theme variant outranks the shared shell's): the studio's name set over the links like a book's title page. mode light opens on the plaster (the base contractor opens dark, and theme merges shallowly).",
+        "brand": {
+            "primary": "#62733a",
+            "primaryDark": "#bccb80"
+        },
+        "mode": "light",
+        "navigation": {
+            "variant": "centered"
+        }
+    },
+    "landing": {
+        "$comment": "The pin: the plaster register (warm plaster ground, Sorts Mill Goudy with its italic over Karla, the journal treatment and its engraved olive sprig) and the base's title-card home re-ordered for a garden studio — the full-bleed villa garden, the garden journal (showcase stories: the first season leads with its photograph), clients' words, the towns, and the closing invitation. The other pages keep the base's skeletons; resolveCatalog puts these in place of the base's pages.",
+        "style": {
+            "preset": "plaster"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "journal",
+                        "type": "showcase",
+                        "variant": "stories"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "service-area",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "projects": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "transformations",
+                        "type": "gallery",
+                        "variant": "before-after"
+                    },
+                    {
+                        "id": "process",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "showcase",
+                        "variant": "card-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "quote": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "quote-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,358 @@
+import { style, styleVariants } from "@vanilla-extract/css"
+import { marketing } from "@base/design-system/marketing-theme"
+
+/** The register's script face where it declares one (snapshot's marker), else its display face. */
+const scriptFont = `var(--marketing-font-script, ${marketing.font.display})`
+
+const displayType = {
+    fontFamily: marketing.font.display,
+    fontWeight: marketing.display.weight,
+    letterSpacing: marketing.display.tracking,
+    textTransform: marketing.display.transform as "none",
+}
+
+/**
+ * The proofing room's chrome, drawn from the marketing token contract so
+ * it inherits the pack's register. Deliberately quieter than the public
+ * site: no nav, no footer links — just the work and the tray.
+ *
+ * The voiced pieces are keyed by the content module's `proofing.voice`:
+ * `quiet` (a small tracked studio line, plain display headings, a flat
+ * page panel) or `register` (the register's script face for the studio
+ * name, its display weight, tracking, and case for titles and the button,
+ * card and CTA shadows; registers without a script fall back to display).
+ */
+
+const pageBase = {
+    minHeight: "100vh",
+    color: marketing.color.text,
+    fontFamily: marketing.font.body,
+    // Room for the fixed selection tray (taller in the confirm step).
+    paddingBottom: 200,
+}
+
+export const page = styleVariants({
+    quiet: { ...pageBase, background: marketing.color.pageBg },
+    // No fill of its own: the register's page ground (e.g. snapshot's
+    // grained paper) runs behind the room edge to edge.
+    register: pageBase,
+})
+
+export const header = style({
+    maxWidth: 860,
+    margin: "0 auto",
+    padding: "64px 24px 36px",
+    textAlign: "center",
+    display: "grid",
+    gap: 12,
+})
+
+export const studioMark = styleVariants({
+    quiet: {
+        fontSize: 12,
+        letterSpacing: "0.22em",
+        textTransform: "uppercase",
+        color: marketing.color.subtle,
+    },
+    register: {
+        fontFamily: scriptFont,
+        fontSize: 24,
+        lineHeight: 1.1,
+        color: marketing.color.accent,
+    },
+})
+
+export const title = styleVariants({
+    quiet: {
+        fontFamily: marketing.font.display,
+        fontSize: "clamp(28px, 4.5vw, 44px)",
+        lineHeight: 1.1,
+        margin: 0,
+    },
+    register: {
+        ...displayType,
+        fontSize: "clamp(34px, 5.2vw, 60px)",
+        lineHeight: 0.96,
+        margin: 0,
+    },
+})
+
+export const clientLine = style({
+    fontSize: 14,
+    color: marketing.color.subtle,
+})
+
+export const note = style({
+    fontSize: 15.5,
+    lineHeight: 1.65,
+    color: marketing.color.text,
+    maxWidth: 620,
+    margin: "0 auto",
+    textAlign: "left",
+})
+
+export const galleryWrap = style({
+    maxWidth: 1280,
+    margin: "0 auto",
+    padding: "0 16px",
+})
+
+/* ---- The access-code gate ---- */
+
+export const gate = style({
+    minHeight: "70vh",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 24,
+})
+
+const gateCardBase = {
+    width: "min(420px, 100%)",
+    display: "grid",
+    gap: 14,
+    background: marketing.color.surface,
+    border: `${marketing.shape.borderWidth} solid ${marketing.color.line}`,
+    borderRadius: marketing.shape.radiusCard,
+    textAlign: "center",
+} as const
+
+export const gateCard = styleVariants({
+    quiet: { ...gateCardBase, padding: "36px 32px" },
+    register: { ...gateCardBase, padding: "34px 32px 36px", boxShadow: marketing.shape.shadowCard },
+})
+
+export const gateTitle = styleVariants({
+    quiet: {
+        fontFamily: marketing.font.display,
+        fontSize: 26,
+        margin: 0,
+    },
+    register: {
+        ...displayType,
+        fontSize: 40,
+        lineHeight: 0.96,
+        margin: 0,
+    },
+})
+
+export const gateBody = style({
+    fontSize: 14.5,
+    lineHeight: 1.6,
+    color: marketing.color.subtle,
+    margin: 0,
+})
+
+export const gateForm = style({
+    display: "grid",
+    gap: 10,
+    marginTop: 6,
+})
+
+export const gateInput = style({
+    fontSize: 18,
+    fontFamily: "inherit",
+    textAlign: "center",
+    letterSpacing: "0.3em",
+    color: marketing.color.text,
+    background: marketing.color.pageBg,
+    border: `${marketing.shape.borderWidth} solid ${marketing.color.line}`,
+    borderRadius: marketing.shape.radiusControl,
+    padding: "12px 16px",
+    outline: "none",
+    selectors: {
+        "&:focus": { borderColor: marketing.color.accent },
+    },
+})
+
+const gateButtonBase = {
+    borderRadius: marketing.shape.radiusControl,
+    border: "none",
+    background: marketing.color.accent,
+    color: marketing.color.onAccent,
+    cursor: "pointer",
+}
+
+export const gateButton = styleVariants({
+    quiet: {
+        ...gateButtonBase,
+        fontSize: 15,
+        fontWeight: 600,
+        fontFamily: "inherit",
+        padding: "12px 18px",
+    },
+    register: {
+        ...gateButtonBase,
+        ...displayType,
+        fontSize: 18,
+        padding: "13px 18px 12px",
+        boxShadow: marketing.shape.shadowCta,
+    },
+})
+
+export const gateError = style({
+    fontSize: 13.5,
+    // The register's own accent (heirloom's botanical green, snapshot's
+    // marker red) — never a
+    // raw color literal in a register-declaring pack's views.
+    color: marketing.color.accent,
+    margin: 0,
+})
+
+/* ---- The selection tray ---- */
+
+export const tray = style({
+    position: "fixed",
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 40,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 18,
+    padding: "14px 20px",
+    background: marketing.color.surface,
+    borderTop: `${marketing.shape.borderWidth} solid ${marketing.color.line}`,
+})
+
+export const trayCount = style({
+    fontSize: 14.5,
+    color: marketing.color.text,
+})
+
+export const trayButton = style({
+    fontSize: 14.5,
+    fontWeight: 600,
+    fontFamily: "inherit",
+    padding: "10px 22px",
+    borderRadius: 999,
+    border: "none",
+    background: marketing.color.accent,
+    color: marketing.color.onAccent,
+    cursor: "pointer",
+    selectors: {
+        "&:disabled": { opacity: 0.45, cursor: "default" },
+    },
+})
+
+export const trayGhostButton = style({
+    fontSize: 14,
+    fontFamily: "inherit",
+    padding: "10px 18px",
+    borderRadius: 999,
+    border: `${marketing.shape.borderWidth} solid ${marketing.color.line}`,
+    background: "transparent",
+    color: marketing.color.text,
+    cursor: "pointer",
+})
+
+export const trayNote = style({
+    width: "100%",
+    gridColumn: "1 / -1",
+    fontSize: 14,
+    fontFamily: "inherit",
+    color: marketing.color.text,
+    background: marketing.color.pageBg,
+    border: `${marketing.shape.borderWidth} solid ${marketing.color.line}`,
+    borderRadius: marketing.shape.radiusControl,
+    padding: "10px 14px",
+    outline: "none",
+    resize: "none",
+    selectors: {
+        "&:focus": { borderColor: marketing.color.accent },
+    },
+})
+
+/* ---- Sent confirmation ---- */
+
+export const sentCard = style({
+    maxWidth: 520,
+    margin: "48px auto 0",
+    padding: "32px 28px",
+    display: "grid",
+    gap: 10,
+    textAlign: "center",
+    background: marketing.color.surface,
+    border: `${marketing.shape.borderWidth} solid ${marketing.color.line}`,
+    borderRadius: marketing.shape.radiusCard,
+})
+
+export const sentTitle = style({
+    fontFamily: marketing.font.display,
+    fontSize: 24,
+    margin: 0,
+})
+
+export const sentBody = style({
+    fontSize: 14.5,
+    lineHeight: 1.6,
+    color: marketing.color.subtle,
+    margin: 0,
+})
+
+export const sentButton = style({
+    justifySelf: "center",
+    marginTop: 8,
+    fontSize: 14,
+    fontFamily: "inherit",
+    padding: "10px 20px",
+    borderRadius: 999,
+    border: `${marketing.shape.borderWidth} solid ${marketing.color.line}`,
+    background: "transparent",
+    color: marketing.color.text,
+    cursor: "pointer",
+})
+
+export const visitorFields = style({
+    display: "grid",
+    gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1fr)",
+    gap: 10,
+    width: "min(640px, 100%)",
+    "@media": {
+        "(max-width: 640px)": { gridTemplateColumns: "1fr" },
+    },
+})
+
+export const visitorInput = style({
+    fontSize: 14,
+    fontFamily: "inherit",
+    color: marketing.color.text,
+    background: marketing.color.pageBg,
+    border: `${marketing.shape.borderWidth} solid ${marketing.color.line}`,
+    borderRadius: marketing.shape.radiusControl,
+    padding: "10px 14px",
+    outline: "none",
+    selectors: {
+        "&:focus": { borderColor: marketing.color.accent },
+    },
+})
+
+export const trayError = style({
+    width: "100%",
+    margin: 0,
+    fontSize: 13.5,
+    textAlign: "center",
+    color: marketing.color.accent,
+})
+
+/** The unknown-album / closed / not-configured panel. */
+export const missing = style({
+    minHeight: "60vh",
+    display: "grid",
+    placeItems: "center",
+    padding: 24,
+    textAlign: "center",
+    fontSize: 15,
+    color: marketing.color.subtle,
+})
+
+/** Tray on small screens: stack instead of a single row. */
+export const trayInner = style({
+    display: "flex",
+    alignItems: "center",
+    gap: 14,
+    flexWrap: "wrap",
+    justifyContent: "center",
+    width: "min(960px, 100%)",
+})

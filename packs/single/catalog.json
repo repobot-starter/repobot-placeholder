@@ -1,0 +1,82 @@
+{
+    "key": "single",
+    "templateKey": "repobot-single",
+    "title": "Release one-pager",
+    "description": "A single/album launch page in the monolith register — true black and white, monumental type, zero accent hue: a countdown to the release date computed from the content file (days/hours/minutes under \"Out Friday\", flipping to OUT NOW with listen links at midnight on the date), pre-save links, a title-track excerpt through the native waveform player, the tracklist, one click-to-load visual, and a mailing-list form. One page, launch-day ready.",
+    "marketingExampleTitle": "Album release page",
+    "category": "music",
+    "homePath": "/",
+    "previewPath": "/single",
+    "homeViewDir": "web/app/src/View/Single",
+    "base": "landing",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false,
+    "forms": {
+        "$comment": "Managed-form kinds, formKey -> kind (append-only vocabulary: RSVP | LEAD | MAILING_LIST | PROOFING). Compose stamps these into repobot.deploy.json as formKinds; the dashboard renders declared kinds as typed views and keeps the raw Inbox for undeclared keys.",
+        "mailing-list": "MAILING_LIST"
+    },
+    "theme": {
+        "$comment": "The monolith register's overlay: mode dark opens the page in its native black (the appearance toggle still swaps to the gallery-white inversion — part of the art direction, not an accommodation), and the register's own inks ride as the project brand so app-side surfaces stay black-and-white instead of the kernel default blue. Values match monolith's text inks; accent resolves to ink-on-ground in both modes.",
+        "mode": "dark",
+        "brand": {
+            "primary": "#0a0a0a",
+            "primaryDark": "#ffffff"
+        }
+    },
+    "contentContract": {
+        "$comment": "The pack's content slots, as data (packs/README.md 'Content contract'). record.releaseDate is a plain ISO date — the page computes the countdown at render time and flips to OUT NOW after local midnight on the date; no edits on release day. The excerpt defaults to the bundled original loop; record.excerpt.embedUrl swaps the player to a click-to-load streaming embed.",
+        "module": "web/app/src/View/Single/content.ts",
+        "slots": {
+            "artist.name": { "kind": "text" },
+            "artist.tagline": { "kind": "text" },
+            "artist.email": { "kind": "text" },
+            "record.title": { "kind": "text" },
+            "record.releaseDate": { "kind": "text" },
+            "record.format": { "kind": "text" },
+            "record.label": { "kind": "text" },
+            "record.cover": { "kind": "media" },
+            "record.statement": { "kind": "text" },
+            "record.about.paragraphs": { "kind": "text[]", "min": 1 },
+            "listenLinks": {
+                "kind": "collection",
+                "min": 1,
+                "item": {
+                    "label": { "kind": "text" },
+                    "href": { "kind": "text" }
+                }
+            },
+            "tracklist": {
+                "kind": "collection",
+                "min": 4,
+                "item": {
+                    "title": { "kind": "text" },
+                    "duration": { "kind": "text" }
+                }
+            },
+            "video.title": { "kind": "text" },
+            "video.videoUrl": { "kind": "text" },
+            "video.poster": { "kind": "media" },
+            "portrait": { "kind": "media" },
+            "mailingList.title": { "kind": "text" },
+            "mailingList.body": { "kind": "text" }
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware tail on a bespoke page: the masthead (countdown, listen rail), excerpt player, tracklist, and visual are the pack's bespoke surfaces; the kernel tail (about + mailing list) merges under page id 'home' (web/app/src/View/Single/SinglePage.tsx, useSitePageConfig), so the structural editor can reorder and extend the closing sections. style must ride the overlay; the preset is monolith — the severe register: strict black and white, display type past the scale ceiling, razor hairlines, the accent token resolving to ink-on-ground.",
+        "style": {
+            "preset": "monolith"
+        },
+        "routes": {
+            "/": "home"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    { "id": "about", "type": "content-split", "variant": "media-right" },
+                    { "id": "mailing-list", "type": "lead-form", "variant": "inline-email" }
+                ]
+            }
+        }
+    }
+}

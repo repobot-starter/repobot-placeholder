@@ -1,0 +1,403 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the care pack composed with a walk-and-talk counseling content seed, re-registered in the trailhead register (the Front Range in daylight: oat paper, pine ink, pencil trail maps) with its own pinned page skeletons. Everything else — pages' builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "care-therapy-opentrail",
+    "remixOf": "care",
+    "templateKey": "repobot-care-therapy-opentrail",
+    "title": "Walk-and-Talk Counseling Practice",
+    "description": "A counseling practice site with real online booking: Open Trail Counseling, three therapists in Boulder, Colorado who hold most sessions walking — individuals, couples, and families, with telehealth when it snows. It opens full-bleed on two people mid-conversation on a trail toward the Flatirons (\"Some conversations go better outside.\"), then three ways to meet (walk-and-talk, couples and family, telehealth when it snows), the therapists' field notes — short essays, each with its own pencil trail map (why walking makes it easier to talk, what happens when it snows, couples on the trail, your first walk) — plain fees with sliding-scale spots, how paying works, the therapists with portraits, clients' words shared with consent, a plain FAQ, and a booking page offering a free 15-minute call, walks, and couples sessions. The booking form is clinically empty — name, contact, session type, new/returning.",
+    "marketingExampleTitle": "Walk-and-talk therapy site",
+    "contentSeed": "web/app/src/View/Care/opentrailRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so these practice and appointments seeds replace the base pack's at compose and mirror THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twins) — the composed template's Manage editors and booking widget open on the counseling practice, not the base clinic.",
+        "practice": {
+            "providers": [
+                {
+                    "providerId": "hannah-albright",
+                    "name": "Hannah Albright",
+                    "credentials": "LPC",
+                    "role": "Founder · Individual therapy",
+                    "bio": "Hannah spent eight years in a downtown office before she noticed that her clients' best sessions happened on the walk to the parking lot. She started Open Trail to hold every session there. She works with anxiety, burnout, grief, and big life changes, and she knows every bench on the Mesa Trail."
+                },
+                {
+                    "providerId": "marcus-whitfield",
+                    "name": "Marcus Whitfield",
+                    "credentials": "LMFT",
+                    "role": "Couples & family therapy",
+                    "bio": "Marcus is a marriage and family therapist trained in emotionally focused therapy. He walks with couples, co-parents, and parents with teenagers, and says the trail does half his job: it's hard to stay in a standoff when you're both watching your footing."
+                },
+                {
+                    "providerId": "priya-raman",
+                    "name": "Priya Raman",
+                    "credentials": "LPC",
+                    "role": "Young adults · Telehealth lead",
+                    "bio": "Priya works with college students and people in their twenties and thirties: first jobs, first heartbreaks, identity, and the anxiety that comes with all of it. She runs the practice's winter plan and holds most of the video sessions when the snow comes in."
+                }
+            ],
+            "services": [
+                {
+                    "name": "Walk-and-talk therapy",
+                    "description": "Fifty minutes on an easy, mostly flat trail at a conversational pace. We stop whenever you want to."
+                },
+                {
+                    "name": "Couples on the trail",
+                    "description": "Eighty-minute walks for partners, side by side, with a bench or two for the harder parts."
+                },
+                {
+                    "name": "Parents & teens",
+                    "description": "Family sessions for a parent and a teenager who talk better when they're moving."
+                },
+                {
+                    "name": "Telehealth",
+                    "description": "Video sessions from anywhere in Colorado, for snow days, travel weeks, or whenever you'd rather stay in."
+                },
+                {
+                    "name": "Office sessions",
+                    "description": "A warm room on Pearl Street, for days when you want four walls and a door that closes."
+                },
+                {
+                    "name": "Grief walks",
+                    "description": "A slower pace and a longer loop for the months after a loss. Silence is allowed."
+                }
+            ],
+            "insurance": [
+                "Superbills for out-of-network benefits",
+                "HSA & FSA accepted",
+                "Sliding-scale spots every season",
+                "Good Faith Estimate on request",
+                "Card or bank transfer",
+                "No fee for weather cancellations"
+            ],
+            "locations": [
+                {
+                    "locationId": "pearl-street",
+                    "label": "The room on Pearl Street",
+                    "address": "1740 Pearl Street, Suite 3, Boulder, CO 80302",
+                    "phone": "(303) 555-0187",
+                    "hours": [
+                        {
+                            "day": 1,
+                            "open": 420,
+                            "close": 1140
+                        },
+                        {
+                            "day": 2,
+                            "open": 420,
+                            "close": 1140
+                        },
+                        {
+                            "day": 3,
+                            "open": 420,
+                            "close": 1140
+                        },
+                        {
+                            "day": 4,
+                            "open": 420,
+                            "close": 1140
+                        },
+                        {
+                            "day": 5,
+                            "open": 420,
+                            "close": 840
+                        },
+                        {
+                            "day": 6,
+                            "open": 480,
+                            "close": 720
+                        }
+                    ]
+                }
+            ],
+            "reviews": [
+                {
+                    "quote": "I'd tried therapy twice and sat frozen on a couch both times. Walking beside Hannah, I said more in the first twenty minutes than I had in a year.",
+                    "name": "Sam",
+                    "detail": "Individual client"
+                },
+                {
+                    "quote": "We couldn't have a conversation at our kitchen table without it turning into a fight. On the trail with Marcus, we actually listened to each other.",
+                    "name": "Alex & Jordan",
+                    "detail": "Couples clients"
+                },
+                {
+                    "quote": "Priya switched us to video the morning of the first big storm, and my session happened right on time. I didn't lose a week.",
+                    "name": "Leah",
+                    "detail": "Individual client"
+                }
+            ],
+            "newPatient": [
+                {
+                    "title": "A free 15-minute call",
+                    "body": "Tell us a little about what's going on and what you're hoping for. We'll suggest the therapist who fits and answer any question about fees or the trail."
+                },
+                {
+                    "title": "Your first walk",
+                    "body": "We meet at the trailhead with a short intake on your phone first. Wear shoes you can walk in and bring water. The pace is a stroll, not a hike."
+                },
+                {
+                    "title": "A plan for the season",
+                    "body": "Weekly or every other week, on the trail, in the room, or by video. You can switch between them any week."
+                },
+                {
+                    "title": "Snow days",
+                    "body": "If the weather turns, you'll get a text by 7 a.m. with the plan: a lower trail, the room on Pearl Street, or video at the same time."
+                }
+            ]
+        },
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "consult",
+                    "name": "Free 15-minute call",
+                    "durationMinutes": 15,
+                    "description": "A short phone call to see whether we're the right fit."
+                },
+                {
+                    "typeId": "walk",
+                    "name": "Walk-and-talk session",
+                    "durationMinutes": 50,
+                    "description": "Fifty minutes on the trail, in the room, or by video."
+                },
+                {
+                    "typeId": "couples",
+                    "name": "Couples walk",
+                    "durationMinutes": 80,
+                    "description": "Eighty minutes for partners or a parent and teen."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "hannah-albright",
+                    "name": "Hannah Albright",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 420,
+                            "end": 720
+                        },
+                        {
+                            "day": 3,
+                            "start": 420,
+                            "end": 720
+                        },
+                        {
+                            "day": 6,
+                            "start": 480,
+                            "end": 720
+                        }
+                    ]
+                },
+                {
+                    "providerId": "marcus-whitfield",
+                    "name": "Marcus Whitfield",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 780,
+                            "end": 1140
+                        },
+                        {
+                            "day": 4,
+                            "start": 780,
+                            "end": 1140
+                        }
+                    ]
+                },
+                {
+                    "providerId": "priya-raman",
+                    "name": "Priya Raman",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 420,
+                            "end": 720
+                        },
+                        {
+                            "day": 5,
+                            "start": 420,
+                            "end": 840
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The trailhead register in its own pine: mode light opens the site in its native appearance (oat paper by day); dark is the same trail after sundown. Marketing pages resolve brand over preset accent, so the overlay re-inks pages and app surfaces together. navigation re-pins the shared careShell chrome (a declared theme variant outranks the shell prop): the practice takes the inline bar — the name at the left, links and the ask at the right, the way a trail sign reads.",
+        "mode": "light",
+        "brand": {
+            "primary": "#2f4a3a",
+            "primaryDark": "#a9c2a3"
+        },
+        "navigation": {
+            "variant": "inline"
+        }
+    },
+    "landing": {
+        "$comment": "A pinned layout (packs/README.md 'Derived templates'): style re-registers the base's pages in the trailhead register, and pages carries exactly the skeletons careLanding.ts emits from this remix's contentSeed — the hero turns full-bleed and the content-gated sections (promises, exhibits as field notes, menu, faq) appear because the seed asks for them — so the composed template's document reproduces its code config section for section (tests/View/Care/careLanding.test.ts reads this through composedLandingSeed).",
+        "style": {
+            "preset": "trailhead"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "promises",
+                        "type": "feature-grid",
+                        "variant": "icon-list"
+                    },
+                    {
+                        "id": "exhibits",
+                        "type": "showcase",
+                        "variant": "stories"
+                    },
+                    {
+                        "id": "menu",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "providers",
+                        "type": "team",
+                        "variant": "portraits"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "providers": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "providers",
+                        "type": "team",
+                        "variant": "portraits"
+                    },
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "card-grid",
+                        "variant": "4up"
+                    },
+                    {
+                        "id": "menu",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "new-patients": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "first-visit",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "how",
+                        "type": "steps",
+                        "variant": "numbered-cards"
+                    },
+                    {
+                        "id": "privacy",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    }
+                ]
+            }
+        }
+    }
+}

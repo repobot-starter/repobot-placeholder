@@ -1,0 +1,11 @@
+{
+    "$comment": "The agent pack's project IA (docs/project-ia.md). No marketing pages by design: AI Agent is a tool, not a pitch — the home route establishes a session (anonymous when nobody is signed in) and lands the user on the desk (App.tsx homePageByPack.agent). siteName still brands the app shell.",
+    "marketing": {
+        "preset": "mono-utility",
+        "siteName": "The Charts",
+        "pages": []
+    },
+    "dashboard": {
+        "destinations": []
+    }
+}

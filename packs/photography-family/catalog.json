@@ -1,0 +1,289 @@
+{
+    "key": "photography-family",
+    "templateKey": "repobot-photography-family",
+    "title": "Family Photographer",
+    "description": "A family, motherhood & newborn photographer's site in the light-and-airy register converting photographers actually shop for: full-bleed crossfade hero, justified galleries with a lightbox, sequenced albums, a tasteful flat-priced Investment page, REAL session booking (session types x weekly availability projected into concrete bookable times on the managed booking domain), private code-gated client proofing on the platform proofing service, and an inquiry form — a multi-page site edited in one content file, art-directed in the heirloom register (warm ivory, Fraunces serif, champagne hairlines, botanical green).",
+    "marketingExampleTitle": "Family photographer site",
+    "category": "photography",
+    "homePath": "/",
+    "previewPath": "/photography-family",
+    "homeViewDir": "web/app/src/View/PhotographyFamily",
+    "base": "content",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false,
+    "platformServices": ["proofing"],
+    "forms": {
+        "$comment": "Managed-form kinds, formKey -> kind (append-only vocabulary: RSVP | LEAD | MAILING_LIST | PROOFING). The inquiry form is a lead pipeline. Live proofing selections POST /__proofing/select; proofing-selection stays declared PROOFING so Inbox rows type as proofing records and the Inbox PROOFING tab points at the Client galleries surface. platformServices above declares the proofing platform service (rooms + selections as platform rows behind the /__proofing doors) — compose merges it into the deploy manifest's contentDomains so the Manage rail gates the Client galleries surface.",
+        "inquiry": "LEAD",
+        "proofing-selection": "PROOFING"
+    },
+    "theme": {
+        "$comment": "The heirloom register's brand overlay: mode light opens the site in its native warm-ivory daylight appearance (the appearance toggle still swaps to the candlelit dark reading), and the register's botanical green rides as the project brand so app-side surfaces wear the same register as the marketing pages instead of the kernel default blue. Values match the heirloom preset's own light/dark accents — the marketing pages resolve brand over preset accent, so keeping them identical means the overlay re-brands the app without shifting the pages.",
+        "mode": "light",
+        "brand": { "primary": "#46583c", "primaryDark": "#a9bd97" }
+    },
+    "content": {
+        "$comment": "Business-content contract seed, merged over repobot.content.json at compose (the same overlay path as landing/theme). The appointments domain mirrors content.ts codeAppointments entry for entry (the pack's content tests pin the mirror), so the Manage session calendar opens on exactly the offering the site already shows, and the platform projects exactly the capacity-1 slots the sandbox simulation offers. This seed is booking mode 2's input: the platform generates a booking_session per provider x window x session type occurrence, capacity 1, with the provider-wide overlap lock making double-booking impossible — one provider here, because it is a one-photographer studio.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "mini-session",
+                    "name": "Mini session",
+                    "durationMinutes": 30,
+                    "description": "One location, short and sweet"
+                },
+                {
+                    "typeId": "full-session",
+                    "name": "Full session",
+                    "durationMinutes": 90,
+                    "description": "The signature — coast or at home"
+                },
+                {
+                    "typeId": "newborn-planning",
+                    "name": "Newborn planning call",
+                    "durationMinutes": 45,
+                    "description": "Before baby arrives, we plan the morning"
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "maeve",
+                    "name": "Maeve Callahan",
+                    "windows": [
+                        { "day": 2, "start": 540, "end": 720 },
+                        { "day": 3, "start": 840, "end": 1020 },
+                        { "day": 4, "start": 540, "end": 720 },
+                        { "day": 5, "start": 900, "end": 1080 },
+                        { "day": 6, "start": 540, "end": 720 }
+                    ]
+                }
+            ]
+        }
+    },
+    "contentContract": {
+        "$comment": "The pack's content slots, as data (packs/README.md 'Content contract'). Declares what a composer (agent or tool) must bind for a generated variant of this pack to present as real: slot paths into the typed content module, their kinds, and minimums. Session prices are NUMBERS (whole dollars) a composer must bind as numbers, never prose; the booking offering itself lives in the content seed's appointments domain above. Authored alongside the module and guarded by the pack's content tests — the module satisfies the contract; the contract never drifts ahead of it. home.scribble and home.note are optional: the crossfade home leaves them null (the key present so the editor can fill it); the pinboard home a remix wears binds both.",
+        "module": "web/app/src/View/PhotographyFamily/content.ts",
+        "slots": {
+            "photographer.name": { "kind": "text" },
+            "photographer.tagline": { "kind": "text" },
+            "photographer.location": { "kind": "text" },
+            "photographer.email": { "kind": "text" },
+            "heroSlides": { "kind": "media[]", "min": 1 },
+            "selectedWork": { "kind": "media[]", "min": 4 },
+            "albums": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "title": { "kind": "text" },
+                    "eyebrow": { "kind": "text" },
+                    "description": { "kind": "text" },
+                    "images": { "kind": "media[]", "min": 4 }
+                }
+            },
+            "home.headline": { "kind": "text" },
+            "home.subheadline": { "kind": "text" },
+            "home.intro.title": { "kind": "text" },
+            "home.intro.paragraphs": { "kind": "text[]", "min": 1 },
+            "about.headline": { "kind": "text" },
+            "about.portrait": { "kind": "media" },
+            "about.paragraphs": { "kind": "text[]", "min": 2 },
+            "about.testimonials": {
+                "kind": "collection",
+                "min": 1,
+                "item": {
+                    "quote": { "kind": "text" },
+                    "name": { "kind": "text" },
+                    "detail": { "kind": "text" }
+                }
+            },
+            "investment.headline": { "kind": "text" },
+            "investment.body": { "kind": "text" },
+            "investment.offerings": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "name": { "kind": "text" },
+                    "price": { "kind": "number" },
+                    "duration": { "kind": "text" },
+                    "description": { "kind": "text" },
+                    "includes": { "kind": "text[]", "min": 2 }
+                }
+            },
+            "investment.faq": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "question": { "kind": "text" },
+                    "answer": { "kind": "text" }
+                }
+            },
+            "book.headline": { "kind": "text" },
+            "book.intro": { "kind": "text" },
+            "galleries.headline": { "kind": "text" },
+            "galleries.intro": { "kind": "text" },
+            "inquire.headline": { "kind": "text" },
+            "inquire.body": { "kind": "text" },
+            "home.badge": { "kind": "text" },
+            "home.scribble": { "kind": "text", "optional": true },
+            "home.note": { "kind": "text", "optional": true }
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (web/app/src/View/PhotographyFamily/PhotographyFamilyPage.tsx, useSitePageConfig). pages seeds each page's layout skeleton — ids match familyLanding.ts; the platform's structural editor edits these. style must ride the overlay: the compose merge keeps the kernel document's root style otherwise, and applySitePageDocument makes the document preset outrank every page's pinned one. The preset is heirloom (the romantic-stationery register: warm ivory, Fraunces serif with an italic accent, champagne hairlines, botanical green, generous air — the light-and-airy reading the family-photography market shops for), deliberately apart from photography's tourbook field journal, the music pack's marquee stage-night, and the wedding pack's lanternlight. /proof is deliberately absent: proofing rooms are unlisted client pages, not documented marketing pages — /galleries is the documented page that tells clients (and photographers evaluating the template) what proofing does, and links into the sample room. /book's booking widget mounts as a section trailer, not a section — the hero is the page's only documented chrome above it.",
+        "style": { "preset": "heirloom" },
+        "routes": {
+            "/": "home",
+            "/work": "work",
+            "/galleries": "galleries",
+            "/investment": "investment",
+            "/about": "about",
+            "/book": "book",
+            "/inquire": "inquire"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "selected-work",
+                        "type": "gallery",
+                        "variant": "justified"
+                    },
+                    {
+                        "id": "intro",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "collections",
+                        "type": "showcase",
+                        "variant": "collections"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "work": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "collections",
+                        "type": "showcase",
+                        "variant": "collections"
+                    }
+                ]
+            },
+            "galleries": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "gallery-steps",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "sample-room",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "investment": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "offerings",
+                        "type": "pricing",
+                        "variant": "tiers"
+                    },
+                    {
+                        "id": "how-it-works",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials"
+                    },
+                    {
+                        "id": "inquire-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "flexible-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "inquire": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "inquiry-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

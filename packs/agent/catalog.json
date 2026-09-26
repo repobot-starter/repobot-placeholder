@@ -1,0 +1,53 @@
+{
+    "key": "agent",
+    "templateKey": "repobot-agent",
+    "title": "AI Agent",
+    "description": "Talk or chat with an agent that lives on your data. The starter is a most-popular-songs catalog: ask, update, and hear it back — ChatGPT for the mind, ElevenLabs for the voice.",
+    "marketingExampleTitle": "AI voice and chat agent",
+    "homePath": "/",
+    "previewPath": "/agent",
+    "homeViewDir": "web/app/src/View/AgentDesk",
+    "base": "app",
+    "isFeature": true,
+    "clientOnly": false,
+    "capabilities": ["AI", "DATABASE", "BACKEND", "AUTH"],
+    "authMethods": ["email-code", "password"],
+    "isDefault": false,
+    "theme": {
+        "$comment": "AI Agent is a tool, not a pitch: no landing page, so the theme carries the whole identity. Dark black-and-white (the saas register's conviction): mode dark opens on true black, the brand resolves to ink-on-ground so buttons read as hard white plates, and the palette de-tints the kernel's blue-gray so the desk is pure monochrome.",
+        "mode": "dark",
+        "character": "plain",
+        "brand": {
+            "primary": "#0a0a0a",
+            "primaryDark": "#ffffff"
+        },
+        "palette": {
+            "background": "#fafafa",
+            "backgroundDark": "#000000",
+            "surface": "#ffffff",
+            "surfaceDark": "#0d0d0d",
+            "surfaceHover": "#f0f0f0",
+            "surfaceHoverDark": "#1a1a1a",
+            "border": "#e4e4e4",
+            "borderDark": "#262626",
+            "textPrimary": "#111111",
+            "textPrimaryDark": "#f5f5f5",
+            "textSecondary": "#5c5c5c",
+            "textSecondaryDark": "#9c9c9c",
+            "muted": "#f0f0f0",
+            "mutedDark": "#161616",
+            "input": "#e4e4e4",
+            "inputDark": "#2e2e2e",
+            "skeleton": "#ececec",
+            "skeletonDark": "#1a1a1a",
+            "charts": ["#0a0a0a", "#5e5e5e", "#9c9c9c", "#333333", "#7a7a7a", "#c4c4c4"],
+            "chartsDark": ["#ffffff", "#b0b0b0", "#7a7a7a", "#e0e0e0", "#949494", "#565656"]
+        },
+        "shell": { "variant": "sidebar", "content": "flush" },
+        "ui": {
+            "table": { "style": "minimalist", "pagination": "loadMore" },
+            "forms": { "presentation": "modal", "width": "normal" },
+            "loaders": { "style": "progressive" }
+        }
+    }
+}

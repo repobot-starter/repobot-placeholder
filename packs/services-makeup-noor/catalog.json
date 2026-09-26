@@ -1,0 +1,196 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services pack composed with a South Asian bridal makeup and hair content seed (Studio Noor, Edison NJ), a gold brand, and the jharokha register. Everything else — builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-makeup-noor",
+    "remixOf": "services",
+    "templateKey": "repobot-services-makeup-noor",
+    "title": "South Asian bridal makeup & hair",
+    "description": "A bridal studio's site as a jewel box: the studio's name under a gold lotus over the wedding weekend's four events as arched portraits, a package board where the bride ticks her events and watches the running total, the bridal looks as a mosaic, the weekend day by day from mehndi to reception, a bride's own words, and online booking for consultations and trials — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "New Jersey South Asian bridal makeup",
+    "contentSeed": "web/app/src/View/Services/noorRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twin) — the composed template's booking widget and Manage calendar open on this team's own week, not the base demo business's.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "consultation",
+                    "name": "Free consultation",
+                    "durationMinutes": 30,
+                    "description": "At the studio or on video: your events, your outfits, your jewelry, and your skin."
+                },
+                {
+                    "typeId": "bridal-trial",
+                    "name": "Bridal trial",
+                    "durationMinutes": 120,
+                    "description": "Your wedding look tested at the studio, with your dupatta and jewelry, and written on your face chart."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "noor-qureshi",
+                    "name": "Noor Qureshi",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 660,
+                            "end": 1200
+                        },
+                        {
+                            "day": 2,
+                            "start": 660,
+                            "end": 1200
+                        },
+                        {
+                            "day": 3,
+                            "start": 660,
+                            "end": 1200
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "Gold as the brand: on the jharokha register the accent is the name plates under the arches, the package board's frame and total, and the gold ask, while bright gold and vermilion are the register's own spot inks — a rebrand re-gilds the board without re-shooting the weekend. Marketing pages resolve brand over preset accent, so the overlay re-skins the pages and the app surfaces together. navigation re-pins the shared servicesShell chrome to the centered sign (a declared theme variant outranks the shell prop). mode dark opens on the emerald velvet (theme merges shallowly).",
+        "brand": {
+            "primary": "#8a651c",
+            "primaryDark": "#d6b25e"
+        },
+        "mode": "dark",
+        "navigation": {
+            "variant": "centered"
+        }
+    },
+    "landing": {
+        "$comment": "The pin: the jharokha register and the jewel-box home — the collage (the name and its line over the four events as arched panels, the seed's home.hero.panels), the package board (the seed's price menu as pricing builder: tick the events, watch the total), the bridal looks as cover tiles set as a mosaic, the weekend day by day on the rail (the seed's build log), a bride's words, and the closing ask. The seed hides the home services grid (home.serviceGrid). The portfolio page opens on the looks as a filterable grid over the bare-to-bridal comparisons; the other pages keep the base's skeletons. resolveCatalog puts these in place of the base's pages.",
+        "style": {
+            "preset": "jharokha"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "panel-collage"
+                    },
+                    {
+                        "id": "price-menu",
+                        "type": "pricing",
+                        "variant": "builder"
+                    },
+                    {
+                        "id": "lookbook",
+                        "type": "showcase",
+                        "variant": "collections"
+                    },
+                    {
+                        "id": "build-log",
+                        "type": "steps",
+                        "variant": "horizontal-rail"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "projects": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "lookbook",
+                        "type": "showcase",
+                        "variant": "filterable-grid"
+                    },
+                    {
+                        "id": "transformations",
+                        "type": "gallery",
+                        "variant": "before-after"
+                    },
+                    {
+                        "id": "process",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "showcase",
+                        "variant": "card-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "quote": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "quote-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

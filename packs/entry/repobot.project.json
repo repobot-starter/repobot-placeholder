@@ -1,0 +1,35 @@
+{
+    "$comment": "The entry pack's project IA (docs/project-ia.md). No marketing pages by design: Capture Data is a tool, not a pitch — the home route establishes a session (anonymous when nobody is signed in) and lands the user straight on /records with the entry form open (App.tsx homePageByPack.entry). siteName still brands the app shell. Records leads the destinations, so it is also the post-sign-in default.",
+    "marketing": {
+        "preset": "mono-utility",
+        "siteName": "Capture Data",
+        "pages": []
+    },
+    "dashboard": {
+        "destinations": [
+            {
+                "id": "entry-records",
+                "path": "/records",
+                "label": "Records",
+                "blueprint": "table",
+                "icon": "M3 5h18 M3 10h18 M3 15h18 M3 20h12",
+                "description": "The workbook table: one column per field, search across every cell, modal create/edit, load-more pagination. The home route lands here with the entry form open."
+            },
+            {
+                "id": "entry-fields",
+                "path": "/fields",
+                "label": "Fields",
+                "blueprint": "custom",
+                "icon": "M4 21v-7 M4 10V3 M12 21v-9 M12 8V3 M20 21v-5 M20 12V3 M1 14h6 M9 8h6 M17 16h6",
+                "description": "The field designer: the workbook's schema — every change reshapes the entry form and the table."
+            },
+            {
+                "id": "entry-overview",
+                "path": "/overview",
+                "label": "Overview",
+                "blueprint": "overview",
+                "description": "The workbook at a glance: record and field counts, the latest entries, and the New Record action."
+            }
+        ]
+    }
+}

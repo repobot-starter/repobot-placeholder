@@ -1,0 +1,256 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the care pack composed with an adult-psychology content seed and a steel-blue brand over the luxe-light register. Everything else — pages, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs). Deliberately apart from the care-therapy remix: individual adult psychotherapy and assessment (doctoral clinicians, named methods, measurement-based care), not couples-and-families warmth.",
+    "key": "care-psychology",
+    "remixOf": "care",
+    "templateKey": "repobot-care-psychology",
+    "title": "Psychologist",
+    "description": "An adult psychotherapy and assessment practice site built to read like the practice works: three doctoral psychologists with credentials and specialties, evidence-named services (ERP for OCD, behavioral activation, CBT-I), plain-language FAQs on cost and confidentiality, an in-network insurance strip, and real online booking — free consultations, intakes, 50-minute sessions, and three-hour assessment blocks projected from each psychologist's actual week, capacity-1, double-booking impossible. The booking form is deliberately clinically empty: name, contact, appointment type — why someone is seeking care never touches the site.",
+    "marketingExampleTitle": "Psychologist",
+    "contentSeed": "web/app/src/View/Care/psychologyRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so these practice and appointments seeds replace the base pack's at compose and mirror THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twins) — the composed template's Manage editors and booking widget open on the psychology practice, not the base clinic.",
+        "practice": {
+            "providers": [
+                {
+                    "providerId": "dr-adler",
+                    "name": "Dr. Naomi Adler",
+                    "credentials": "PhD, Licensed Psychologist",
+                    "role": "Anxiety & OCD · Founder",
+                    "bio": "Twenty years treating anxiety disorders and OCD with exposure and response prevention — the treatment with the strongest evidence, done properly and paced humanely. Naomi founded Juniper Hill on one rule: every client knows the plan, the method, and the number we're watching."
+                },
+                {
+                    "providerId": "dr-osei",
+                    "name": "Dr. Marcus Osei",
+                    "credentials": "PsyD, Licensed Psychologist",
+                    "role": "Depression & men's mental health",
+                    "bio": "Marcus treats depression the way it actually lifts: behavioral activation first, thought work second, and a plan for the week you're in — not the person you're supposed to become. Half his caseload is men who waited years to call anyone."
+                },
+                {
+                    "providerId": "dr-raghavan",
+                    "name": "Dr. Priya Raghavan",
+                    "credentials": "PhD, Licensed Psychologist",
+                    "role": "ADHD & psychological assessment",
+                    "bio": "Priya runs the practice's assessment service: ADHD, memory and attention concerns, and the diagnostic knots two prior providers couldn't untie. Full batteries, plain-language reports in two weeks, and a feedback session where you can ask anything."
+                }
+            ],
+            "services": [
+                {
+                    "name": "Individual therapy",
+                    "description": "Weekly 50-minute sessions built on cognitive and behavioral methods — with goals you set, and progress you can see."
+                },
+                {
+                    "name": "Anxiety & panic",
+                    "description": "Structured treatment for generalized anxiety, panic, and phobias — skills first, then practice in the situations that matter."
+                },
+                {
+                    "name": "OCD treatment",
+                    "description": "Exposure and response prevention (ERP), the gold-standard treatment — collaborative, graded, and never sprung on you."
+                },
+                {
+                    "name": "Depression",
+                    "description": "Behavioral activation and cognitive therapy for depression — small honest steps, measured weekly, that compound."
+                },
+                {
+                    "name": "Adult ADHD assessment",
+                    "description": "A full testing battery, a clear yes-or-no answer, and a plain-language report you can take to any prescriber."
+                },
+                {
+                    "name": "Psychological assessment",
+                    "description": "Diagnostic clarity when the picture is muddy — mood, attention, memory, personality — with a feedback session included."
+                },
+                {
+                    "name": "Insomnia (CBT-I)",
+                    "description": "Cognitive behavioral therapy for insomnia: four to eight sessions, no sleep hygiene lectures, real sleep-window work."
+                },
+                {
+                    "name": "Telehealth sessions",
+                    "description": "Secure video sessions anywhere in Michigan and PSYPACT states — the same treatment, without the drive."
+                }
+            ],
+            "insurance": [
+                "Blue Cross Blue Shield of Michigan",
+                "Blue Care Network",
+                "Priority Health",
+                "Aetna",
+                "Cigna",
+                "UnitedHealthcare",
+                "McLaren Health Plan",
+                "Medicare"
+            ],
+            "locations": [
+                {
+                    "locationId": "ashley-street",
+                    "label": "South Ashley Street office",
+                    "address": "312 South Ashley Street, Suite 310, Ann Arbor, MI 48104",
+                    "phone": "(734) 555-0184",
+                    "hours": [
+                        {
+                            "day": 1,
+                            "open": 480,
+                            "close": 1080
+                        },
+                        {
+                            "day": 2,
+                            "open": 480,
+                            "close": 1080
+                        },
+                        {
+                            "day": 3,
+                            "open": 480,
+                            "close": 1080
+                        },
+                        {
+                            "day": 4,
+                            "open": 480,
+                            "close": 1080
+                        },
+                        {
+                            "day": 5,
+                            "open": 480,
+                            "close": 960
+                        }
+                    ]
+                }
+            ],
+            "reviews": [
+                {
+                    "quote": "Dr. Adler told me in the first session exactly how ERP works, why it works, and what week four would feel like. Sixteen sessions later I drove over the bridge I'd been avoiding for six years — and then we graduated me, on schedule.",
+                    "name": "M. S.",
+                    "detail": "Anxiety client, shared with consent"
+                },
+                {
+                    "quote": "I'm 44 and had never told anyone I was struggling. Dr. Osei didn't make me perform sadness or explain my childhood before lunch — we made a plan for that week. The plan got bigger. So did I.",
+                    "name": "D. K.",
+                    "detail": "Individual client, shared with consent"
+                },
+                {
+                    "quote": "Two doctors and one internet quiz couldn't tell me if I had ADHD. Dr. Raghavan's report answered it in plain English, with the data attached, and the feedback session was worth the fee by itself.",
+                    "name": "R. T.",
+                    "detail": "Assessment client, shared with consent"
+                }
+            ],
+            "newPatient": [
+                {
+                    "title": "Do you take insurance?",
+                    "body": "We're in network with the plans listed above; for everything else we provide a superbill for out-of-network reimbursement. Session and assessment fees are on the confirmation email — no surprises at the door."
+                },
+                {
+                    "title": "Therapy or assessment — which do I book?",
+                    "body": "If you want to work on something, book therapy. If you want to know what's going on — ADHD, memory, a diagnosis that never quite fit — book an assessment. If you're not sure, the free 15-minute call exists exactly for this question."
+                },
+                {
+                    "title": "What happens in the first session?",
+                    "body": "You talk, we listen, and then we're honest with you: what we think is going on, which treatment has the best evidence for it, and how many sessions that usually takes. You leave with a plan and a baseline measure we'll track together."
+                },
+                {
+                    "title": "Is what I share confidential?",
+                    "body": "Yes, with the legal exceptions every psychologist carries (safety, court orders), explained in plain language before you say a word. Booking online asks nothing about your reasons — that stays in the room."
+                }
+            ]
+        },
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "free-consult",
+                    "name": "Free 15-minute consultation",
+                    "durationMinutes": 15,
+                    "description": "A short phone call to match you with the right psychologist — or point you elsewhere, honestly."
+                },
+                {
+                    "typeId": "intake-session",
+                    "name": "First session (intake)",
+                    "durationMinutes": 60,
+                    "description": "A structured first hour: your history, a baseline measure, and a treatment plan with a number of sessions on it."
+                },
+                {
+                    "typeId": "therapy-session",
+                    "name": "Therapy session",
+                    "durationMinutes": 50,
+                    "description": "The standard 50-minute session — in the office or by secure video."
+                },
+                {
+                    "typeId": "assessment-block",
+                    "name": "Assessment testing block",
+                    "durationMinutes": 180,
+                    "description": "A three-hour testing block with breaks built in — most assessments need one or two."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "dr-adler",
+                    "name": "Dr. Naomi Adler",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 540,
+                            "end": 900
+                        },
+                        {
+                            "day": 3,
+                            "start": 540,
+                            "end": 900
+                        },
+                        {
+                            "day": 4,
+                            "start": 720,
+                            "end": 1080
+                        }
+                    ]
+                },
+                {
+                    "providerId": "dr-osei",
+                    "name": "Dr. Marcus Osei",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 600,
+                            "end": 1080
+                        },
+                        {
+                            "day": 4,
+                            "start": 600,
+                            "end": 960
+                        },
+                        {
+                            "day": 5,
+                            "start": 540,
+                            "end": 780
+                        }
+                    ]
+                },
+                {
+                    "providerId": "dr-raghavan",
+                    "name": "Dr. Priya Raghavan",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 480,
+                            "end": 840
+                        },
+                        {
+                            "day": 2,
+                            "start": 480,
+                            "end": 840
+                        },
+                        {
+                            "day": 5,
+                            "start": 480,
+                            "end": 840
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "Steel blue over the luxe-light register's near-white ground — the care family's calm, credible light voice re-inked from clinical teal to a scholarly slate blue, visibly apart from the therapy remix's warm clay. mode light opens the site in its native daylight appearance; marketing pages resolve brand over preset accent, so the overlay re-inks pages and app surfaces together. navigation re-pins the shared careShell chrome (a declared theme variant outranks the shell prop): the base clinic wears the full-width administrative band and the therapy remix the centered masthead, so the psychology practice takes the split letterhead — the ruled, stationery read — per the nav-variety audit.",
+        "mode": "light",
+        "brand": {
+            "primary": "#365a8c",
+            "primaryDark": "#9fc0e8"
+        },
+        "navigation": {
+            "variant": "split"
+        }
+    }
+}

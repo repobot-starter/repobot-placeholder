@@ -1,0 +1,392 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the care pack composed with a concierge internal-medicine content seed, re-registered in the parlor register (a Southern parlor in daylight: magnolia blush, walnut ink, gilt hairlines) with its own pinned page skeletons. Everything else — pages' builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "care-primary-magnolia",
+    "remixOf": "care",
+    "templateKey": "repobot-care-primary-magnolia",
+    "title": "Concierge Medicine Practice",
+    "description": "A concierge primary-care site with real online booking: Magnolia Concierge Medicine, two internists and a nurse care coordinator in a brick house in Green Hills, Nashville — membership from $250 a month, limited to 400 members. It opens full-bleed on a doctor and a patient laughing at a walnut table under magnolia windows (\"Time with your doctor. Imagine that.\"), then three promises (same-day access, sixty-minute visits, your doctor's cell), the first year as a photographic timeline (the two-hour physical, labs reviewed together, specialists coordinated, a house call, the year in review), the membership price list, how it works alongside insurance, the physicians with portraits, members' words shared with consent, a plain FAQ, and a booking page offering a free introduction call, visits, and the annual physical. The booking form is clinically empty — name, contact, visit type, new/returning.",
+    "marketingExampleTitle": "Concierge medicine site",
+    "contentSeed": "web/app/src/View/Care/magnoliaRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so these practice and appointments seeds replace the base pack's at compose and mirror THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twins) — the composed template's Manage editors and booking widget open on the concierge practice, not the base clinic.",
+        "practice": {
+            "providers": [
+                {
+                    "providerId": "dr-beaumont",
+                    "name": "Dr. Nadia Beaumont",
+                    "credentials": "MD",
+                    "role": "Internal medicine · Founder",
+                    "bio": "Nadia practiced hospital medicine at a large Nashville system for twelve years, seeing thirty patients a day, before opening Magnolia with a promise to see eight. She is board-certified in internal medicine, still makes most of the house calls herself, and will tell you exactly what your cholesterol number means over a cup of coffee."
+                },
+                {
+                    "providerId": "dr-marchetti",
+                    "name": "Dr. Theo Marchetti",
+                    "credentials": "MD",
+                    "role": "Internal medicine",
+                    "bio": "Theo trained in internal medicine and spent five years in a rural clinic outside Knoxville, where knowing a patient's whole story wasn't optional. He looks after members with diabetes, heart and thyroid conditions, and anyone who has been told to 'watch it' without being told how."
+                },
+                {
+                    "providerId": "marisol-dela-cruz",
+                    "name": "Marisol Dela Cruz",
+                    "credentials": "RN, BSN",
+                    "role": "Care coordinator",
+                    "bio": "Marisol is the reason your specialist appointment happens next week instead of next quarter. She books referrals, chases records, reads every note that comes back, and answers the practice line — usually by the second ring."
+                }
+            ],
+            "services": [
+                {
+                    "name": "The two-hour physical",
+                    "description": "Every year, a comprehensive visit with your physician: history, exam, screenings, and a written plan you take home."
+                },
+                {
+                    "name": "Same-day and next-day visits",
+                    "description": "Sick on a Tuesday morning? Call or text, and you'll be seen that day, in the office, by video, or at home."
+                },
+                {
+                    "name": "House calls",
+                    "description": "For a fever, a fall, a post-surgery check, or a parent who can't easily get out. Green Hills, Belle Meade, and nearby."
+                },
+                {
+                    "name": "Labs, reviewed together",
+                    "description": "Blood drawn in the office, results explained at the table — what's normal, what's changed, and what we do about it."
+                },
+                {
+                    "name": "Specialist coordination",
+                    "description": "We choose the specialist, send your history, book the appointment, and read the notes when they come back."
+                },
+                {
+                    "name": "Ongoing and preventive care",
+                    "description": "Blood pressure, diabetes, thyroid, cholesterol, sleep, travel medicine, and the screenings your age calls for."
+                }
+            ],
+            "insurance": [
+                "Works alongside most PPO plans",
+                "Medicare patients welcome",
+                "Labs and imaging billed to your plan",
+                "HSA & FSA cards accepted",
+                "Monthly or annual membership",
+                "No long-term contract"
+            ],
+            "locations": [
+                {
+                    "locationId": "abbott-martin",
+                    "label": "The house on Abbott Martin",
+                    "address": "2114 Abbott Martin Road, Nashville, TN 37215",
+                    "phone": "(615) 555-0142",
+                    "hours": [
+                        {
+                            "day": 1,
+                            "open": 480,
+                            "close": 1020
+                        },
+                        {
+                            "day": 2,
+                            "open": 480,
+                            "close": 1020
+                        },
+                        {
+                            "day": 3,
+                            "open": 480,
+                            "close": 1020
+                        },
+                        {
+                            "day": 4,
+                            "open": 480,
+                            "close": 1020
+                        },
+                        {
+                            "day": 5,
+                            "open": 480,
+                            "close": 1020
+                        },
+                        {
+                            "day": 6,
+                            "open": 540,
+                            "close": 720
+                        }
+                    ]
+                }
+            ],
+            "reviews": [
+                {
+                    "quote": "My first physical took two hours and nobody looked at a clock. Dr. Beaumont found the thing three other doctors had missed, and then she called me that Saturday to see how I was doing.",
+                    "name": "Caroline W.",
+                    "detail": "Member, Green Hills"
+                },
+                {
+                    "quote": "I texted Dr. Marchetti at seven in the morning with a fever. He was at my kitchen table by nine. I didn't know medicine could still work like this.",
+                    "name": "Devon R.",
+                    "detail": "Member, Belle Meade"
+                },
+                {
+                    "quote": "Marisol got my mother in with a cardiologist in six days and then sat with me to go over the notes. That alone is worth the membership.",
+                    "name": "Priya S.",
+                    "detail": "Member, Sylvan Park"
+                }
+            ],
+            "newPatient": [
+                {
+                    "title": "A twenty-minute introduction",
+                    "body": "A call with one of our physicians to talk about your health, what you're looking for, and whether membership is the right fit. There's no charge and no obligation."
+                },
+                {
+                    "title": "Enrollment",
+                    "body": "Choose monthly or annual membership and sign a one-page agreement. We request your records from your previous doctor, so you don't have to."
+                },
+                {
+                    "title": "Your two-hour physical",
+                    "body": "Within your first two weeks. Come hungry for the fasting labs, and bring a list of every question you've been saving up."
+                },
+                {
+                    "title": "Your physician's number",
+                    "body": "At the end of your first visit you'll have your doctor's cell number. Use it."
+                }
+            ]
+        },
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "introduction",
+                    "name": "Introduction call",
+                    "durationMinutes": 20,
+                    "description": "A free call to see whether membership is the right fit."
+                },
+                {
+                    "typeId": "physical",
+                    "name": "Two-hour physical",
+                    "durationMinutes": 120,
+                    "description": "Your annual comprehensive visit, for members."
+                },
+                {
+                    "typeId": "visit",
+                    "name": "Visit",
+                    "durationMinutes": 60,
+                    "description": "An hour with your physician, in the office or by video."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "dr-beaumont",
+                    "name": "Dr. Nadia Beaumont",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 480,
+                            "end": 720
+                        },
+                        {
+                            "day": 3,
+                            "start": 480,
+                            "end": 720
+                        },
+                        {
+                            "day": 4,
+                            "start": 780,
+                            "end": 1020
+                        }
+                    ]
+                },
+                {
+                    "providerId": "dr-marchetti",
+                    "name": "Dr. Theo Marchetti",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 480,
+                            "end": 720
+                        },
+                        {
+                            "day": 4,
+                            "start": 480,
+                            "end": 720
+                        },
+                        {
+                            "day": 5,
+                            "start": 780,
+                            "end": 1020
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The parlor register in its own walnut: mode light opens the site in its native appearance (magnolia blush by day); dark is the same parlor by lamplight. Marketing pages resolve brand over preset accent, so the overlay re-inks pages and app surfaces together. navigation re-pins the shared careShell chrome (a declared theme variant outranks the shell prop): the concierge practice takes the centered masthead — the name set like an engraved card over its links.",
+        "mode": "light",
+        "brand": {
+            "primary": "#7b4a2d",
+            "primaryDark": "#e2b99b"
+        },
+        "navigation": {
+            "variant": "centered"
+        }
+    },
+    "landing": {
+        "$comment": "A pinned layout (packs/README.md 'Derived templates'): style re-registers the base's pages in the parlor register, and pages carries exactly the skeletons careLanding.ts emits from this remix's contentSeed — the hero turns full-bleed and the content-gated sections (promises, journey, menu, faq) appear because the seed asks for them — so the composed template's document reproduces its code config section for section (tests/View/Care/careLanding.test.ts reads this through composedLandingSeed).",
+        "style": {
+            "preset": "parlor"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "promises",
+                        "type": "feature-grid",
+                        "variant": "icon-list"
+                    },
+                    {
+                        "id": "journey",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "menu",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "providers",
+                        "type": "team",
+                        "variant": "portraits"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "providers": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "providers",
+                        "type": "team",
+                        "variant": "portraits"
+                    },
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "card-grid",
+                        "variant": "4up"
+                    },
+                    {
+                        "id": "menu",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "new-patients": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "first-visit",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "how",
+                        "type": "steps",
+                        "variant": "numbered-cards"
+                    },
+                    {
+                        "id": "privacy",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    }
+                ]
+            }
+        }
+    }
+}

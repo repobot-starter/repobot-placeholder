@@ -1,0 +1,310 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the influencer pack composed with a Peckham film-and-fits creator's content seed (Remi Adebayo), a Klein-blue brand, and the sprocket register. Everything else — builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "influencer-remi",
+    "remixOf": "influencer",
+    "templateKey": "repobot-influencer-remi",
+    "title": "Film & streetwear creator",
+    "description": "A Gen Z creator's site built like his camera bag: Remi Adebayo in Peckham, who shoots one roll of 35mm a week with his mates. The home opens on him laughing on a rooftop car park with his name set enormous in a condensed grotesque across the foot of the photograph, then this week's roll printed as a real contact sheet — black paper, sprocket holes, frame numbers, the stock's edge print and his grease-pencil picks. After the roll: this month's fits as a numbered board, his five feeds as a mono list, the link hub's newest drops, big numerals, three brand voices, and a Klein-blue band that asks for the brief. The filterable fits with every piece linked, the link-in-bio hub, his story, and a campaign inquiry form keep their own pages. Concrete off-white, near-black ink and one Klein blue in Bricolage Grotesque over Geist and Geist Mono. Flexes to streetwear, skate, music and film creators, photographers, and anyone whose week is the content.",
+    "marketingExampleTitle": "Peckham film & streetwear creator",
+    "contentSeed": "web/app/src/View/Influencer/remiRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so these links and looks seeds replace the base pack's at compose and mirror THIS remix's contentSeed module entry for entry, in order (looks minus the code-owned photographs) — the composed template's Manage editors open on Remi's hub and fits, not the base demo creator's. The influencer content tests pin the twin in the composed tree.",
+        "links": {
+            "entries": [
+                {
+                    "slug": "roll-38-scans",
+                    "title": "Roll 38 — the full scans",
+                    "url": "https://remiadebayo.gumroad.com/l/roll-38",
+                    "description": "All 36 frames from this week, full res, the ones I didn't circle too.",
+                    "badge": "New",
+                    "category": "Film"
+                },
+                {
+                    "slug": "scan-a-roll-video",
+                    "title": "How I scan a roll for under £5",
+                    "url": "https://www.youtube.com/@remiadebayo",
+                    "description": "An old flatbed, a phone light and a lot of dust. Twelve minutes.",
+                    "category": "Watch"
+                },
+                {
+                    "slug": "second-roll-issue-6",
+                    "title": "Second Roll, issue 6",
+                    "url": "https://remiadebayo.gumroad.com/l/second-roll-6",
+                    "description": "The zine: 40 pages of the rolls I couldn't stop looking at, risograph, 200 copies.",
+                    "badge": "Pre-order",
+                    "category": "Film"
+                },
+                {
+                    "slug": "rail-day",
+                    "title": "Rail Day — first Saturday, Bellenden Road",
+                    "url": "https://remiadebayo.gumroad.com/l/rail-day",
+                    "description": "The monthly thrift rail: everything £5 to £40, come early for the jackets.",
+                    "badge": "Free",
+                    "category": "Thrift"
+                },
+                {
+                    "slug": "grainhouse-400",
+                    "title": "Grainhouse 400 — the stock I shoot",
+                    "url": "https://www.grainhouse.example/remi",
+                    "description": "Every roll on this site. Ten percent off a five-pack with my code.",
+                    "badge": "Code REMI10",
+                    "category": "Partners"
+                },
+                {
+                    "slug": "northpaw-trail",
+                    "title": "Northpaw Trail 2 — the grey pair",
+                    "url": "https://www.northpaw.example/remi",
+                    "description": "The ones from the rooftop and the chip-shop frames. Worn in, not worn out.",
+                    "category": "Partners"
+                },
+                {
+                    "slug": "the-rail-online",
+                    "title": "The rail, online",
+                    "url": "https://www.depop.com/remiadebayo",
+                    "description": "What didn't sell on Rail Day, and the fits I've shot and moved on from.",
+                    "category": "Thrift"
+                }
+            ]
+        },
+        "looks": {
+            "entries": [
+                {
+                    "slug": "olive-chore",
+                    "title": "Olive chore coat, grey hoodie",
+                    "category": "Workwear",
+                    "description": "A washed olive chore coat over a grey hoodie, the baggiest light jeans I own, beaten white trainers. Most weeks, honestly.",
+                    "productLinks": [
+                        {
+                            "label": "The chore coat",
+                            "url": "https://www.offcutstudio.example/chore-olive"
+                        },
+                        {
+                            "label": "The hoodie",
+                            "url": "https://www.offcutstudio.example/hoodie-grey"
+                        },
+                        {
+                            "label": "The trainers",
+                            "url": "https://www.northpaw.example/trail-2-chalk"
+                        }
+                    ],
+                    "featured": true
+                },
+                {
+                    "slug": "tan-suede",
+                    "title": "Tan suede, brown trousers",
+                    "category": "Thrifted",
+                    "description": "A tan suede jacket from the Rail Day box, a plain white tee and wide brown trousers — twenty-two quid all in, before the shoes.",
+                    "productLinks": [
+                        {
+                            "label": "The white tee",
+                            "url": "https://www.offcutstudio.example/tee-white"
+                        },
+                        {
+                            "label": "The loafers",
+                            "url": "https://www.kerbskate.example/loafer-brown"
+                        }
+                    ],
+                    "featured": true
+                },
+                {
+                    "slug": "stripe-jersey",
+                    "title": "The stripe jersey",
+                    "category": "Sport",
+                    "description": "A navy-and-white striped football shirt, black shorts, white socks pulled up — Sunday five-a-side on the cage court, camera on the bench.",
+                    "productLinks": [
+                        {
+                            "label": "The jersey",
+                            "url": "https://www.kerbskate.example/jersey-stripe"
+                        },
+                        {
+                            "label": "The socks",
+                            "url": "https://www.northpaw.example/crew-white"
+                        }
+                    ],
+                    "featured": true
+                },
+                {
+                    "slug": "night-bus-knit",
+                    "title": "Night bus knit",
+                    "category": "Night out",
+                    "description": "A charcoal knit, khaki work trousers and a camera round my neck for the walk home — the N171 stop, the street still wet.",
+                    "productLinks": [
+                        {
+                            "label": "The knit",
+                            "url": "https://www.offcutstudio.example/knit-charcoal"
+                        },
+                        {
+                            "label": "The work trousers",
+                            "url": "https://www.offcutstudio.example/work-khaki"
+                        },
+                        {
+                            "label": "The headphones",
+                            "url": "https://www.loopaudio.example/remi"
+                        }
+                    ],
+                    "featured": true
+                },
+                {
+                    "slug": "sunday-polo",
+                    "title": "Sunday polo",
+                    "category": "Sunday",
+                    "description": "A cream knitted polo, stone trousers and a coffee from the place on Choumert Road — the one day nothing has to be loud.",
+                    "productLinks": [
+                        {
+                            "label": "The knitted polo",
+                            "url": "https://www.offcutstudio.example/polo-cream"
+                        },
+                        {
+                            "label": "The stone trousers",
+                            "url": "https://www.offcutstudio.example/trouser-stone"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "Klein blue as the brand: on the sprocket register the accent is the ask, the closing band and the specimen numbers — the photographs and the ink carry the rest. Marketing pages resolve brand over preset accent, so keeping the values identical to the preset's own accents re-inks app surfaces without shifting the pages. mode light opens on the concrete ground; navigation re-pins the shared influencerShell's centered masthead to the split bar — the name left, the pages right, ruled underneath — so the masthead name in the photograph is the only big one.",
+        "mode": "light",
+        "brand": {
+            "primary": "#2335e0",
+            "primaryDark": "#7c89ff"
+        },
+        "navigation": {
+            "variant": "split"
+        }
+    },
+    "landing": {
+        "$comment": "The pin: the sprocket register and the roll home — the seed sets home.edition, so the home opens on the hero photograph with his name as the masthead (hero masthead-overlay), then this week's roll as a contact sheet (gallery contact-sheet, frame numbers from firstFrame, the stock along the edge, grease-pencil marks and notes), then the fits as numbered plates (showcase specimens), the platforms, hub teaser and metrics, three brand quotes (testimonials quote-grid), closing on a full-bleed band. Every page closes on the band; the inner pages keep the base's skeletons with this seed's content. resolveCatalog puts these in place of the base's pages.",
+        "style": {
+            "preset": "sprocket"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "masthead-overlay"
+                    },
+                    {
+                        "id": "story",
+                        "type": "gallery",
+                        "variant": "contact-sheet"
+                    },
+                    {
+                        "id": "featured-looks",
+                        "type": "showcase",
+                        "variant": "specimens"
+                    },
+                    {
+                        "id": "platforms",
+                        "type": "showcase",
+                        "variant": "collections"
+                    },
+                    {
+                        "id": "right-now",
+                        "type": "showcase",
+                        "variant": "card-grid"
+                    },
+                    {
+                        "id": "proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner",
+                        "variant": "full-bleed"
+                    }
+                ]
+            },
+            "looks": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "looks",
+                        "type": "showcase",
+                        "variant": "filterable-grid"
+                    },
+                    {
+                        "id": "shop-the-looks",
+                        "type": "showcase",
+                        "variant": "collections"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner",
+                        "variant": "full-bleed"
+                    }
+                ]
+            },
+            "links": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "link-hub",
+                        "type": "showcase",
+                        "variant": "filterable-grid"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner",
+                        "variant": "full-bleed"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "collaborations",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner",
+                        "variant": "full-bleed"
+                    }
+                ]
+            },
+            "contact": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "contact-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

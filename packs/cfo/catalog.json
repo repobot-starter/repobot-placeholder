@@ -1,0 +1,15 @@
+{
+    "key": "cfo",
+    "templateKey": "repobot-cfo",
+    "title": "Fractional CFO",
+    "description": "A fractional-CFO practice portal: the advisor invites clients by email, each client signs in and connects their own QuickBooks or Xero, and the advisor gets a cross-client dashboard with per-client P&L and balance-sheet drilldowns, chart visualizations, and one-click Excel exports.",
+    "marketingExampleTitle": "Fractional CFO practice portal",
+    "homePath": "/",
+    "previewPath": "/portfolio",
+    "homeViewDir": "web/app/src/View/Site",
+    "base": "app",
+    "clientOnly": false,
+    "capabilities": ["AUTH", "DATABASE", "EMAIL", "AI", "BACKEND", "JOBS", "STORAGE"],
+    "authMethods": ["email-code", "password"],
+    "isDefault": false
+}

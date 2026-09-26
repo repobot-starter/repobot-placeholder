@@ -1,0 +1,193 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services-recurring pack composed with a white-glove housekeeping content seed (Linen & Laurel, Beverly Hills), re-registered in the whiteglove register with its own page skeletons. Everything structural — builders, routes, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-recurring-linen",
+    "remixOf": "services-recurring",
+    "templateKey": "repobot-services-recurring-linen",
+    "title": "White-glove housekeeping",
+    "description": "A Beverly Hills housekeeping and estate-management site on pure white with black geometric type: a full-bleed photograph of pressed linen carries the headline, and the home's spine is a conversation — a real afternoon's text thread with the house manager, each message beside the line that explains it. Then every visit's standard, the finished rooms, the plans, clients' words, and the private walkthrough.",
+    "marketingExampleTitle": "White-glove housekeeping & estate care",
+    "contentSeed": "web/app/src/View/ServicesRecurring/linenRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twin) — the composed template's booking widget and Manage calendar open on this business's own provider, not the base demo business's.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "walkthrough",
+                    "name": "Private walkthrough",
+                    "durationMinutes": 60,
+                    "description": "A walk through the residence with our director of residences — the rooms, the rhythm, and the details that matter to you."
+                },
+                {
+                    "typeId": "proposal-review",
+                    "name": "Proposal review",
+                    "durationMinutes": 30,
+                    "description": "A call to go through your written proposal and meet your house manager."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "priya-raman",
+                    "name": "Priya Raman",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 600,
+                            "end": 960
+                        },
+                        {
+                            "day": 2,
+                            "start": 600,
+                            "end": 960
+                        },
+                        {
+                            "day": 3,
+                            "start": 600,
+                            "end": 960
+                        },
+                        {
+                            "day": 4,
+                            "start": 600,
+                            "end": 960
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The whiteglove register's black, pinned as the brand so the app surfaces match the marketing pages: black asks on the white sheet, and paper-white on the night sheet. navigation declares the split bar (a declared theme variant outranks the shared shell's): the wordmark left, the service area right.",
+        "brand": {
+            "primary": "#111111",
+            "primaryDark": "#f4f4f1"
+        },
+        "mode": "light",
+        "navigation": {
+            "variant": "split"
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (ServicesRecurringPage.tsx, useSitePageConfig); pages seeds each page's skeleton — ids match servicesRecurringLanding.ts. The preset is whiteglove (pure white, Urbanist over DM Sans, sage kickers, the concierge treatment). Home: the full-bleed pressed-linen hero; the conversation with the house manager (steps message-thread); the measured numbers; what every visit includes; the plans; the finished rooms; clients' words; the neighborhoods; the walkthrough banner.",
+        "style": {
+            "preset": "whiteglove"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "thread",
+                        "type": "steps",
+                        "variant": "message-thread"
+                    },
+                    {
+                        "id": "proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "included",
+                        "type": "feature-grid",
+                        "variant": "icon-list"
+                    },
+                    {
+                        "id": "plans",
+                        "type": "pricing",
+                        "variant": "tiers"
+                    },
+                    {
+                        "id": "standard",
+                        "type": "gallery",
+                        "variant": "uniform"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "service-area",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "plans": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "plans",
+                        "type": "pricing",
+                        "variant": "tiers"
+                    },
+                    {
+                        "id": "add-ons",
+                        "type": "feature-grid",
+                        "variant": "cards-3up"
+                    },
+                    {
+                        "id": "compare",
+                        "type": "comparison",
+                        "variant": "table"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "book-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

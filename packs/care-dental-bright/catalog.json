@@ -1,0 +1,418 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the care pack composed with a general and family dentistry content seed, re-registered in the bubblegum register (glossy Y2K candy pop) with its own pinned page skeletons. Everything else — pages' builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "care-dental-bright",
+    "remixOf": "care",
+    "templateKey": "repobot-care-dental-bright",
+    "title": "Dental Office",
+    "description": "A dental office's site with real online booking: Bright Side Dental on Wilshire in Koreatown, art-directed as glossy Y2K candy pop — bubblegum pink, mint, and cherry red, inflated display type (a real web font, never images of text), sticker badges and glossy pills. The hero: \"Smile more. Dread less.\" beside a photograph with a heart roundel and three stickers (Open Saturdays, Kids love it here, Most insurance), then pill cards for cleanings, clear aligners, and same-day emergencies, printed self-pay prices, in-network PPO plans named as text (never logos), a clear-aligner story, two dentists and a hygienist with portraits, patient reviews, an FAQ, and a booking page offering new-patient visits (90 min), cleanings (60), and emergency visits (30). The booking form is clinically empty — name, contact, visit type, new/returning. Stylish, not childish.",
+    "marketingExampleTitle": "Dental office site",
+    "contentSeed": "web/app/src/View/Care/dentalBrightRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so these practice and appointments seeds replace the base pack's at compose and mirror THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twins) — the composed template's Manage editors and booking widget open on the dental practice, not the base clinic.",
+        "practice": {
+            "providers": [
+                {
+                    "providerId": "dr-yoon",
+                    "name": "Dr. Grace Yoon",
+                    "credentials": "DDS",
+                    "role": "General & family dentistry · Founder",
+                    "bio": "Grace opened Bright Side in 2019 because she was tired of dental offices that felt like waiting for bad news. She sees kids from their first tooth and grown-ups who haven't been in a decade — no lectures. She speaks Korean and English."
+                },
+                {
+                    "providerId": "dr-ortiz",
+                    "name": "Dr. Mateo Ortiz",
+                    "credentials": "DMD",
+                    "role": "Clear aligners & cosmetic dentistry",
+                    "bio": "Mateo does the office's clear aligner cases, whitening, and bonding, and he's the one to see if a chipped tooth ruined your weekend. He explains every step before he takes it, in English or Spanish."
+                },
+                {
+                    "providerId": "santos-rdh",
+                    "name": "Joy Santos",
+                    "credentials": "RDH",
+                    "role": "Registered dental hygienist",
+                    "bio": "Joy runs cleanings like a spa appointment with better lighting. Headphones, a warm blanket, a thumbs-up system for breaks — and a gift for getting kids to open wide on the first try."
+                }
+            ],
+            "services": [
+                {
+                    "name": "Cleanings & checkups",
+                    "description": "A gentle cleaning, a real look, and x-rays only when you need them. Most visits take under an hour, with breaks whenever you want one."
+                },
+                {
+                    "name": "Clear aligners",
+                    "description": "Straighter teeth without metal brackets. A scan, a plan you can see before you start, and check-ins every six to eight weeks."
+                },
+                {
+                    "name": "Emergency same-day",
+                    "description": "A broken tooth, a swollen jaw, a lost filling. Call before noon and we'll see you today — Saturdays included."
+                },
+                {
+                    "name": "Kids' dentistry",
+                    "description": "First visits from the first tooth. Sealants, fluoride, and a treasure box at the end, with parents welcome in the room."
+                },
+                {
+                    "name": "Fillings & crowns",
+                    "description": "Tooth-colored fillings and same-week crowns, with numbing that actually works and a plan printed before we start."
+                },
+                {
+                    "name": "Whitening & bonding",
+                    "description": "In-office whitening in one visit or take-home trays. Bonding for chips and gaps that bug you in photos."
+                },
+                {
+                    "name": "Care for nervous patients",
+                    "description": "Tell us it's hard for you. Longer appointments, a stop signal we always honor, and laughing gas when it helps."
+                }
+            ],
+            "insurance": [
+                "Delta Dental PPO",
+                "MetLife Dental",
+                "Cigna Dental PPO",
+                "Guardian Dental",
+                "Aetna Dental PPO",
+                "United Concordia",
+                "Medi-Cal Dental for kids"
+            ],
+            "locations": [
+                {
+                    "locationId": "wilshire",
+                    "label": "Wilshire & Western",
+                    "address": "3700 Wilshire Boulevard, Suite 210, Los Angeles, CA 90010",
+                    "phone": "(213) 555-0126",
+                    "hours": [
+                        {
+                            "day": 1,
+                            "open": 540,
+                            "close": 1080
+                        },
+                        {
+                            "day": 2,
+                            "open": 540,
+                            "close": 1080
+                        },
+                        {
+                            "day": 3,
+                            "open": 600,
+                            "close": 1140
+                        },
+                        {
+                            "day": 4,
+                            "open": 540,
+                            "close": 1080
+                        },
+                        {
+                            "day": 5,
+                            "open": 480,
+                            "close": 960
+                        },
+                        {
+                            "day": 6,
+                            "open": 480,
+                            "close": 840
+                        }
+                    ]
+                }
+            ],
+            "reviews": [
+                {
+                    "quote": "My daughter asked when she gets to go back. To the DENTIST. Joy is a wizard.",
+                    "name": "Hannah L.",
+                    "detail": "Patient family since 2021"
+                },
+                {
+                    "quote": "I hadn't been in eight years because I was embarrassed. Dr. Yoon didn't lecture me once. We made a plan, and I actually finished it.",
+                    "name": "Marcus T.",
+                    "detail": "Patient since 2023"
+                },
+                {
+                    "quote": "Cracked a molar on a Saturday morning and was in the chair by eleven. The waiting room is extremely pink and I'm here for it.",
+                    "name": "Priya S.",
+                    "detail": "Patient since 2022"
+                },
+                {
+                    "quote": "Dr. Ortiz showed me what my teeth would look like before I paid a cent. Nine months later they look exactly like that.",
+                    "name": "Daniel K.",
+                    "detail": "Clear aligner patient, 2024"
+                }
+            ],
+            "newPatient": [
+                {
+                    "title": "Book online",
+                    "body": "Pick a new-patient visit and a time. We'll check your insurance before you arrive and tell you your share in writing."
+                },
+                {
+                    "title": "Paperwork in five minutes",
+                    "body": "Arrive ten minutes early and fill in your forms on a tablet at the front desk — no clipboard, and nothing health-related goes through the website."
+                },
+                {
+                    "title": "Your first visit",
+                    "body": "About 90 minutes: x-rays if you need them, an exam, a cleaning, and a printed plan with every price on it."
+                },
+                {
+                    "title": "Kids' first visit",
+                    "body": "Short, fun, and mostly about meeting the chair. Parents stay in the room. We see kids from their first tooth."
+                }
+            ]
+        },
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "new-patient",
+                    "name": "New patient visit",
+                    "durationMinutes": 90,
+                    "description": "Exam, x-rays if needed, a cleaning, and your plan."
+                },
+                {
+                    "typeId": "cleaning",
+                    "name": "Cleaning & checkup",
+                    "durationMinutes": 60,
+                    "description": "Your regular cleaning and a quick look from the dentist."
+                },
+                {
+                    "typeId": "emergency",
+                    "name": "Emergency visit",
+                    "durationMinutes": 30,
+                    "description": "Same-day for a broken tooth, a lost filling, or swelling."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "dr-yoon",
+                    "name": "Dr. Grace Yoon",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 540,
+                            "end": 780
+                        },
+                        {
+                            "day": 3,
+                            "start": 840,
+                            "end": 1080
+                        },
+                        {
+                            "day": 6,
+                            "start": 480,
+                            "end": 720
+                        }
+                    ]
+                },
+                {
+                    "providerId": "dr-ortiz",
+                    "name": "Dr. Mateo Ortiz",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 540,
+                            "end": 780
+                        },
+                        {
+                            "day": 4,
+                            "start": 780,
+                            "end": 1020
+                        }
+                    ]
+                },
+                {
+                    "providerId": "santos-rdh",
+                    "name": "Joy Santos, RDH",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 780,
+                            "end": 1020
+                        },
+                        {
+                            "day": 5,
+                            "start": 480,
+                            "end": 720
+                        },
+                        {
+                            "day": 6,
+                            "start": 600,
+                            "end": 840
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The bubblegum register in its own hot pink: mode light opens the site in its native appearance (the bubblegum ground); dark is the candy shop after close. Marketing pages resolve brand over preset accent, so the overlay re-inks pages and app surfaces together. navigation re-pins the shared careShell chrome (a declared theme variant outranks the shell prop): care-direct wears the full-width sign band, care-therapy-duet the centered masthead, and care-psychology-studio the split letterhead — so the dental office takes the pill cluster, candy on a string.",
+        "mode": "light",
+        "brand": {
+            "primary": "#ff2f86",
+            "primaryDark": "#ff5aa0"
+        },
+        "navigation": {
+            "variant": "pill-links"
+        }
+    },
+    "landing": {
+        "$comment": "A pinned layout (packs/README.md 'Derived templates'): style re-registers the base's pages in the bubblegum register, and pages carries exactly the skeletons careLanding.ts emits from this remix's contentSeed — the content-gated sections (promises, menu, spotlight, faq) appear because the seed fills them — so the composed template's document reproduces its code config section for section (tests/View/Care/careLanding.test.ts reads this through composedLandingSeed).",
+        "style": {
+            "preset": "bubblegum"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "split-media"
+                    },
+                    {
+                        "id": "promises",
+                        "type": "feature-grid",
+                        "variant": "icon-list"
+                    },
+                    {
+                        "id": "menu",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "spotlight",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "providers",
+                        "type": "team",
+                        "variant": "portraits"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "providers": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "providers",
+                        "type": "team",
+                        "variant": "portraits"
+                    },
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "card-grid",
+                        "variant": "4up"
+                    },
+                    {
+                        "id": "menu",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "new-patients": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "first-visit",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "how",
+                        "type": "steps",
+                        "variant": "numbered-cards"
+                    },
+                    {
+                        "id": "privacy",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    }
+                ]
+            }
+        }
+    }
+}

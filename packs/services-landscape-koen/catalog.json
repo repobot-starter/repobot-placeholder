@@ -1,0 +1,186 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services pack composed with a Japanese garden studio content seed (Kōen Garden Studio, Bainbridge Island), re-registered in the basalt register with its own page skeletons. Everything else — builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-landscape-koen",
+    "remixOf": "services",
+    "templateKey": "repobot-services-landscape-koen",
+    "title": "Japanese garden design",
+    "description": "A Bainbridge Island garden studio's site walked like its gardens: basalt-dark ground, a single vermilion seal and widely spaced light type. A full-bleed photograph of moss and maple in fog carries the headline and the studio's seal; under it a garden walk — one garden, gate to looking back, frame by numbered frame — then clients' words, the island towns, and the invitation to arrange a garden walk.",
+    "marketingExampleTitle": "Japanese garden design studio",
+    "contentSeed": "web/app/src/View/Services/koenRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twin) — the composed template's booking widget and Manage calendar open on this business's own provider, not the base demo business's.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "garden-walk",
+                    "name": "Garden walk",
+                    "durationMinutes": 90,
+                    "description": "Hideo walks the garden with you — the light, the water, the trees — and talks through what it could become."
+                },
+                {
+                    "typeId": "proposal-review",
+                    "name": "Proposal review",
+                    "durationMinutes": 60,
+                    "description": "At the studio on Day Road: the plan, the sketches and the proposal, line by line."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "hideo-tanabe",
+                    "name": "Hideo Tanabe",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 540,
+                            "end": 900
+                        },
+                        {
+                            "day": 4,
+                            "start": 540,
+                            "end": 900
+                        },
+                        {
+                            "day": 6,
+                            "start": 600,
+                            "end": 780
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The basalt register's vermilion, pinned as the brand so the app surfaces match the marketing pages: the seal's red, the one warm mark on the dark stone. navigation declares the split bar (a declared theme variant outranks the shared shell's): the wordmark alone at the left, the links held quiet at the right. mode dark opens on the basalt.",
+        "brand": {
+            "primary": "#a23224",
+            "primaryDark": "#c2402f"
+        },
+        "mode": "dark",
+        "navigation": {
+            "variant": "split"
+        }
+    },
+    "landing": {
+        "$comment": "The pin: the basalt register (basalt ground, Red Hat Display light with wide tracking, the stillness and mist treatments) and the base's title-card home re-ordered for a garden studio — the full-bleed moss-and-maple hero with the seal, the garden walk (gallery sequence: six numbered frames of one garden), clients' words, the towns, and the closing invitation. The other pages keep the base's skeletons; resolveCatalog puts these in place of the base's pages.",
+        "style": {
+            "preset": "basalt"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "walk",
+                        "type": "gallery",
+                        "variant": "sequence"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "service-area",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "projects": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "transformations",
+                        "type": "gallery",
+                        "variant": "before-after"
+                    },
+                    {
+                        "id": "process",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "showcase",
+                        "variant": "card-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "quote": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "quote-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

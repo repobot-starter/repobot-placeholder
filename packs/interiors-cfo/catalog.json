@@ -1,0 +1,258 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the interiors pack composed with a fractional-CFO-practice content seed and a deep ledger-green brand over the atelier register. Everything else — pages, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs). Deliberately a MARKETING site for a finance-leadership consultancy — apart from the platform's cfo dashboard APP template: the portfolio is a case-study grid filed by industry on the projects domain, the services are engagement models with honest monthly pricing, and the inquiry form is a lead pipe.",
+    "key": "interiors-cfo",
+    "remixOf": "interiors",
+    "templateKey": "repobot-interiors-cfo",
+    "title": "Fractional CFO",
+    "description": "A fractional-CFO practice site on the projects-domain shape: a filterable grid of client case studies whose industry chips derive from the entries themselves (SaaS, E-commerce, Manufacturing, Healthcare, Agencies, Nonprofit), three engagement models with honest pricing — fractional retainers from $4,500/month, interim seats, flat-priced fundraise and project work — the operator's been-in-the-seat story and credentials, plain-language FAQs on cost and when to hire full-time instead, real online booking for free discovery calls and two-hour financial reviews, and a company-and-revenue inquiry form that delivers through the managed lead pipeline — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Fractional CFO practice",
+    "contentSeed": "web/app/src/View/Interiors/cfoRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so these projects and appointments seeds replace the base pack's at compose and mirror THIS remix's contentSeed module entry for entry MINUS the photographs (the contract moves words and categories, never bytes; the pack joins its code-owned images back by slug — inventory.ts). The remix-seed tests pin both twins, so the composed template's Manage editors and booking widget open on the practice's real body of work.",
+        "projects": {
+            "entries": [
+                {
+                    "slug": "saas-series-a",
+                    "title": "Runway to a Series A",
+                    "category": "SaaS",
+                    "location": "Boulder, CO",
+                    "year": 2026,
+                    "scope": "Fractional CFO — 18 months",
+                    "description": "A 20-person SaaS company with real revenue and unreadable books. We rebuilt revenue recognition, put net retention and burn on one honest dashboard, and ran the financial side of the raise: $9M Series A, closed on the metrics the model promised three quarters earlier.",
+                    "featured": true
+                },
+                {
+                    "slug": "ecommerce-margin",
+                    "title": "The four-point margin turnaround",
+                    "category": "E-commerce",
+                    "location": "Denver, CO",
+                    "year": 2025,
+                    "scope": "Fractional CFO — 12 months",
+                    "description": "An eight-figure home-goods brand growing broke: every order profitable on paper, the company not. Landed-cost accounting, SKU-level contribution margins, and two hard catalog decisions later, gross margin rose four points and the line of credit stopped being a lifestyle.",
+                    "featured": true
+                },
+                {
+                    "slug": "workshop-sba",
+                    "title": "A workshop that financed its own growth",
+                    "category": "Manufacturing",
+                    "location": "Fort Collins, CO",
+                    "year": 2025,
+                    "scope": "Project — SBA loan package",
+                    "description": "A custom furniture shop turning down orders it couldn't fund. Six weeks of work-in-progress accounting, cash conversion analysis, and lender-grade projections produced a $1.4M SBA package — approved first pass — and a second CNC line that paid for itself in eleven months."
+                },
+                {
+                    "slug": "clinic-consolidation",
+                    "title": "Three clinics, one P&L",
+                    "category": "Healthcare",
+                    "location": "Colorado Springs, CO",
+                    "year": 2024,
+                    "scope": "Interim CFO — 6 months",
+                    "description": "A physician group that had acquired two practices and three bookkeeping systems. As interim CFO through the consolidation: one chart of accounts, per-clinic profitability nobody had ever seen, and a payer-mix analysis that changed which services grew. Handed off to the full-time CFO we helped hire.",
+                    "featured": true
+                },
+                {
+                    "slug": "agency-pricing",
+                    "title": "An agency that learned its real hourly cost",
+                    "category": "Agencies",
+                    "location": "Denver, CO",
+                    "year": 2024,
+                    "scope": "Fractional CFO — 14 months",
+                    "description": "A 30-person design agency billing heroically and keeping almost none of it. Utilization and loaded-cost math made the problem visible; project-level margin reporting made it fixable. Two clients repriced, one fired, and the partners took their first real distributions in three years."
+                },
+                {
+                    "slug": "foodbank-audit",
+                    "title": "A clean audit and a board that reads the numbers",
+                    "category": "Nonprofit",
+                    "location": "Aurora, CO",
+                    "year": 2026,
+                    "scope": "Project — audit readiness",
+                    "description": "A regional food bank facing its first single audit after a grant-funded growth year. Restricted-fund accounting rebuilt, controls documented, and a board dashboard in plain English. The audit came back clean; the bigger win is a finance committee that now asks better questions than we do."
+                }
+            ]
+        },
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "discovery-call",
+                    "name": "Discovery call",
+                    "durationMinutes": 30,
+                    "description": "A free call about where the numbers stand — and an honest answer about whether you need us."
+                },
+                {
+                    "typeId": "financial-review",
+                    "name": "Financial review session",
+                    "durationMinutes": 120,
+                    "description": "Two working hours in your books: margins, runway, and the three numbers that matter, with a written summary the next day."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "maya-okafor",
+                    "name": "Maya Okafor",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 540,
+                            "end": 780
+                        },
+                        {
+                            "day": 3,
+                            "start": 780,
+                            "end": 1020
+                        },
+                        {
+                            "day": 4,
+                            "start": 540,
+                            "end": 780
+                        },
+                        {
+                            "day": 5,
+                            "start": 540,
+                            "end": 720
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "Deep ledger green over the atelier register's gallery white — the interiors family's quiet portfolio voice re-inked from the base studio's warm bronze, the architecture remix's graphite, and the wedding remix's rose into a banker's bottle green that reads fiduciary without reading bank. mode light opens the site in its native daylight appearance; marketing pages resolve brand over preset accent, so the overlay re-inks pages and app surfaces together. navigation re-pins the shared interiorsShell chrome (a declared theme variant outranks the shell prop): the base studio wears the centered gallery masthead, the architecture remix the contained inline card, and the wedding remix the split letterhead — so the CFO practice takes the full-width administrative band, the quiet ruled read a finance letterhead has, per the nav-variety audit.",
+        "mode": "light",
+        "brand": {
+            "primary": "#1e6b4f",
+            "primaryDark": "#8fd6b4"
+        },
+        "navigation": {
+            "variant": "full-width"
+        }
+    },
+    "landing": {
+        "$comment": "The pin: this template keeps the interiors family's gallery layout on the atelier register while the base pack wears the midcentury catalog home. style re-declares the register; pages are the base's gallery skeletons (masthead-overlay hero, featured-work media rail, services collections, metrics strip, one featured voice, closing banner — and the same portfolio, offerings, about, and contact pages), which resolveCatalog puts in place of the base's pages. The seed sets home.layout \"gallery\" and leaves the catalog-only lists (case files, pieces, fees) empty, so those sections are never built.",
+        "style": {
+            "preset": "atelier"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "masthead-overlay"
+                    },
+                    {
+                        "id": "featured-work",
+                        "type": "showcase",
+                        "variant": "media-rail"
+                    },
+                    {
+                        "id": "services",
+                        "type": "showcase",
+                        "variant": "collections"
+                    },
+                    {
+                        "id": "proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "portfolio": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "portfolio",
+                        "type": "showcase",
+                        "variant": "filterable-grid"
+                    },
+                    {
+                        "id": "track-record",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "offerings": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "offerings",
+                        "type": "highlights",
+                        "variant": "alternating"
+                    },
+                    {
+                        "id": "process",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "contact": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "contact-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,181 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the vows pack composed with a Big Sur coastal wedding (Maya & Eli) as its content seed, re-registered in the seafog register with its own pinned page skeletons. Everything else — the pages' builders, sections, contract, tests, the RSVP card and its managed form — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "vows-bigsur",
+    "remixOf": "vows",
+    "templateKey": "repobot-vows-bigsur",
+    "title": "Coastal wedding",
+    "description": "A wedding website in the sea fog: the couple's names over one full-bleed photograph of the coast, their story in stacked photo chapters, the weekend in three lines, and one line with the RSVP link. Behind it, the story page, the weekend schedule with maps, travel and room blocks, the wedding party and registry, a FAQ, and an RSVP card that delivers replies straight to the couple — with a live countdown computed from the wedding date. A multi-page site edited in one content file.",
+    "marketingExampleTitle": "Big Sur wedding website",
+    "contentSeed": "web/app/src/View/Vows/bigsurRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed, merged over repobot.content.json at compose (the same overlay path as landing/theme — scripts/lib/pack-switch.mjs applyPackOverlays). The guestlist domain is the wedding's PRIVATE roster — who's invited, how many seats, the note that matters at the door — and deliberately seeds EMPTY: the roster is the owner's from day one, never demo data. No pack page renders it; it exists so the platform's Manage panel keeps the roster next to the RSVP inbox it pairs with (the catalog's vows-rsvp form).",
+        "guestlist": {
+            "entries": []
+        }
+    },
+    "theme": {
+        "$comment": "The seafog register's brand overlay: the preset's own light and dark accents as the project brand, so app-side surfaces wear the same register as the wedding pages instead of the kernel default blue — the marketing pages resolve brand over preset accent, so identical values re-brand the app without shifting the pages.",
+        "brand": {
+            "primary": "#3e5666",
+            "primaryDark": "#b8c8d3"
+        }
+    },
+    "landing": {
+        "$comment": "A pinned layout (packs/README.md 'Derived templates'): style re-registers the base's pages in the seafog register (grey-blue coastal mist, a light Cormorant with a small Jost, hairlines), and pages carries exactly the skeletons vowsLanding.ts emits from this remix's contentSeed — the seed's home.layout is story, so the home sets the names over one full-bleed photograph, the story as stacked photo chapters, the weekend in three lines, and the colophon close with the RSVP link. The story, schedule, travel, party, and RSVP pages keep the base's compositions (tests/View/Vows/bigsurRemixLanding.test.ts reads this through the builders on the seed).",
+        "style": {
+            "preset": "seafog"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "story",
+                        "type": "highlights",
+                        "variant": "stacked"
+                    },
+                    {
+                        "id": "weekend",
+                        "type": "rich-prose",
+                        "variant": "narrow"
+                    },
+                    {
+                        "id": "closing",
+                        "type": "cta-banner",
+                        "variant": "colophon"
+                    }
+                ]
+            },
+            "story": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "chapters",
+                        "type": "highlights",
+                        "variant": "alternating"
+                    },
+                    {
+                        "id": "gallery",
+                        "type": "gallery",
+                        "variant": "sequence"
+                    },
+                    {
+                        "id": "rsvp-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "schedule": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "day-1",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "day-2",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "day-3",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "venues",
+                        "type": "highlights",
+                        "variant": "alternating"
+                    },
+                    {
+                        "id": "rsvp-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "travel": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "getting-there",
+                        "type": "rich-prose",
+                        "variant": "narrow"
+                    },
+                    {
+                        "id": "hotels",
+                        "type": "card-grid",
+                        "variant": "3up"
+                    },
+                    {
+                        "id": "things-to-do",
+                        "type": "feature-grid",
+                        "variant": "icon-list"
+                    },
+                    {
+                        "id": "rsvp-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "party": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "party",
+                        "type": "team",
+                        "variant": "list"
+                    },
+                    {
+                        "id": "registry",
+                        "type": "card-grid",
+                        "variant": "2up"
+                    },
+                    {
+                        "id": "rsvp-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "rsvp": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "rsvp-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,206 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services pack composed with a house-painter content seed (Shotgun Color Co., New Orleans), a coral brand, and the paintchip register. Everything else — builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-painting-swiss",
+    "remixOf": "services",
+    "templateKey": "repobot-services-painting-swiss",
+    "title": "House painting",
+    "description": "A house painter's site in Swiss color blocks: a split hero whose photograph bleeds off the page, a wall-to-wall row of paint chips that each lead to a quote, starting prices, a draggable before/after, a live open/closed badge with click-to-call, color-walk booking, and a quote form with a pick-your-color field — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "New Orleans house painter",
+    "contentSeed": "web/app/src/View/Services/paintingSwissRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twin) — the composed template's booking widget and Manage calendar open on this trade's own provider, not the base demo business's.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "color-walk",
+                    "name": "Color walk",
+                    "durationMinutes": 60,
+                    "description": "An hour at your house with Dolores and the deck, free — test patches, the afternoon light, and the historic-district rules for your address."
+                },
+                {
+                    "typeId": "interior-estimate",
+                    "name": "Interior estimate",
+                    "durationMinutes": 45,
+                    "description": "A walk through the rooms: walls, ceilings, plaster repairs, and trim, measured for a written quote."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "dolores-guidry",
+                    "name": "Dolores Guidry",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 480,
+                            "end": 900
+                        },
+                        {
+                            "day": 2,
+                            "start": 480,
+                            "end": 900
+                        },
+                        {
+                            "day": 3,
+                            "start": 480,
+                            "end": 900
+                        },
+                        {
+                            "day": 4,
+                            "start": 480,
+                            "end": 900
+                        },
+                        {
+                            "day": 5,
+                            "start": 480,
+                            "end": 900
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "Coral as the brand: on the paintchip register the accent is the chip you press — the asks, the stripe under the headline's last word, the kicker chips — while the deck's own colors live in the content (palette), so a rebrand never repaints the product. Marketing pages resolve brand over preset accent, so the overlay re-skins the pages and the app surfaces together. navigation re-pins the shared servicesShell chrome (a declared theme variant outranks the shell prop): the centered masthead sets the wordmark like the name on a fan deck's spine, apart from the landscaping remix's full-width band — the nav-variety audit spreads the services family across the vocabulary. mode light opens on the paper stock (the base contractor opens dark, and theme merges shallowly).",
+        "brand": {
+            "primary": "#ef5b43",
+            "primaryDark": "#ff7a62"
+        },
+        "mode": "light",
+        "navigation": {
+            "variant": "centered"
+        }
+    },
+    "landing": {
+        "$comment": "The pin: the paintchip register and the storefront home re-cut for a color trade — the split hero (live badge, quote + call, the credit line), the color deck straight under it as a wall-to-wall row of chips (the seed's palette), services with starting prices, the before/after, the neighbors, the neighborhoods, and the closing banner. The seed leaves the coastal-builder lists (ticker, build log, materials board) empty, so those sections are never built. The other pages keep the base's skeletons; resolveCatalog puts these in place of the base's pages.",
+        "style": {
+            "preset": "paintchip"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "split-media"
+                    },
+                    {
+                        "id": "palette",
+                        "type": "showcase",
+                        "variant": "swatches"
+                    },
+                    {
+                        "id": "services",
+                        "type": "card-grid",
+                        "variant": "4up"
+                    },
+                    {
+                        "id": "transformations",
+                        "type": "gallery",
+                        "variant": "before-after"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "service-area",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "projects": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "transformations",
+                        "type": "gallery",
+                        "variant": "before-after"
+                    },
+                    {
+                        "id": "process",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "showcase",
+                        "variant": "card-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "quote": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "quote-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

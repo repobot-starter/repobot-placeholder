@@ -1,0 +1,412 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the care pack composed with a direct primary care content seed, re-registered in the wayfinding register (the 1970s transit wayfinding system) with its own pinned page skeletons. Everything else — pages' builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "care-direct",
+    "remixOf": "care",
+    "templateKey": "repobot-care-direct",
+    "title": "Direct Primary Care",
+    "description": "A direct primary care practice's site with real online appointment booking: one doctor's membership clinic in a Philadelphia rowhouse — the hero's live open badge and three load-bearing facts ($89/mo, same-day visits, text your doctor), what the membership includes as pictogram rows, a printed membership and at-cost lab price list, the coverage it pairs with (kinds of plans, never insurer logos), house calls, the team with portraits, member reviews, an FAQ (insurance, labs, after-hours, Medicare), hours and a map-ready address, and a booking page that projects each provider's actual weekly availability into concrete bookable times (free meet & greet 15 min, member visit 30, long visit 60) — capacity-1 slots on the managed booking domain, double-booking impossible. The booking form is deliberately clinically empty: name, contact, visit type, new/returning — no symptoms, no health questions; patient health information never touches the site. Five pages, all facts in one content file, art-directed in the wayfinding register: a 1970s transit sign system in forest green, white, and signal yellow.",
+    "marketingExampleTitle": "Direct primary care practice site",
+    "contentSeed": "web/app/src/View/Care/directRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed, merged over repobot.content.json at compose (the same overlay path as landing/theme). The practice domain mirrors content.ts codePractice section for section and the appointments domain mirrors codeAppointments entry for entry (the seed-fidelity tests pin both), so the Manage practice editor and provider calendar open on exactly the facts the site already shows, and the platform projects exactly the capacity-1 slots the sandbox simulation offers. The appointments seed is booking mode 2's input: the platform generates a booking_session per provider x window x visit type occurrence, capacity 1, with the provider-wide overlap lock making double-booking impossible.",
+        "practice": {
+            "providers": [
+                {
+                    "providerId": "dr-okafor",
+                    "name": "Dr. Ada Okafor",
+                    "credentials": "MD",
+                    "role": "Family medicine · Founder",
+                    "bio": "Fourteen years in family medicine, the last five running this practice out of a South 10th Street rowhouse. Ada left a clinic that booked her four patients an hour. Her panel is capped so she can answer your text herself — usually before lunch."
+                },
+                {
+                    "providerId": "ferreira-rn",
+                    "name": "Luis Ferreira",
+                    "credentials": "RN",
+                    "role": "Care coordinator",
+                    "bio": "Luis handles everything between visits: specialist referrals, prior authorizations, the imaging center that won't call back. He runs the free meet & greets and speaks Portuguese and Spanish."
+                },
+                {
+                    "providerId": "tran-ma",
+                    "name": "Linh Tran",
+                    "credentials": "CMA",
+                    "role": "Medical assistant · Labs",
+                    "bio": "Linh draws labs in-house, calls with results, and keeps the dispensary of common generics stocked at cost. Ask her which lab panels are $5 — she knows every price by heart."
+                }
+            ],
+            "services": [
+                {
+                    "name": "Same-day visits",
+                    "description": "Text by noon and you're usually seen today, next day at the latest. Thirty minutes minimum, never a waiting room full of strangers."
+                },
+                {
+                    "name": "Text & call your doctor",
+                    "description": "Dr. Okafor's own number. Photos of the rash, questions about the new prescription, the 9 PM \"is this normal?\" — all included."
+                },
+                {
+                    "name": "House calls",
+                    "description": "For members who can't easily get out: after a hospital stay, with a new baby, or on a bad mobility week. Same doctor, your living room."
+                },
+                {
+                    "name": "Unhurried visits",
+                    "description": "Visits run 30 to 60 minutes. Annual physicals, second opinions, the long talk about a new diagnosis — there's time for all of it."
+                },
+                {
+                    "name": "Labs at our cost",
+                    "description": "Blood work drawn here and billed at the practice's wholesale price. A lipid panel runs about $6; an A1C about $8."
+                },
+                {
+                    "name": "Chronic care",
+                    "description": "Blood pressure, diabetes, thyroid, asthma, depression — steady management by text between visits instead of a three-month wait."
+                },
+                {
+                    "name": "Minor procedures",
+                    "description": "Stitches, skin tag and mole removals, joint injections, ear flushes. Done here, included in the membership, supplies at cost."
+                },
+                {
+                    "name": "Care coordination",
+                    "description": "Referrals to specialists who take your insurance, imaging at cash prices, and someone who reads their notes and calls you after."
+                }
+            ],
+            "insurance": [
+                "Employer plans",
+                "Marketplace plans",
+                "High-deductible plans",
+                "Catastrophic plans",
+                "Self-employed",
+                "No insurance at all"
+            ],
+            "locations": [
+                {
+                    "locationId": "south-10th",
+                    "label": "South 10th Street",
+                    "address": "1529 South 10th Street, Philadelphia, PA 19147",
+                    "phone": "(215) 555-0148",
+                    "hours": [
+                        {
+                            "day": 1,
+                            "open": 480,
+                            "close": 1080
+                        },
+                        {
+                            "day": 2,
+                            "open": 480,
+                            "close": 1080
+                        },
+                        {
+                            "day": 3,
+                            "open": 480,
+                            "close": 1080
+                        },
+                        {
+                            "day": 4,
+                            "open": 480,
+                            "close": 1080
+                        },
+                        {
+                            "day": 5,
+                            "open": 480,
+                            "close": 1080
+                        },
+                        {
+                            "day": 6,
+                            "open": 540,
+                            "close": 720
+                        }
+                    ]
+                }
+            ],
+            "reviews": [
+                {
+                    "quote": "I texted a photo of my son's arm at 7:40 on a Saturday. Dr. Okafor wrote back in ten minutes: not broken, ice it, come by at nine if it swells. It didn't. That's the whole review.",
+                    "name": "Tasha M.",
+                    "detail": "Member since 2022"
+                },
+                {
+                    "quote": "My blood work used to cost more than my phone bill. Here the whole panel was eleven dollars and Linh called me with the results the next morning.",
+                    "name": "Ray D.",
+                    "detail": "Member since 2023"
+                },
+                {
+                    "quote": "After my hip surgery she came up our front steps with her bag and checked the incision in my own kitchen. I didn't know doctors still did that.",
+                    "name": "Gloria P.",
+                    "detail": "Member since 2021"
+                },
+                {
+                    "quote": "An hour for my first physical. Nobody has ever asked me that many questions and then actually waited for the answers.",
+                    "name": "Sam K.",
+                    "detail": "Member since 2025"
+                }
+            ],
+            "newPatient": [
+                {
+                    "title": "Meet us first — free",
+                    "body": "Book a 15-minute meet & greet, in the office or by phone. Ask anything; there's no pitch and no paperwork."
+                },
+                {
+                    "title": "Join online",
+                    "body": "Pick a membership, add family members, and set up monthly billing. No enrollment fee, no contract — cancel with 30 days' notice."
+                },
+                {
+                    "title": "Your first long visit",
+                    "body": "An hour with Dr. Okafor: your history, a full exam, and labs drawn on the spot if you need them. You'll leave with her cell number."
+                },
+                {
+                    "title": "Records & prescriptions",
+                    "body": "Sign one release and Luis requests your records. Ongoing prescriptions carry over, and common generics can be filled here at cost."
+                }
+            ]
+        },
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "meet-and-greet",
+                    "name": "Meet & greet (free)",
+                    "durationMinutes": 15,
+                    "description": "Fifteen minutes to meet the practice and ask anything before you join."
+                },
+                {
+                    "typeId": "member-visit",
+                    "name": "Member visit",
+                    "durationMinutes": 30,
+                    "description": "A same-day or scheduled visit with Dr. Okafor."
+                },
+                {
+                    "typeId": "long-visit",
+                    "name": "Long visit",
+                    "durationMinutes": 60,
+                    "description": "A physical, a first visit, or the conversation that needs an hour."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "dr-okafor",
+                    "name": "Dr. Ada Okafor",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 540,
+                            "end": 720
+                        },
+                        {
+                            "day": 2,
+                            "start": 780,
+                            "end": 1020
+                        },
+                        {
+                            "day": 3,
+                            "start": 540,
+                            "end": 720
+                        },
+                        {
+                            "day": 4,
+                            "start": 780,
+                            "end": 1020
+                        },
+                        {
+                            "day": 5,
+                            "start": 540,
+                            "end": 720
+                        },
+                        {
+                            "day": 6,
+                            "start": 540,
+                            "end": 660
+                        }
+                    ]
+                },
+                {
+                    "providerId": "ferreira-rn",
+                    "name": "Luis Ferreira, RN",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 540,
+                            "end": 660
+                        },
+                        {
+                            "day": 4,
+                            "start": 540,
+                            "end": 660
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The wayfinding register worn in its own forest green: mode light opens the site in its native daylight appearance (white ground, green sign panels), and the green rides as the project brand so app-side surfaces wear the same register as the marketing pages instead of the kernel default blue. The marketing pages resolve brand over preset accent, so a brand edit re-inks every sign panel — the transit system in a different line color.",
+        "mode": "light",
+        "brand": {
+            "primary": "#0b4a31",
+            "primaryDark": "#1f7a52"
+        }
+    },
+    "landing": {
+        "$comment": "A pinned layout (packs/README.md 'Derived templates'): style re-registers the base's pages in the wayfinding register (forest-green sign panels, signal-yellow rules, heavy grotesk caps, circular pictograms), and pages carries exactly the skeletons careLanding.ts emits from this remix's contentSeed — the content-gated sections (promises, menu, spotlight, faq) appear because the seed fills them — so the composed template's document reproduces its code config section for section (tests/View/Care/careLanding.test.ts reads this through composedLandingSeed).",
+        "style": {
+            "preset": "wayfinding"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "split-media"
+                    },
+                    {
+                        "id": "promises",
+                        "type": "feature-grid",
+                        "variant": "icon-list"
+                    },
+                    {
+                        "id": "menu",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "spotlight",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "providers",
+                        "type": "team",
+                        "variant": "portraits"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "providers": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "providers",
+                        "type": "team",
+                        "variant": "portraits"
+                    },
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "card-grid",
+                        "variant": "4up"
+                    },
+                    {
+                        "id": "menu",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "new-patients": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "first-visit",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "how",
+                        "type": "steps",
+                        "variant": "numbered-cards"
+                    },
+                    {
+                        "id": "privacy",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    }
+                ]
+            }
+        }
+    }
+}

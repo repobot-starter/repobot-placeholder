@@ -1,0 +1,182 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services-emergency pack composed with a flat-rate plumber content seed (Straight Pipe Plumbing, Pasadena), re-registered in the jacaranda register with its own page skeletons. Everything structural — builders, routes, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-emergency-van",
+    "remixOf": "services-emergency",
+    "templateKey": "repobot-services-emergency-van",
+    "title": "Plumber & emergency",
+    "description": "A flat-rate trade site lettered like an LA sign painter's van door: a full-bleed photo of the owner on the job with the headline painted in cream show-card caps and brush script, the prices hand-lettered on a menu board right on the photo, and a painted on-call roundel. Under it the measured numbers, a signed job report where the quote matches the final, how-it-works as the customer's real text thread, reviews, the neighborhoods, and the call — call-first on every page, with a quote form and booking for everything that can wait.",
+    "marketingExampleTitle": "Sign-painted flat-rate plumber",
+    "contentSeed": "web/app/src/View/ServicesEmergency/vanRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so these seeds replace the base pack's at compose and mirror THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twins).",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "repair-visit",
+                    "name": "Scheduled repair visit",
+                    "durationMinutes": 90,
+                    "description": "For a drip, a slow drain, or a running toilet — anything that can wait for a time that suits you."
+                },
+                {
+                    "typeId": "flat-quote-walkthrough",
+                    "name": "Flat-quote walkthrough",
+                    "durationMinutes": 45,
+                    "description": "For bigger jobs — a water heater, a repipe, a bathroom. We look, then text you one flat price."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "luis-ortega",
+                    "name": "Luis Ortega",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 480,
+                            "end": 960
+                        },
+                        {
+                            "day": 2,
+                            "start": 480,
+                            "end": 960
+                        },
+                        {
+                            "day": 3,
+                            "start": 480,
+                            "end": 960
+                        },
+                        {
+                            "day": 4,
+                            "start": 480,
+                            "end": 960
+                        },
+                        {
+                            "day": 5,
+                            "start": 480,
+                            "end": 960
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The jacaranda register's sign red, pinned as the brand so the app surfaces match the marketing pages: a red deep enough for cream button letters (AA) on the cream board ground, and a neon-lifted red for the night sheet. navigation declares the inline bar (a declared theme variant outranks the shared shell's split bar): the contained card, the call a painted red board.",
+        "brand": {
+            "primary": "#c4301a",
+            "primaryDark": "#ff5a3a"
+        },
+        "navigation": {
+            "variant": "inline"
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (web/app/src/View/ServicesEmergency/ServicesEmergencyPage.tsx, useSitePageConfig). pages seeds each page's layout skeleton — ids match servicesEmergencyLanding.ts; the platform's structural editor edits these. The preset is jacaranda (LA sign-painter vernacular: cream board ground, jacaranda-purple ink, Luckiest Guy show-card caps with a brush-script accent word, painted outlines and drop shades) under the catalog's sign-red brand. Home runs the flat-rate argument in order: the full-bleed photo hero with the painted headline, the on-call roundel, and the price board on the photograph; the measured-numbers strip; a signed job report; how-it-works as the customer's text thread; then reviews, the neighborhoods, and the call. The full price book and the services live on /services.",
+        "style": {
+            "preset": "jacaranda"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "dispatch-proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "job-report",
+                        "type": "content-split",
+                        "variant": "report"
+                    },
+                    {
+                        "id": "when-you-call",
+                        "type": "steps",
+                        "variant": "message-thread"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "service-area",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "call-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "price-book",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "services",
+                        "type": "showcase",
+                        "variant": "card-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq"
+                    },
+                    {
+                        "id": "call-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "call-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "request": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "request-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

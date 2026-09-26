@@ -1,0 +1,203 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services pack composed with a private-suite hair atelier content seed (Maren Atelier, Dallas), a taupe brand, and the limestone register. Everything else — builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-hair-maren",
+    "remixOf": "services",
+    "templateKey": "repobot-services-hair-maren",
+    "title": "Private-suite hair atelier",
+    "description": "A hair atelier's site as a quiet stone suite: a Didone headline over a daylit private suite, the stylists as a directory by level — each portrait arched like the suite's mirror, with specialties, the cut rate, and the next open suite, filtered by specialty — and one quiet ask, with online booking for consultations — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Dallas private-suite hair atelier",
+    "contentSeed": "web/app/src/View/Services/marenRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twin) — the composed template's booking widget and Manage calendar open on this team's own week, not the base demo business's.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "consultation",
+                    "name": "Consultation",
+                    "durationMinutes": 30,
+                    "description": "Fifteen minutes in daylight with your stylist, then the plan and the rate in writing."
+                },
+                {
+                    "typeId": "precision-cut",
+                    "name": "Precision cut & finish",
+                    "durationMinutes": 90,
+                    "description": "Cut dry to the way your hair grows, with a finish you can repeat at home."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "camille-moreau",
+                    "name": "Camille Moreau",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 540,
+                            "end": 1140
+                        },
+                        {
+                            "day": 4,
+                            "start": 540,
+                            "end": 1200
+                        }
+                    ]
+                },
+                {
+                    "providerId": "lena-ellison",
+                    "name": "Lena Ellison",
+                    "windows": [
+                        {
+                            "day": 3,
+                            "start": 540,
+                            "end": 1140
+                        },
+                        {
+                            "day": 4,
+                            "start": 540,
+                            "end": 1200
+                        }
+                    ]
+                },
+                {
+                    "providerId": "rohan-mehta",
+                    "name": "Rohan Mehta",
+                    "windows": [
+                        {
+                            "day": 4,
+                            "start": 540,
+                            "end": 1200
+                        },
+                        {
+                            "day": 6,
+                            "start": 480,
+                            "end": 960
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "Taupe as the brand: on the limestone register the accent is the squared ask and the active filter word, so a rebrand re-tints the suite without re-shooting the stylists. Marketing pages resolve brand over preset accent, so the overlay re-skins the pages and the app surfaces together. navigation re-pins the shared servicesShell chrome to the inline bar (a declared theme variant outranks the shell prop). mode light opens on the limestone (theme merges shallowly).",
+        "brand": {
+            "primary": "#7d6c52",
+            "primaryDark": "#cdb89a"
+        },
+        "mode": "light",
+        "navigation": {
+            "variant": "inline"
+        }
+    },
+    "landing": {
+        "$comment": "The pin: the limestone register and the atelier home — the Didone headline over the suite (full-bleed-media; the seed breaks the line where the author broke it), the stylists as a directory by level (the seed's lookbook as showcase directory: its group is the column), and the closing ask. The seed hides the home services grid (home.serviceGrid). The work page opens on the before-and-after comparisons over how a visit runs; the about page carries the numbers. resolveCatalog puts these in place of the base's pages.",
+        "style": {
+            "preset": "limestone"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "lookbook",
+                        "type": "showcase",
+                        "variant": "directory"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "projects": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "transformations",
+                        "type": "gallery",
+                        "variant": "before-after"
+                    },
+                    {
+                        "id": "process",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "showcase",
+                        "variant": "card-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "quote": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "quote-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,474 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the care pack composed with a culturally affirming therapy collective's content seed, re-registered in the hearth register (a lounge in the West End: warm cream, plum, sienna and ochre, a woven textile edge) with its own pinned page skeletons. Everything else — pages' builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "care-therapy-kindred",
+    "remixOf": "care",
+    "templateKey": "repobot-care-therapy-kindred",
+    "title": "Therapy Collective with a Therapist Directory",
+    "description": "A therapy collective's site with real online booking: Kindred Therapy Collective, six Black therapists in Atlanta's West End offering culturally affirming therapy — individuals, couples, families and teens, grief, and faith-integrated care for clients who want it — in person and online across Georgia. It opens full-bleed on three of the therapists laughing in the lounge (\"Therapy that sees all of you.\"), then three ways in, then a therapist directory a visitor filters by what they need (individual, couples, families and teens, grief, faith-integrated, takes insurance, evenings), how matching works on a forest band, fees and insurance in plain words with a sliding scale, clients' words on a sienna band, a plain FAQ, and a booking page offering a free matching call. The booking form is clinically empty — name, contact, session type, new/returning.",
+    "marketingExampleTitle": "Therapy collective with a directory",
+    "contentSeed": "web/app/src/View/Care/kindredRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so these practice and appointments seeds replace the base pack's at compose and mirror THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twins) — the composed template's Manage editors and booking widget open on the counseling practice, not the base clinic.",
+        "practice": {
+            "providers": [
+                {
+                    "providerId": "aisha-grant",
+                    "name": "Aisha Grant",
+                    "credentials": "LMFT",
+                    "role": "Founder · Couples & individuals",
+                    "tags": "Individual · Couples",
+                    "bio": "Aisha started Kindred after years of clients telling her they'd spent their first sessions elsewhere explaining their lives instead of working on them. She sees couples and individuals, and is trained in emotionally focused and narrative therapy."
+                },
+                {
+                    "providerId": "nia-okoro",
+                    "name": "Nia Okoro",
+                    "credentials": "LMFT",
+                    "role": "Families & teens",
+                    "tags": "Families & teens · Couples",
+                    "bio": "Nia works with teenagers and the adults who love them: school stress, identity, blended families, and the silence that sometimes settles over a house. She grew up between Lagos and Decatur and speaks both languages of home."
+                },
+                {
+                    "providerId": "beverly-jackson",
+                    "name": "Beverly Jackson",
+                    "credentials": "LCSW",
+                    "role": "Grief · Faith-integrated care",
+                    "tags": "Grief · Faith-integrated · Individual",
+                    "bio": "Beverly has sat with grief for twenty-five years, in hospice, in church basements, and here. For clients who want it, she brings faith into the room; for those who don't, she leaves it at the door."
+                },
+                {
+                    "providerId": "jamal-williams",
+                    "name": "Jamal Williams",
+                    "credentials": "LPC",
+                    "role": "Men's mental health · Anxiety",
+                    "tags": "Individual · Takes insurance · Evenings",
+                    "bio": "Jamal works with men who were raised to handle it alone: anxiety, anger, burnout, and fatherhood. Most of his clients have never been to therapy before, and he likes it that way. Evening sessions, in person or online."
+                },
+                {
+                    "providerId": "imani-baker",
+                    "name": "Imani Baker",
+                    "credentials": "LPC",
+                    "role": "Young adults · Identity",
+                    "tags": "Individual · Evenings · Takes insurance",
+                    "bio": "Imani sees people in their twenties and early thirties: first jobs, first apartments, racial stress at work, queer identity, and the pressure of being the first in the family to do all of it. She keeps evenings open for clients who can't leave work."
+                },
+                {
+                    "providerId": "kwame-mensah",
+                    "name": "Kwame Mensah",
+                    "credentials": "LPC",
+                    "role": "Couples · Faith-integrated care",
+                    "tags": "Couples · Faith-integrated · Takes insurance",
+                    "bio": "Kwame is a former youth pastor turned counselor who sees couples and individuals, with or without faith in the conversation. Premarital work, rebuilding trust, and the long middle of a marriage are his favorite rooms to be in."
+                }
+            ],
+            "services": [
+                {
+                    "name": "Individual therapy",
+                    "description": "Fifty minutes, weekly or every other week, with a therapist who gets the context of your life."
+                },
+                {
+                    "name": "Couples & marriage",
+                    "description": "Eighty-minute sessions for partners, premarital or decades in, with or without faith in the room."
+                },
+                {
+                    "name": "Families & teens",
+                    "description": "Sessions for a teenager, a parent, or the whole household, at a pace the youngest person can keep."
+                },
+                {
+                    "name": "Grief & loss",
+                    "description": "Support after a death, a diagnosis, or any loss that the people around you don't quite name."
+                },
+                {
+                    "name": "Faith-integrated therapy",
+                    "description": "For clients who want their faith in the conversation, and only for them."
+                },
+                {
+                    "name": "Online therapy",
+                    "description": "Video sessions anywhere in Georgia, with the same therapist you'd see in the lounge."
+                }
+            ],
+            "insurance": [
+                "In network with several major plans",
+                "We check your benefits before you book",
+                "Sliding scale from $85",
+                "HSA & FSA accepted",
+                "Superbills for out-of-network benefits",
+                "Good Faith Estimate on request"
+            ],
+            "locations": [
+                {
+                    "locationId": "west-end",
+                    "label": "The lounge in the West End",
+                    "address": "1030 Ralph David Abernathy Blvd SW, Suite 2, Atlanta, GA 30310",
+                    "phone": "(404) 555-0198",
+                    "hours": [
+                        {
+                            "day": 1,
+                            "open": 540,
+                            "close": 1200
+                        },
+                        {
+                            "day": 2,
+                            "open": 540,
+                            "close": 1200
+                        },
+                        {
+                            "day": 3,
+                            "open": 540,
+                            "close": 1200
+                        },
+                        {
+                            "day": 4,
+                            "open": 540,
+                            "close": 1200
+                        },
+                        {
+                            "day": 5,
+                            "open": 540,
+                            "close": 1020
+                        },
+                        {
+                            "day": 6,
+                            "open": 600,
+                            "close": 840
+                        }
+                    ]
+                }
+            ],
+            "reviews": [
+                {
+                    "quote": "For the first time I didn't spend the first three sessions explaining my family, my church, or my job. Nia already understood, so we just started.",
+                    "name": "D. M.",
+                    "detail": "Individual client"
+                },
+                {
+                    "quote": "Kwame asked if we wanted faith in the room. Nobody had ever asked us that. We said yes, and it changed how we talked to each other.",
+                    "name": "T. & R.",
+                    "detail": "Couples clients"
+                },
+                {
+                    "quote": "My son wouldn't talk to anyone. He talks to Nia. Some weeks he talks to me on the drive home, too.",
+                    "name": "K. A.",
+                    "detail": "Parent of a teen client"
+                }
+            ],
+            "newPatient": [
+                {
+                    "title": "Tell us what matters",
+                    "body": "A short form: what's going on, what kind of therapist you'd feel at home with, faith or no faith, days and times, and how you'd like to pay."
+                },
+                {
+                    "title": "A 15-minute matching call",
+                    "body": "Our intake coordinator reads your form, calls you within two business days, and suggests one or two therapists by name."
+                },
+                {
+                    "title": "Your first session",
+                    "body": "In the lounge or on video. If the fit isn't right after a session or two, we'll match you again, no explanation needed."
+                }
+            ]
+        },
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "match",
+                    "name": "Free matching call",
+                    "durationMinutes": 15,
+                    "description": "A short call with our intake coordinator to find the right therapist."
+                },
+                {
+                    "typeId": "individual",
+                    "name": "Individual session",
+                    "durationMinutes": 50,
+                    "description": "Fifty minutes in the lounge or on video."
+                },
+                {
+                    "typeId": "couples",
+                    "name": "Couples or family session",
+                    "durationMinutes": 80,
+                    "description": "Eighty minutes for partners, or a parent and teen."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "aisha-grant",
+                    "name": "Aisha Grant",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 720,
+                            "end": 1200
+                        },
+                        {
+                            "day": 3,
+                            "start": 720,
+                            "end": 1200
+                        }
+                    ]
+                },
+                {
+                    "providerId": "nia-okoro",
+                    "name": "Nia Okoro",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 900,
+                            "end": 1200
+                        },
+                        {
+                            "day": 4,
+                            "start": 900,
+                            "end": 1200
+                        },
+                        {
+                            "day": 6,
+                            "start": 600,
+                            "end": 840
+                        }
+                    ]
+                },
+                {
+                    "providerId": "beverly-jackson",
+                    "name": "Beverly Jackson",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 540,
+                            "end": 900
+                        },
+                        {
+                            "day": 5,
+                            "start": 540,
+                            "end": 900
+                        }
+                    ]
+                },
+                {
+                    "providerId": "jamal-williams",
+                    "name": "Jamal Williams",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 960,
+                            "end": 1200
+                        },
+                        {
+                            "day": 4,
+                            "start": 960,
+                            "end": 1200
+                        }
+                    ]
+                },
+                {
+                    "providerId": "imani-baker",
+                    "name": "Imani Baker",
+                    "windows": [
+                        {
+                            "day": 3,
+                            "start": 900,
+                            "end": 1200
+                        },
+                        {
+                            "day": 5,
+                            "start": 720,
+                            "end": 1020
+                        }
+                    ]
+                },
+                {
+                    "providerId": "kwame-mensah",
+                    "name": "Kwame Mensah",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 720,
+                            "end": 1200
+                        },
+                        {
+                            "day": 6,
+                            "start": 600,
+                            "end": 840
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The hearth register in its own plum: mode light opens the site in its native appearance (warm cream by day); dark is the same lounge by lamplight. Marketing pages resolve brand over preset accent, so the overlay re-inks pages and app surfaces together. navigation re-pins the shared careShell chrome (a declared theme variant outranks the shell prop): the collective takes pill links — the name at the left, the pages in one soft pill, the ask at the right.",
+        "mode": "light",
+        "brand": {
+            "primary": "#5b2a45",
+            "primaryDark": "#e2b04a"
+        },
+        "navigation": {
+            "variant": "pill-links"
+        }
+    },
+    "landing": {
+        "$comment": "A pinned layout (packs/README.md 'Derived templates'): style re-registers the base's pages in the hearth register, and pages carries exactly the skeletons careLanding.ts emits from this remix's contentSeed — the hero turns full-bleed and the content-gated sections (promises, exhibits as a filterable therapist directory, the matching steps, menu, faq — and the home portraits band drops for the directory) appear because the seed asks for them — so the composed template's document reproduces its code config section for section (tests/View/Care/careLanding.test.ts reads this through composedLandingSeed).",
+        "style": {
+            "preset": "hearth"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "promises",
+                        "type": "feature-grid",
+                        "variant": "icon-list"
+                    },
+                    {
+                        "id": "exhibits",
+                        "type": "showcase",
+                        "variant": "filterable-grid"
+                    },
+                    {
+                        "id": "journey",
+                        "type": "steps",
+                        "variant": "numbered-cards"
+                    },
+                    {
+                        "id": "menu",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "providers": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "providers",
+                        "type": "team",
+                        "variant": "portraits"
+                    },
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "card-grid",
+                        "variant": "4up"
+                    },
+                    {
+                        "id": "menu",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "new-patients": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "first-visit",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "how",
+                        "type": "steps",
+                        "variant": "numbered-cards"
+                    },
+                    {
+                        "id": "privacy",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    }
+                ]
+            }
+        }
+    }
+}

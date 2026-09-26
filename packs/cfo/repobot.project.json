@@ -1,0 +1,379 @@
+{
+    "$comment": "The cfo pack's project IA (docs/project-ia.md). Stamped to the repo root by compose-pack.sh, which then runs scaffold-ia to wire the dashboard destinations; the destination entry pages already exist in the kernel (View/Cfo*) so the scaffolder keeps them and only wires routes and nav. Marketing pages carry inline landing configs (real Clearline starter copy, CTAs into /login) that win over the blueprint defaults; edit content here, not in hand-built pages.",
+    "marketing": {
+        "preset": "luxe-light",
+        "siteName": "Clearline",
+        "pages": [
+            {
+                "id": "home",
+                "path": "/",
+                "title": "Home",
+                "blueprint": "landing",
+                "description": "The portal for a fractional CFO practice: every client's books, one clear view.",
+                "landing": {
+                    "style": {
+                        "preset": "luxe-light"
+                    },
+                    "shell": {
+                        "nav": {
+                            "content": {
+                                "logo": {
+                                    "name": "Clearline"
+                                },
+                                "links": [
+                                    {
+                                        "label": "Features",
+                                        "anchor": "feature-grid"
+                                    },
+                                    {
+                                        "label": "Pricing",
+                                        "href": "/pricing"
+                                    }
+                                ],
+                                "cta": {
+                                    "label": "Sign in",
+                                    "href": "/login"
+                                }
+                            }
+                        },
+                        "footer": {
+                            "variant": "simple",
+                            "content": {
+                                "blurb": "Clearline",
+                                "links": [
+                                    {
+                                        "label": "Pricing",
+                                        "href": "/pricing"
+                                    },
+                                    {
+                                        "label": "Sign in",
+                                        "href": "/login"
+                                    }
+                                ],
+                                "note": "© Clearline. All rights reserved."
+                            }
+                        }
+                    },
+                    "sections": [
+                        {
+                            "type": "hero",
+                            "variant": "centered-stack",
+                            "content": {
+                                "backdrop": {
+                                    "art": "horizon"
+                                },
+                                "badge": "Built for fractional CFO practices",
+                                "headline": "Every client's books, one clear view",
+                                "subheadline": "Clearline is the portal for your CFO practice: invite clients by email, each one connects their own QuickBooks or Xero, and you get live P&L and balance-sheet visibility across the whole portfolio — with board-ready Excel exports one click away.",
+                                "primaryCta": {
+                                    "label": "Get started free",
+                                    "href": "/login"
+                                },
+                                "secondaryCta": {
+                                    "label": "See pricing",
+                                    "href": "/pricing"
+                                }
+                            }
+                        },
+                        {
+                            "type": "social-proof",
+                            "variant": "metrics-row",
+                            "content": {
+                                "label": "Why practices switch",
+                                "metrics": [
+                                    {
+                                        "value": "600+",
+                                        "label": "advisory practices on Clearline"
+                                    },
+                                    {
+                                        "value": "< 2 min",
+                                        "label": "for a client to connect their books"
+                                    },
+                                    {
+                                        "value": "6 hrs",
+                                        "label": "saved per client, per month, on reporting"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "feature-grid",
+                            "variant": "cards-3up",
+                            "content": {
+                                "kicker": "What you get",
+                                "title": "The whole portfolio, without the spreadsheet shuffle",
+                                "features": [
+                                    {
+                                        "emoji": "🗂️",
+                                        "title": "A portfolio dashboard that leads with health",
+                                        "description": "Every client as a card: connected or not, latest revenue, net income, and what's overdue — so Monday morning starts with who needs attention, not who to email for a export."
+                                    },
+                                    {
+                                        "emoji": "📈",
+                                        "title": "Statement drilldowns per client",
+                                        "description": "Thirteen trailing months of P&L and balance sheet, charted and tabled, pulled live from each client's own QuickBooks or Xero connection. No more stale month-old PDFs."
+                                    },
+                                    {
+                                        "emoji": "📥",
+                                        "title": "Excel exports that match the screen",
+                                        "description": "Download any client's P&L, balance sheet, or both as a clean workbook — formatted for the board packet, generated from the same live numbers."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "steps",
+                            "variant": "numbered-cards",
+                            "content": {
+                                "kicker": "How it works",
+                                "title": "From invite to insight in three steps",
+                                "steps": [
+                                    {
+                                        "title": "Invite your clients",
+                                        "description": "Send each client an email invite from the Clients page. They sign in with a code — no passwords to manage, no onboarding calls."
+                                    },
+                                    {
+                                        "title": "They connect their own books",
+                                        "description": "Each client links their QuickBooks or Xero in one click. Read-only — Clearline never changes anything in their ledger."
+                                    },
+                                    {
+                                        "title": "You see everything",
+                                        "description": "The portfolio dashboard fills in as clients connect: statements, trends, and exports for every company, in one place."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "testimonials",
+                            "variant": "quote-grid",
+                            "content": {
+                                "kicker": "From working advisors",
+                                "title": "Practices that stopped chasing exports",
+                                "quotes": [
+                                    {
+                                        "quote": "I used to spend the first week of every month collecting P&Ls from nine clients. Now they're just there, current, when I sign in.",
+                                        "author": "Dana R.",
+                                        "title": "Fractional CFO, 11 clients"
+                                    },
+                                    {
+                                        "quote": "The invite flow is the whole pitch — my clients connected their own books before our kickoff call ended.",
+                                        "author": "Miguel A.",
+                                        "title": "Principal, advisory studio"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "faq",
+                            "variant": "accordion",
+                            "content": {
+                                "kicker": "Good to know",
+                                "title": "Questions before you invite anyone",
+                                "items": [
+                                    {
+                                        "question": "Does Clearline change anything in my clients' books?",
+                                        "answer": "No — connections are read-only. Clearline reads statements and totals to power the dashboards and exports, and never writes to anyone's ledger."
+                                    },
+                                    {
+                                        "question": "Which accounting software do clients connect?",
+                                        "answer": "QuickBooks Online or Xero. Each client connects their own account from their Books page; disconnecting is one click and removes the link immediately."
+                                    },
+                                    {
+                                        "question": "Can clients see each other's numbers?",
+                                        "answer": "Never. Each client sees only their own books and statements. Only the advisor sees across the portfolio."
+                                    },
+                                    {
+                                        "question": "Is the financial data safe?",
+                                        "answer": "Data is read over an encrypted connection, scoped per client, and never used to train models. Any client can disconnect at any time."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "cta-banner",
+                            "variant": "card",
+                            "content": {
+                                "title": "Run the practice, not the paperwork",
+                                "body": "Free to start — send your first client invite in the next five minutes.",
+                                "cta": {
+                                    "label": "Create your free account",
+                                    "href": "/login"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "id": "pricing",
+                "path": "/pricing",
+                "title": "Pricing",
+                "blueprint": "pricing",
+                "description": "Start free, pay as the client roster grows.",
+                "landing": {
+                    "style": {
+                        "preset": "luxe-light"
+                    },
+                    "shell": {
+                        "nav": {
+                            "content": {
+                                "logo": {
+                                    "name": "Clearline"
+                                },
+                                "links": [
+                                    {
+                                        "label": "Home",
+                                        "href": "/"
+                                    }
+                                ],
+                                "cta": {
+                                    "label": "Sign in",
+                                    "href": "/login"
+                                }
+                            }
+                        },
+                        "footer": {
+                            "variant": "simple",
+                            "content": {
+                                "blurb": "Clearline",
+                                "links": [
+                                    {
+                                        "label": "Home",
+                                        "href": "/"
+                                    },
+                                    {
+                                        "label": "Sign in",
+                                        "href": "/login"
+                                    }
+                                ],
+                                "note": "© Clearline. All rights reserved."
+                            }
+                        }
+                    },
+                    "sections": [
+                        {
+                            "type": "hero",
+                            "variant": "statement",
+                            "content": {
+                                "headline": "Priced per practice, not per login",
+                                "subheadline": "Every plan includes client invites, per-client connections, statement drilldowns, and Excel exports. Pay more only as the roster grows."
+                            }
+                        },
+                        {
+                            "type": "pricing",
+                            "variant": "tiers",
+                            "content": {
+                                "kicker": "Plans",
+                                "title": "Pick what fits the roster today",
+                                "tiers": [
+                                    {
+                                        "name": "Starter",
+                                        "monthly": 0,
+                                        "yearlyPerMonth": 0,
+                                        "description": "For trying Clearline with your first clients.",
+                                        "features": [
+                                            "Up to 3 connected clients",
+                                            "Portfolio dashboard",
+                                            "P&L and balance-sheet drilldowns"
+                                        ]
+                                    },
+                                    {
+                                        "name": "Practice",
+                                        "monthly": 49,
+                                        "yearlyPerMonth": 41,
+                                        "description": "For a working fractional CFO practice.",
+                                        "features": [
+                                            "Everything in Starter",
+                                            "Unlimited connected clients",
+                                            "Excel statement exports",
+                                            "Priority support"
+                                        ],
+                                        "highlighted": true,
+                                        "badge": "Most popular"
+                                    },
+                                    {
+                                        "name": "Firm",
+                                        "monthly": 129,
+                                        "yearlyPerMonth": 108,
+                                        "description": "For multi-advisor firms.",
+                                        "features": [
+                                            "Everything in Practice",
+                                            "Multiple advisors",
+                                            "Admin controls"
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "faq",
+                            "variant": "accordion",
+                            "content": {
+                                "kicker": "Billing",
+                                "title": "Common questions",
+                                "items": [
+                                    {
+                                        "question": "Can I change plans later?",
+                                        "answer": "Yes — upgrades apply immediately and downgrades apply at the next billing cycle."
+                                    },
+                                    {
+                                        "question": "Do my clients pay anything?",
+                                        "answer": "No — clients sign in and connect their books for free. Plans are billed to the practice only."
+                                    },
+                                    {
+                                        "question": "What happens if a client disconnects?",
+                                        "answer": "Their card on your dashboard shows as not connected until they reconnect. Nothing else changes, and their history stays put."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "cta-banner",
+                            "variant": "card",
+                            "content": {
+                                "title": "Ready when the roster is",
+                                "body": "Start on the free plan — no card required.",
+                                "cta": {
+                                    "label": "Get started free",
+                                    "href": "/login"
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "dashboard": {
+        "destinations": [
+            {
+                "id": "cfo-portfolio",
+                "path": "/portfolio",
+                "label": "Portfolio",
+                "blueprint": "overview",
+                "description": "The signed-in home. Advisors see portfolio health tiles and a card per client; clients see their own headline numbers or a prompt to connect their books."
+            },
+            {
+                "id": "cfo-clients",
+                "path": "/clients",
+                "label": "Clients",
+                "blueprint": "table",
+                "description": "Advisor-only roster management: invite clients by email, watch pending invites, revoke, and open any client's statements."
+            },
+            {
+                "id": "cfo-statements",
+                "path": "/statements",
+                "label": "Statements",
+                "blueprint": "custom",
+                "description": "P&L and balance-sheet drilldowns — thirteen trailing months, charted and tabled, with XLSX export. Advisors pick a client; clients see their own books."
+            },
+            {
+                "id": "cfo-books",
+                "path": "/books",
+                "label": "My books",
+                "blueprint": "custom",
+                "description": "The member's own connection surface: connect QuickBooks or Xero (instant in the sandbox), see headline numbers, disconnect any time."
+            }
+        ]
+    }
+}

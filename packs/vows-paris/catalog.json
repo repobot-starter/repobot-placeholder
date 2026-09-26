@@ -1,0 +1,186 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the vows pack composed with a Paris wedding (Inès & Paul) as its content seed, re-registered in the carton register with its own pinned page skeletons. Everything else — the pages' builders, sections, contract, tests, the RSVP card and its managed form — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "vows-paris",
+    "remixOf": "vows",
+    "templateKey": "repobot-vows-paris",
+    "title": "Type-only wedding",
+    "description": "A wedding website set like a faire-part, with no photograph on the home page: the couple's names enormous in cornflower ink on warm paper, then the weekend, where to stay, and a note from the couple as a ruled typographic column, and the RSVP link. Behind it, the story page, the weekend schedule with maps, travel and hotels, the wedding party and registry, a FAQ, and an RSVP card that delivers replies straight to the couple — with a live countdown computed from the wedding date. A multi-page site edited in one content file.",
+    "marketingExampleTitle": "Paris wedding website",
+    "contentSeed": "web/app/src/View/Vows/parisRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed, merged over repobot.content.json at compose (the same overlay path as landing/theme — scripts/lib/pack-switch.mjs applyPackOverlays). The guestlist domain is the wedding's PRIVATE roster — who's invited, how many seats, the note that matters at the door — and deliberately seeds EMPTY: the roster is the owner's from day one, never demo data. No pack page renders it; it exists so the platform's Manage panel keeps the roster next to the RSVP inbox it pairs with (the catalog's vows-rsvp form).",
+        "guestlist": {
+            "entries": []
+        }
+    },
+    "theme": {
+        "$comment": "The carton register's brand overlay: the preset's own light and dark accents as the project brand, so app-side surfaces wear the same register as the wedding pages instead of the kernel default blue — the marketing pages resolve brand over preset accent, so identical values re-brand the app without shifting the pages.",
+        "brand": {
+            "primary": "#1d3a8f",
+            "primaryDark": "#aebcf0"
+        }
+    },
+    "landing": {
+        "$comment": "A pinned layout (packs/README.md 'Derived templates'): style re-registers the base's pages in the carton register (cornflower ink on warm paper, an enormous hairline Bodoni Moda, ink hairlines ruling the column), and pages carries exactly the skeletons vowsLanding.ts emits from this remix's contentSeed — the seed's home.layout is letter, so the home opens on the names set enormous with no photograph, then the weekend, the hotels, and the couple's note as a ruled column, and the colophon close with the RSVP link; the story page's chapters and the schedule's venues run as text, and only the story page's three-frame gallery (the contract's minimum) carries photographs. The story, schedule, travel, party, and RSVP pages keep the base's compositions (tests/View/Vows/parisRemixLanding.test.ts reads this through the builders on the seed).",
+        "style": {
+            "preset": "carton"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "weekend",
+                        "type": "rich-prose",
+                        "variant": "narrow"
+                    },
+                    {
+                        "id": "stay",
+                        "type": "rich-prose",
+                        "variant": "narrow"
+                    },
+                    {
+                        "id": "note",
+                        "type": "rich-prose",
+                        "variant": "narrow"
+                    },
+                    {
+                        "id": "closing",
+                        "type": "cta-banner",
+                        "variant": "colophon"
+                    }
+                ]
+            },
+            "story": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "chapters",
+                        "type": "highlights",
+                        "variant": "alternating"
+                    },
+                    {
+                        "id": "gallery",
+                        "type": "gallery",
+                        "variant": "sequence"
+                    },
+                    {
+                        "id": "rsvp-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "schedule": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "day-1",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "day-2",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "day-3",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "venues",
+                        "type": "highlights",
+                        "variant": "alternating"
+                    },
+                    {
+                        "id": "rsvp-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "travel": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "getting-there",
+                        "type": "rich-prose",
+                        "variant": "narrow"
+                    },
+                    {
+                        "id": "hotels",
+                        "type": "card-grid",
+                        "variant": "3up"
+                    },
+                    {
+                        "id": "things-to-do",
+                        "type": "feature-grid",
+                        "variant": "icon-list"
+                    },
+                    {
+                        "id": "rsvp-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "party": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "party",
+                        "type": "team",
+                        "variant": "list"
+                    },
+                    {
+                        "id": "registry",
+                        "type": "card-grid",
+                        "variant": "2up"
+                    },
+                    {
+                        "id": "rsvp-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "rsvp": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "rsvp-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,255 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the estate pack composed with a Bellingham waterfront broker's content seed (Aldercott — Chuckanut Drive, Lake Whatcom, Fairhaven, Edgemoor), a sound-green brand, and the baylight register. Everything else — builders, listings engine, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "estate-aldercott",
+    "remixOf": "estate",
+    "templateKey": "repobot-estate-aldercott",
+    "title": "Waterfront Broker",
+    "description": "A waterfront and view-home broker's site in Bellingham, Washington, told as plates rather than an MLS grid: a cedar-and-glass house over Chuckanut Bay at blue hour under \"Bellingham, from the waterline up.\", the live market pulse and both asks at the photograph's foot, then the featured listings edge to edge at the hero's size — each captioned inside its photograph with the address over its shoreline, price, and computed status — the numbers set like chart soundings, the broker, four shorelines, the clients' words, and one closing line. The listings page keeps the filterable inventory with computed status pills; neighborhoods, about, and contact follow — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Bellingham waterfront broker",
+    "contentSeed": "web/app/src/View/Estate/aldercottRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this listings seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry MINUS the photographs (the pack joins its code-owned images back by slug — inventory.ts), plus the featured flags derived from home.featuredListings. The remix-seed tests pin the twin.",
+        "listings": {
+            "entries": [
+                {
+                    "slug": "chuckanut-shore",
+                    "title": "412 Chuckanut Shore Road",
+                    "neighborhood": "Chuckanut Drive",
+                    "price": "$4,850,000",
+                    "beds": 4,
+                    "baths": 3.5,
+                    "sqft": 3860,
+                    "description": "A 1968 cedar-and-glass house set into the honeycombed sandstone at the tide line — 180 feet of Samish Bay shore, herons on the flats at low water, and the sun going down behind the San Juans from every room.",
+                    "status": "available",
+                    "listedAt": "2026-09-19",
+                    "featured": true
+                },
+                {
+                    "slug": "north-shore-dock",
+                    "title": "2270 North Shore Drive",
+                    "neighborhood": "Lake Whatcom",
+                    "price": "$3,195,000",
+                    "beds": 5,
+                    "baths": 4,
+                    "sqft": 4120,
+                    "description": "A timber-gabled lake house on 120 feet of west-facing frontage: a new dock long enough for the whole family to jump off at once, a boathouse deck, and evening light straight down the lake.",
+                    "status": "available",
+                    "listedAt": "2026-09-10",
+                    "featured": true
+                },
+                {
+                    "slug": "harris-loft",
+                    "title": "1101 Harris Avenue, Loft 4",
+                    "neighborhood": "Fairhaven",
+                    "price": "$1,475,000",
+                    "beds": 2,
+                    "baths": 2,
+                    "sqft": 1940,
+                    "description": "The top floor of an 1890 brick block: arched windows over the rooftops to the bay, old-growth fir beams, a long oak kitchen, and the village's cafés and the ferry terminal two minutes down Harris.",
+                    "status": "available",
+                    "listedAt": "2026-08-24",
+                    "featured": true
+                },
+                {
+                    "slug": "bayside-baker",
+                    "title": "318 Bayside Road",
+                    "neighborhood": "Edgemoor",
+                    "price": "$2,690,000",
+                    "beds": 4,
+                    "baths": 3,
+                    "sqft": 3340,
+                    "description": "A 1962 northwest-modern restored with care: a full wall of steel glass framing Mount Baker across the bay, fir ceilings, a stone hearth, and the Taylor Dock boardwalk at the foot of the street.",
+                    "status": "available",
+                    "listedAt": "2026-09-02",
+                    "featured": true
+                },
+                {
+                    "slug": "west-shore-bluff",
+                    "title": "2940 West Shore Drive",
+                    "neighborhood": "Lummi Island",
+                    "price": "$1,285,000",
+                    "beds": 1,
+                    "baths": 1,
+                    "sqft": 640,
+                    "description": "A cedar studio cabin on two acres of bluff over Rosario Strait — a driftwood beach, wind-bent firs, and permitted plans for the main house. Six minutes across on the ferry, a long way from anywhere.",
+                    "status": "available",
+                    "listedAt": "2026-07-30"
+                },
+                {
+                    "slug": "sixteenth-craftsman",
+                    "title": "1024 16th Street",
+                    "neighborhood": "South Hill",
+                    "price": "$1,395,000",
+                    "beds": 4,
+                    "baths": 2.5,
+                    "sqft": 2680,
+                    "description": "A 1912 craftsman on South Hill with its river-rock porch piers, original fir trim, and the bay at the end of the block. Four offers; pending in nine days.",
+                    "status": "pending",
+                    "listedAt": "2026-08-05"
+                },
+                {
+                    "slug": "madrona-lane",
+                    "title": "88 Madrona Lane",
+                    "neighborhood": "Chuckanut Drive",
+                    "price": "$3,400,000",
+                    "beds": 3,
+                    "baths": 3,
+                    "sqft": 3050,
+                    "description": "Board-formed concrete, charred cedar, and a reflecting pool on a madrona ridge above Chuckanut Bay. Closed at asking in five weeks.",
+                    "status": "sold",
+                    "listedAt": "2026-05-12",
+                    "soldAt": "2026-06-20"
+                },
+                {
+                    "slug": "samish-ridge",
+                    "title": "5710 Samish Ridge Road",
+                    "neighborhood": "Samish Valley",
+                    "price": "$2,150,000",
+                    "beds": 4,
+                    "baths": 3.5,
+                    "sqft": 3420,
+                    "description": "A dark-clad farmhouse on nine acres of meadow above the Samish Valley, the Cascade foothills in every window. Three offers the first weekend.",
+                    "status": "sold",
+                    "listedAt": "2026-04-02",
+                    "soldAt": "2026-05-15"
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "Sound green as the brand: on the baylight register the accent is the ask and the links — the water carries the color. Marketing pages resolve brand over preset accent, so keeping the values identical to the preset's own accents re-inks app surfaces without shifting the pages. mode light opens on the fog-pale ground; navigation re-pins the shared estateShell chrome (a declared theme variant outranks the shell prop): the base agent wears the letterhead split, the waterfront broker the full-width bar — the name left, the pages right — that framestack floats over the first photograph.",
+        "mode": "light",
+        "brand": {
+            "primary": "#2e4a46",
+            "primaryDark": "#a6c8bf"
+        },
+        "navigation": {
+            "variant": "full-width"
+        }
+    },
+    "landing": {
+        "$comment": "The pin: the baylight register and the plates home — the seed sets home.stack, so the home is the hero photograph with the line, the market pulse and both asks at its foot (hero full-bleed-media), the featured listings edge to edge at the hero's size with each address and its particulars inside the photograph (gallery sequence + captionStack overlay-start, item detail), the metrics, the broker (content-split media-left), the shorelines (showcase collections), one featured voice, and the closing line (cta-banner colophon). The other pages keep the base's skeletons with this seed's content; resolveCatalog puts these in place of the base's pages.",
+        "style": {
+            "preset": "baylight"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "featured-listings",
+                        "type": "gallery",
+                        "variant": "sequence"
+                    },
+                    {
+                        "id": "proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "agent",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "neighborhoods",
+                        "type": "showcase",
+                        "variant": "collections"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner",
+                        "variant": "colophon"
+                    }
+                ]
+            },
+            "listings": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "listings",
+                        "type": "showcase",
+                        "variant": "filterable-grid"
+                    },
+                    {
+                        "id": "track-record",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "neighborhoods": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "neighborhoods",
+                        "type": "highlights",
+                        "variant": "alternating"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "contact": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "contact-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

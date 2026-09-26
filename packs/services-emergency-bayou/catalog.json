@@ -1,0 +1,188 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services-emergency pack composed with a water, fire and storm restoration content seed (Bayou Restoration, Houston), re-registered in the stormline register with its own page skeletons. Everything structural — builders, routes, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-emergency-bayou",
+    "remixOf": "services-emergency",
+    "templateKey": "repobot-services-emergency-bayou",
+    "title": "Water & storm restoration",
+    "description": "A storm-restoration dispatch site in harbor blue and amber: the hero is the dispatcher's first question asked over the storm photograph — a \"What happened?\" intake card (water, fire, storm, mold), a ZIP and a callback number. Under it a navy dispatch board from a real storm night, what happens next in four steps, a before-and-after of one living room, reviews, the neighborhoods, and the call.",
+    "marketingExampleTitle": "Water & storm damage restoration",
+    "contentSeed": "web/app/src/View/ServicesEmergency/bayouRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twin) — the composed template's booking widget and Manage calendar open on this business's own provider, not the base demo business's.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "mold-inspection",
+                    "name": "Mold inspection & air test",
+                    "durationMinutes": 90,
+                    "description": "A visual inspection, moisture mapping and air samples, with a written report in 48 hours."
+                },
+                {
+                    "typeId": "rebuild-walkthrough",
+                    "name": "Rebuild walkthrough",
+                    "durationMinutes": 60,
+                    "description": "After drying: we walk the house with you and scope the rebuild for the claim."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "renee-boudreaux",
+                    "name": "Renée Boudreaux",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 540,
+                            "end": 1020
+                        },
+                        {
+                            "day": 2,
+                            "start": 540,
+                            "end": 1020
+                        },
+                        {
+                            "day": 3,
+                            "start": 540,
+                            "end": 1020
+                        },
+                        {
+                            "day": 4,
+                            "start": 540,
+                            "end": 1020
+                        },
+                        {
+                            "day": 5,
+                            "start": 540,
+                            "end": 1020
+                        },
+                        {
+                            "day": 6,
+                            "start": 540,
+                            "end": 780
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The stormline register's amber, pinned as the brand so the app surfaces match the marketing pages: the safety amber of the asks and the board's figures, lifted for the night sheet. navigation declares the full-width bar (a declared theme variant outranks the shared shell's split bar): one band across the top with the 24/7 number at its end.",
+        "brand": {
+            "primary": "#c2680c",
+            "primaryDark": "#f2a23a"
+        },
+        "mode": "light",
+        "navigation": {
+            "variant": "full-width"
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (ServicesEmergencyPage.tsx, useSitePageConfig); pages seeds each page's skeleton — ids match servicesEmergencyLanding.ts. The preset is stormline (cool ground, harbor-navy plate, amber signal, Schibsted Grotesk over Public Sans, the dispatch treatment). Home: the intake hero (form-first bound to the storm photograph — the intake card over the scene); the dispatch board (schedule day-rows on the navy plate); what happens next as four cards; one room before and after; reviews; the neighborhoods; the call. The price book and services live on /services.",
+        "style": {
+            "preset": "stormline"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "form-first"
+                    },
+                    {
+                        "id": "dispatch-board",
+                        "type": "schedule",
+                        "variant": "day-rows"
+                    },
+                    {
+                        "id": "when-you-call",
+                        "type": "steps",
+                        "variant": "numbered-cards"
+                    },
+                    {
+                        "id": "restorations",
+                        "type": "gallery",
+                        "variant": "before-after"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "service-area",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "call-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "price-book",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "services",
+                        "type": "showcase",
+                        "variant": "card-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq"
+                    },
+                    {
+                        "id": "call-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "call-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "request": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "request-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

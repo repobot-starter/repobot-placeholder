@@ -1,0 +1,28 @@
+---
+description: Blackbox tests through GraphQL; use Mocha context helpers consistently
+globs: firebase/functions/test/**/*.ts
+alwaysApply: false
+---
+
+# Testing: Blackbox Through GraphQL
+
+- Write tests from the user's perspective: execute GraphQL operations via the helpers in `firebase/functions/test/Utils/Gql/GqlUtils.ts`. Direct service/DB tests only when blackbox coverage is impractical.
+- Access helpers through Mocha context (`this.*`) provided by `firebase/functions/test/MochaHooks.ts` and typed in `firebase/functions/test/Utils/TestContext.ts`.
+- Use `function () {}` / `async function () {}` in tests that touch `this.*`; never arrow functions.
+- Use `addDefaults(this, [...])` to provision shared objects (account, user, project) before helper workflows.
+- Reuse existing domain helpers and factories before creating new ones; new domains get a `<Domain>TestHelper.ts` extending `BaseTestHelper`.
+
+## Stubbing
+
+- External boundaries are stubbed globally in `MochaHooks.ts` (pubsub, jwt). Add per-test stubs only to customize behavior for one scenario.
+- Every method of an external dependency wrapper must have a default stub — the `assertAllMethodsStubbed` guard fails loudly otherwise.
+
+## Never
+
+- Never call external services in tests.
+- Never manage your own DB cleanup — each test runs in a rolled-back transaction.
+- NEVER use timeouts in tests:
+  - No sleeps/delays (`setTimeout`, `await new Promise(resolve => setTimeout(...))`) to wait for async work — await the actual promise, event, or condition.
+  - No raising timeout budgets (Mocha `--timeout`, `this.timeout(...)`, Vitest/Jest overrides) to make a failing test pass.
+  - No wall-clock timing assertions. For time-dependent logic (debounce, polling, retries), use fake timers (`sinon.useFakeTimers`) or inject the interval so the test controls time deterministically.
+  - A timeout failure is a correctness signal (hanging async work, missing stub, leaked handle) — fix the root cause.

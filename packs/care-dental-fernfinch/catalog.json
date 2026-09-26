@@ -1,0 +1,403 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the care pack composed with a pediatric dental office content seed, re-registered in the picturebook register (paper white, leaf green and marigold, a soft rounded serif, gouache storybook pages) with its own pinned page skeletons. Everything else — pages' builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "care-dental-fernfinch",
+    "remixOf": "care",
+    "templateKey": "repobot-care-dental-fernfinch",
+    "title": "Pediatric Dentist",
+    "description": "A pediatric dentist's site with real online booking: Fern & Finch Pediatric Dentistry, a two-dentist kids' office built like a treehouse on South Lamar in Austin, art-directed as a picture book — paper white, leaf green and marigold, a soft rounded serif (real web fonts). The hero: a full-bleed photograph of a boy laughing in a leaf-green chair under arched windows onto live oaks. Under it, the first visit told as five gouache storybook pages, from saying hi to Finch the goldfinch to the prize tree, then a ruled strip of the facts parents ask first — ages, insurance and Medicaid, sedation. Self-pay prices, the team, parents' words, questions, and the visit panel follow.",
+    "marketingExampleTitle": "Pediatric dentist site",
+    "contentSeed": "web/app/src/View/Care/dentalFernfinchRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so these practice and appointments seeds replace the base pack's at compose and mirror THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twins) — the composed template's Manage editors and booking widget open on the orthodontic studio, not the base clinic.",
+        "practice": {
+            "providers": [
+                {
+                    "providerId": "dr-alvarez",
+                    "name": "Dr. Lucía Alvarez",
+                    "credentials": "DDS",
+                    "role": "Pediatric dentist · Founder",
+                    "bio": "Lucía trained in pediatric dentistry at a children's hospital and built Fern & Finch so the first dental visit would feel like a story instead of a test. She sees babies from their first tooth and has a gift for the kid who is sure they won't open their mouth."
+                },
+                {
+                    "providerId": "dr-bennett",
+                    "name": "Dr. Marcus Bennett",
+                    "credentials": "DMD",
+                    "role": "Pediatric dentist",
+                    "bio": "Marcus handles the office's sedation visits and most of the teenagers, and he is the voice of Finch the puppet. Parents of anxious kids ask for him by name."
+                },
+                {
+                    "providerId": "hygienist-tran",
+                    "name": "Mai Tran",
+                    "credentials": "RDH",
+                    "role": "Dental hygienist",
+                    "bio": "Mai does the counting, the tickly polish, and the sealants, and she keeps a running list of every kid's favorite flavor. She has never met a toddler she couldn't get to say 'ahh'."
+                }
+            ],
+            "services": [
+                {
+                    "name": "First visits",
+                    "description": "From the first tooth to age three: a lap exam with you, a gentle clean, and a picture-book tour of the office."
+                },
+                {
+                    "name": "Checkups & cleanings",
+                    "description": "Every six months, with x-rays only when they're due. Kids pick the polish flavor and the sunglasses."
+                },
+                {
+                    "name": "Sealants & fluoride",
+                    "description": "A clear coat on the back teeth and a quick varnish — the two easiest ways to skip fillings later."
+                },
+                {
+                    "name": "Gentle fillings",
+                    "description": "Tooth-colored fillings, a numbing gel before anything else, and laughing gas when a kid wants it."
+                },
+                {
+                    "name": "Sedation options",
+                    "description": "Laughing gas in the chair, and a quiet room with a longer visit for kids who need more time."
+                },
+                {
+                    "name": "Emergencies",
+                    "description": "Knocked-out tooth, a fall at the park, a sudden toothache — call and we'll see you the same day."
+                }
+            ],
+            "insurance": [
+                "Delta Dental PPO",
+                "MetLife Dental",
+                "Cigna Dental PPO",
+                "Guardian Dental",
+                "United Concordia",
+                "Texas Medicaid & CHIP",
+                "FSA & HSA cards"
+            ],
+            "locations": [
+                {
+                    "locationId": "south-lamar",
+                    "label": "South Lamar",
+                    "address": "2208 South Lamar Boulevard, Austin, TX 78704",
+                    "phone": "(512) 555-0193",
+                    "hours": [
+                        {
+                            "day": 1,
+                            "open": 450,
+                            "close": 1020
+                        },
+                        {
+                            "day": 2,
+                            "open": 450,
+                            "close": 1020
+                        },
+                        {
+                            "day": 3,
+                            "open": 450,
+                            "close": 1020
+                        },
+                        {
+                            "day": 4,
+                            "open": 540,
+                            "close": 1080
+                        },
+                        {
+                            "day": 5,
+                            "open": 450,
+                            "close": 900
+                        },
+                        {
+                            "day": 6,
+                            "open": 480,
+                            "close": 720
+                        }
+                    ]
+                }
+            ],
+            "reviews": [
+                {
+                    "quote": "My four-year-old asked when she gets to go back to the treehouse. She rode the chair up and down twice and counted her own teeth.",
+                    "name": "Priya S.",
+                    "detail": "Mom of Anika, 4"
+                },
+                {
+                    "quote": "Our son had a filling with laughing gas and came out giggling about Finch. Dr. Bennett explained every step to him first, not just to me.",
+                    "name": "Tomás R.",
+                    "detail": "Dad of Mateo, 7"
+                },
+                {
+                    "quote": "They took Medicaid without a single weird look, and the front desk sorted the paperwork while my twins picked prizes.",
+                    "name": "Keisha W.",
+                    "detail": "Mom of twins, 6"
+                },
+                {
+                    "quote": "Our daughter used to cry in the parking lot. Mai let her hold the mirror and do the counting. Now she books her own reminders.",
+                    "name": "The Harper family",
+                    "detail": "Patients since kindergarten"
+                }
+            ],
+            "newPatient": [
+                {
+                    "title": "Book a first visit",
+                    "body": "Pick a time online or call. Most first visits take forty-five minutes, and the youngest kids sit on your lap."
+                },
+                {
+                    "title": "Read the story at home",
+                    "body": "We'll email the picture book of the first visit, so the chair and the counting are old friends by the time you arrive."
+                },
+                {
+                    "title": "The tour and the counting",
+                    "body": "Your child meets Finch, rides the chair, and counts their teeth with the hygienist before anything else happens."
+                },
+                {
+                    "title": "A plan for the grown-ups",
+                    "body": "You leave with what we saw, what to watch, and any prices in writing — plus a prize from the treehouse for the patient."
+                }
+            ]
+        },
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "first-visit",
+                    "name": "First visit",
+                    "durationMinutes": 45,
+                    "description": "The tour, the counting, a gentle clean, and a plan for the grown-ups."
+                },
+                {
+                    "typeId": "checkup",
+                    "name": "Checkup & cleaning",
+                    "durationMinutes": 40,
+                    "description": "The six-month visit, with x-rays only when they're due."
+                },
+                {
+                    "typeId": "emergency",
+                    "name": "Emergency visit",
+                    "durationMinutes": 30,
+                    "description": "A same-day look at a toothache, a chip, or a fall."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "dr-alvarez",
+                    "name": "Dr. Lucía Alvarez",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 450,
+                            "end": 720
+                        },
+                        {
+                            "day": 3,
+                            "start": 720,
+                            "end": 1020
+                        },
+                        {
+                            "day": 6,
+                            "start": 480,
+                            "end": 720
+                        }
+                    ]
+                },
+                {
+                    "providerId": "dr-bennett",
+                    "name": "Dr. Marcus Bennett",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 450,
+                            "end": 720
+                        },
+                        {
+                            "day": 4,
+                            "start": 780,
+                            "end": 1080
+                        },
+                        {
+                            "day": 5,
+                            "start": 450,
+                            "end": 720
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The picturebook register in its own leaf green: mode light opens the site in its native appearance (the paper ground); dark is the treehouse after story time. Marketing pages resolve brand over preset accent, so the overlay re-inks pages and app surfaces together. navigation re-pins the shared careShell chrome to the centered masthead — the storybook title plate — apart from bright-side's pill cluster and atwater's split letterhead.",
+        "mode": "light",
+        "brand": {
+            "primary": "#4f7a3a",
+            "primaryDark": "#63904a"
+        },
+        "navigation": {
+            "variant": "centered"
+        }
+    },
+    "landing": {
+        "$comment": "A pinned layout (packs/README.md 'Derived templates'): style re-registers the base's pages in the picturebook register, and pages carries exactly the skeletons careLanding.ts emits from this remix's contentSeed — the full-bleed hero because home.layout asks for it, the journey pages and the fact strip (promises) because home fills them, and the content-gated sections (menu, spotlight, faq) because the seed writes them — so the composed template's document reproduces its code config section for section (tests/View/Care/careLanding.test.ts reads this through composedLandingSeed).",
+        "style": {
+            "preset": "picturebook"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "journey",
+                        "type": "steps",
+                        "variant": "horizontal-rail"
+                    },
+                    {
+                        "id": "promises",
+                        "type": "feature-grid",
+                        "variant": "icon-list"
+                    },
+                    {
+                        "id": "menu",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "spotlight",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "providers",
+                        "type": "team",
+                        "variant": "portraits"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "providers": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "providers",
+                        "type": "team",
+                        "variant": "portraits"
+                    },
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "card-grid",
+                        "variant": "4up"
+                    },
+                    {
+                        "id": "menu",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "new-patients": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "first-visit",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "how",
+                        "type": "steps",
+                        "variant": "numbered-cards"
+                    },
+                    {
+                        "id": "privacy",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    }
+                ]
+            }
+        }
+    }
+}

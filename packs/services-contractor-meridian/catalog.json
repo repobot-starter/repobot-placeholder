@@ -1,0 +1,197 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services pack composed with a luxury coastal residential builder content seed (Meridian Coastal, Malibu), a graphite brand, and the horizon register. Everything else — builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-contractor-meridian",
+    "remixOf": "services",
+    "templateKey": "repobot-services-contractor-meridian",
+    "title": "Luxury coastal residential builder",
+    "description": "A coastal builder's site as a quiet masthead: the name set wide over a ruled line of places and the bluff-top residence as a panorama, the residences as a rail of frames, three numbers between rules, one design story beside its photograph, and a private inquiry form — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Malibu luxury residential builder",
+    "contentSeed": "web/app/src/View/Services/meridianRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twin) — the composed template's booking widget and Manage calendar open on this team's own week, not the base demo business's.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "introduction",
+                    "name": "Introductory call",
+                    "durationMinutes": 30,
+                    "description": "The site, the architect, and the timeline — a first conversation with a principal."
+                },
+                {
+                    "typeId": "site-walk",
+                    "name": "Site walk",
+                    "durationMinutes": 90,
+                    "description": "A principal walks the land with you: geology, setbacks, views, and access."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "james-okafor",
+                    "name": "James Okafor",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 540,
+                            "end": 960
+                        },
+                        {
+                            "day": 3,
+                            "start": 540,
+                            "end": 960
+                        }
+                    ]
+                },
+                {
+                    "providerId": "claire-lindgren",
+                    "name": "Claire Lindgren",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 540,
+                            "end": 960
+                        },
+                        {
+                            "day": 4,
+                            "start": 540,
+                            "end": 960
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "Graphite as the brand: on the horizon register the accent is the ink of the links, rules, and the one quiet ask, so a rebrand re-inks the masthead without re-shooting the residences. Marketing pages resolve brand over preset accent, so the overlay re-skins the pages and the app surfaces together. navigation re-pins the shared servicesShell chrome to the burger overlay (a declared theme variant outranks the shell prop): the name alone at the top. mode light opens on the white stock (theme merges shallowly).",
+        "brand": {
+            "primary": "#2b2a27",
+            "primaryDark": "#dcd7cd"
+        },
+        "mode": "light",
+        "navigation": {
+            "variant": "burger-overlay"
+        }
+    },
+    "landing": {
+        "$comment": "The pin: the horizon register and the masthead home — the name set wide over the ruled coast line and the bluff as a panorama (masthead-overlay; the register lifts the name off the photograph), the residences as a rail of frames (the seed's lookbook as media-rail), the three numbers (the seed's home.proofMetrics), the design story beside the pool (the seed's feature as content-split media-left), and the closing ask. The seed hides the home services grid (home.serviceGrid). The residences page opens on the residences grid over the site-to-residence comparisons; the other pages keep the base's skeletons, with the numbers on home rather than about. resolveCatalog puts these in place of the base's pages.",
+        "style": {
+            "preset": "horizon"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "masthead-overlay"
+                    },
+                    {
+                        "id": "lookbook",
+                        "type": "showcase",
+                        "variant": "media-rail"
+                    },
+                    {
+                        "id": "proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "feature",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "projects": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "lookbook",
+                        "type": "showcase",
+                        "variant": "filterable-grid"
+                    },
+                    {
+                        "id": "transformations",
+                        "type": "gallery",
+                        "variant": "before-after"
+                    },
+                    {
+                        "id": "process",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "showcase",
+                        "variant": "card-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "quote": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "quote-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

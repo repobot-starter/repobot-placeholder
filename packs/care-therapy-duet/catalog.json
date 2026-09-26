@@ -1,0 +1,403 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the care pack composed with a marriage & family therapy content seed, re-registered in the groove register (a 1970s soul-duet LP sleeve) with its own pinned page skeletons. Everything else — pages' builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "care-therapy-duet",
+    "remixOf": "care",
+    "templateKey": "repobot-care-therapy-duet",
+    "title": "Couples & Family Therapy",
+    "description": "A marriage and family therapy practice's site with real online booking: Duet Family Therapy on Sunset Boulevard in Silver Lake, art-directed as a 1970s soul-duet LP sleeve — amber light burning into cocoa, film grain, a fat rounded serif. The hero is the record cover: \"Let's talk about us.\" beside a square photograph with a round record label (Silver Lake · Est. 2011), Side A's tracklist of sessions with real durations (couples intake 80 min, family session 50 min, premarital 6 sessions), sessions and fees as a Side A / Side B tracklist, ways to pay, a family-session story, three therapists with portraits (two LMFTs and a supervised associate), former-client words shared with consent, an FAQ on cost, superbills, and confidentiality, and a booking page offering a free 15-minute call, 80-minute intakes, and 50-minute sessions. The booking form is clinically empty — name, contact, session type, new/returning.",
+    "marketingExampleTitle": "Couples & family therapy site",
+    "contentSeed": "web/app/src/View/Care/therapyDuetRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so these practice and appointments seeds replace the base pack's at compose and mirror THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twins) — the composed template's Manage editors and booking widget open on the therapy practice, not the base clinic.",
+        "practice": {
+            "providers": [
+                {
+                    "providerId": "baptiste-lmft",
+                    "name": "Roz Baptiste",
+                    "credentials": "LMFT",
+                    "role": "Couples therapy · Founder",
+                    "bio": "Roz opened Duet in 2011 after a decade in community mental health. She works with couples at every stage — newly engaged, thirty years in, deciding whether to stay — and supervises the practice's associate. Clients say she's warm and does not let anyone off the hook."
+                },
+                {
+                    "providerId": "ibarra-lmft",
+                    "name": "Marco Ibarra",
+                    "credentials": "LMFT",
+                    "role": "Families & teens",
+                    "bio": "Marco sees families with teenagers, blended families, and parents co-parenting across two houses. He's bilingual in English and Spanish and has a gift for getting a sixteen-year-old to say more than one word."
+                },
+                {
+                    "providerId": "kim-amft",
+                    "name": "June Kim",
+                    "credentials": "AMFT",
+                    "role": "Associate MFT · supervised by Roz Baptiste, LMFT",
+                    "bio": "June works with premarital couples and partners navigating two cultures, two families, and one wedding. As a registered associate she practices under Roz's supervision, and she keeps a few reduced-fee hours each week."
+                }
+            ],
+            "services": [
+                {
+                    "name": "Couples therapy",
+                    "description": "For partners who keep having the same fight. We slow it down, find what's under it, and practice a different ending — in the room, then at home."
+                },
+                {
+                    "name": "Family therapy",
+                    "description": "Parents, kids, grandparents — whoever's in the house. Everyone gets a turn, nobody gets blamed, and the week gets a little easier."
+                },
+                {
+                    "name": "Premarital counseling",
+                    "description": "Six sessions before the wedding: money, families, conflict, the chores nobody mentions. Structured, practical, and oddly fun."
+                },
+                {
+                    "name": "Teens & their parents",
+                    "description": "Separate time for the teenager and for the parents, then time together. Confidential within the limits the law sets, which we explain up front."
+                },
+                {
+                    "name": "Co-parenting after separation",
+                    "description": "For parents who are done as partners but not as parents. One plan, two households, fewer handoffs in the driveway."
+                },
+                {
+                    "name": "Discernment counseling",
+                    "description": "A short, structured process for couples where one partner is leaning out. Five sessions or fewer to decide — together — what comes next."
+                }
+            ],
+            "insurance": [
+                "Private pay",
+                "Out-of-network superbills",
+                "HSA cards",
+                "FSA cards",
+                "Sliding scale, limited",
+                "Payment plans"
+            ],
+            "locations": [
+                {
+                    "locationId": "sunset",
+                    "label": "Sunset Boulevard",
+                    "address": "3208 Sunset Boulevard, Suite 2, Los Angeles, CA 90026",
+                    "phone": "(323) 555-0167",
+                    "hours": [
+                        {
+                            "day": 1,
+                            "open": 600,
+                            "close": 1200
+                        },
+                        {
+                            "day": 2,
+                            "open": 600,
+                            "close": 1200
+                        },
+                        {
+                            "day": 3,
+                            "open": 600,
+                            "close": 1200
+                        },
+                        {
+                            "day": 4,
+                            "open": 600,
+                            "close": 1200
+                        },
+                        {
+                            "day": 5,
+                            "open": 600,
+                            "close": 960
+                        },
+                        {
+                            "day": 6,
+                            "open": 540,
+                            "close": 780
+                        }
+                    ]
+                }
+            ],
+            "reviews": [
+                {
+                    "quote": "We came in barely speaking. Roz made us slow down until we could actually hear each other, then made us practice it every week. We still do the Sunday check-in she taught us.",
+                    "name": "D. & T.",
+                    "detail": "Former couples clients, shared with consent"
+                },
+                {
+                    "quote": "Marco got our fifteen-year-old to laugh in the first session. By the fifth, she was the one reminding us it was Tuesday.",
+                    "name": "The R. family",
+                    "detail": "Former family clients, shared with consent"
+                },
+                {
+                    "quote": "June asked the questions nobody at the wedding shower did — about money, about my mother, about who does the dishes. Best six sessions we spent all year.",
+                    "name": "A. & S.",
+                    "detail": "Former premarital clients, shared with consent"
+                }
+            ],
+            "newPatient": [
+                {
+                    "title": "A free 15-minute call",
+                    "body": "Tell us a little about what's going on and who'd come. We'll suggest the right therapist, or refer you elsewhere if we're not the fit."
+                },
+                {
+                    "title": "Your Good Faith Estimate",
+                    "body": "Before the first session you'll get a written estimate of what care is expected to cost, as federal law requires for self-pay clients."
+                },
+                {
+                    "title": "The first session",
+                    "body": "Couples intakes run 80 minutes, family intakes the same. We'll ask how you met, what's working, and what brought you in now."
+                },
+                {
+                    "title": "After that",
+                    "body": "Most couples meet weekly or every other week for a few months. You'll get a superbill each month if you use out-of-network benefits."
+                }
+            ]
+        },
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "free-call",
+                    "name": "Free 15-minute call",
+                    "durationMinutes": 15,
+                    "description": "A phone call to see if we're the right fit before anything else."
+                },
+                {
+                    "typeId": "intake",
+                    "name": "Couples or family intake",
+                    "durationMinutes": 80,
+                    "description": "The long first session, for everyone who's coming."
+                },
+                {
+                    "typeId": "session",
+                    "name": "Session",
+                    "durationMinutes": 50,
+                    "description": "An ongoing session with your therapist, in person or by video."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "baptiste-lmft",
+                    "name": "Roz Baptiste, LMFT",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 900,
+                            "end": 1200
+                        },
+                        {
+                            "day": 3,
+                            "start": 900,
+                            "end": 1200
+                        },
+                        {
+                            "day": 4,
+                            "start": 720,
+                            "end": 960
+                        }
+                    ]
+                },
+                {
+                    "providerId": "ibarra-lmft",
+                    "name": "Marco Ibarra, LMFT",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 900,
+                            "end": 1200
+                        },
+                        {
+                            "day": 6,
+                            "start": 540,
+                            "end": 780
+                        }
+                    ]
+                },
+                {
+                    "providerId": "kim-amft",
+                    "name": "June Kim, AMFT",
+                    "windows": [
+                        {
+                            "day": 4,
+                            "start": 960,
+                            "end": 1200
+                        },
+                        {
+                            "day": 5,
+                            "start": 660,
+                            "end": 900
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The groove register in its own burnt orange: mode dark opens the site in the register's native appearance (the sleeve's front — amber into cocoa, cream type); the Feel toggle swaps to the authored cream back cover. Marketing pages resolve brand over preset accent, so the overlay re-inks pages and app surfaces together. navigation re-pins the shared careShell chrome (a declared theme variant outranks the shell prop): care-direct wears the full-width sign band, care-psychology-studio the split letterhead, care-dental-bright the pill cluster — so the therapy practice takes the centered masthead, the sleeve's title strip.",
+        "mode": "dark",
+        "brand": {
+            "primary": "#c4541b",
+            "primaryDark": "#e8792c"
+        },
+        "navigation": {
+            "variant": "centered"
+        }
+    },
+    "landing": {
+        "$comment": "A pinned layout (packs/README.md 'Derived templates'): style re-registers the base's pages in the groove register, and pages carries exactly the skeletons careLanding.ts emits from this remix's contentSeed — the content-gated sections (menu, spotlight, faq) appear because the seed fills them — so the composed template's document reproduces its code config section for section (tests/View/Care/careLanding.test.ts reads this through composedLandingSeed).",
+        "style": {
+            "preset": "groove"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "split-media"
+                    },
+                    {
+                        "id": "services",
+                        "type": "card-grid",
+                        "variant": "3up"
+                    },
+                    {
+                        "id": "menu",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "spotlight",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "providers",
+                        "type": "team",
+                        "variant": "portraits"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "providers": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "providers",
+                        "type": "team",
+                        "variant": "portraits"
+                    },
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "card-grid",
+                        "variant": "4up"
+                    },
+                    {
+                        "id": "menu",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "new-patients": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "first-visit",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "how",
+                        "type": "steps",
+                        "variant": "numbered-cards"
+                    },
+                    {
+                        "id": "privacy",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    }
+                ]
+            }
+        }
+    }
+}

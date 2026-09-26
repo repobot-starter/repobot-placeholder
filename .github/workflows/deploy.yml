@@ -1,0 +1,51 @@
+# Deploys via GitHub Environments + Workload Identity Federation (no stored keys).
+#
+# One-time setup per environment (dev/prod):
+#   1. Create the GitHub Environment (Settings > Environments) with protection rules
+#      (require approval for prod).
+#   2. Configure GCP Workload Identity Federation for this repo and set the
+#      environment variables below (vars.GCP_WORKLOAD_IDENTITY_PROVIDER,
+#      vars.GCP_SERVICE_ACCOUNT, vars.FIREBASE_PROJECT_ID) and the environment
+#      secret DATABASE_URL (used for SQL migrations).
+#   3. Set the real project ids in .firebaserc.
+#
+# The steps mirror scripts/deploy.sh exactly — one deploy definition, two entry points.
+name: Deploy
+
+on:
+    workflow_dispatch:
+        inputs:
+            environment:
+                description: "Target environment"
+                required: true
+                type: choice
+                options: [dev, prod]
+
+permissions:
+    contents: read
+    id-token: write
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        environment: ${{ inputs.environment }}
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: npm
+            - run: npm ci
+            - name: Quality gate
+              run: bash scripts/check-all.sh
+            - name: Authenticate to GCP (OIDC)
+              uses: google-github-actions/auth@v2
+              with:
+                  workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+                  service_account: ${{ vars.GCP_SERVICE_ACCOUNT }}
+            - name: Apply SQL migrations
+              run: npm --workspace firebase/functions run migrate
+              env:
+                  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+            - name: Deploy functions + hosting
+              run: npx firebase-tools deploy --only functions,hosting --project ${{ vars.FIREBASE_PROJECT_ID }} --non-interactive

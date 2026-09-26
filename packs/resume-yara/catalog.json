@@ -1,0 +1,33 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the resume pack composed with a chef de cuisine's content seed that photographs its person — person.portrait, each role's image and each project's image switch resumeLanding.ts to the photographic résumé (a full-bleed hero, the kitchens on a photographic steps timeline, the work as showcase stories) — and the galley register: Besley over IBM Plex Sans with Plex Mono as the ticket voice, oyster white, cast-iron ink, kelp green. Same computed date math, same print-to-one-page feature (print drops the photographs and returns the hero to ink). Compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "resume-yara",
+    "remixOf": "resume",
+    "templateKey": "repobot-resume-yara",
+    "title": "Chef résumé",
+    "description": "A photographic résumé / CV one-pager for a chef: the cook at the pass full-bleed with computed years of experience, every kitchen on a timeline with its photograph and a duration computed from its dates, the numbers, suppers and classes as press-clipping stories, the stations as a ruled four-up, training and a contact block; the same page still typesets to a clean text-only printed résumé.",
+    "marketingExampleTitle": "Chef de cuisine résumé site",
+    "contentSeed": "web/app/src/View/Resume/yaraRemix.content.ts",
+    "theme": {
+        "$comment": "The kelp green rides as the brand so app-side surfaces match the galley page (marketing pages resolve brand over preset accent); dark lifts it for the after-close appearance.",
+        "brand": { "primary": "#2f5241", "primaryDark": "#8fb8a0" },
+        "navigation": { "variant": "split" }
+    },
+    "landing": {
+        "$comment": "The remix's register and its own skeleton (resolveCatalog merges this over the base pack's landing, keeping its routes): the galley preset and the photographic résumé's sections — the same ids as the base page, so the structural editor and the print stylesheet address them the same way; the types and variants are what resumeLanding.ts builds for a photographed seed.",
+        "style": { "preset": "galley" },
+        "pages": {
+            "home": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "full-bleed-media" },
+                    { "id": "summary", "type": "rich-prose", "variant": "narrow" },
+                    { "id": "experience", "type": "steps", "variant": "timeline" },
+                    { "id": "stats", "type": "stats", "variant": "row" },
+                    { "id": "skills", "type": "card-grid", "variant": "4up" },
+                    { "id": "projects", "type": "showcase", "variant": "stories" },
+                    { "id": "education", "type": "card-grid", "variant": "2up" },
+                    { "id": "links", "type": "lead-form", "variant": "contact-block" }
+                ]
+            }
+        }
+    }
+}

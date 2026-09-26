@@ -1,0 +1,199 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services-emergency pack composed with a Detroit electrician content seed, electric cyan over the schematic register, and its own pinned page skeletons. Sections, contract, and tests are the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-electric-techno",
+    "remixOf": "services-emergency",
+    "templateKey": "repobot-services-electric-techno",
+    "title": "Electrician",
+    "description": "An electrician site cut like a Detroit techno flyer crossed with a wiring diagram: a near-black full-bleed photo of the electrician at a glowing panel, the headline set wide and heavy, thin white schematic line art over it, and the trade scrolling as a cyan readout. Under it the services, a printed price sheet, a job report with before-and-after panel photos, a four-step timeline, and the call — call-first on every page, with a quote form and booking for everything that can wait.",
+    "marketingExampleTitle": "Schematic Detroit electrician",
+    "contentSeed": "web/app/src/View/ServicesEmergency/electricTechnoRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twin) — the composed template's booking widget and Manage calendar open on this trade's own provider, not the base demo business's.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "panel-assessment",
+                    "name": "Panel & wiring assessment",
+                    "durationMinutes": 60,
+                    "description": "For an old fuse box, an insurer's letter, or a panel that's out of room — we look, then send one flat price."
+                },
+                {
+                    "typeId": "ev-charger-visit",
+                    "name": "EV charger site visit",
+                    "durationMinutes": 45,
+                    "description": "We check the panel's load and the run to where the car parks, then quote the install flat."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "darnell-hayes",
+                    "name": "Darnell Hayes",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 480,
+                            "end": 960
+                        },
+                        {
+                            "day": 2,
+                            "start": 480,
+                            "end": 960
+                        },
+                        {
+                            "day": 3,
+                            "start": 480,
+                            "end": 960
+                        },
+                        {
+                            "day": 4,
+                            "start": 480,
+                            "end": 960
+                        },
+                        {
+                            "day": 5,
+                            "start": 480,
+                            "end": 960
+                        },
+                        {
+                            "day": 6,
+                            "start": 540,
+                            "end": 780
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "Electric cyan over the schematic register's near-black ground — the wire color on the flyer, deep enough for white button letters on the daylight sheet and at full neon on the night one. mode dark opens the site on the register's native night sheet (the appearance toggle still swaps to daylight). navigation re-pins the shared servicesEmergencyShell chrome (a declared theme variant outranks the shell prop): the plumber wears the inline painted bar and the HVAC remix the centered one, so the electrician takes the full-width band — flush chrome across the schematic grid.",
+        "mode": "dark",
+        "brand": {
+            "primary": "#0e7490",
+            "primaryDark": "#22d3ee"
+        },
+        "navigation": {
+            "variant": "full-width"
+        }
+    },
+    "landing": {
+        "$comment": "Pins this remix to the schematic register and its own page skeletons, chosen from the sections the base pack's builders emit for this seed: a full-bleed photo hero (no price board — the seed leaves it empty), the trade rolling as a ticker readout, the services grid and the full price sheet, the job report, a four-step timeline, and the reviews as a grid. resolveCatalog merges a remix's landing over the base's, so the base pack keeps its own register and home stack; the base's routes are inherited.",
+        "style": {
+            "preset": "schematic"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "dispatch-proof",
+                        "type": "social-proof",
+                        "variant": "ticker"
+                    },
+                    {
+                        "id": "services",
+                        "type": "card-grid",
+                        "variant": "3up"
+                    },
+                    {
+                        "id": "price-book",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "job-report",
+                        "type": "content-split",
+                        "variant": "report"
+                    },
+                    {
+                        "id": "when-you-call",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "service-area",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "call-banner",
+                        "type": "cta-banner",
+                        "variant": "full-bleed"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "price-book",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "services",
+                        "type": "showcase",
+                        "variant": "card-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq"
+                    },
+                    {
+                        "id": "call-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "call-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "request": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "request-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

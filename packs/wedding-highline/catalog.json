@@ -1,0 +1,228 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the wedding pack composed with an adventure elopement studio's content seed (Highline, Telluride), re-registered in the alpine register (the expedition field sheet) with its own pinned page skeletons — the seed's `home.layout: \"stack\"` makes the base builders emit the captioned full-bleed stack of places and the spec sheet of seasons, permits and coordinates, and `home.albumWall: \"stack\"` tells every elopement as a captioned stack. Everything else — pages' builders, sections, contract, tests, booking and proofing — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "wedding-highline",
+    "remixOf": "wedding",
+    "templateKey": "repobot-wedding-highline",
+    "title": "Highline — Adventure Elopements",
+    "description": "An adventure elopement studio's site in the alpine register (glacier white and granite with one magenta accent, a wide heavy grotesque over a plain sans with monospace legends): the studio's name in wide capitals over one full-bleed frame from an alpine ridge, then the places edge to edge down the page, each slated in mono with its season and coordinates (Slot canyon · Southern Utah · March–May · 37.62°N 111.88°W), the guides, four places compared as a spec sheet (season, permit, elevation, the walk in), a filmstrip of recent elopements, three packages as ruled columns, one voice, and a closing line — We handle permits, sunrise timing and the hike — over a foggy coast. Every elopement page is a captioned stack with a lightbox; real online booking (a planning call, a gear check, a scouting hike on the guides' weekday calendar), private code-gated client proofing on the platform proofing service with a sample room, an FAQ, and an inquiry form — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Adventure elopement photographer site",
+    "contentSeed": "web/app/src/View/Wedding/highlineRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module codeAppointments entry for entry (the booking tests pin the twin through composedContentSeed) — the composed template's Manage session calendar and booking widget open on Fiorella's calls and venue walks. One provider: a one-photographer studio.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "planning-call",
+                    "name": "Planning call",
+                    "durationMinutes": 45,
+                    "description": "Forty-five minutes on video: the kind of place you're dreaming about, who's coming, how far you'd like to walk — and three locations we'd suggest."
+                },
+                {
+                    "typeId": "gear-check",
+                    "name": "Gear check",
+                    "durationMinutes": 30,
+                    "description": "Half an hour a month out to go through layers, boots, the dress and the dry bag — so nobody is cold, blistered or soaked on the day."
+                },
+                {
+                    "typeId": "scouting-hike",
+                    "name": "Scouting hike",
+                    "durationMinutes": 180,
+                    "description": "Three hours on the trail with a guide if you're in Telluride before the day — walk the route, stand where you'll say it and see the light."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "tali-mensah",
+                    "name": "Tali Mensah",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 540,
+                            "end": 900
+                        },
+                        {
+                            "day": 2,
+                            "start": 540,
+                            "end": 900
+                        },
+                        {
+                            "day": 3,
+                            "start": 720,
+                            "end": 1080
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The alpine register's brand overlay: mode light opens the site in its native glacier-white daylight appearance (the appearance toggle still swaps to the night-on-the-ridge dark reading), and the register's magenta rides as the project brand so app-side surfaces (the code-gated proofing room's chrome and controls) wear the same register as the marketing pages instead of the kernel default blue. Values match the alpine preset's own light/dark accents — the marketing pages resolve brand over preset accent, so keeping them identical means the overlay re-brands the app without shifting the pages.",
+        "mode": "light",
+        "brand": {
+            "primary": "#b01f68",
+            "primaryDark": "#d23f87"
+        }
+    },
+    "landing": {
+        "$comment": "A pinned layout (packs/README.md 'Derived templates'): style re-registers the base's pages in the alpine register (the expedition field sheet: glacier white and granite, Anybody Wide over Albert Sans with DM Mono legends, a split masthead, survey-slate stacks, places as ruled spec cards, packages as granite-ruled columns, square corners), and pages carries exactly the skeletons weddingLanding.ts emits from this remix's contentSeed — the stack home (a full-bleed hero, the captioned stack of places, the guides, the spec sheet of places, the filmstrip, the packages, one voice, the closing photograph band) — so the composed template's document reproduces its code config section for section (tests/View/Wedding/weddingLanding.test.ts reads this through composedLandingSeed).",
+        "style": {
+            "preset": "alpine"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "stack",
+                        "type": "gallery",
+                        "variant": "sequence"
+                    },
+                    {
+                        "id": "intro",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "the-places",
+                        "type": "comparison",
+                        "variant": "cards"
+                    },
+                    {
+                        "id": "selected-work",
+                        "type": "gallery",
+                        "variant": "filmstrip"
+                    },
+                    {
+                        "id": "packages",
+                        "type": "pricing",
+                        "variant": "tiers"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "inquire-banner",
+                        "type": "cta-banner",
+                        "variant": "full-bleed"
+                    }
+                ]
+            },
+            "weddings": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "weddings",
+                        "type": "showcase",
+                        "variant": "collections"
+                    }
+                ]
+            },
+            "galleries": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "how-proofing",
+                        "type": "steps",
+                        "variant": "numbered-cards"
+                    },
+                    {
+                        "id": "sample-gallery",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "inquire-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "packages": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "packages",
+                        "type": "pricing",
+                        "variant": "tiers"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "inquire-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "inquire-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "session-notes",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "inquire-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "inquire": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "inquiry-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

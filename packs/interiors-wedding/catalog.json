@@ -1,0 +1,258 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the interiors pack composed with a wedding-planning-studio content seed and a deep rose brand over the atelier register. Everything else — pages, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs). Deliberately the PLANNER'S business site, not a couple's wedding site (that's the wedding pack): the portfolio is a body of produced weddings on the projects domain, the services are planning tiers with honest starting prices, and the inquiry form is a lead pipe, not an RSVP.",
+    "key": "interiors-wedding",
+    "remixOf": "interiors",
+    "templateKey": "repobot-interiors-wedding",
+    "title": "Wedding planner",
+    "description": "A wedding planning studio's site on the projects-domain shape: a filterable portfolio of real weddings whose category chips derive from the entries themselves (Estate, Coastal, Garden, City, Destination), three planning tiers with honest starting prices — full planning, partial planning, and wedding management — the planner's story and one-wedding-per-weekend credentials, plain-language FAQs on cost and booking lead times, real online booking for free consultations and 90-minute planning sessions, and a date-and-budget inquiry form that delivers through the managed lead pipeline — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Wedding planning studio",
+    "contentSeed": "web/app/src/View/Interiors/weddingRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so these projects and appointments seeds replace the base pack's at compose and mirror THIS remix's contentSeed module entry for entry MINUS the photographs (the contract moves words and categories, never bytes; the pack joins its code-owned images back by slug — inventory.ts). The remix-seed tests pin both twins, so the composed template's Manage editors and booking widget open on the studio's real body of work.",
+        "projects": {
+            "entries": [
+                {
+                    "slug": "amara-james-oakleigh",
+                    "title": "Amara & James at Oakleigh Point",
+                    "category": "Estate",
+                    "location": "Wadmalaw Island",
+                    "year": 2026,
+                    "scope": "Full planning & design — 140 guests",
+                    "description": "A sailcloth tent on the river lawn, a live band that never let the floor empty, and eleven vendors run off one master timeline. Fourteen months of planning; the couple's only job on the day was to be in it.",
+                    "featured": true
+                },
+                {
+                    "slug": "quinn-soomin-bluffs",
+                    "title": "Quinn & Soo-Min on the Bluffs",
+                    "category": "Coastal",
+                    "location": "Kiawah River bluffs",
+                    "year": 2025,
+                    "scope": "Full planning & design — 80 guests",
+                    "description": "A ceremony at the bluff edge with the tide on cue, pampas and garden roses against all that blue, and a contingency plan for wind we never had to open. The forecast held; the plan meant it didn't have to.",
+                    "featured": true
+                },
+                {
+                    "slug": "dana-marcus-ropeworks",
+                    "title": "Dana & Marcus at the Rope Works",
+                    "category": "City",
+                    "location": "Downtown Charleston",
+                    "year": 2025,
+                    "scope": "Partial planning — 110 guests",
+                    "description": "The couple had the venue and the band; we brought the rest. Long walnut tables under the old trusses, black candlesticks and white garden roses, and a load-in schedule that got a bare warehouse dinner-ready in six hours.",
+                    "featured": true
+                },
+                {
+                    "slug": "elena-priya-walled-garden",
+                    "title": "Elena & Priya in the Walled Garden",
+                    "category": "Garden",
+                    "location": "Summerville",
+                    "year": 2024,
+                    "scope": "Full planning & design — 95 guests",
+                    "description": "A spring ceremony inside old brick walls: a petal-lined aisle, a circular floral installation instead of an arch, and a rain date we planned as carefully as the real one. The roses on the walls did half the decorating."
+                },
+                {
+                    "slug": "caroline-whit-ballroom",
+                    "title": "Caroline & Whit at the Alcott Ballroom",
+                    "category": "Estate",
+                    "location": "South of Broad",
+                    "year": 2024,
+                    "scope": "Wedding management — 180 guests",
+                    "description": "Eighteen months of the couple's own planning, handed to us six weeks out and produced without a dropped cue: chandeliers, a champagne palette, a 22-minute room flip between ceremony and dinner that guests never saw."
+                },
+                {
+                    "slug": "lena-tom-umbria",
+                    "title": "Lena & Tom above the Umbrian Hills",
+                    "category": "Destination",
+                    "location": "Umbria, Italy",
+                    "year": 2026,
+                    "scope": "Destination planning — 8 guests",
+                    "description": "An elopement dinner for eight on a villa terrace at sunset, planned across an ocean and two languages: local florist, local kitchen, one table, no compromises. Small is not the same as simple — it's why they hired a planner."
+                }
+            ]
+        },
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "consultation",
+                    "name": "Consultation",
+                    "durationMinutes": 30,
+                    "description": "A free call about your date, venue thoughts, and budget — and whether we're the right studio."
+                },
+                {
+                    "typeId": "planning-session",
+                    "name": "Planning session",
+                    "durationMinutes": 90,
+                    "description": "A 90-minute working session at the studio or your venue: decisions made, notes the next morning."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "nora-bennett",
+                    "name": "Nora Bennett",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 600,
+                            "end": 960
+                        },
+                        {
+                            "day": 3,
+                            "start": 600,
+                            "end": 960
+                        },
+                        {
+                            "day": 4,
+                            "start": 720,
+                            "end": 1080
+                        },
+                        {
+                            "day": 5,
+                            "start": 540,
+                            "end": 780
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "Deep rose over the atelier register's gallery white — the interiors family's quiet portfolio voice re-inked from the base studio's warm bronze and the architecture remix's graphite into a celebratory rose that still reads studio, not stationery. mode light opens the site in its native daylight appearance; marketing pages resolve brand over preset accent, so the overlay re-inks pages and app surfaces together. navigation re-pins the shared interiorsShell chrome (a declared theme variant outranks the shell prop): the base studio wears the centered gallery masthead and the architecture remix the contained inline card, so the planning studio takes the split letterhead — the ruled, stationery read a wedding studio's correspondence has — per the nav-variety audit.",
+        "mode": "light",
+        "brand": {
+            "primary": "#8e4157",
+            "primaryDark": "#e7abbe"
+        },
+        "navigation": {
+            "variant": "split"
+        }
+    },
+    "landing": {
+        "$comment": "The pin: this template keeps the interiors family's gallery layout on the atelier register while the base pack wears the midcentury catalog home. style re-declares the register; pages are the base's gallery skeletons (masthead-overlay hero, featured-work media rail, services collections, metrics strip, one featured voice, closing banner — and the same portfolio, offerings, about, and contact pages), which resolveCatalog puts in place of the base's pages. The seed sets home.layout \"gallery\" and leaves the catalog-only lists (case files, pieces, fees) empty, so those sections are never built.",
+        "style": {
+            "preset": "atelier"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "masthead-overlay"
+                    },
+                    {
+                        "id": "featured-work",
+                        "type": "showcase",
+                        "variant": "media-rail"
+                    },
+                    {
+                        "id": "services",
+                        "type": "showcase",
+                        "variant": "collections"
+                    },
+                    {
+                        "id": "proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "portfolio": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "portfolio",
+                        "type": "showcase",
+                        "variant": "filterable-grid"
+                    },
+                    {
+                        "id": "track-record",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "offerings": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "offerings",
+                        "type": "highlights",
+                        "variant": "alternating"
+                    },
+                    {
+                        "id": "process",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "contact": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "contact-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

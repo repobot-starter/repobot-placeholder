@@ -1,0 +1,131 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the reunion pack composed with the Calloways' desert-ranch weekend as its content seed, re-registered in the rodeo register with its own pinned page skeletons. Everything else — the pages' builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "reunion-rodeo",
+    "remixOf": "reunion",
+    "templateKey": "repobot-reunion-rodeo",
+    "title": "Western ranch family reunion",
+    "description": "A family reunion's home base on a vintage rodeo-poster register: the family on horseback with a live countdown, the weekend as a strip of stops, the full schedule, lodging by family branch, getting there, a pack list, the branches by head count, a photo wall relatives keep revisiting, and one RSVP (party size, branch, ride and golf-or-hike sign-ups) that delivers replies straight to the organizers. Flexes to class reunions, milestone-birthday weekends, and the annual cousins' trip.",
+    "marketingExampleTitle": "Western ranch family reunion",
+    "contentSeed": "web/app/src/View/Reunion/rodeoRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed, merged over repobot.content.json at compose (the same overlay path as landing/theme — scripts/lib/pack-switch.mjs applyPackOverlays). The guestlist domain is the reunion's PRIVATE roster — who's invited, how many seats, the note that matters at the door — and deliberately seeds EMPTY: the roster is the owner's from day one, never demo data. No pack page renders it; it exists so the platform's Manage panel keeps the roster next to the RSVP inbox it pairs with (the catalog's reunion-rsvp form).",
+        "guestlist": {
+            "entries": []
+        }
+    },
+    "theme": {
+        "$comment": "The rodeo register's brand overlay: the preset's saddle-leather orange (a brighter ember in dark) as the project brand, so app-side surfaces wear the same ranch-poster register as the site's pages instead of the kernel default blue. Values match the rodeo preset's own light/dark accents — the marketing pages resolve brand over preset accent, so keeping them identical means the overlay re-brands the app without shifting the pages. The nav hangs the inline ranch sign (the brand mark and the two-line name at the left, the links and the RSVP along the rail) — a declared theme navigation.variant outranks the base shell's pill links.",
+        "brand": {
+            "primary": "#c2531c",
+            "primaryDark": "#ea7a3c"
+        },
+        "navigation": {
+            "variant": "inline"
+        }
+    },
+    "landing": {
+        "$comment": "A pinned layout (packs/README.md 'Derived templates'): style re-registers the base's pages in the rodeo register (the vintage rodeo-poster: saddle-cream paper, Rye wood-type caps over a Bitter slab, saddle-leather orange with turquoise and sage, a lariat rope frame, stitched-leather asks, star-flanked kickers), and pages carries exactly the skeletons reunionLanding.ts emits from this remix's contentSeed — the seed's home.layout is poster, so the hero is the split rodeo bill, the activities run as a strip of day-stamped stops ahead of the note, the banners are admission tickets, and the schedule, lodging, branches, getting-there, and pack-list sections appear because the seed fills them (tests/View/Reunion/reunionLanding.test.ts reads this through composedLandingSeed).",
+        "style": {
+            "preset": "rodeo"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "split-media"
+                    },
+                    {
+                        "id": "weekend",
+                        "type": "steps",
+                        "variant": "horizontal-rail"
+                    },
+                    {
+                        "id": "welcome",
+                        "type": "rich-prose",
+                        "variant": "narrow"
+                    },
+                    {
+                        "id": "schedule",
+                        "type": "schedule",
+                        "variant": "day-rows"
+                    },
+                    {
+                        "id": "lodging",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "branches",
+                        "type": "stats",
+                        "variant": "cards"
+                    },
+                    {
+                        "id": "getting-there",
+                        "type": "card-grid",
+                        "variant": "3up"
+                    },
+                    {
+                        "id": "pack",
+                        "type": "feature-grid",
+                        "variant": "checklist"
+                    },
+                    {
+                        "id": "memories",
+                        "type": "gallery",
+                        "variant": "scrapbook"
+                    },
+                    {
+                        "id": "rsvp-banner",
+                        "type": "cta-banner",
+                        "variant": "ticket"
+                    }
+                ]
+            },
+            "memories": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "wall",
+                        "type": "gallery",
+                        "variant": "scrapbook"
+                    },
+                    {
+                        "id": "share",
+                        "type": "rich-prose",
+                        "variant": "narrow"
+                    },
+                    {
+                        "id": "rsvp-banner",
+                        "type": "cta-banner",
+                        "variant": "ticket"
+                    }
+                ]
+            },
+            "rsvp": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "rsvp-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,216 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services pack composed with a native-plant landscaper content seed (Wild Ground, Austin), a fluorescent-orange brand, and the riso register. Everything else — builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-landscape-native",
+    "remixOf": "services",
+    "templateKey": "repobot-services-landscape-native",
+    "title": "Native plant landscaping",
+    "description": "A native-plant landscaper's site printed like a two-color risograph poster: a title-card hero with a rubber-stamp caption, a plant index of specimen plates, a year-in-a-meadow photo rail, honest starting prices, a draggable lawn-to-meadow before/after, yard-walk booking, and a quote form — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Native plant landscape studio",
+    "contentSeed": "web/app/src/View/Services/landscapeNativeRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twin) — the composed template's booking widget and Manage calendar open on this trade's own provider, not the base demo business's.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "yard-walk",
+                    "name": "Yard walk",
+                    "durationMinutes": 60,
+                    "description": "An hour in your yard, free — sun, soil, drainage, deer traffic, and what you'd like to see from the kitchen window."
+                },
+                {
+                    "typeId": "plant-list-review",
+                    "name": "Plant list review",
+                    "durationMinutes": 45,
+                    "description": "At the studio or on a video call: the plant list, the water estimate, and the quote, line by line."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "rosa-villarreal",
+                    "name": "Rosa Villarreal",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 480,
+                            "end": 930
+                        },
+                        {
+                            "day": 2,
+                            "start": 480,
+                            "end": 930
+                        },
+                        {
+                            "day": 3,
+                            "start": 480,
+                            "end": 930
+                        },
+                        {
+                            "day": 4,
+                            "start": 480,
+                            "end": 930
+                        },
+                        {
+                            "day": 5,
+                            "start": 480,
+                            "end": 930
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "Fluorescent orange as the brand: on the riso register the accent IS the second drum — the warm plate every photograph is separated into, the brush stroke under the titles, the asks — so a rebrand re-inks the whole print run. Marketing pages resolve brand over preset accent, so the overlay re-skins the pages and the app surfaces together. navigation re-pins the shared servicesShell chrome (a declared theme variant outranks the shell prop): the full-width band runs across the sheet like a poster's top line, apart from the painting remix's centered deck spine — the nav-variety audit spreads the services family across the vocabulary. mode light opens on the paper (the base contractor opens dark, and theme merges shallowly).",
+        "brand": {
+            "primary": "#ea5a1c",
+            "primaryDark": "#ff7a3d"
+        },
+        "mode": "light",
+        "navigation": {
+            "variant": "full-width"
+        }
+    },
+    "landing": {
+        "$comment": "The pin: the riso register and the base's title-card home re-ordered for a plant studio — the poster hero, then the plant index (the materials board, read as specimens), the in-the-ground ticker, a year in one meadow on the photo rail, services with starting prices, the lawn-to-meadow before/after (the proof stays in full color), the neighbors, the neighborhoods, and the closing banner. The other pages keep the base's skeletons; resolveCatalog puts these in place of the base's pages.",
+        "style": {
+            "preset": "riso"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "species",
+                        "type": "showcase",
+                        "variant": "specimens"
+                    },
+                    {
+                        "id": "now-building",
+                        "type": "social-proof",
+                        "variant": "ticker"
+                    },
+                    {
+                        "id": "build-log",
+                        "type": "steps",
+                        "variant": "horizontal-rail"
+                    },
+                    {
+                        "id": "services",
+                        "type": "card-grid",
+                        "variant": "4up"
+                    },
+                    {
+                        "id": "transformations",
+                        "type": "gallery",
+                        "variant": "before-after"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "service-area",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "projects": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "transformations",
+                        "type": "gallery",
+                        "variant": "before-after"
+                    },
+                    {
+                        "id": "process",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "showcase",
+                        "variant": "card-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "quote": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "quote-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

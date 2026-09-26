@@ -1,0 +1,53 @@
+{
+    "general": {
+        "meta": {
+            "tags": "Tagged \"{{ tags }}\"",
+            "page": "Page {{ page }}"
+        }
+    },
+    "sections": {
+        "header": {
+            "cart": "Cart",
+            "nav_shop": "Shop",
+            "nav_new": "New arrivals",
+            "nav_about": "About"
+        },
+        "footer": {
+            "powered_by": "Powered by a Repobot starter theme."
+        },
+        "featured_collection": {
+            "shop_cta": "Shop",
+            "demo_badge_bestseller": "Best seller",
+            "demo_badge_new": "New",
+            "demo_backpack_title": "Everyday Backpack",
+            "demo_backpack_notes": "Charcoal · 20L · water-resistant",
+            "demo_sling_title": "Commuter Sling",
+            "demo_sling_notes": "One strap · daily essentials · 6L",
+            "demo_duffel_title": "Weekend Duffel",
+            "demo_duffel_notes": "Carry-on ready · 40L"
+        },
+        "collection": {
+            "empty": "No products in this collection yet."
+        },
+        "cart": {
+            "title": "Your cart",
+            "quantity": "Quantity",
+            "total": "Total",
+            "update": "Update",
+            "checkout": "Check out",
+            "empty": "Your cart is empty.",
+            "continue_shopping": "Continue shopping"
+        },
+        "not_found": {
+            "title": "Page not found",
+            "body": "The page you were looking for doesn't exist.",
+            "back_home": "Back to home"
+        }
+    },
+    "products": {
+        "product": {
+            "add_to_cart": "Add to cart",
+            "sold_out": "Sold out"
+        }
+    }
+}

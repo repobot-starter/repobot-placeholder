@@ -1,0 +1,408 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the care pack composed with an orthodontic studio content seed, re-registered in the terrazzo register (white terrazzo, terracotta and lake blue, a quiet geometric sans) with its own pinned page skeletons. Everything else — pages' builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "care-dental-atwater",
+    "remixOf": "care",
+    "templateKey": "repobot-care-dental-atwater",
+    "title": "Orthodontic Studio",
+    "description": "An orthodontist's site with real online booking: Atwater Orthodontics, a two-orthodontist studio fourteen floors over Oak Street on Chicago's Gold Coast, art-directed as a daylight lakeside studio — white terrazzo flecked terracotta and lake blue, pale oak, a quiet geometric sans (real web fonts). The hero: a full-bleed photograph of a mother and daughter laughing at the front desk over Lake Michigan, \"Straight talk. Straighter smiles.\" Then the proof: three smiles as draggable before/after pairs (Month 0 against the finished month — the same face, the same framing), the path from a free consult to retainers as a rail of pictograms, treatment prices printed plainly (aligners from $4,900, 0% monthly plans), in-network PPO benefits named as text (never logos), the 3D-scan first visit, two orthodontists and a treatment coordinator with portraits, reviews, an FAQ for parents, and a booking page offering free consults (45 min), check-ins (20), and retainer fittings (30). The booking form is clinically empty — name, contact, visit type, new/returning.",
+    "marketingExampleTitle": "Orthodontist site",
+    "contentSeed": "web/app/src/View/Care/dentalAtwaterRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so these practice and appointments seeds replace the base pack's at compose and mirror THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twins) — the composed template's Manage editors and booking widget open on the orthodontic studio, not the base clinic.",
+        "practice": {
+            "providers": [
+                {
+                    "providerId": "dr-rao",
+                    "name": "Dr. Meera Rao",
+                    "credentials": "DDS, MS",
+                    "role": "Orthodontist · Founder",
+                    "bio": "Meera trained in orthodontics at a university clinic and opened Atwater on Oak Street in 2018 with one rule: every patient sees their plan and their price before anything goes on their teeth. She treats kids from age seven and adults who waited decades to ask."
+                },
+                {
+                    "providerId": "dr-okoro",
+                    "name": "Dr. Tobi Okoro",
+                    "credentials": "DMD, MS",
+                    "role": "Orthodontist · Clear aligners",
+                    "bio": "Tobi runs the studio's clear aligner cases and the 3D scanner, and he will happily show you your finished smile on screen before you commit to anything. He sees most of the adult patients and a lot of teenagers who refuse to wear metal."
+                },
+                {
+                    "providerId": "kim-coordinator",
+                    "name": "Hana Kim",
+                    "credentials": "",
+                    "role": "Treatment coordinator",
+                    "bio": "Hana is the one who walks you through the plan, the price, and the insurance, and she answers every text. Parents know her as the person who makes the schedule work around school and practice."
+                }
+            ],
+            "services": [
+                {
+                    "name": "Clear aligners",
+                    "description": "Nearly invisible trays, a 3D preview of your finished smile before you start, and a check-in every eight weeks. For teens and adults."
+                },
+                {
+                    "name": "Braces",
+                    "description": "Small ceramic or metal brackets, colors optional. Usually 14 to 22 months, with visits that fit before school."
+                },
+                {
+                    "name": "Early treatment",
+                    "description": "A first look at age seven, and a short phase of treatment only when it heads off a bigger problem later."
+                },
+                {
+                    "name": "Adult orthodontics",
+                    "description": "It's never too late. Discreet options, evening appointments, and plans that work with crowns and implants."
+                },
+                {
+                    "name": "Retainers for life",
+                    "description": "Your first set is included. Replacements are printed in-house from your scan, often the same week."
+                },
+                {
+                    "name": "Second opinions",
+                    "description": "Already in treatment elsewhere, or told you need surgery? Bring your records and we'll give you a straight answer."
+                }
+            ],
+            "insurance": [
+                "Delta Dental PPO",
+                "MetLife Dental",
+                "Cigna Dental PPO",
+                "Guardian Dental",
+                "Aetna Dental PPO",
+                "United Concordia",
+                "FSA & HSA cards"
+            ],
+            "locations": [
+                {
+                    "locationId": "oak-street",
+                    "label": "Oak Street, 14th floor",
+                    "address": "71 East Oak Street, Suite 1400, Chicago, IL 60611",
+                    "phone": "(312) 555-0148",
+                    "hours": [
+                        {
+                            "day": 1,
+                            "open": 450,
+                            "close": 1020
+                        },
+                        {
+                            "day": 2,
+                            "open": 450,
+                            "close": 1020
+                        },
+                        {
+                            "day": 3,
+                            "open": 600,
+                            "close": 1140
+                        },
+                        {
+                            "day": 4,
+                            "open": 450,
+                            "close": 1020
+                        },
+                        {
+                            "day": 5,
+                            "open": 450,
+                            "close": 840
+                        },
+                        {
+                            "day": 6,
+                            "open": 480,
+                            "close": 780
+                        }
+                    ]
+                }
+            ],
+            "reviews": [
+                {
+                    "quote": "I put off aligners for fifteen years. Dr. Okoro showed me the end result on the first visit, the price was on one page, and fourteen months later it looks exactly like the screen.",
+                    "name": "Elena V.",
+                    "detail": "Clear aligner patient"
+                },
+                {
+                    "quote": "Our son had braces on at 7:30 in the morning and was at school by nine. Hana scheduled every visit around hockey without being asked.",
+                    "name": "The Brennan family",
+                    "detail": "Braces, age 13"
+                },
+                {
+                    "quote": "Two other offices said our daughter needed a big treatment. Dr. Rao said wait a year, and she was right. We trust her completely.",
+                    "name": "Aisha M.",
+                    "detail": "Early treatment parent"
+                },
+                {
+                    "quote": "Best view of the lake I've ever had in a dentist's chair. My retainer broke on a Tuesday and a new one was ready Thursday.",
+                    "name": "Jordan P.",
+                    "detail": "Patient since 2022"
+                }
+            ],
+            "newPatient": [
+                {
+                    "title": "Book a free consult",
+                    "body": "Forty-five minutes, no charge, no pressure. Bring any x-rays you already have; we take the rest in the studio."
+                },
+                {
+                    "title": "A 3D scan, no goop",
+                    "body": "A quick handheld scan replaces the old putty impressions. You'll see your teeth on screen in about two minutes."
+                },
+                {
+                    "title": "Your plan and your price",
+                    "body": "You leave with the treatment, the timeline, and the full price on one page, with your insurance share and a 0% monthly plan worked out."
+                },
+                {
+                    "title": "Starting treatment",
+                    "body": "Most patients start within two weeks. Aligners arrive at the studio; braces go on in about an hour."
+                }
+            ]
+        },
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "consult",
+                    "name": "Free consult",
+                    "durationMinutes": 45,
+                    "description": "A 3D scan, an exam, and your plan and price — no charge."
+                },
+                {
+                    "typeId": "check-in",
+                    "name": "Treatment check-in",
+                    "durationMinutes": 20,
+                    "description": "Your regular adjustment or aligner check, every eight weeks."
+                },
+                {
+                    "typeId": "retainer",
+                    "name": "Retainer fitting",
+                    "durationMinutes": 30,
+                    "description": "A new or replacement retainer from your scan."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "dr-rao",
+                    "name": "Dr. Meera Rao",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 450,
+                            "end": 720
+                        },
+                        {
+                            "day": 3,
+                            "start": 780,
+                            "end": 1140
+                        },
+                        {
+                            "day": 6,
+                            "start": 480,
+                            "end": 780
+                        }
+                    ]
+                },
+                {
+                    "providerId": "dr-okoro",
+                    "name": "Dr. Tobi Okoro",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 450,
+                            "end": 720
+                        },
+                        {
+                            "day": 4,
+                            "start": 720,
+                            "end": 1020
+                        },
+                        {
+                            "day": 5,
+                            "start": 450,
+                            "end": 720
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The terrazzo register in its own terracotta: mode light opens the site in its native appearance (the terrazzo ground); dark is the studio after hours over the night lake. Marketing pages resolve brand over preset accent, so the overlay re-inks pages and app surfaces together. navigation re-pins the shared careShell chrome to the split letterhead — wordmark left, links spaced right — apart from bright-side's pill cluster and care-direct's sign band.",
+        "mode": "light",
+        "brand": {
+            "primary": "#c4633f",
+            "primaryDark": "#d06b46"
+        },
+        "navigation": {
+            "variant": "split"
+        }
+    },
+    "landing": {
+        "$comment": "A pinned layout (packs/README.md 'Derived templates'): style re-registers the base's pages in the terrazzo register, and pages carries exactly the skeletons careLanding.ts emits from this remix's contentSeed — the full-bleed hero because home.layout asks for it, the progress pairs and journey rail because home fills them, and the content-gated sections (menu, spotlight, faq) because the seed writes them — so the composed template's document reproduces its code config section for section (tests/View/Care/careLanding.test.ts reads this through composedLandingSeed).",
+        "style": {
+            "preset": "terrazzo"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "progress",
+                        "type": "gallery",
+                        "variant": "before-after"
+                    },
+                    {
+                        "id": "journey",
+                        "type": "steps",
+                        "variant": "horizontal-rail"
+                    },
+                    {
+                        "id": "services",
+                        "type": "card-grid",
+                        "variant": "3up"
+                    },
+                    {
+                        "id": "menu",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "spotlight",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "providers",
+                        "type": "team",
+                        "variant": "portraits"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "providers": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "providers",
+                        "type": "team",
+                        "variant": "portraits"
+                    },
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "card-grid",
+                        "variant": "4up"
+                    },
+                    {
+                        "id": "menu",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "new-patients": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "first-visit",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "how",
+                        "type": "steps",
+                        "variant": "numbered-cards"
+                    },
+                    {
+                        "id": "privacy",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    }
+                ]
+            }
+        }
+    }
+}

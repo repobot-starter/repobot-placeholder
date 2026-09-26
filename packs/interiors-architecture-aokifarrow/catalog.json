@@ -1,0 +1,274 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the interiors pack composed as an architect's monograph — Aoki Farrow, an eleven-person practice on Lafayette Street, New York — on its own register (schist), content seed and page skeletons. Everything else — pages, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "interiors-architecture-aokifarrow",
+    "remixOf": "interiors",
+    "templateKey": "repobot-interiors-architecture-aokifarrow",
+    "title": "Architect Monograph",
+    "description": "A high-end architecture practice's site set like a printed monograph: the hero photograph with the practice's line on the paper beneath it, the built work as numbered full-bleed plates at one size, one townhouse told as a magazine feature with its details and plan, a ruled index of every work, and the portfolio, practice, studio and booking pages of the projects-domain shape — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "New York architecture practice",
+    "contentSeed": "web/app/src/View/Interiors/aokifarrowRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so these projects and appointments seeds replace the base pack's at compose and mirror THIS remix's contentSeed module entry for entry MINUS the photographs (the contract moves words and categories, never bytes; the pack joins its code-owned images back by slug — inventory.ts). The remix-seed tests pin both twins, so the composed template's Manage editors and booking widget open on the studio's real body of work.",
+        "projects": {
+            "entries": [
+                {
+                    "slug": "franklin-street-loft",
+                    "title": "Franklin Street Loft",
+                    "category": "Loft",
+                    "location": "Tribeca",
+                    "year": 2025,
+                    "scope": "Loft conversion, 4,800 sq ft",
+                    "description": "The fourth floor of an 1861 cast-iron store building, returned to one room: fourteen Corinthian columns stripped to their casting, the pine floor planed rather than replaced, and a single travertine island set on the building's centerline so the kitchen reads as furniture in a hall.",
+                    "featured": true
+                },
+                {
+                    "slug": "madison-square-penthouse",
+                    "title": "Madison Square Penthouse",
+                    "category": "Penthouse",
+                    "location": "Flatiron",
+                    "year": 2026,
+                    "scope": "Penthouse interior, 5,600 sq ft",
+                    "description": "A glass tower's top floor given a floor that steps: a sunken room in limestone under the Flatiron Building's prow, oak walls that hide every door, and glazing left clear of mullions so the park reads as the fourth wall.",
+                    "featured": true
+                },
+                {
+                    "slug": "water-street-library",
+                    "title": "Water Street Library",
+                    "category": "Loft",
+                    "location": "Dumbo",
+                    "year": 2024,
+                    "scope": "Warehouse loft, 3,900 sq ft",
+                    "description": "A coffee-roasting warehouse under the Manhattan Bridge fitted with one wall of white oak shelving for eleven thousand books, a rolling ladder on a bronze rail, and the steel window left exactly as the roasters had it.",
+                    "featured": true
+                },
+                {
+                    "slug": "pierrepont-street-parlor",
+                    "title": "Pierrepont Street Parlor",
+                    "category": "Townhouse",
+                    "location": "Brooklyn Heights",
+                    "year": 2025,
+                    "scope": "Parlor floor restoration, 1,400 sq ft",
+                    "description": "The parlor of an 1848 brownstone, the plaster cornice and ceiling rose recast from the one bay that survived, the herringbone floor relaid, and the pocket doors rehung so the two rooms open into one for the piano.",
+                    "featured": true
+                },
+                {
+                    "slug": "west-11th-street",
+                    "title": "West 11th Street House",
+                    "category": "Townhouse",
+                    "location": "Greenwich Village",
+                    "year": 2026,
+                    "scope": "Full renovation, 5,200 sq ft",
+                    "description": "An 1846 Greek Revival row house opened from the garden to the roof: a limestone stair under a new rooflight, a rear facade rebuilt in steel windows the Landmarks Commission approved on first review, and a kitchen that steps straight into the garden."
+                },
+                {
+                    "slug": "bond-street-gallery",
+                    "title": "Bond Street Gallery",
+                    "category": "Gallery",
+                    "location": "NoHo",
+                    "year": 2024,
+                    "scope": "Gallery and mezzanine, 3,100 sq ft",
+                    "description": "A double-height room behind a cast-iron front on Bond Street: the concrete floor ground to a matte finish, a blackened-steel stair and mezzanine hung from the party wall, and nothing on the walls that the art has to compete with."
+                }
+            ]
+        },
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "studio-hour",
+                    "name": "An hour at the studio",
+                    "durationMinutes": 60,
+                    "description": "An hour at the Lafayette Street table with a principal: the building, the brief, and the budget."
+                },
+                {
+                    "typeId": "house-visit",
+                    "name": "A visit to the house",
+                    "durationMinutes": 120,
+                    "description": "Two hours walking the building with a principal, and a written note on what it could become the week after."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "mika-aoki",
+                    "name": "Mika Aoki",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 540,
+                            "end": 780
+                        },
+                        {
+                            "day": 4,
+                            "start": 840,
+                            "end": 1080
+                        }
+                    ]
+                },
+                {
+                    "providerId": "julian-farrow",
+                    "name": "Julian Farrow",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 840,
+                            "end": 1080
+                        },
+                        {
+                            "day": 3,
+                            "start": 540,
+                            "end": 780
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "Near-black ink as the brand over the schist register's gallery white — the asks are ink, not colour, so the one vermilion the register keeps for plate numerals and the index rule stays the only colour on the page. mode light opens the site in its native daylight appearance. navigation re-pins the shared interiorsShell chrome (a declared theme variant outranks the shell prop): the practice's name left and the pages spread right in tracked mono caps, floating over the first plate.",
+        "mode": "light",
+        "brand": {
+            "primary": "#1a1a1a",
+            "primaryDark": "#ededea"
+        },
+        "navigation": {
+            "variant": "split"
+        }
+    },
+    "landing": {
+        "$comment": "The pin: this template wears the schist register and the interiors builder's monograph home (the seed sets home.monograph). style re-declares the register; pages are the monograph skeletons — full-bleed-media hero, the featured work as a band-start plate stack, the West 11th Street feature, the index of works (a media-less card-grid the monograph treatment rules), one voice, the credentials, and the colophon close — and the base's portfolio, offerings, about, and contact pages with the colophon as their close, which resolveCatalog puts in place of the base's pages.",
+        "style": {
+            "preset": "schist"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "plates",
+                        "type": "gallery",
+                        "variant": "sequence"
+                    },
+                    {
+                        "id": "feature",
+                        "type": "content-split",
+                        "variant": "feature"
+                    },
+                    {
+                        "id": "featured-work",
+                        "type": "showcase",
+                        "variant": "card-grid"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner",
+                        "variant": "colophon"
+                    }
+                ]
+            },
+            "portfolio": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "portfolio",
+                        "type": "showcase",
+                        "variant": "filterable-grid"
+                    },
+                    {
+                        "id": "track-record",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner",
+                        "variant": "colophon"
+                    }
+                ]
+            },
+            "offerings": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "offerings",
+                        "type": "highlights",
+                        "variant": "alternating"
+                    },
+                    {
+                        "id": "process",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner",
+                        "variant": "colophon"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner",
+                        "variant": "colophon"
+                    }
+                ]
+            },
+            "contact": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "contact-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

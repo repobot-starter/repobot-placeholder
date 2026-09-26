@@ -1,0 +1,323 @@
+{
+    "key": "wedding",
+    "templateKey": "repobot-wedding",
+    "title": "Weddings",
+    "description": "A wedding photographer's studio site: full-bleed crossfade hero, sequenced wedding galleries with a lightbox, flat-priced packages with an FAQ, about with testimonials, an inquiry form, real online session booking \u2014 couples pick an engagement session, coverage consult, or venue walkthrough from the studio's actual weekday calendar \u2014 and a client-galleries page that walks couples and their families through private proofing (gallery link, access code, print picks sent straight to the studio), with a sample room to try. A multi-page site edited in one content file.",
+    "marketingExampleTitle": "Wedding photography studio",
+    "category": "photography",
+    "homePath": "/",
+    "previewPath": "/wedding",
+    "homeViewDir": "web/app/src/View/Wedding",
+    "base": "content",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false,
+    "platformServices": ["proofing"],
+    "forms": {
+        "$comment": "Managed-form kinds, formKey -> kind (append-only vocabulary: RSVP | LEAD | MAILING_LIST | PROOFING). The studio's inquiry form is a lead pipeline. Live proofing selections now POST /__proofing/select (not the forms pipeline); proofing-selection stays declared PROOFING so historical Inbox rows still type as a proofing record, and the Inbox PROOFING tab can point at the Client galleries surface. platformServices above declares the proofing platform service (rooms + selections as platform rows behind the /__proofing doors) — compose merges it into the deploy manifest's contentDomains so the Manage rail gates the Client galleries surface.",
+        "inquiry": "LEAD",
+        "proofing-selection": "PROOFING"
+    },
+    "contentContract": {
+        "$comment": "The pack's content slots, as data (packs/README.md 'Content contract'). Declares what a composer (agent or tool) must bind for a generated variant of this pack to present as real: slot paths into the typed content module, their kinds, and minimums. Authored alongside the module and guarded by the pack's content tests \u2014 the module satisfies the contract; the contract never drifts ahead of it.",
+        "module": "web/app/src/View/Wedding/content.ts",
+        "slots": {
+            "photographer.name": { "kind": "text" },
+            "photographer.tagline": { "kind": "text" },
+            "photographer.location": { "kind": "text" },
+            "photographer.email": { "kind": "text" },
+            "heroSlides": { "kind": "media[]", "min": 1 },
+            "selectedWork": { "kind": "media[]", "min": 4 },
+            "albums": {
+                "kind": "collection",
+                "min": 1,
+                "item": {
+                    "title": { "kind": "text" },
+                    "eyebrow": { "kind": "text" },
+                    "description": { "kind": "text" },
+                    "images": { "kind": "media[]", "min": 4 }
+                }
+            },
+            "home.headline": { "kind": "text" },
+            "home.subheadline": { "kind": "text" },
+            "home.intro.title": { "kind": "text" },
+            "home.intro.paragraphs": { "kind": "text[]", "min": 1 },
+            "packages": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "name": { "kind": "text" },
+                    "price": { "kind": "number" },
+                    "description": { "kind": "text" },
+                    "features": { "kind": "text[]", "min": 2 }
+                }
+            },
+            "faq": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "question": { "kind": "text" },
+                    "answer": { "kind": "text" }
+                }
+            },
+            "about.headline": { "kind": "text" },
+            "about.portrait": { "kind": "media" },
+            "about.paragraphs": { "kind": "text[]", "min": 2 },
+            "about.testimonials": {
+                "kind": "collection",
+                "min": 1,
+                "item": {
+                    "quote": { "kind": "text" },
+                    "name": { "kind": "text" },
+                    "detail": { "kind": "text" }
+                }
+            },
+            "inquire.headline": { "kind": "text" },
+            "inquire.body": { "kind": "text" },
+            "codeAppointments.types": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "typeId": { "kind": "text" },
+                    "name": { "kind": "text" },
+                    "durationMinutes": { "kind": "number" },
+                    "description": { "kind": "text" }
+                }
+            },
+            "codeAppointments.providers": {
+                "kind": "collection",
+                "min": 1,
+                "item": {
+                    "providerId": { "kind": "text" },
+                    "name": { "kind": "text" },
+                    "windows": {
+                        "kind": "collection",
+                        "min": 1,
+                        "item": {
+                            "day": { "kind": "number" },
+                            "start": { "kind": "number" },
+                            "end": { "kind": "number" }
+                        }
+                    }
+                }
+            },
+            "booking.headline": { "kind": "text" },
+            "booking.intro": { "kind": "text" },
+            "galleries.headline": { "kind": "text" },
+            "galleries.intro": { "kind": "text" },
+            "galleries.steps": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "title": { "kind": "text" },
+                    "body": { "kind": "text" }
+                }
+            }
+        }
+    },
+    "content": {
+        "$comment": "Business-content contract seed, merged over repobot.content.json at compose (the care pack's discipline). The appointments domain mirrors content.ts codeAppointments entry for entry (the booking tests pin the twin), so the Manage session calendar opens on exactly the sessions the site already offers, and the platform projects exactly the capacity-1 slots the sandbox simulation shows on /book. The seed is booking mode 2's input: the platform generates a booking_session per provider x window x session type occurrence, capacity 1, with the provider-wide overlap lock making double-booking impossible. Session durations are minutes; windows are weekday index (0 = Sunday) x minutes since midnight \u2014 weekdays only, because the weekends are where the weddings are.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "engagement-session",
+                    "name": "Engagement session",
+                    "durationMinutes": 120,
+                    "description": "Two hours on the coast or wherever you two actually spend time \u2014 the session every wedding package includes, and the best rehearsal for being photographed there is."
+                },
+                {
+                    "typeId": "coverage-consult",
+                    "name": "Wedding-day coverage consult",
+                    "durationMinutes": 60,
+                    "description": "An hour on the timeline: where the light will be, when the quiet moments happen, and what your day needs \u2014 one photographer or two."
+                },
+                {
+                    "typeId": "venue-walkthrough",
+                    "name": "Venue walkthrough",
+                    "durationMinutes": 90,
+                    "description": "Ninety minutes at your venue before the day \u2014 walking the ceremony line, finding the family-photo spot, and making the weather plan B a real plan."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "isla-hart",
+                    "name": "Isla Hart",
+                    "windows": [
+                        { "day": 2, "start": 600, "end": 960 },
+                        { "day": 3, "start": 600, "end": 960 },
+                        { "day": 4, "start": 720, "end": 1080 }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The lanternlight register's overlay: mode dark opens the site in its native midnight appearance (string lights against night sky \u2014 the appearance toggle still swaps to the morning-after light variant), and the preset's ink-on-ground monochrome rides as the project brand so app-side surfaces (the code-gated proofing room's chrome and controls) wear the same register as the marketing pages instead of the kernel default blue. Brand values match the lanternlight preset's own light/dark accents \u2014 the marketing pages resolve brand over preset accent, so keeping them identical means the overlay re-brands the app without shifting the pages.",
+        "mode": "dark",
+        "brand": { "primary": "#1a1a1a", "primaryDark": "#f4f4f4" }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (web/app/src/View/Wedding/WeddingPage.tsx, useSitePageConfig). pages seeds each page's layout skeleton \u2014 ids match weddingLanding.ts; the platform's structural editor edits these. style must ride the overlay: the compose merge keeps the kernel document's root style otherwise, and applySitePageDocument makes the document preset outrank every page's pinned one. The preset is lanternlight (the nighttime-celebration register: midnight ground, white string-light glow, staid black-and-white palette, marquee masthead, tilted party prints, ticket-stub RSVP) \u2014 the wedding as the night itself; heirloom, the keepsake after the day, stays in the kernel as its remix-adjacent register.",
+        "style": { "preset": "lanternlight" },
+        "routes": {
+            "/": "home",
+            "/weddings": "weddings",
+            "/galleries": "galleries",
+            "/packages": "packages",
+            "/about": "about",
+            "/book": "book",
+            "/inquire": "inquire"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "masthead-overlay"
+                    },
+                    {
+                        "id": "intro",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "selected-work",
+                        "type": "gallery",
+                        "variant": "scrapbook"
+                    },
+                    {
+                        "id": "packages",
+                        "type": "pricing",
+                        "variant": "tiers"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "weddings",
+                        "type": "showcase",
+                        "variant": "collections"
+                    },
+                    {
+                        "id": "inquire-banner",
+                        "type": "cta-banner",
+                        "variant": "ticket"
+                    }
+                ]
+            },
+            "weddings": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "weddings",
+                        "type": "showcase",
+                        "variant": "collections"
+                    }
+                ]
+            },
+            "galleries": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "how-proofing",
+                        "type": "steps",
+                        "variant": "numbered-cards"
+                    },
+                    {
+                        "id": "sample-gallery",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "inquire-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "session-notes",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "inquire-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "packages": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "packages",
+                        "type": "pricing",
+                        "variant": "tiers"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "inquire-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "inquire-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "inquire": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "inquiry-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

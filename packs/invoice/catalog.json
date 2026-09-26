@@ -1,0 +1,46 @@
+{
+    "key": "invoice",
+    "templateKey": "repobot-invoice",
+    "title": "Invoice Studio",
+    "description": "An invoice generator: fill a form, get a professional PDF — rendered from a repo-file template by the documents kernel.",
+    "marketingExampleTitle": "Invoice PDF generator",
+    "homePath": "/",
+    "previewPath": "/invoice",
+    "homeViewDir": "web/app/src/View/Invoices",
+    "base": "app",
+    "clientOnly": false,
+    "capabilities": ["DOCUMENTS", "AUTH", "BACKEND"],
+    "isDefault": false,
+    "theme": {
+        "$comment": "Cool paper, slate ink, one confident steel-blue accent — the studio's art direction preserved verbatim as the seed. The palette's light values are the page's pre-AppShell art constants so the shell chrome and the studio's cards read as one surface; the dark values are the same studio after hours. The shell defaults to top-nav because the studio is a single form with no in-app navigation — its old chrome was a lone topbar with a tagline.",
+        "mode": "light",
+        "character": "plain",
+        "brand": {
+            "primary": "#2b4c7e",
+            "primaryDark": "#8fb0dd"
+        },
+        "palette": {
+            "background": "#f4f5f7",
+            "backgroundDark": "#12151b",
+            "surface": "#ffffff",
+            "surfaceDark": "#1a1e26",
+            "surfaceHover": "#eceef2",
+            "surfaceHoverDark": "#222835",
+            "border": "#e2e5ea",
+            "borderDark": "#2b3240",
+            "textPrimary": "#171b22",
+            "textPrimaryDark": "#e7eaf1",
+            "textSecondary": "#66707f",
+            "textSecondaryDark": "#97a0af",
+            "muted": "#eceef2",
+            "mutedDark": "#1f242e",
+            "input": "#e2e5ea",
+            "inputDark": "#2b3240",
+            "skeleton": "#e9ecf0",
+            "skeletonDark": "#222835",
+            "charts": ["#2b4c7e", "#5a7bab", "#8aa5c9", "#1d3557", "#66707f", "#a9bad2"],
+            "chartsDark": ["#8fb0dd", "#5a7bab", "#a9bad2", "#3f689c", "#97a0af", "#2b4c7e"]
+        },
+        "shell": { "variant": "top-nav" }
+    }
+}

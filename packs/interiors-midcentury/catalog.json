@@ -1,0 +1,285 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the interiors pack composed with a mid-century studio's content seed, re-registered in the midcentury register (the 1950s furniture catalog) with its own pinned page skeletons. Everything else — the pages' builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "interiors-midcentury",
+    "remixOf": "interiors",
+    "templateKey": "repobot-interiors-midcentury",
+    "title": "Mid-Century Interior Designer",
+    "description": "A mid-century interior design studio's site, art-directed as a 1950s furniture catalog in the midcentury register: a split cover with the room beside the headline, the services as a numbered catalog strip, featured houses as before-and-after case files, a numbered catalog of restored pieces, the process, an honest fee board (one flat design fee, sourcing by the hour, no markup), fair questions on remote work, vintage vs reproduction, timelines, and historic review, and a consultation form. The projects-domain flagship underneath: a filterable portfolio whose category chips derive from the entries (the owner reshapes it from Manage), real online booking for free walk-throughs and paid consultations, and a project-inquiry lead form. Five pages, all facts in one content file.",
+    "marketingExampleTitle": "Mid-century interior design studio",
+    "contentSeed": "web/app/src/View/Interiors/midcenturyRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed (repobot.content.json domains this pack ships). projects mirrors content.ts's `projects` export entry for entry MINUS the photographs — the contract moves words and categories, never bytes; the pack joins its code-owned images back by slug (inventory.ts). appointments mirrors codeAppointments exactly. The content tests pin both twins, so the composed template's Manage editors and booking widget open on the studio's real facts.",
+        "projects": {
+            "entries": [
+                {
+                    "slug": "twin-palms-eichler",
+                    "title": "Twin Palms Eichler",
+                    "category": "Full renovation",
+                    "location": "Twin Palms",
+                    "year": 2025,
+                    "scope": "Whole-house renovation — 1,900 sq ft, 1959",
+                    "description": "An atrium house that had been carpeted, popcorned, and ceiling-fanned into a tract home. The beams came back into the light, the walnut paneling was stripped and oiled, and a long teal sofa now faces the pool the way the architect planned it.",
+                    "featured": true
+                },
+                {
+                    "slug": "vista-alexander",
+                    "title": "Vista Las Palmas Alexander",
+                    "category": "Full renovation",
+                    "location": "Vista Las Palmas",
+                    "year": 2026,
+                    "scope": "Whole-house renovation — 1,650 sq ft, 1961",
+                    "description": "A butterfly-roof house returned to its clerestories: the 1980s soffits came out, terrazzo went down, and a burnt-orange sofa and a tulip table let the mountain do the rest of the decorating.",
+                    "featured": true
+                },
+                {
+                    "slug": "racquet-club-condo",
+                    "title": "Racquet Club Condo",
+                    "category": "Furnishing",
+                    "location": "Racquet Club Road",
+                    "year": 2025,
+                    "scope": "Furnishing & vintage sourcing — 2-bedroom condo",
+                    "description": "A snowbird condo that came with recliners and a peach wall-to-wall. Six weeks of sourcing later: mustard barrel chairs, a shag rug the color of a desert sunset, and a walnut wall unit that finally holds the owner's records.",
+                    "featured": true
+                },
+                {
+                    "slug": "rancho-mirage-ranch",
+                    "title": "Rancho Mirage Ranch House",
+                    "category": "Kitchens & baths",
+                    "location": "Rancho Mirage",
+                    "year": 2024,
+                    "scope": "Kitchen & dining — 12 weeks",
+                    "description": "A ranch-house kitchen with oak cabinets, a glass dinette, and a view it was ignoring. Olive lacquer uppers, walnut below, three orange pendants, and a long walnut table set square on the window to the desert.",
+                    "featured": true
+                },
+                {
+                    "slug": "vista-las-palmas-bath",
+                    "title": "Vista Las Palmas Primary Bath",
+                    "category": "Kitchens & baths",
+                    "location": "Vista Las Palmas",
+                    "year": 2025,
+                    "scope": "Primary bath — 7 weeks",
+                    "description": "The bath the house deserved in 1962: teal tile in a stack bond, a floating walnut vanity with two basins, a round mirror, and a clerestory full of palm fronds."
+                },
+                {
+                    "slug": "movie-colony-guest-house",
+                    "title": "Movie Colony Guest House",
+                    "category": "Furnishing",
+                    "location": "Movie Colony",
+                    "year": 2026,
+                    "scope": "Furnishing — guest house, 1 bedroom",
+                    "description": "A casita furnished in eleven days for a family that hosts all season: a walnut bed with a rust coverlet, an abstract print from a Cathedral City estate sale, and a breeze-block view worth waking up to."
+                }
+            ]
+        },
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "walk-through",
+                    "name": "Free walk-through",
+                    "durationMinutes": 45,
+                    "description": "Forty-five minutes in the house — what's original, what's possible, and a flat fee in writing within the week."
+                },
+                {
+                    "typeId": "design-consultation",
+                    "name": "Design consultation",
+                    "durationMinutes": 120,
+                    "description": "Two working hours in the house: decisions in the room, written notes the next day."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "nadia-farouk",
+                    "name": "Nadia Farouk",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 480,
+                            "end": 720
+                        },
+                        {
+                            "day": 2,
+                            "start": 480,
+                            "end": 720
+                        },
+                        {
+                            "day": 4,
+                            "start": 780,
+                            "end": 1020
+                        },
+                        {
+                            "day": 5,
+                            "start": 480,
+                            "end": 780
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The midcentury register's catalog stock with a mustard brand: mode light opens the site in its native daylight appearance, and the mustard rides as the project brand so app-side surfaces wear the same register as the marketing pages instead of the kernel default blue. The marketing pages resolve brand over preset accent — here the brand IS the register's own mustard, with burnt orange and olive as its spot inks. The nav hangs split: the wordmark and its city on the left, ruled off from the links, the ask a mustard block.",
+        "mode": "light",
+        "brand": {
+            "primary": "#e4ad2e",
+            "primaryDark": "#e6b032"
+        },
+        "navigation": {
+            "variant": "split"
+        }
+    },
+    "landing": {
+        "$comment": "A pinned layout (packs/README.md 'Derived templates'): style re-registers the base's pages in the midcentury register (warm catalog stock, walnut ink, mustard with burnt orange and olive, condensed caps, atomic starbursts), and pages carries exactly the skeletons interiorsLanding.ts emits from this remix's contentSeed — the seed's home.layout is catalog, so the home runs the split cover, the numbered services strip, the before-and-after case files, the catalog of pieces, the process, the fee board, the questions, and the consultation form, and /offerings gains the fee board because the seed fills it (tests/View/Interiors/interiorsLanding.test.ts reads this through composedLandingSeed).",
+        "style": {
+            "preset": "midcentury"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "split-media"
+                    },
+                    {
+                        "id": "services",
+                        "type": "card-grid",
+                        "variant": "3up"
+                    },
+                    {
+                        "id": "case-files",
+                        "type": "gallery",
+                        "variant": "before-after"
+                    },
+                    {
+                        "id": "featured-work",
+                        "type": "showcase",
+                        "variant": "card-grid"
+                    },
+                    {
+                        "id": "pieces",
+                        "type": "showcase",
+                        "variant": "specimens"
+                    },
+                    {
+                        "id": "process",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "fees",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "consultation",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            },
+            "portfolio": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "portfolio",
+                        "type": "showcase",
+                        "variant": "filterable-grid"
+                    },
+                    {
+                        "id": "track-record",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "offerings": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "offerings",
+                        "type": "highlights",
+                        "variant": "alternating"
+                    },
+                    {
+                        "id": "fees",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "process",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "contact": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "contact-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,113 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the fund-index pack composed as a one-line fund site — Stet, a two-partner $60M pre-seed fund in New York — on its own register (galleyproof), content seed and page skeletons. Everything else — pages, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "fund-index-stet",
+    "remixOf": "fund-index",
+    "templateKey": "repobot-fund-index-stet",
+    "title": "Stet",
+    "description": "A venture fund site that is one line: the fund's thesis set alone on the first screen at poster scale in a degraded proof serif, its full stop the only red on the page, the facts in one mono slug above it and the pitch beneath; below the fold, the portfolio as a single comma-run of names and the ask as one closing line with an arrow. No photography — the type is the image. The inner pages keep the fund-index machinery: a filterable portfolio whose counts, sector chips, and status pills compute themselves, the team, dated letters newest-first, a pitch form, and the disclosures typeset in full.",
+    "marketingExampleTitle": "One-line fund site",
+    "contentSeed": "web/app/src/View/FundIndex/stetRemix.content.ts",
+    "theme": {
+        "$comment": "Proof red as the brand over the galleyproof register's bone paper: a theme brand overlay is the accent, so the one red the register keeps — the full stop, the links, the submit — is the brand, and app-side surfaces carry the same pencil mark. mode light opens the site in its native reading (dark is the same proof under a desk lamp). navigation re-pins the shared fundIndexShell chrome (a declared theme variant outranks the shell prop): the wordmark and a burger, nothing else over the line.",
+        "mode": "light",
+        "brand": {
+            "primary": "#a82a15",
+            "primaryDark": "#ff6a4d"
+        },
+        "navigation": {
+            "variant": "burger-overlay"
+        }
+    },
+    "landing": {
+        "$comment": "The one-line home (fundIndexLanding.ts lineHome, switched on by the seed's home.line): the statement hero with its badge — which the proofmark treatment sets full-screen — the portfolio as a text-logos comma-run, and the deck ask as a colophon. The inner pages pin the base skeletons unchanged. The galleyproof register replaces the base's achromatic mono-utility style wholesale, overrides included.",
+        "style": {
+            "preset": "galleyproof"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "portfolio",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "deck-banner",
+                        "type": "cta-banner",
+                        "variant": "colophon"
+                    }
+                ]
+            },
+            "portfolio": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "companies",
+                        "type": "showcase",
+                        "variant": "filterable-grid"
+                    }
+                ]
+            },
+            "team": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "people",
+                        "type": "team",
+                        "variant": "list"
+                    }
+                ]
+            },
+            "log": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "entries",
+                        "type": "blog-list",
+                        "variant": "list"
+                    }
+                ]
+            },
+            "contact": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "inquiry-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            },
+            "disclosures": {
+                "sections": [
+                    {
+                        "id": "disclosures",
+                        "type": "rich-prose",
+                        "variant": "narrow"
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,100 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the gala pack composed with a 1970s disco supper-club birthday's content seed, re-registered in the disco register with its own pinned page skeletons. Everything else — the pages' builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "gala-disco",
+    "remixOf": "gala",
+    "templateKey": "repobot-gala-disco",
+    "title": "Disco birthday party",
+    "description": "A milestone birthday thrown like a 1970s disco supper club: lacquer red, hot pink, and gold foil on black, the guest of honor in script under a mirror ball. The night's running order, the band and the midnight surprise, a \"dazzle\" dress code as fabric swatches, getting there with directions and a hotel block, a photo wall through the decades, song requests, and a reply card that delivers RSVPs straight to the hosts — with a live countdown computed from the party date. Flexes to anniversaries, retirements, and any big night.",
+    "marketingExampleTitle": "Disco birthday party",
+    "contentSeed": "web/app/src/View/Gala/discoRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed, merged over repobot.content.json at compose (the same overlay path as landing/theme — scripts/lib/pack-switch.mjs applyPackOverlays). The guestlist domain is the gala's PRIVATE roster — who's invited, how many seats, the note that matters at the door — and deliberately seeds EMPTY: the roster is the owner's from day one, never demo data. No pack page renders it; it exists so the platform's Manage panel keeps the roster next to the RSVP inbox it pairs with (the catalog's gala-rsvp form).",
+        "guestlist": {
+            "entries": []
+        }
+    },
+    "theme": {
+        "$comment": "The disco register's brand overlay: the preset's lacquer red as the project brand, so app-side surfaces wear the same supper-club register as the party pages instead of the kernel default blue. mode dark opens the site in its native after-dark appearance, the supper club with the lights down. Values match the disco preset's own light/dark accents — the marketing pages resolve brand over preset accent, so keeping them identical means the overlay re-brands the app without shifting the pages.",
+        "mode": "dark",
+        "brand": {
+            "primary": "#c8102e",
+            "primaryDark": "#ea2a43"
+        }
+    },
+    "landing": {
+        "$comment": "A pinned layout (packs/README.md 'Derived templates'): style re-registers the base's pages in the disco register (black lacquer, lacquer red and hot pink with gold foil, high-contrast Didone caps, a swashy script, a mirror ball throwing sparkle across the room), and pages carries exactly the skeletons galaLanding.ts emits from this remix's contentSeed — the seed names the guest of honor, so the hero is the invitation card and the details follow getting there, and the floor show, dress-code swatches, decades wall, and song requests appear because the seed fills them (tests/View/Gala/galaLanding.test.ts reads this through composedLandingSeed).",
+        "style": {
+            "preset": "disco"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "invitation"
+                    },
+                    {
+                        "id": "program",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "entertainment",
+                        "type": "card-grid",
+                        "variant": "2up"
+                    },
+                    {
+                        "id": "dress-code",
+                        "type": "showcase",
+                        "variant": "swatches"
+                    },
+                    {
+                        "id": "venue",
+                        "type": "highlights",
+                        "variant": "alternating"
+                    },
+                    {
+                        "id": "details",
+                        "type": "feature-grid",
+                        "variant": "cards-3up"
+                    },
+                    {
+                        "id": "decades",
+                        "type": "gallery",
+                        "variant": "scrapbook"
+                    },
+                    {
+                        "id": "songs",
+                        "type": "highlights",
+                        "variant": "setlist"
+                    },
+                    {
+                        "id": "rsvp-banner",
+                        "type": "cta-banner",
+                        "variant": "ticket"
+                    }
+                ]
+            },
+            "rsvp": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "rsvp-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    }
+                ]
+            }
+        }
+    }
+}

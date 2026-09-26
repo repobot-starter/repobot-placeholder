@@ -1,0 +1,118 @@
+<section class="product">
+  <div class="product__media">
+    {% if product.featured_image %}
+      <img
+        src="{{ product.featured_image | image_url: width: 900 }}"
+        alt="{{ product.featured_image.alt | escape }}"
+        width="900"
+        height="{{ 900 | divided_by: product.featured_image.aspect_ratio | ceil }}"
+      >
+    {% endif %}
+  </div>
+  <div class="product__info">
+    <h1>{{ product.title }}</h1>
+    {% render 'price', product: product %}
+    <div class="product__description">{{ product.description }}</div>
+
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'key_ingredients' %}
+          <div class="product__ingredients" {{ block.shopify_attributes }}>
+            <span class="product__ingredient-label">{{ 'products.product.key_ingredients.title' | t }}</span>
+            <div class="product__ingredient">{{ block.settings.ingredient_1 }}</div>
+            <div class="product__ingredient">{{ block.settings.ingredient_2 }}</div>
+            <div class="product__ingredient">{{ block.settings.ingredient_3 }}</div>
+          </div>
+        {% when 'how_to_use' %}
+          <div class="product__how-to-use" {{ block.shopify_attributes }}>
+            <h2>{{ 'products.product.how_to_use.title' | t }}</h2>
+            <p>{{ block.settings.steps }}</p>
+            <div class="product__time-chips">
+              {% if block.settings.use_am %}
+                <span class="time-chip">{{ 'products.product.how_to_use.am' | t }}</span>
+              {% endif %}
+              {% if block.settings.use_pm %}
+                <span class="time-chip">{{ 'products.product.how_to_use.pm' | t }}</span>
+              {% endif %}
+            </div>
+          </div>
+      {% endcase %}
+    {% endfor %}
+
+    {% form 'product', product %}
+      <select name="id">
+        {% for variant in product.variants %}
+          <option value="{{ variant.id }}" {% if variant == product.selected_or_first_available_variant %}selected{% endif %}>
+            {{ variant.title }}
+          </option>
+        {% endfor %}
+      </select>
+      <button type="submit" name="add" {% unless product.available %}disabled{% endunless %}>
+        {% if product.available %}
+          {{ 'products.product.add_to_cart' | t }}
+        {% else %}
+          {{ 'products.product.sold_out' | t }}
+        {% endif %}
+      </button>
+    {% endform %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "key_ingredients",
+      "name": "Key ingredients",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "ingredient_1",
+          "label": "Ingredient 1",
+          "default": "Niacinamide 5%"
+        },
+        {
+          "type": "text",
+          "id": "ingredient_2",
+          "label": "Ingredient 2",
+          "default": "Hyaluronic acid"
+        },
+        {
+          "type": "text",
+          "id": "ingredient_3",
+          "label": "Ingredient 3",
+          "default": "Squalane"
+        }
+      ]
+    },
+    {
+      "type": "how_to_use",
+      "name": "How to use",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "steps",
+          "label": "Steps",
+          "default": "Apply two to three drops to clean, dry skin. Follow with moisturizer, and in the morning, finish with SPF."
+        },
+        {
+          "type": "checkbox",
+          "id": "use_am",
+          "label": "Use in the morning",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "use_pm",
+          "label": "Use at night",
+          "default": true
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

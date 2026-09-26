@@ -1,0 +1,222 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services pack composed with an editorial & bridal makeup-artist content seed (Marisol Vega Makeup, Los Angeles), a lipstick brand, and the vanity register. Everything else — builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-makeup-counter",
+    "remixOf": "services",
+    "templateKey": "repobot-services-makeup-counter",
+    "title": "Editorial & bridal makeup artist",
+    "description": "A makeup artist's site as a beauty counter at night: a Didone headline stacked over a swatch-stroke portrait, the services as shade cards with their texture chips, a filterable editorial/bridal/red-carpet portfolio, the bridal process from trial to first look, the rate card, the travel and retainer policy on one card, and online booking for consultations, trials, and lessons — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Los Angeles makeup artist",
+    "contentSeed": "web/app/src/View/Services/makeupCounterRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twin) — the composed template's booking widget and Manage calendar open on this artist's own studio week, not the base demo business's.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "consultation",
+                    "name": "Free consultation",
+                    "durationMinutes": 30,
+                    "description": "Video or at the studio: the event, the light, your skin, and the look."
+                },
+                {
+                    "typeId": "bridal-trial",
+                    "name": "Bridal trial",
+                    "durationMinutes": 120,
+                    "description": "Two looks tested at the studio, photographed in daylight, and written on your face chart."
+                },
+                {
+                    "typeId": "private-lesson",
+                    "name": "Private lesson",
+                    "durationMinutes": 90,
+                    "description": "Ninety minutes at the vanity with your own kit."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "marisol-vega",
+                    "name": "Marisol Vega",
+                    "windows": [
+                        {
+                            "day": 3,
+                            "start": 600,
+                            "end": 1080
+                        },
+                        {
+                            "day": 4,
+                            "start": 600,
+                            "end": 1080
+                        },
+                        {
+                            "day": 5,
+                            "start": 600,
+                            "end": 1080
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "Lipstick as the brand: on the vanity register the accent is the cherry on the headline's last word, the glossed asks, and the hairline before every kicker, while blush and plum are the register's own spot inks and the shades themselves live in the content (the texture chips), so a rebrand re-paints the lip without re-shooting the counter. Marketing pages resolve brand over preset accent, so the overlay re-skins the pages and the app surfaces together. navigation re-pins the shared servicesShell chrome (a declared theme variant outranks the shell prop): the split letterhead — the name stacked over its line on the left, the links spaced wide, the ask boxed on the right — apart from the hair studio's inline bar. mode dark opens on the black counter (theme merges shallowly).",
+        "brand": {
+            "primary": "#b10d28",
+            "primaryDark": "#d0142f"
+        },
+        "mode": "dark",
+        "navigation": {
+            "variant": "split"
+        }
+    },
+    "landing": {
+        "$comment": "The pin: the vanity register and the counter home — the full-bleed title card (the stacked Didone headline over the swatch-stroke portrait), the services as shade cards riding up over its foot (the seed's palette, each with its texture chip), the studio line as a static strip, the portfolio as a filterable grid, the bridal process on the horizontal rail (the seed's build log), the rate card (price-list), the travel and retainer card (checklist), the reviews, the travel area, and the closing banner. The seed hides the home services grid (home.serviceGrid) and leaves the materials board empty. The portfolio page opens on the same grid over the bare-to-done comparisons; the other pages keep the base's skeletons. resolveCatalog puts these in place of the base's pages.",
+        "style": {
+            "preset": "vanity"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "palette",
+                        "type": "showcase",
+                        "variant": "swatches"
+                    },
+                    {
+                        "id": "now-building",
+                        "type": "social-proof",
+                        "variant": "ticker"
+                    },
+                    {
+                        "id": "lookbook",
+                        "type": "showcase",
+                        "variant": "filterable-grid"
+                    },
+                    {
+                        "id": "build-log",
+                        "type": "steps",
+                        "variant": "horizontal-rail"
+                    },
+                    {
+                        "id": "price-menu",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "policies",
+                        "type": "feature-grid",
+                        "variant": "checklist"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "service-area",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "projects": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "lookbook",
+                        "type": "showcase",
+                        "variant": "filterable-grid"
+                    },
+                    {
+                        "id": "transformations",
+                        "type": "gallery",
+                        "variant": "before-after"
+                    },
+                    {
+                        "id": "process",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "showcase",
+                        "variant": "card-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "quote": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "quote-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,398 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the care pack composed with a clinical psychology content seed, re-registered in the inkblot register (a gallery poster: ultramarine ink on an off-white wall) with its own pinned page skeletons. Everything else — pages' builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "care-psychology-studio",
+    "remixOf": "care",
+    "templateKey": "repobot-care-psychology-studio",
+    "title": "Psychology Practice",
+    "description": "A psychology practice's site with real online booking: Dr. Miriam Castellanos, PsyD, and two colleagues in Park Slope and by telehealth, hung like a gallery poster — a huge centered serif \"You're not too much.\" over a symmetrical ultramarine inkblot on an off-white wall, a museum wall label beside it (Anxiety · ADHD · Burnout; First session, Fees & insurance, Is this right for me?), three inkblot plates for the three specialties, fees printed plainly (with superbills and the Good Faith Estimate), ways to pay, the first-session story, three psychologists with portraits, former-client words shared with consent, a plain-spoken FAQ, and a booking page offering a free consultation, a 60-minute first session, and 50-minute sessions. The booking form is clinically empty — name, contact, appointment type, new/returning.",
+    "marketingExampleTitle": "Psychology practice site",
+    "contentSeed": "web/app/src/View/Care/psychologyStudioRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so these practice and appointments seeds replace the base pack's at compose and mirror THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twins) — the composed template's Manage editors and booking widget open on the psychology practice, not the base clinic.",
+        "practice": {
+            "providers": [
+                {
+                    "providerId": "dr-castellanos",
+                    "name": "Dr. Miriam Castellanos",
+                    "credentials": "PsyD",
+                    "role": "Clinical psychologist · Founder",
+                    "bio": "Miriam treats anxiety in adults who have been told, one way or another, that they're too much. Her work is practical — cognitive behavioral therapy and exposure, explained plainly — and her sessions are, clients report, surprisingly funny. She sees clients in English and Spanish."
+                },
+                {
+                    "providerId": "dr-mensah",
+                    "name": "Dr. Kofi Mensah",
+                    "credentials": "PhD",
+                    "role": "Adult ADHD evaluation",
+                    "bio": "Kofi runs the practice's adult ADHD evaluations: an interview, standardized testing, a written report you can actually read, and a long feedback session. He also sees clients for ADHD-focused therapy once the question is answered."
+                },
+                {
+                    "providerId": "dr-lindqvist",
+                    "name": "Dr. Ingrid Lindqvist",
+                    "credentials": "PhD",
+                    "role": "Burnout & work stress",
+                    "bio": "Ingrid spent a decade consulting to hospitals and law firms before returning to therapy. She works with people whose jobs have eaten their sleep, their weekends, and their sense of humor — and helps them get at least two of the three back."
+                }
+            ],
+            "services": [
+                {
+                    "name": "Anxiety",
+                    "description": "Panic, worry that won't switch off, the avoidance that keeps shrinking your week. Cognitive behavioral therapy and exposure, paced with you."
+                },
+                {
+                    "name": "Adult ADHD evaluation",
+                    "description": "A full evaluation across two or three appointments, with testing, a plain-English report, and a feedback session to go through it together."
+                },
+                {
+                    "name": "ADHD-focused therapy",
+                    "description": "After the evaluation: systems, not willpower. Planning, time, the shame that piles up, and how to explain it to the people you live with."
+                },
+                {
+                    "name": "Burnout",
+                    "description": "For the exhausted and overcommitted. We map what's draining you, what you can change, and what you can stop apologizing for."
+                },
+                {
+                    "name": "Individual therapy",
+                    "description": "Grief, transitions, relationships, the thing you can't name yet. Weekly sessions in person or by video."
+                },
+                {
+                    "name": "Telehealth across New York",
+                    "description": "Every service except in-person testing is available by secure video anywhere in New York State."
+                }
+            ],
+            "insurance": [
+                "Private pay",
+                "Out-of-network superbills",
+                "HSA & FSA cards",
+                "Sliding scale from $120",
+                "Good Faith Estimate for every client",
+                "Payment plans for evaluations"
+            ],
+            "locations": [
+                {
+                    "locationId": "seventh-avenue",
+                    "label": "Park Slope office",
+                    "address": "412 7th Avenue, Suite 3R, Brooklyn, NY 11215",
+                    "phone": "(718) 555-0139",
+                    "hours": [
+                        {
+                            "day": 1,
+                            "open": 540,
+                            "close": 1140
+                        },
+                        {
+                            "day": 2,
+                            "open": 540,
+                            "close": 1140
+                        },
+                        {
+                            "day": 3,
+                            "open": 540,
+                            "close": 1140
+                        },
+                        {
+                            "day": 4,
+                            "open": 540,
+                            "close": 1140
+                        },
+                        {
+                            "day": 5,
+                            "open": 540,
+                            "close": 900
+                        }
+                    ]
+                }
+            ],
+            "reviews": [
+                {
+                    "quote": "I'd spent years apologizing for how anxious I was. Dr. Castellanos never once made me feel like a lot. Six months later I took the subway again — and then we planned my last session together.",
+                    "name": "L. M.",
+                    "detail": "Former client, shared with consent"
+                },
+                {
+                    "quote": "The report from Dr. Mensah was the first thing about my brain that made sense on paper. I read it twice and then sent it to my mother.",
+                    "name": "J. K.",
+                    "detail": "Former evaluation client, shared with consent"
+                },
+                {
+                    "quote": "Dr. Lindqvist asked what I used to do for fun. I couldn't answer. Now I can, and I leave work at six.",
+                    "name": "P. A.",
+                    "detail": "Former client, shared with consent"
+                }
+            ],
+            "newPatient": [
+                {
+                    "title": "A free 15-minute consultation",
+                    "body": "A short phone call to hear what you're looking for and whether one of us is the right fit. If we're not, we'll suggest who might be."
+                },
+                {
+                    "title": "Your Good Faith Estimate",
+                    "body": "Before your first session you'll receive a written estimate of expected costs, as federal law requires for self-pay clients."
+                },
+                {
+                    "title": "The first session",
+                    "body": "Sixty minutes. We'll talk about what's happening now, what you've tried, and what you'd like to be different. You don't need to prepare anything."
+                },
+                {
+                    "title": "After that",
+                    "body": "Most clients meet weekly at first. Evaluations follow their own schedule: two or three appointments, then a feedback session about two weeks later."
+                }
+            ]
+        },
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "consultation",
+                    "name": "Free consultation",
+                    "durationMinutes": 15,
+                    "description": "A short phone call to see if we're the right fit."
+                },
+                {
+                    "typeId": "first-session",
+                    "name": "First session",
+                    "durationMinutes": 60,
+                    "description": "The longer first appointment, in person or by video."
+                },
+                {
+                    "typeId": "session",
+                    "name": "Session",
+                    "durationMinutes": 50,
+                    "description": "An ongoing session with your psychologist."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "dr-castellanos",
+                    "name": "Dr. Miriam Castellanos",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 600,
+                            "end": 840
+                        },
+                        {
+                            "day": 3,
+                            "start": 840,
+                            "end": 1140
+                        },
+                        {
+                            "day": 4,
+                            "start": 600,
+                            "end": 840
+                        }
+                    ]
+                },
+                {
+                    "providerId": "dr-mensah",
+                    "name": "Dr. Kofi Mensah",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 540,
+                            "end": 780
+                        },
+                        {
+                            "day": 4,
+                            "start": 840,
+                            "end": 1080
+                        }
+                    ]
+                },
+                {
+                    "providerId": "dr-lindqvist",
+                    "name": "Dr. Ingrid Lindqvist",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 900,
+                            "end": 1140
+                        },
+                        {
+                            "day": 5,
+                            "start": 540,
+                            "end": 780
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The inkblot register in its own ultramarine: mode light opens the site in its native appearance (the off-white gallery wall); dark is the gallery after hours. Marketing pages resolve brand over preset accent, so the overlay re-inks pages and app surfaces together. navigation re-pins the shared careShell chrome (a declared theme variant outranks the shell prop): care-direct wears the full-width sign band and care-therapy-duet the centered masthead, so the psychology practice takes the split letterhead — wordmark left, catalogue links ruled off right.",
+        "mode": "light",
+        "brand": {
+            "primary": "#1f3fa6",
+            "primaryDark": "#93a9ff"
+        },
+        "navigation": {
+            "variant": "split"
+        }
+    },
+    "landing": {
+        "$comment": "A pinned layout (packs/README.md 'Derived templates'): style re-registers the base's pages in the inkblot register, and pages carries exactly the skeletons careLanding.ts emits from this remix's contentSeed — the content-gated sections (exhibits, menu, spotlight, faq) appear because the seed fills them — so the composed template's document reproduces its code config section for section (tests/View/Care/careLanding.test.ts reads this through composedLandingSeed).",
+        "style": {
+            "preset": "inkblot"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "split-media"
+                    },
+                    {
+                        "id": "exhibits",
+                        "type": "showcase",
+                        "variant": "card-grid"
+                    },
+                    {
+                        "id": "menu",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "spotlight",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "providers",
+                        "type": "team",
+                        "variant": "portraits"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "providers": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "providers",
+                        "type": "team",
+                        "variant": "portraits"
+                    },
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "card-grid",
+                        "variant": "4up"
+                    },
+                    {
+                        "id": "menu",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "new-patients": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "first-visit",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "how",
+                        "type": "steps",
+                        "variant": "numbered-cards"
+                    },
+                    {
+                        "id": "privacy",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    }
+                ]
+            }
+        }
+    }
+}

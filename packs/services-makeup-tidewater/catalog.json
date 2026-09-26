@@ -1,0 +1,197 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services pack composed with an on-location bridal hair and makeup content seed (Tidewater Beauty Co., Charleston), a dusty-rose brand, and the daybook register. Everything else — builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-makeup-tidewater",
+    "remixOf": "services",
+    "templateKey": "repobot-services-makeup-tidewater",
+    "title": "On-location bridal hair & makeup",
+    "description": "A bridal beauty team's site as the wedding morning itself: a candid full-bleed suite under a light two-line headline and a script credit, the morning hour by hour from 6:30 set-up to the 9:00 group photograph (each hour's photographs with a handwritten caption), the rate on one line, the islands it travels to, and online booking for consultations and trials — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Charleston bridal hair & makeup",
+    "contentSeed": "web/app/src/View/Services/tidewaterRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twin) — the composed template's booking widget and Manage calendar open on this team's own week, not the base demo business's.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "consultation",
+                    "name": "Free consultation",
+                    "durationMinutes": 30,
+                    "description": "A video call or a coffee at the studio: the date, the suite, the faces, and the look."
+                },
+                {
+                    "typeId": "bridal-trial",
+                    "name": "Bridal trial",
+                    "durationMinutes": 90,
+                    "description": "Hair and makeup at the Cannon Street studio, photographed in daylight and written down."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "anna-reyes",
+                    "name": "Anna Reyes",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 600,
+                            "end": 1080
+                        },
+                        {
+                            "day": 3,
+                            "start": 600,
+                            "end": 1080
+                        }
+                    ]
+                },
+                {
+                    "providerId": "julia-pinckney",
+                    "name": "Julia Pinckney",
+                    "windows": [
+                        {
+                            "day": 3,
+                            "start": 600,
+                            "end": 1080
+                        },
+                        {
+                            "day": 4,
+                            "start": 600,
+                            "end": 1080
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "Dusty rose as the brand: on the daybook register the accent is the one soft ask (the pill), the timeline's nodes, and the heart on the rule, while the caption rose and sage are the register's own spot inks — a rebrand re-tints the ask without touching the album. Marketing pages resolve brand over preset accent, so the overlay re-skins the pages and the app surfaces together. navigation re-pins the shared servicesShell chrome to the inline bar (a declared theme variant outranks the shell prop). mode light opens on the white suite (theme merges shallowly).",
+        "brand": {
+            "primary": "#a0675f",
+            "primaryDark": "#dcaaa1"
+        },
+        "mode": "light",
+        "navigation": {
+            "variant": "inline"
+        }
+    },
+    "landing": {
+        "$comment": "The pin: the daybook register and the wedding-morning home — the full-bleed title card (the candid suite under the two-line headline and its script credit), the morning as a photographic timeline (the seed's build log, each hour's lead photograph with its frames), the rate as one line (the seed's ticker, set still), the islands, and the closing ask. The seed hides the home services grid (home.serviceGrid). The portfolio page keeps the bare-to-done comparisons over the base's process; the other pages keep the base's skeletons. resolveCatalog puts these in place of the base's pages.",
+        "style": {
+            "preset": "daybook"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "build-log",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "now-building",
+                        "type": "social-proof",
+                        "variant": "ticker"
+                    },
+                    {
+                        "id": "service-area",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "projects": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "transformations",
+                        "type": "gallery",
+                        "variant": "before-after"
+                    },
+                    {
+                        "id": "process",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "showcase",
+                        "variant": "card-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "quote": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "quote-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

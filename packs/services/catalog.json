@@ -1,0 +1,648 @@
+{
+    "key": "services",
+    "templateKey": "repobot-services",
+    "title": "Contractor & remodeling",
+    "description": "A local service business site: services with honest starting prices, a draggable before/after project gallery, a live open/closed badge with click-to-call, testimonials, credentials, and a quote-request form — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Local service business",
+    "category": "services",
+    "homePath": "/",
+    "previewPath": "/services",
+    "homeViewDir": "web/app/src/View/Services",
+    "base": "landing",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false,
+    "forms": {
+        "$comment": "Managed-form kinds, formKey -> kind (append-only vocabulary: RSVP | LEAD | MAILING_LIST | PROOFING). Compose stamps these into repobot.deploy.json as formKinds; the dashboard renders declared kinds as typed views and keeps the raw Inbox for undeclared keys.",
+        "quote-request": "LEAD"
+    },
+    "theme": {
+        "$comment": "The sitework register's brand overlay: the preset's safety-orange accent as the project brand, so app-side surfaces wear the same trades register as the marketing pages instead of the kernel default blue. Values match the sitework preset's own light/dark accents — the marketing pages resolve brand over preset accent, so keeping them identical means the overlay re-brands the app without shifting the pages.",
+        "brand": {
+            "primary": "#c2410c",
+            "primaryDark": "#ff8a3d"
+        }
+    },
+    "contentContract": {
+        "$comment": "The pack's content slots, as data (packs/README.md 'Content contract'). Declares what a composer (agent or tool) must bind for a generated variant of this pack to present as real: slot paths into the typed content module, their kinds, and minimums. The demo business is a remodeling contractor, but the slots are trade-agnostic — a plumber, landscaper, or cleaner variant binds the same shape. The ticker, build-log, materials, and color-deck slots are optional (no minimum): the pages drop a section whose list is empty. Authored alongside the module and guarded by the pack's content tests — the module satisfies the contract; the contract never drifts ahead of it.",
+        "module": "web/app/src/View/Services/content.ts",
+        "slots": {
+            "business.name": {
+                "kind": "text"
+            },
+            "business.tagline": {
+                "kind": "text"
+            },
+            "business.location": {
+                "kind": "text"
+            },
+            "business.phone": {
+                "kind": "text"
+            },
+            "business.email": {
+                "kind": "text"
+            },
+            "business.address": {
+                "kind": "text"
+            },
+            "business.license": {
+                "kind": "text"
+            },
+            "home.headline": {
+                "kind": "text"
+            },
+            "home.subheadline": {
+                "kind": "text"
+            },
+            "home.heroImage": {
+                "kind": "media"
+            },
+            "home.hero.credit": {
+                "kind": "text"
+            },
+            "home.hero.caption": {
+                "kind": "text"
+            },
+            "services": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "title": {
+                        "kind": "text"
+                    },
+                    "eyebrow": {
+                        "kind": "text"
+                    },
+                    "description": {
+                        "kind": "text"
+                    },
+                    "priceNote": {
+                        "kind": "text"
+                    },
+                    "image": {
+                        "kind": "media"
+                    }
+                }
+            },
+            "projects": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "title": {
+                        "kind": "text"
+                    },
+                    "location": {
+                        "kind": "text"
+                    },
+                    "scope": {
+                        "kind": "text"
+                    },
+                    "description": {
+                        "kind": "text"
+                    },
+                    "before": {
+                        "kind": "media"
+                    },
+                    "after": {
+                        "kind": "media"
+                    }
+                }
+            },
+            "metrics": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "value": {
+                        "kind": "text"
+                    },
+                    "label": {
+                        "kind": "text"
+                    }
+                }
+            },
+            "testimonials": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "quote": {
+                        "kind": "text"
+                    },
+                    "name": {
+                        "kind": "text"
+                    },
+                    "detail": {
+                        "kind": "text"
+                    }
+                }
+            },
+            "nowBuilding": {
+                "kind": "text[]"
+            },
+            "buildLog.title": {
+                "kind": "text"
+            },
+            "buildLog.steps": {
+                "kind": "collection",
+                "item": {
+                    "label": {
+                        "kind": "text"
+                    },
+                    "title": {
+                        "kind": "text"
+                    },
+                    "description": {
+                        "kind": "text"
+                    },
+                    "image": {
+                        "kind": "media"
+                    }
+                }
+            },
+            "species.title": {
+                "kind": "text"
+            },
+            "species.items": {
+                "kind": "collection",
+                "item": {
+                    "name": {
+                        "kind": "text"
+                    },
+                    "use": {
+                        "kind": "text"
+                    },
+                    "description": {
+                        "kind": "text"
+                    },
+                    "image": {
+                        "kind": "media"
+                    }
+                }
+            },
+            "palette.items": {
+                "kind": "collection",
+                "item": {
+                    "name": {
+                        "kind": "text"
+                    },
+                    "code": {
+                        "kind": "text"
+                    },
+                    "color": {
+                        "kind": "text"
+                    },
+                    "note": {
+                        "kind": "text"
+                    }
+                }
+            },
+            "serviceArea": {
+                "kind": "text[]",
+                "min": 1
+            },
+            "faq": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "question": {
+                        "kind": "text"
+                    },
+                    "answer": {
+                        "kind": "text"
+                    }
+                }
+            },
+            "about.headline": {
+                "kind": "text"
+            },
+            "about.photo": {
+                "kind": "media"
+            },
+            "about.paragraphs": {
+                "kind": "text[]",
+                "min": 2
+            },
+            "about.credentials": {
+                "kind": "text[]",
+                "min": 1
+            },
+            "quote.headline": {
+                "kind": "text"
+            },
+            "quote.body": {
+                "kind": "text"
+            },
+            "codeAppointments.types": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "typeId": {
+                        "kind": "text"
+                    },
+                    "name": {
+                        "kind": "text"
+                    },
+                    "durationMinutes": {
+                        "kind": "number"
+                    },
+                    "description": {
+                        "kind": "text"
+                    }
+                }
+            },
+            "codeAppointments.providers": {
+                "kind": "collection",
+                "min": 1,
+                "item": {
+                    "providerId": {
+                        "kind": "text"
+                    },
+                    "name": {
+                        "kind": "text"
+                    },
+                    "windows": {
+                        "kind": "collection",
+                        "min": 1,
+                        "item": {
+                            "day": {
+                                "kind": "number"
+                            },
+                            "start": {
+                                "kind": "number"
+                            },
+                            "end": {
+                                "kind": "number"
+                            }
+                        }
+                    }
+                }
+            },
+            "booking.headline": {
+                "kind": "text"
+            },
+            "booking.intro": {
+                "kind": "text"
+            },
+            "policies.items": {
+                "kind": "collection",
+                "item": {
+                    "title": {
+                        "kind": "text"
+                    },
+                    "body": {
+                        "kind": "text"
+                    }
+                }
+            },
+            "process.kicker": {
+                "kind": "text"
+            },
+            "process.title": {
+                "kind": "text"
+            },
+            "process.steps": {
+                "kind": "collection",
+                "item": {
+                    "title": {
+                        "kind": "text"
+                    },
+                    "description": {
+                        "kind": "text"
+                    }
+                }
+            },
+            "home.hero.kicker": {
+                "kind": "text"
+            },
+            "home.hero.coverLines": {
+                "kind": "text[]"
+            },
+            "home.hero.accent": {
+                "kind": "text"
+            },
+            "palette.kicker": {
+                "kind": "text"
+            },
+            "palette.title": {
+                "kind": "text"
+            },
+            "buildLog.kicker": {
+                "kind": "text"
+            },
+            "species.kicker": {
+                "kind": "text"
+            },
+            "priceMenu.kicker": {
+                "kind": "text"
+            },
+            "priceMenu.title": {
+                "kind": "text"
+            },
+            "priceMenu.intro": {
+                "kind": "text"
+            },
+            "priceMenu.groups": {
+                "kind": "collection",
+                "item": {
+                    "heading": {
+                        "kind": "text"
+                    },
+                    "items": {
+                        "kind": "collection",
+                        "item": {
+                            "name": {
+                                "kind": "text"
+                            },
+                            "note": {
+                                "kind": "text"
+                            },
+                            "qualifier": {
+                                "kind": "text",
+                                "optional": true
+                            },
+                            "price": {
+                                "kind": "text"
+                            }
+                        }
+                    }
+                }
+            },
+            "priceMenu.footnote": {
+                "kind": "text"
+            },
+            "lookbook.items": {
+                "kind": "collection",
+                "item": {
+                    "name": {
+                        "kind": "text"
+                    },
+                    "meta": {
+                        "kind": "text"
+                    },
+                    "description": {
+                        "kind": "text"
+                    },
+                    "tags": {
+                        "kind": "text[]"
+                    },
+                    "image": {
+                        "kind": "media"
+                    }
+                }
+            },
+            "policies.kicker": {
+                "kind": "text"
+            },
+            "policies.title": {
+                "kind": "text"
+            },
+            "policies.cardTitle": {
+                "kind": "text"
+            },
+            "policies.body": {
+                "kind": "text"
+            },
+            "policies.image": {
+                "kind": "media",
+                "optional": true
+            },
+            "home.hero.panels": {
+                "kind": "collection",
+                "item": {
+                    "label": {
+                        "kind": "text"
+                    },
+                    "image": {
+                        "kind": "media"
+                    }
+                }
+            },
+            "feature.kicker": {
+                "kind": "text"
+            },
+            "feature.headline": {
+                "kind": "text"
+            },
+            "feature.paragraphs": {
+                "kind": "text[]"
+            },
+            "feature.image": {
+                "kind": "media",
+                "optional": true
+            },
+            "feature.linkLabel": {
+                "kind": "text"
+            },
+            "feature.pullQuote": {
+                "kind": "text"
+            },
+            "feature.figures": {
+                "kind": "collection",
+                "item": {
+                    "title": {
+                        "kind": "text"
+                    },
+                    "caption": {
+                        "kind": "text"
+                    },
+                    "image": {
+                        "kind": "media"
+                    }
+                }
+            },
+            "feature.plate": {
+                "kind": "media",
+                "optional": true
+            },
+            "feature.plateCaption": {
+                "kind": "text"
+            }
+        }
+    },
+    "content": {
+        "$comment": "Business-content contract seed, merged over repobot.content.json at compose (the care pack's discipline). The appointments domain mirrors content.ts codeAppointments entry for entry (the pack's content tests pin the twin), so the Manage visit calendar opens on exactly the visits the site already offers, and the platform projects exactly the capacity-1 slots the sandbox simulation shows on the inquiry page. The seed is booking mode 2's input: the platform generates a booking_session per provider x window x visit type occurrence, capacity 1, with the provider-wide overlap lock making double-booking impossible. Durations are minutes; windows are weekday index (0 = Sunday) x minutes since midnight — one provider, because the founder does every walkthrough.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "estimate-visit",
+                    "name": "Free estimate visit",
+                    "durationMinutes": 60,
+                    "description": "A walkthrough of the job — we measure, listen, and follow up with a written quote."
+                },
+                {
+                    "typeId": "service-call",
+                    "name": "Service call",
+                    "durationMinutes": 120,
+                    "description": "A scheduled block for repairs and small jobs — the list on your fridge, handled."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "marcus-webb",
+                    "name": "Marcus Webb",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 540,
+                            "end": 960
+                        },
+                        {
+                            "day": 2,
+                            "start": 540,
+                            "end": 960
+                        },
+                        {
+                            "day": 3,
+                            "start": 540,
+                            "end": 960
+                        },
+                        {
+                            "day": 4,
+                            "start": 540,
+                            "end": 960
+                        },
+                        {
+                            "day": 5,
+                            "start": 540,
+                            "end": 960
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (web/app/src/View/Services/ServicesPage.tsx, useSitePageConfig). pages seeds each page's layout skeleton — ids match servicesLanding.ts; the platform's structural editor edits these. The preset is sitework (the trades register: plan-grid work paper, stenciled uppercase display, safety-orange accent, jobsite grain) — licensed-and-insured confidence, deliberately apart from warm-boutique's café warmth.",
+        "style": {
+            "preset": "sitework"
+        },
+        "routes": {
+            "/": "home",
+            "/projects": "projects",
+            "/services": "services",
+            "/about": "about",
+            "/quote": "quote"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "split-media"
+                    },
+                    {
+                        "id": "services",
+                        "type": "card-grid",
+                        "variant": "3up"
+                    },
+                    {
+                        "id": "transformations",
+                        "type": "gallery",
+                        "variant": "before-after"
+                    },
+                    {
+                        "id": "proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "service-area",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "projects": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "transformations",
+                        "type": "gallery",
+                        "variant": "before-after"
+                    },
+                    {
+                        "id": "process",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "showcase",
+                        "variant": "card-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "quote": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "quote-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

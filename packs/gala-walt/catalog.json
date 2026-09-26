@@ -1,0 +1,80 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the gala pack composed with a seventieth birthday dinner's content seed, re-registered in the vineyard register with its own pinned page skeletons. Everything else — the pages' builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "gala-walt",
+    "remixOf": "gala",
+    "templateKey": "repobot-gala-walt",
+    "title": "Seventieth birthday dinner",
+    "description": "A milestone birthday dinner on the harbor lawn: the family at the long table under lanterns with the headline and the date line over the photograph, one line asking for a memory, the guest of honor at the tiller edge to edge, the book of memories so far, and one quiet ask. A reply card delivers RSVPs straight to the hosts, each with a memory for the book, and the reply-by nudge is computed from the date. Deep navy and warm white, a classic Baskerville, nothing loud. Flexes to anniversaries, retirements, and reunion suppers.",
+    "marketingExampleTitle": "Seventieth birthday dinner",
+    "contentSeed": "web/app/src/View/Gala/waltRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed, merged over repobot.content.json at compose (the same overlay path as landing/theme — scripts/lib/pack-switch.mjs applyPackOverlays). The guestlist domain is the gala's PRIVATE roster and deliberately seeds EMPTY: the roster is the owner's from day one, never demo data.",
+        "guestlist": {
+            "entries": []
+        }
+    },
+    "theme": {
+        "$comment": "The vineyard register's brand overlay: the preset's warm-white ink on navy as the project brand, so app-side surfaces wear the dinner's register instead of the kernel default blue. Dark-native, a summer night on the harbor. Values match the vineyard preset's own light/dark accents — the marketing pages resolve brand over preset accent, so keeping them identical means the overlay re-brands the app without shifting the pages.",
+        "mode": "dark",
+        "brand": {
+            "primary": "#1a2b4a",
+            "primaryDark": "#efe3c8"
+        }
+    },
+    "landing": {
+        "$comment": "A pinned layout (packs/README.md 'Derived templates'): style re-registers the base's pages in the vineyard register (deep navy ground, warm-white ink, Baskervville over Caslon's text cut, the framestack treatment floating the nav over the photograph and holding every frame at one size), and pages carries exactly the skeletons galaLanding.ts emits from this remix's contentSeed — the seed sets home.layout to stack, so the home is the photograph, the band, one frame, the memory book, and the colophon ask (tests/View/Gala/galaLanding.test.ts reads this through composedLandingSeed).",
+        "style": {
+            "preset": "vineyard"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "band",
+                        "type": "rich-prose",
+                        "variant": "narrow"
+                    },
+                    {
+                        "id": "frames",
+                        "type": "gallery",
+                        "variant": "sequence"
+                    },
+                    {
+                        "id": "memories",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "rsvp-banner",
+                        "type": "cta-banner",
+                        "variant": "colophon"
+                    }
+                ]
+            },
+            "rsvp": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "rsvp-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    }
+                ]
+            }
+        }
+    }
+}

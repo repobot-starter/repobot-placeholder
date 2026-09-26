@@ -1,0 +1,72 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services-recurring pack composed with a lawn-care content seed and a deep-emerald brand over the warm-boutique register. Everything else — pages, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-lawncare",
+    "remixOf": "services-recurring",
+    "templateKey": "repobot-services-lawncare",
+    "title": "Lawn care & mowing",
+    "description": "A lawn care site built around the schedule: mowing and treatment plans priced per visit, a line-by-line plan comparison, a proof gallery, testimonials, and a booking form that asks for a frequency, not a project — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Lawn care service",
+    "contentSeed": "web/app/src/View/ServicesRecurring/lawncareRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twin) — the composed template's booking widget and Manage calendar open on this trade's own provider, not the base demo business's.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "walkthrough",
+                    "name": "On-site walkthrough",
+                    "durationMinutes": 45,
+                    "description": "A walk of the property together — we measure, note the trouble spots, and quote a flat rate."
+                },
+                {
+                    "typeId": "first-service",
+                    "name": "First service visit",
+                    "durationMinutes": 120,
+                    "description": "The first full visit — mow, edge, and clean up, so the standing schedule starts from sharp."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "cole-whitaker",
+                    "name": "Cole Whitaker",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 540,
+                            "end": 900
+                        },
+                        {
+                            "day": 2,
+                            "start": 540,
+                            "end": 900
+                        },
+                        {
+                            "day": 3,
+                            "start": 540,
+                            "end": 900
+                        },
+                        {
+                            "day": 4,
+                            "start": 540,
+                            "end": 900
+                        },
+                        {
+                            "day": 5,
+                            "start": 540,
+                            "end": 900
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "Deep emerald over the warm-boutique register's cream warmth — the recurring shape's herbal-green cleaner deepened to turf. Marketing pages resolve brand over preset accent, so the overlay re-skins the pages and the app surfaces together. navigation re-pins the shared servicesRecurringShell chrome (a declared theme variant outranks the shell prop): the base cleaner wears the pill-links cluster, so the lawncare remix takes the inline floating card — the nav-variety audit spreads the nine-template services family across the vocabulary.",
+        "brand": {
+            "primary": "#047857",
+            "primaryDark": "#34d399"
+        },
+        "navigation": {
+            "variant": "inline"
+        }
+    }
+}

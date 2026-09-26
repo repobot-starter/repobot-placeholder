@@ -1,0 +1,113 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the photography-family pack composed with a documentary family photographer's content seed (Hattie Moreau, Chicago), re-registered in the snapshot register (the fridge door) with its own pinned page skeletons — the seed's `home.layout: \"pinboard\"` makes the base builders emit the pinboard home. Everything else — pages' builders, sections, contract, tests, booking and proofing — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "photography-family-documentary",
+    "remixOf": "photography-family",
+    "templateKey": "repobot-photography-family-documentary",
+    "title": "Hattie Moreau — Family Photography",
+    "description": "A Chicago documentary family photographer's site in the fridge-door register: the home hero is a pile of white-bordered prints taped up at a lean with felt-tip captions (\"pancake disaster, 9:14am\") beside a shouted condensed headline — NOT A PORTRAIT. YOUR SATURDAY. — then galleries of whole real days (a Saturday start to finish, a new baby week, move-out day, the grandparents' visit, a snow day) pinned up as captioned prints, three flat-priced lengths of day, how a day goes as a rail of clock-stamped prints, a what-to-expect checklist (no posing, keep the mess), REAL booking (a half day straight off the weekend calendar plus planning calls, projected into concrete bookable times on the managed booking domain), private code-gated client proofing on the platform proofing service, and an inquiry form — a multi-page site edited in one content file, art-directed in the snapshot register (cream paper, condensed black caps, tomato-red marker, masking tape).",
+    "marketingExampleTitle": "Documentary family photographer site",
+    "contentSeed": "web/app/src/View/PhotographyFamily/documentaryRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module codeAppointments entry for entry (the remix-seed test pins the twin) — the composed template's Manage session calendar and booking widget open on the documentary offering: the half day books straight off the weekend calendar; full days and day-in-the-life days start with a planning call because they run past the booking domain's 240-minute slot ceiling. One provider: a one-photographer studio.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "half-day",
+                    "name": "Half day",
+                    "durationMinutes": 240,
+                    "description": "Four hours — a morning or an afternoon"
+                },
+                {
+                    "typeId": "day-planning-call",
+                    "name": "Full day planning call",
+                    "durationMinutes": 45,
+                    "description": "We pick your Saturday and plan the day"
+                },
+                {
+                    "typeId": "new-baby-call",
+                    "name": "New baby week call",
+                    "durationMinutes": 30,
+                    "description": "Before baby arrives, we hold the week"
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "hattie",
+                    "name": "Hattie Moreau",
+                    "windows": [
+                        { "day": 0, "start": 540, "end": 780 },
+                        { "day": 2, "start": 1080, "end": 1200 },
+                        { "day": 4, "start": 1080, "end": 1200 },
+                        { "day": 6, "start": 480, "end": 960 }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The snapshot register's brand overlay: mode light opens the site in its native cream-paper daylight appearance (the appearance toggle still swaps to the after-bedtime dark reading), and the register's tomato-red marker rides as the project brand so app-side surfaces wear the same register as the marketing pages instead of the kernel default blue. Values match the snapshot preset's own light/dark accents — the marketing pages resolve brand over preset accent, so keeping them identical means the overlay re-brands the app without shifting the pages.",
+        "mode": "light",
+        "brand": { "primary": "#d63a2c", "primaryDark": "#ff6b57" }
+    },
+    "landing": {
+        "$comment": "A pinned layout (packs/README.md 'Derived templates'): style re-registers the base's pages in the snapshot register (the fridge door: cream paper, condensed black caps with a tomato-red marker line, white-bordered prints taped up at a lean, felt-tip captions — the documentary reading, everyday family life over posed portraits), and pages carries exactly the skeletons familyLanding.ts emits from this remix's contentSeed — the pinboard home (its prints pile rides `prints`, the seal is the sticky note, the credit the scribble) with the lengths of day, the day rail, and the checklist, scrapbook album walls — so the composed template's document reproduces its code config section for section (tests/View/PhotographyFamily/familyLanding.test.ts reads this through composedLandingSeed).",
+        "style": { "preset": "snapshot" },
+        "pages": {
+            "home": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "pinboard" },
+                    { "id": "selected-work", "type": "gallery", "variant": "scrapbook" },
+                    { "id": "collections", "type": "showcase", "variant": "collections" },
+                    { "id": "a-day-with-us", "type": "pricing", "variant": "tiers" },
+                    { "id": "how-a-day-goes", "type": "steps", "variant": "horizontal-rail" },
+                    { "id": "what-to-expect", "type": "feature-grid", "variant": "checklist" },
+                    { "id": "intro", "type": "content-split", "variant": "media-right" },
+                    { "id": "kind-words", "type": "testimonials", "variant": "single-featured" },
+                    { "id": "book-banner", "type": "cta-banner" }
+                ]
+            },
+            "work": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "statement" },
+                    { "id": "collections", "type": "showcase", "variant": "collections" }
+                ]
+            },
+            "galleries": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "statement" },
+                    { "id": "gallery-steps", "type": "steps", "variant": "timeline" },
+                    { "id": "sample-room", "type": "content-split", "variant": "media-right" },
+                    { "id": "book-banner", "type": "cta-banner" }
+                ]
+            },
+            "investment": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "statement" },
+                    { "id": "offerings", "type": "pricing", "variant": "tiers" },
+                    { "id": "how-it-works", "type": "steps", "variant": "timeline" },
+                    { "id": "faq", "type": "faq", "variant": "accordion" },
+                    { "id": "book-banner", "type": "cta-banner" }
+                ]
+            },
+            "about": {
+                "sections": [
+                    { "id": "story", "type": "content-split", "variant": "media-left" },
+                    { "id": "kind-words", "type": "testimonials" },
+                    { "id": "inquire-banner", "type": "cta-banner" }
+                ]
+            },
+            "book": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "statement" },
+                    { "id": "flexible-banner", "type": "cta-banner" }
+                ]
+            },
+            "inquire": {
+                "sections": [
+                    { "id": "hero", "type": "hero", "variant": "statement" },
+                    { "id": "inquiry-form", "type": "lead-form", "variant": "detail-form" }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,344 @@
+{
+    "key": "wedding-edition",
+    "templateKey": "repobot-wedding-edition",
+    "title": "Weddings — The Late Edition",
+    "description": "A loud wedding photographer's site styled as a New York tabloid: a front-page hero with a red dateline bar, banner headline, byline and halftone lead photo; newspaper stories under the fold that jump to the rolls; every wedding proofed as a 35mm contact sheet with grease-pencil picks and a lightbox; a flat-priced rate card with a classified ad and reader FAQ; testimonials run as letters to the editor; an inquiry form that asks for the date, venue, borough, guest count and vibe; and a private proofing room where couples and their families send print picks straight to the studio. A multi-page site edited in one content file.",
+    "marketingExampleTitle": "Wedding photographer — tabloid edition",
+    "category": "photography",
+    "homePath": "/",
+    "previewPath": "/wedding-edition",
+    "homeViewDir": "web/app/src/View/WeddingEdition",
+    "base": "content",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false,
+    "platformServices": ["proofing"],
+    "forms": {
+        "$comment": "Managed-form kinds, formKey -> kind (append-only vocabulary: RSVP | LEAD | MAILING_LIST | PROOFING). The inquiry form is a lead pipeline. Live proofing selections POST /__proofing/select (not the forms pipeline); proofing-selection stays declared PROOFING so Inbox rows type as a proofing record, the wedding pack's discipline. platformServices declares the proofing platform service — compose merges it into the deploy manifest's contentDomains so the Manage rail gates the Client galleries surface.",
+        "inquiry": "LEAD",
+        "proofing-selection": "PROOFING"
+    },
+    "contentContract": {
+        "$comment": "The pack's content slots, as data (packs/README.md 'Content contract'): slot paths into the typed content module, their kinds, and minimums — what a composer must bind for a generated variant of this pack to present as real. Guarded by the pack's content tests: the module satisfies the contract; the contract never drifts ahead of it.",
+        "module": "web/app/src/View/WeddingEdition/content.ts",
+        "slots": {
+            "photographer.paper": {
+                "kind": "text"
+            },
+            "photographer.name": {
+                "kind": "text"
+            },
+            "photographer.role": {
+                "kind": "text"
+            },
+            "photographer.tagline": {
+                "kind": "text"
+            },
+            "photographer.location": {
+                "kind": "text"
+            },
+            "photographer.email": {
+                "kind": "text"
+            },
+            "photographer.motto": {
+                "kind": "text"
+            },
+            "photographer.portrait": {
+                "kind": "media"
+            },
+            "home.headline": {
+                "kind": "text"
+            },
+            "home.deck": {
+                "kind": "text"
+            },
+            "home.leadPhoto": {
+                "kind": "media"
+            },
+            "home.caption": {
+                "kind": "text"
+            },
+            "stories": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "kicker": {
+                        "kind": "text"
+                    },
+                    "headline": {
+                        "kind": "text"
+                    },
+                    "body": {
+                        "kind": "text"
+                    },
+                    "dateline": {
+                        "kind": "text"
+                    },
+                    "image": {
+                        "kind": "media"
+                    }
+                }
+            },
+            "rolls": {
+                "kind": "collection",
+                "min": 1,
+                "item": {
+                    "title": { "kind": "text" },
+                    "eyebrow": { "kind": "text" },
+                    "description": { "kind": "text" },
+                    "edgeCode": { "kind": "text" },
+                    "firstFrame": { "kind": "number" },
+                    "frames": {
+                        "kind": "collection",
+                        "min": 4,
+                        "item": {
+                            "image": { "kind": "media" },
+                            "mark": { "kind": "text", "optional": true },
+                            "note": { "kind": "text", "optional": true }
+                        }
+                    }
+                }
+            },
+            "packages": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "name": {
+                        "kind": "text"
+                    },
+                    "price": {
+                        "kind": "number"
+                    },
+                    "description": {
+                        "kind": "text"
+                    },
+                    "features": {
+                        "kind": "text[]",
+                        "min": 2
+                    }
+                }
+            },
+            "classified.title": {
+                "kind": "text"
+            },
+            "classified.price": {
+                "kind": "text"
+            },
+            "faq": {
+                "kind": "collection",
+                "min": 5,
+                "item": {
+                    "question": {
+                        "kind": "text"
+                    },
+                    "answer": {
+                        "kind": "text"
+                    }
+                }
+            },
+            "letters": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "quote": {
+                        "kind": "text"
+                    },
+                    "name": {
+                        "kind": "text"
+                    },
+                    "detail": {
+                        "kind": "text"
+                    }
+                }
+            },
+            "about.headline": {
+                "kind": "text"
+            },
+            "about.deck": {
+                "kind": "text"
+            },
+            "about.paragraphs": {
+                "kind": "text[]",
+                "min": 2
+            },
+            "about.rules": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "title": {
+                        "kind": "text"
+                    },
+                    "body": {
+                        "kind": "text"
+                    }
+                }
+            },
+            "inquire.headline": {
+                "kind": "text"
+            },
+            "inquire.body": {
+                "kind": "text"
+            },
+            "home.kicker": { "kind": "text" },
+            "home.issue": { "kind": "text" },
+            "classified.kicker": { "kind": "text" },
+            "classified.body": { "kind": "text" },
+            "classified.finePrint": { "kind": "text" },
+            "classified.signoff.name": { "kind": "text" },
+            "classified.signoff.note": { "kind": "text" },
+            "about.kicker": { "kind": "text" },
+            "about.title": { "kind": "text" }
+        }
+    },
+    "theme": {
+        "$comment": "The tabloid register's overlay: mode light opens the site on its native newsprint (the appearance toggle still swaps to the night-desk dark variant), and the preset's fire-engine red rides as the project brand so app-side surfaces (the code-gated proofing room's chrome and controls) wear the same red as the pages instead of the kernel default blue. Brand values match the tabloid preset's own light/dark accents — the marketing pages resolve brand over preset accent, so keeping them identical re-brands the app without shifting the pages. navigation pins the centered nameplate (the paper's flag over a ruled band of section links), matching editionShell.ts — a declared theme variant outranks the shell prop.",
+        "mode": "light",
+        "brand": {
+            "primary": "#d0161e",
+            "primaryDark": "#f0333a"
+        },
+        "navigation": {
+            "variant": "centered"
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (web/app/src/View/WeddingEdition/WeddingEditionPage.tsx, useSitePageConfig). pages seeds each page's layout skeleton — ids and variants match editionLanding.ts; the platform's structural editor edits these. Roll interiors (/weddings?roll=<slug>) merge under roll-<slug> and are deliberately unseeded, so adding a roll is a content edit. style must ride the overlay: the compose merge keeps the kernel document's root style otherwise, and applySitePageDocument makes the document preset outrank every page's pinned one. The preset is tabloid (Anton banner caps, serif columns, newsprint, black column rules, fire-engine red, halftone-screened photographs) — the wedding as the morning-after front page.",
+        "style": {
+            "preset": "tabloid"
+        },
+        "routes": {
+            "/": "home",
+            "/weddings": "weddings",
+            "/prices": "prices",
+            "/about": "about",
+            "/inquire": "inquire"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "front-page"
+                    },
+                    {
+                        "id": "stories",
+                        "type": "showcase",
+                        "variant": "stories"
+                    },
+                    {
+                        "id": "packages",
+                        "type": "pricing",
+                        "variant": "tiers"
+                    },
+                    {
+                        "id": "letters",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "classified",
+                        "type": "cta-banner",
+                        "variant": "classified"
+                    }
+                ]
+            },
+            "weddings": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "picks",
+                        "type": "gallery",
+                        "variant": "contact-sheet"
+                    },
+                    {
+                        "id": "rolls",
+                        "type": "showcase",
+                        "variant": "stories"
+                    },
+                    {
+                        "id": "classified",
+                        "type": "cta-banner",
+                        "variant": "classified"
+                    }
+                ]
+            },
+            "prices": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "packages",
+                        "type": "pricing",
+                        "variant": "tiers"
+                    },
+                    {
+                        "id": "proofing",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "classified",
+                        "type": "cta-banner",
+                        "variant": "classified"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "rules",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "letters",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "classified",
+                        "type": "cta-banner",
+                        "variant": "classified"
+                    }
+                ]
+            },
+            "inquire": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "inquiry-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

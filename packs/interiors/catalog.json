@@ -1,0 +1,567 @@
+{
+    "key": "interiors",
+    "templateKey": "repobot-interiors",
+    "title": "Interior Designer",
+    "description": "An interior design studio's portfolio site — the projects-domain flagship: a filterable body of work whose category chips derive from the entries themselves (the business-content contract's projects domain, so the owner reshapes the portfolio from Manage without touching code), three services with honest investment numbers, a studio story with credentials, plain-language FAQs on cost and timing, real online booking for free discovery calls and paid two-hour consultations, and a project-inquiry lead form. Five pages, all facts in one content file, art-directed in the atelier register's gallery white with a warm bronze brand.",
+    "marketingExampleTitle": "Interior design studio",
+    "category": "design",
+    "homePath": "/",
+    "previewPath": "/interiors",
+    "homeViewDir": "web/app/src/View/Interiors",
+    "base": "landing",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false,
+    "forms": {
+        "$comment": "Managed-form kinds, formKey -> kind (append-only vocabulary: RSVP | LEAD | MAILING_LIST | PROOFING). Compose stamps these into repobot.deploy.json as formKinds; the dashboard renders declared kinds as typed views and keeps the raw Inbox for undeclared keys.",
+        "interiors-inquiry": "LEAD"
+    },
+    "theme": {
+        "$comment": "The atelier register's gallery hush with a warm bronze brand: mode light opens the site in its native daylight appearance, and the bronze rides as the project brand so app-side surfaces wear the same register as the marketing pages instead of the kernel default blue. The marketing pages resolve brand over preset accent, so the overlay re-inks atelier's near-black into the studio's bronze on pages and app alike — material warmth over gallery white.",
+        "mode": "light",
+        "brand": {
+            "primary": "#8a5c3c",
+            "primaryDark": "#d8b48e"
+        }
+    },
+    "contentContract": {
+        "$comment": "The pack's content slots, as data (packs/README.md 'Content contract'). The two structured exports are contract-shaped on purpose: `projects` is the code fallback for the business-content contract's projects domain (each entry the projects-domain shape plus its code-owned photograph — projectsDocument.ts owns the merge), and codeAppointments is the fallback for the appointments domain, so a composer binds the same shapes the platform's Manage editors write. `category` is the portfolio's taxonomy axis: a free string the grid derives its filter chips from — a composer must keep it short and reusable across entries, never a sentence. Appointment windows are NUMBERS (weekday index and minutes since midnight) that the slot projection computes from. The catalog-home lists (caseStudies.befores joined to FEATURED projects by slug, pieces.items, fees.groups) carry no minimum: a seed on the gallery home layout (home.layout) leaves them empty and those sections are never built.",
+        "module": "web/app/src/View/Interiors/content.ts",
+        "slots": {
+            "studio.name": {
+                "kind": "text"
+            },
+            "studio.principal": {
+                "kind": "text"
+            },
+            "studio.tagline": {
+                "kind": "text"
+            },
+            "studio.location": {
+                "kind": "text"
+            },
+            "studio.phone": {
+                "kind": "text"
+            },
+            "studio.email": {
+                "kind": "text"
+            },
+            "studio.address": {
+                "kind": "text"
+            },
+            "studio.credentialLine": {
+                "kind": "text"
+            },
+            "home.headline": {
+                "kind": "text"
+            },
+            "home.subheadline": {
+                "kind": "text"
+            },
+            "home.heroImage": {
+                "kind": "media"
+            },
+            "projects": {
+                "kind": "collection",
+                "min": 5,
+                "item": {
+                    "slug": {
+                        "kind": "text"
+                    },
+                    "title": {
+                        "kind": "text"
+                    },
+                    "category": {
+                        "kind": "text"
+                    },
+                    "location": {
+                        "kind": "text"
+                    },
+                    "year": {
+                        "kind": "number"
+                    },
+                    "scope": {
+                        "kind": "text"
+                    },
+                    "description": {
+                        "kind": "text"
+                    },
+                    "image": {
+                        "kind": "media"
+                    }
+                }
+            },
+            "services": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "slug": {
+                        "kind": "text"
+                    },
+                    "title": {
+                        "kind": "text"
+                    },
+                    "description": {
+                        "kind": "text"
+                    },
+                    "investment": {
+                        "kind": "text"
+                    },
+                    "image": {
+                        "kind": "media"
+                    }
+                }
+            },
+            "metrics": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "value": {
+                        "kind": "text"
+                    },
+                    "label": {
+                        "kind": "text"
+                    }
+                }
+            },
+            "testimonials": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "quote": {
+                        "kind": "text"
+                    },
+                    "name": {
+                        "kind": "text"
+                    },
+                    "detail": {
+                        "kind": "text"
+                    }
+                }
+            },
+            "process.steps": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "title": {
+                        "kind": "text"
+                    },
+                    "description": {
+                        "kind": "text"
+                    }
+                }
+            },
+            "about.headline": {
+                "kind": "text"
+            },
+            "about.photo": {
+                "kind": "media"
+            },
+            "about.paragraphs": {
+                "kind": "text[]",
+                "min": 2
+            },
+            "about.credentials": {
+                "kind": "text[]",
+                "min": 3
+            },
+            "about.bullets": {
+                "kind": "text[]"
+            },
+            "faq": {
+                "kind": "collection",
+                "min": 3,
+                "item": {
+                    "question": {
+                        "kind": "text"
+                    },
+                    "answer": {
+                        "kind": "text"
+                    }
+                }
+            },
+            "codeAppointments.types": {
+                "kind": "collection",
+                "min": 2,
+                "item": {
+                    "typeId": {
+                        "kind": "text"
+                    },
+                    "name": {
+                        "kind": "text"
+                    },
+                    "durationMinutes": {
+                        "kind": "number"
+                    },
+                    "description": {
+                        "kind": "text"
+                    }
+                }
+            },
+            "codeAppointments.providers": {
+                "kind": "collection",
+                "min": 1,
+                "item": {
+                    "providerId": {
+                        "kind": "text"
+                    },
+                    "name": {
+                        "kind": "text"
+                    },
+                    "windows": {
+                        "kind": "collection",
+                        "min": 1,
+                        "item": {
+                            "day": {
+                                "kind": "number"
+                            },
+                            "start": {
+                                "kind": "number"
+                            },
+                            "end": {
+                                "kind": "number"
+                            }
+                        }
+                    }
+                }
+            },
+            "contact.headline": {
+                "kind": "text"
+            },
+            "contact.body": {
+                "kind": "text"
+            },
+            "caseStudies.befores": {
+                "kind": "collection",
+                "item": {
+                    "slug": {
+                        "kind": "text"
+                    },
+                    "image": {
+                        "kind": "media"
+                    }
+                }
+            },
+            "pieces.items": {
+                "kind": "collection",
+                "item": {
+                    "number": {
+                        "kind": "text"
+                    },
+                    "name": {
+                        "kind": "text"
+                    },
+                    "meta": {
+                        "kind": "text"
+                    },
+                    "description": {
+                        "kind": "text"
+                    },
+                    "image": {
+                        "kind": "media"
+                    }
+                }
+            },
+            "fees.groups": {
+                "kind": "collection",
+                "item": {
+                    "heading": {
+                        "kind": "text"
+                    },
+                    "items": {
+                        "kind": "collection",
+                        "item": {
+                            "name": {
+                                "kind": "text"
+                            },
+                            "price": {
+                                "kind": "text"
+                            },
+                            "note": {
+                                "kind": "text"
+                            },
+                            "qualifier": {
+                                "kind": "text",
+                                "optional": true
+                            }
+                        }
+                    }
+                }
+            },
+            "fees.kicker": {
+                "kind": "text"
+            },
+            "fees.title": {
+                "kind": "text"
+            },
+            "fees.intro": {
+                "kind": "text"
+            },
+            "fees.footnote": {
+                "kind": "text"
+            },
+            "process.kicker": {
+                "kind": "text"
+            },
+            "process.title": {
+                "kind": "text"
+            },
+            "pieces.kicker": {
+                "kind": "text"
+            },
+            "pieces.title": {
+                "kind": "text"
+            },
+            "caseStudies.kicker": {
+                "kind": "text"
+            },
+            "caseStudies.title": {
+                "kind": "text"
+            }
+        }
+    },
+    "content": {
+        "$comment": "Business-content contract seed (repobot.content.json domains this pack ships). projects mirrors content.ts's `projects` export entry for entry MINUS the photographs — the contract moves words and categories, never bytes; the pack joins its code-owned images back by slug (inventory.ts). appointments mirrors codeAppointments exactly. The content tests pin both twins, so the composed template's Manage editors and booking widget open on the studio's real facts.",
+        "projects": {
+            "entries": [
+                {
+                    "slug": "laurelhurst-craftsman",
+                    "title": "Laurelhurst Craftsman",
+                    "category": "Full home",
+                    "location": "Laurelhurst",
+                    "year": 2026,
+                    "scope": "Whole-house renovation — 3,400 sq ft",
+                    "description": "A 1912 craftsman opened up without losing its bones: original fir trim restored, a new kitchen that defers to it, and a palette of plaster, walnut, and moss drawn from the garden it faces.",
+                    "featured": true
+                },
+                {
+                    "slug": "pearl-loft",
+                    "title": "Pearl District Loft",
+                    "category": "Full home",
+                    "location": "Pearl District",
+                    "year": 2025,
+                    "scope": "Full interior — 1,800 sq ft",
+                    "description": "A concrete shell warmed into a home: white-oak millwork wrapping the sleeping mezzanine, a travertine island under the old crane rail, and linen everywhere the concrete isn't.",
+                    "featured": true
+                },
+                {
+                    "slug": "alberta-kitchen",
+                    "title": "Alberta Arts Kitchen",
+                    "category": "Kitchens & baths",
+                    "location": "Alberta Arts District",
+                    "year": 2025,
+                    "scope": "Kitchen — 14 weeks",
+                    "description": "A galley kitchen rebuilt around one long sightline: sage-painted cabinetry to the ceiling, unlacquered brass that will earn its patina, and a soapstone counter meant for flour and lemon juice.",
+                    "featured": true
+                },
+                {
+                    "slug": "sellwood-bath",
+                    "title": "Sellwood Primary Bath",
+                    "category": "Kitchens & baths",
+                    "location": "Sellwood",
+                    "year": 2024,
+                    "scope": "Primary bath — 8 weeks",
+                    "description": "A cramped 1970s bath turned quiet and stone-heavy: zellige to the ceiling, a carved travertine basin, and a skylight where the fan used to be."
+                },
+                {
+                    "slug": "harlow-cafe",
+                    "title": "Café Harlow",
+                    "category": "Commercial",
+                    "location": "Division Street",
+                    "year": 2024,
+                    "scope": "Café build-out — 2,100 sq ft",
+                    "description": "A neighborhood café that seats forty without shouting: oxblood banquettes, a walnut service bar, and acoustic plaster doing quiet work overhead. Designed to be photographed, built to be wiped down."
+                },
+                {
+                    "slug": "irvington-styling",
+                    "title": "Irvington Styling",
+                    "category": "Styling",
+                    "location": "Irvington",
+                    "year": 2026,
+                    "scope": "Furnishing & styling — 5 rooms",
+                    "description": "The house was finished; it just didn't feel lived-in. Five rooms furnished and styled in six weeks — vintage pieces, commissioned ceramics, and the client's own books finally given shelves worth their spines."
+                }
+            ]
+        },
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "discovery-call",
+                    "name": "Discovery call",
+                    "durationMinutes": 20,
+                    "description": "A free call about your space, budget, and timeline — and whether we're the right studio."
+                },
+                {
+                    "typeId": "design-consultation",
+                    "name": "Design consultation",
+                    "durationMinutes": 120,
+                    "description": "Two working hours in your space: decisions in the room, a written summary the next day."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "elin-marsh",
+                    "name": "Elin Marsh",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 540,
+                            "end": 780
+                        },
+                        {
+                            "day": 3,
+                            "start": 780,
+                            "end": 1020
+                        },
+                        {
+                            "day": 4,
+                            "start": 540,
+                            "end": 780
+                        },
+                        {
+                            "day": 5,
+                            "start": 540,
+                            "end": 900
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (web/app/src/View/Interiors/InteriorsPage.tsx, useSitePageConfig). pages seeds each page's layout skeleton — ids match interiorsLanding.ts; the platform's structural editor edits these. The preset is atelier (the gallery register: gallery white, hairline rules, uppercase Inter display, still motion) — the studio's own portfolio wall, deliberately apart from brownstone's open-house folder. The services page lives at /offerings, NOT /services: that path is the services pack's preview route (the care pack's /what-we-treat reasoning).",
+        "style": {
+            "preset": "atelier"
+        },
+        "routes": {
+            "/": "home",
+            "/portfolio": "portfolio",
+            "/offerings": "offerings",
+            "/about": "about",
+            "/contact": "contact"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "masthead-overlay"
+                    },
+                    {
+                        "id": "featured-work",
+                        "type": "showcase",
+                        "variant": "media-rail"
+                    },
+                    {
+                        "id": "services",
+                        "type": "showcase",
+                        "variant": "collections"
+                    },
+                    {
+                        "id": "proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "portfolio": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "portfolio",
+                        "type": "showcase",
+                        "variant": "filterable-grid"
+                    },
+                    {
+                        "id": "track-record",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "offerings": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "offerings",
+                        "type": "highlights",
+                        "variant": "alternating"
+                    },
+                    {
+                        "id": "process",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "contact": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "contact-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

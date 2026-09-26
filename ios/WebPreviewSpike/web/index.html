@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FolioView — SwiftUI wasm spike</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        background: #16181d;
+        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+      }
+      /* iPhone 15-ish frame */
+      #phone {
+        width: 390px;
+        height: 844px;
+        max-height: calc(100vh - 90px);
+        background: #fff;
+        border-radius: 44px;
+        border: 10px solid #000;
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+      }
+      #app {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      #app::-webkit-scrollbar {
+        display: none;
+      }
+      #stats {
+        color: #9aa3b2;
+        font-size: 12px;
+        font-variant-numeric: tabular-nums;
+      }
+      #stats b {
+        color: #e8ecf3;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="phone"><div id="app"></div></div>
+    <div id="stats">loading wasm…</div>
+    <script type="importmap">
+      {
+        "imports": {
+          "@bjorn3/browser_wasi_shim": "./node_modules/@bjorn3/browser_wasi_shim/dist/index.js"
+        }
+      }
+    </script>
+    <script type="module">
+      const t0 = performance.now();
+      const stats = document.getElementById("stats");
+      let firstRenderMs = null;
+
+      window.__spikeFirstRender = () => {
+        firstRenderMs = performance.now() - t0;
+      };
+      window.__spikeRenderStats = (count, elapsed) => {
+        firstRenderMs ??= performance.now() - t0;
+        stats.innerHTML =
+          `cold start (fetch+instantiate+first render): <b>${firstRenderMs.toFixed(0)}ms</b>` +
+          ` · renders: <b>${count}</b> · last render: <b>${elapsed.toFixed(1)}ms</b>`;
+      };
+
+      import { init } from "../.build/plugins/PackageToJS/outputs/Package/index.js";
+      await init();
+    </script>
+  </body>
+</html>

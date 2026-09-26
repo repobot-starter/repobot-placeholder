@@ -1,0 +1,33 @@
+[
+    {
+        "name": "theme_info",
+        "theme_name": "Repobot Haven",
+        "theme_version": "0.1.0",
+        "theme_author": "Repobot",
+        "theme_documentation_url": "https://repobot.dev/docs",
+        "theme_support_url": "https://repobot.dev/docs"
+    },
+    {
+        "name": "Colors",
+        "settings": [
+            {
+                "type": "color",
+                "id": "color_accent",
+                "label": "Accent color",
+                "default": "#6f7d5c"
+            },
+            {
+                "type": "color",
+                "id": "color_background",
+                "label": "Background color",
+                "default": "#f4f1ea"
+            },
+            {
+                "type": "color",
+                "id": "color_text",
+                "label": "Text color",
+                "default": "#2b2b28"
+            }
+        ]
+    }
+]

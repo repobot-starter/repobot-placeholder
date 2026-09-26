@@ -1,0 +1,75 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the gala pack composed with a first-birthday picnic's content seed, re-registered in the buttercream register with its own pinned page skeletons. Everything else — the pages' builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "gala-otto",
+    "remixOf": "gala",
+    "templateKey": "repobot-gala-otto",
+    "title": "First birthday picnic",
+    "description": "A first birthday on a blanket in the park: the birthday child in the long grass with the headline and the date line over the photograph, three lines on what to bring, the picnic spread edge to edge, and one quiet ask. A reply card delivers RSVPs straight to the parents — grown-ups and little ones counted apart, allergies noted — with the reply-by nudge computed from the date. Buttercream ground, a soft rounded serif, nothing loud. Flexes to baby showers, garden birthdays, and graduation lunches.",
+    "marketingExampleTitle": "First birthday picnic",
+    "contentSeed": "web/app/src/View/Gala/ottoRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed, merged over repobot.content.json at compose (the same overlay path as landing/theme — scripts/lib/pack-switch.mjs applyPackOverlays). The guestlist domain is the gala's PRIVATE roster and deliberately seeds EMPTY: the roster is the owner's from day one, never demo data.",
+        "guestlist": {
+            "entries": []
+        }
+    },
+    "theme": {
+        "$comment": "The buttercream register's brand overlay: the preset's cocoa ink as the project brand, so app-side surfaces wear the picnic's register instead of the kernel default blue. Light-native, a spring afternoon. Values match the buttercream preset's own light/dark accents — the marketing pages resolve brand over preset accent, so keeping them identical means the overlay re-brands the app without shifting the pages.",
+        "mode": "light",
+        "brand": {
+            "primary": "#5b4636",
+            "primaryDark": "#ead9b8"
+        }
+    },
+    "landing": {
+        "$comment": "A pinned layout (packs/README.md 'Derived templates'): style re-registers the base's pages in the buttercream register (warm buttercream ground, cocoa ink, a soft rounded Fraunces over Figtree, the framestack treatment floating the nav over the photograph and holding every frame at one size), and pages carries exactly the skeletons galaLanding.ts emits from this remix's contentSeed — the seed sets home.layout to stack, so the home is the photograph, the band, one frame, and the colophon ask (tests/View/Gala/galaLanding.test.ts reads this through composedLandingSeed).",
+        "style": {
+            "preset": "buttercream"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "band",
+                        "type": "rich-prose",
+                        "variant": "narrow"
+                    },
+                    {
+                        "id": "frames",
+                        "type": "gallery",
+                        "variant": "sequence"
+                    },
+                    {
+                        "id": "rsvp-banner",
+                        "type": "cta-banner",
+                        "variant": "colophon"
+                    }
+                ]
+            },
+            "rsvp": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "rsvp-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    }
+                ]
+            }
+        }
+    }
+}

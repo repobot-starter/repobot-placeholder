@@ -1,0 +1,379 @@
+{
+    "$comment": "The accounting pack's project IA (docs/project-ia.md). Stamped to the repo root by compose-pack.sh, which then runs scaffold-ia to wire the dashboard destinations; the destination entry pages already exist in the kernel (View/Accounting*) so the scaffolder keeps them and only wires routes and nav. Marketing pages carry inline landing configs (real Ledgerly starter copy, CTAs into /login) that win over the blueprint defaults; edit content here, not in hand-built pages.",
+    "marketing": {
+        "preset": "luxe-light",
+        "siteName": "Ledgerly",
+        "pages": [
+            {
+                "id": "home",
+                "path": "/",
+                "title": "Home",
+                "blueprint": "landing",
+                "description": "An AI advisor that reads your QuickBooks and answers like your accountant would.",
+                "landing": {
+                    "style": {
+                        "preset": "luxe-light"
+                    },
+                    "shell": {
+                        "nav": {
+                            "content": {
+                                "logo": {
+                                    "name": "Ledgerly"
+                                },
+                                "links": [
+                                    {
+                                        "label": "Features",
+                                        "anchor": "feature-grid"
+                                    },
+                                    {
+                                        "label": "Pricing",
+                                        "href": "/pricing"
+                                    }
+                                ],
+                                "cta": {
+                                    "label": "Sign in",
+                                    "href": "/login"
+                                }
+                            }
+                        },
+                        "footer": {
+                            "variant": "simple",
+                            "content": {
+                                "blurb": "Ledgerly",
+                                "links": [
+                                    {
+                                        "label": "Pricing",
+                                        "href": "/pricing"
+                                    },
+                                    {
+                                        "label": "Sign in",
+                                        "href": "/login"
+                                    }
+                                ],
+                                "note": "© Ledgerly. All rights reserved."
+                            }
+                        }
+                    },
+                    "sections": [
+                        {
+                            "type": "hero",
+                            "variant": "centered-stack",
+                            "content": {
+                                "backdrop": {
+                                    "art": "horizon"
+                                },
+                                "badge": "Connects to QuickBooks in one click",
+                                "headline": "Know your numbers without opening a spreadsheet",
+                                "subheadline": "Ledgerly connects to your QuickBooks, keeps revenue, outstanding, and overdue in view, and answers questions about your books in plain English — like having your accountant on call.",
+                                "primaryCta": {
+                                    "label": "Get started free",
+                                    "href": "/login"
+                                },
+                                "secondaryCta": {
+                                    "label": "See pricing",
+                                    "href": "/pricing"
+                                }
+                            }
+                        },
+                        {
+                            "type": "social-proof",
+                            "variant": "metrics-row",
+                            "content": {
+                                "label": "Why owners switch",
+                                "metrics": [
+                                    {
+                                        "value": "1,800+",
+                                        "label": "businesses connected"
+                                    },
+                                    {
+                                        "value": "< 60 sec",
+                                        "label": "from sign-up to first answer"
+                                    },
+                                    {
+                                        "value": "31%",
+                                        "label": "faster collections on overdue invoices"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "feature-grid",
+                            "variant": "cards-3up",
+                            "content": {
+                                "kicker": "What you get",
+                                "title": "Your books, finally legible",
+                                "features": [
+                                    {
+                                        "emoji": "📊",
+                                        "title": "A dashboard that leads with the answer",
+                                        "description": "Revenue collected, outstanding, and overdue — the three numbers every owner actually checks — right when you sign in, straight from QuickBooks."
+                                    },
+                                    {
+                                        "emoji": "🧾",
+                                        "title": "Invoices and customers, sortable and searchable",
+                                        "description": "Every invoice with its status, due date, and balance; every customer with what they owe. Filter to overdue in one click and know who to call."
+                                    },
+                                    {
+                                        "emoji": "💬",
+                                        "title": "An advisor that reads the ledger for you",
+                                        "description": "Ask \"who owes me the most?\" or \"how did this quarter look?\" — the AI advisor pulls live QuickBooks data to answer, and shows its work."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "steps",
+                            "variant": "numbered-cards",
+                            "content": {
+                                "kicker": "How it works",
+                                "title": "From sign-up to insight in three steps",
+                                "steps": [
+                                    {
+                                        "title": "Create your account",
+                                        "description": "Sign up with an emailed code or a password — under a minute, and the Solo plan is free."
+                                    },
+                                    {
+                                        "title": "Connect QuickBooks",
+                                        "description": "One click links your company file. Ledgerly reads your invoices and customers — it never changes your books."
+                                    },
+                                    {
+                                        "title": "Ask your advisor",
+                                        "description": "The dashboard fills with your numbers, and the advisor is ready for questions about any of them."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "testimonials",
+                            "variant": "quote-grid",
+                            "content": {
+                                "kicker": "From real businesses",
+                                "title": "Owners who stopped guessing",
+                                "quotes": [
+                                    {
+                                        "quote": "I used to wait for my bookkeeper's monthly summary. Now I ask Ledgerly on Monday morning and chase the two invoices that matter.",
+                                        "author": "Priya S.",
+                                        "title": "Owner, design studio"
+                                    },
+                                    {
+                                        "quote": "The overdue view alone paid for itself — we collected three months of stale invoices in the first two weeks.",
+                                        "author": "Marcus T.",
+                                        "title": "Founder, landscaping company"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "faq",
+                            "variant": "accordion",
+                            "content": {
+                                "kicker": "Good to know",
+                                "title": "Questions before you connect",
+                                "items": [
+                                    {
+                                        "question": "Does Ledgerly change anything in QuickBooks?",
+                                        "answer": "No — Ledgerly is read-only. It reads invoices, customers, and company totals to power the dashboard and the advisor, and never writes to your books."
+                                    },
+                                    {
+                                        "question": "Which QuickBooks do you support?",
+                                        "answer": "QuickBooks Online. Connect from the dashboard's overview page; disconnecting is one click and removes the link immediately."
+                                    },
+                                    {
+                                        "question": "Is my financial data safe?",
+                                        "answer": "Your data is read over an encrypted connection, scoped to your account, and never used to train models. Disconnect any time from the overview page."
+                                    },
+                                    {
+                                        "question": "Is the advisor a replacement for my accountant?",
+                                        "answer": "No — it's the fast first answer. Ledgerly is great at \"what does my ledger say?\"; your accountant is still the one for tax strategy and filings."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "cta-banner",
+                            "variant": "card",
+                            "content": {
+                                "title": "See your books clearly this week",
+                                "body": "Free to start, connected in a minute, and your first question answered before your coffee cools.",
+                                "cta": {
+                                    "label": "Create your free account",
+                                    "href": "/login"
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "id": "pricing",
+                "path": "/pricing",
+                "title": "Pricing",
+                "blueprint": "pricing",
+                "description": "Start free, upgrade when the books get busier.",
+                "landing": {
+                    "style": {
+                        "preset": "luxe-light"
+                    },
+                    "shell": {
+                        "nav": {
+                            "content": {
+                                "logo": {
+                                    "name": "Ledgerly"
+                                },
+                                "links": [
+                                    {
+                                        "label": "Home",
+                                        "href": "/"
+                                    }
+                                ],
+                                "cta": {
+                                    "label": "Sign in",
+                                    "href": "/login"
+                                }
+                            }
+                        },
+                        "footer": {
+                            "variant": "simple",
+                            "content": {
+                                "blurb": "Ledgerly",
+                                "links": [
+                                    {
+                                        "label": "Home",
+                                        "href": "/"
+                                    },
+                                    {
+                                        "label": "Sign in",
+                                        "href": "/login"
+                                    }
+                                ],
+                                "note": "© Ledgerly. All rights reserved."
+                            }
+                        }
+                    },
+                    "sections": [
+                        {
+                            "type": "hero",
+                            "variant": "statement",
+                            "content": {
+                                "headline": "Priced like a line item, not a hire",
+                                "subheadline": "Every plan includes the QuickBooks dashboard and the AI advisor. Pay more only when more of the business runs through it."
+                            }
+                        },
+                        {
+                            "type": "pricing",
+                            "variant": "tiers",
+                            "content": {
+                                "kicker": "Plans",
+                                "title": "Pick what fits the books today",
+                                "tiers": [
+                                    {
+                                        "name": "Solo",
+                                        "monthly": 0,
+                                        "yearlyPerMonth": 0,
+                                        "description": "For getting a read on the numbers.",
+                                        "features": [
+                                            "QuickBooks connection",
+                                            "Revenue, outstanding, and overdue dashboard",
+                                            "20 advisor questions a month"
+                                        ]
+                                    },
+                                    {
+                                        "name": "Practice",
+                                        "monthly": 29,
+                                        "yearlyPerMonth": 24,
+                                        "description": "For owners who check in weekly.",
+                                        "features": [
+                                            "Everything in Solo",
+                                            "Unlimited advisor questions",
+                                            "Invoice and customer tables with filters",
+                                            "Priority support"
+                                        ],
+                                        "highlighted": true,
+                                        "badge": "Most popular"
+                                    },
+                                    {
+                                        "name": "Firm",
+                                        "monthly": 79,
+                                        "yearlyPerMonth": 65,
+                                        "description": "For bookkeepers managing several companies.",
+                                        "features": [
+                                            "Everything in Practice",
+                                            "Multiple team members",
+                                            "Admin controls"
+                                        ]
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "faq",
+                            "variant": "accordion",
+                            "content": {
+                                "kicker": "Billing",
+                                "title": "Common questions",
+                                "items": [
+                                    {
+                                        "question": "Can I change plans later?",
+                                        "answer": "Yes — upgrades apply immediately and downgrades apply at the next billing cycle."
+                                    },
+                                    {
+                                        "question": "Is there a free trial?",
+                                        "answer": "The Solo plan is free forever; paid plans start only when you choose one."
+                                    },
+                                    {
+                                        "question": "What happens if I disconnect QuickBooks?",
+                                        "answer": "The dashboard and advisor pause until you reconnect. Your plan and account are untouched."
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "cta-banner",
+                            "variant": "card",
+                            "content": {
+                                "title": "Ready when the books are",
+                                "body": "Start on the free plan — no card required.",
+                                "cta": {
+                                    "label": "Get started free",
+                                    "href": "/login"
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    },
+    "dashboard": {
+        "destinations": [
+            {
+                "id": "accounting-overview",
+                "path": "/overview",
+                "label": "Overview",
+                "blueprint": "overview",
+                "description": "The signed-in home: QuickBooks connection card, then revenue/outstanding/overdue stat cards and recent invoices."
+            },
+            {
+                "id": "accounting-invoices",
+                "path": "/invoices",
+                "label": "Invoices",
+                "blueprint": "table",
+                "description": "Every invoice with status, dates, and balances; filter by status to find what's overdue."
+            },
+            {
+                "id": "accounting-customers",
+                "path": "/customers",
+                "label": "Customers",
+                "blueprint": "table",
+                "description": "Every customer with contact details and open balance."
+            },
+            {
+                "id": "accounting-advisor",
+                "path": "/advisor",
+                "label": "Advisor",
+                "blueprint": "custom",
+                "description": "The AI advisor chat: asks the QuickBooks tools for live data and explains the books."
+            }
+        ]
+    }
+}

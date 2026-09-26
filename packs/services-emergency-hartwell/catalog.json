@@ -1,0 +1,183 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services-emergency pack composed with an estate mechanical contractor's content seed (Hartwell Mechanical, Greenwich), re-registered in the plantroom register with its own page skeletons. Everything structural — builders, routes, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-emergency-hartwell",
+    "remixOf": "services-emergency",
+    "templateKey": "repobot-services-emergency-hartwell",
+    "title": "Estate mechanical systems",
+    "description": "An estate mechanical contractor's site set like a plant-room log: graphite and copper, condensed caps and mono tags. A full-bleed photograph of an engineer at the copper manifold carries the headline and the 24/7 estate line; under it the systems index — six coded plates, each with its care interval — then the measured numbers, what happens when you call, reviews, the towns under care, and the care-plan ask. Prices and every service live on /services.",
+    "marketingExampleTitle": "Estate mechanical & plumbing",
+    "contentSeed": "web/app/src/View/ServicesEmergency/hartwellRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twin) — the composed template's booking widget and Manage calendar open on this business's own provider, not the base demo business's.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "systems-survey",
+                    "name": "Systems survey",
+                    "durationMinutes": 120,
+                    "description": "Every system on the property logged, photographed and graded — the start of every care plan."
+                },
+                {
+                    "typeId": "service-visit",
+                    "name": "Scheduled service visit",
+                    "durationMinutes": 90,
+                    "description": "A planned visit for a system that's due, or something that can wait for a weekday."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "thomas-hartwell",
+                    "name": "Thomas Hartwell",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 480,
+                            "end": 900
+                        },
+                        {
+                            "day": 2,
+                            "start": 480,
+                            "end": 900
+                        },
+                        {
+                            "day": 3,
+                            "start": 480,
+                            "end": 900
+                        },
+                        {
+                            "day": 4,
+                            "start": 480,
+                            "end": 900
+                        },
+                        {
+                            "day": 5,
+                            "start": 480,
+                            "end": 780
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The plantroom register's copper, pinned as the brand so the app surfaces match the marketing pages: a burnished copper deep enough for white button letters on the light sheet, and the lit copper for the graphite night sheet the site opens on. navigation declares the split bar (a declared theme variant outranks the shared shell's): the wordmark left, the estate line right.",
+        "brand": {
+            "primary": "#9c5426",
+            "primaryDark": "#b06a38"
+        },
+        "mode": "dark",
+        "navigation": {
+            "variant": "split"
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (ServicesEmergencyPage.tsx, useSitePageConfig); pages seeds each page's skeleton — ids match servicesEmergencyLanding.ts. The preset is plantroom (graphite ground, copper accent, Sofia Sans Condensed caps with mono tags, the gauge treatment). Home: the full-bleed plant-room hero with the tracked estate-line credit; the systems index (showcase specimens: code, name, care interval); the measured numbers; what happens when you call as a timeline; reviews; the towns under care; the care-plan banner that asks for a systems survey. The price book and services live on /services.",
+        "style": {
+            "preset": "plantroom"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "systems",
+                        "type": "showcase",
+                        "variant": "specimens"
+                    },
+                    {
+                        "id": "dispatch-proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "when-you-call",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "service-area",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "call-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "price-book",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "services",
+                        "type": "showcase",
+                        "variant": "card-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq"
+                    },
+                    {
+                        "id": "call-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "call-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "request": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "request-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

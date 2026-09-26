@@ -1,0 +1,182 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the photography pack composed with a Los Angeles portrait photographer's content seed (Wren Hollis), an ink brand, and the vitrine register. home.layout \"stack\" in the seed turns the home page into the photographer's stack — every sitting at one size, full bleed, on stone caption bands, closed by one line and a text link. Everything else — builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "photography-wren",
+    "remixOf": "photography",
+    "templateKey": "repobot-photography-wren",
+    "title": "Portrait photographer",
+    "description": "A portrait photographer's site in window light: one full-bleed stack of sittings, every frame the same size, each captioned on a thin stone band like a museum label, then one quiet line and a text link to book a sitting. Collections, client proofing galleries, and a live sitting calendar behind it — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Los Angeles portrait photographer",
+    "contentSeed": "web/app/src/View/Photography/wrenRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twin) — the composed template's /book page and Manage calendar open on Wren's own sittings, not the base demo photographer's.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "portrait-sitting",
+                    "name": "Portrait sitting",
+                    "durationMinutes": 180,
+                    "description": "An afternoon in your own rooms or mine, by the best window we can find. One person, no lights, no hurry."
+                },
+                {
+                    "typeId": "double-sitting",
+                    "name": "Couples & families",
+                    "durationMinutes": 180,
+                    "description": "The same slow afternoon for two or more — partners, siblings, three generations at the kitchen table."
+                },
+                {
+                    "typeId": "short-sitting",
+                    "name": "Short sitting",
+                    "durationMinutes": 60,
+                    "description": "One hour in the studio's north window: a portrait for the book jacket, the program, or the mantel."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "wren-hollis",
+                    "name": "Wren Hollis",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 780,
+                            "end": 1080
+                        },
+                        {
+                            "day": 3,
+                            "start": 780,
+                            "end": 1080
+                        },
+                        {
+                            "day": 5,
+                            "start": 720,
+                            "end": 1080
+                        },
+                        {
+                            "day": 6,
+                            "start": 600,
+                            "end": 840
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The vitrine register's brand overlay: the preset's own ink accents as the project brand, so app surfaces wear the same stone-and-ink register as the marketing pages (the pages resolve brand over preset accent; identical values mean no shift). mode light opens on the stone ground — the base photographer opens dark, and theme merges shallowly. navigation re-pins the shared photographyShell chrome to the burger overlay: the wordmark alone over the stack, the links folded away.",
+        "brand": {
+            "primary": "#26231f",
+            "primaryDark": "#e7e2da"
+        },
+        "mode": "light",
+        "navigation": {
+            "variant": "burger-overlay"
+        }
+    },
+    "landing": {
+        "$comment": "The vitrine register over the base's routes. pages replaces the base's skeletons wholesale, so all six routed pages are pinned: home is the stack (gallery sequence with a band captionStack, closed by the colophon banner); the rest keep the base's compositions.",
+        "style": {
+            "preset": "vitrine"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "stack",
+                        "type": "gallery",
+                        "variant": "sequence"
+                    },
+                    {
+                        "id": "closing",
+                        "type": "cta-banner",
+                        "variant": "colophon"
+                    }
+                ]
+            },
+            "work": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "collections",
+                        "type": "showcase",
+                        "variant": "collections"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials"
+                    },
+                    {
+                        "id": "inquire-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "galleries": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "how-proofing",
+                        "type": "steps",
+                        "variant": "numbered-cards"
+                    },
+                    {
+                        "id": "sample-gallery",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "session-notes",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "inquire-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "inquire": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "inquiry-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

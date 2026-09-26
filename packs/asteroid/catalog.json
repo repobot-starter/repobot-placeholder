@@ -1,0 +1,14 @@
+{
+    "key": "asteroid",
+    "templateKey": "repobot-asteroid",
+    "title": "Asteroids",
+    "description": "Vector asteroids in wraparound space: thrust and drift, split the rocks, survive the waves.",
+    "marketingExampleTitle": "Classic asteroids",
+    "homePath": "/",
+    "previewPath": "/asteroid",
+    "homeViewDir": "web/app/src/View/Games/Asteroid",
+    "base": "game",
+    "clientOnly": true,
+    "capabilities": [],
+    "isDefault": false
+}

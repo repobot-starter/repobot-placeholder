@@ -1,0 +1,403 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the care pack composed with a neuropsychological assessment practice's content seed, re-registered in the colophon register (a university press: cream paper, oxblood ink, one book serif with its drawn small capitals, a printer's star) with its own pinned page skeletons. Everything else — pages' builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "care-psychology-cambridge",
+    "remixOf": "care",
+    "templateKey": "repobot-care-psychology-cambridge",
+    "title": "Neuropsychology Practice with a Sample Report",
+    "description": "An assessment practice's site with real online booking: Cambridge Neuropsychology, three neuropsychologists off Brattle Street in Cambridge, Massachusetts evaluating ADHD, autism, learning differences, and memory for children and adults. It opens full-bleed on a psychologist and a boy laughing over a block-design puzzle (\"Understand how you think.\"), then its argument — an annotated sample report on paper, no patient and no date, its four parts explained in numbered margin notes — then the three appointments that produce one (testing day, feedback, the written report), fees from $2,800 with superbills for out-of-network claims, how paying works, the clinicians, words from parents and adult clients, a plain FAQ, and a booking page offering a free intake call. The booking form is clinically empty — name, contact, visit type, new/returning.",
+    "marketingExampleTitle": "Neuropsychology practice with a sample report",
+    "contentSeed": "web/app/src/View/Care/cambridgeRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so these practice and appointments seeds replace the base pack's at compose and mirror THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twins) — the composed template's Manage editors and booking widget open on the assessment practice, not the base clinic.",
+        "practice": {
+            "providers": [
+                {
+                    "providerId": "ji-woo-seo",
+                    "name": "Dr. Ji-woo Seo",
+                    "credentials": "PhD, ABPP-CN",
+                    "role": "Founder · Children & adolescents",
+                    "bio": "Ji-woo is a board-certified pediatric neuropsychologist who trained in hospital clinics before opening the practice. She evaluates children and teenagers for ADHD, autism, and learning differences, and she writes reports a parent can read at the kitchen table."
+                },
+                {
+                    "providerId": "elena-ferrer",
+                    "name": "Dr. Elena Ferrer",
+                    "credentials": "PsyD",
+                    "role": "Autism & adult ADHD",
+                    "bio": "Elena evaluates teenagers and adults — many of them late-identified, many of them tired of being told they're fine. She is bilingual in Spanish and English and sees a lot of graduate students and new parents."
+                },
+                {
+                    "providerId": "marcus-bell",
+                    "name": "Dr. Marcus Bell",
+                    "credentials": "PhD",
+                    "role": "Memory & concussion",
+                    "bio": "Marcus works with adults worried about memory, attention after a concussion, or changes they've noticed in a parent. He spent a decade in a memory clinic and is known for explaining a test score without a single acronym."
+                }
+            ],
+            "services": [
+                {
+                    "name": "ADHD evaluation",
+                    "description": "For children and adults: attention, organization, and what actually helps at school or at work."
+                },
+                {
+                    "name": "Autism evaluation",
+                    "description": "For children, teenagers, and adults, including people who have spent years masking."
+                },
+                {
+                    "name": "Learning evaluation",
+                    "description": "Reading, writing, and math — dyslexia, dysgraphia, dyscalculia — with recommendations a school can use."
+                },
+                {
+                    "name": "Memory & cognitive evaluation",
+                    "description": "For adults noticing changes in memory or thinking, after a concussion, or before a treatment decision."
+                },
+                {
+                    "name": "Gifted & twice-exceptional",
+                    "description": "For bright children whose grades, behavior, or boredom don't add up."
+                },
+                {
+                    "name": "School meetings",
+                    "description": "We join the IEP or 504 meeting, in person or by video, to explain the findings."
+                }
+            ],
+            "insurance": [
+                "Superbills for out-of-network reimbursement",
+                "HSA & FSA accepted",
+                "Payment plans over three months",
+                "Good Faith Estimate before testing",
+                "Accommodation letters included",
+                "School meetings by request"
+            ],
+            "locations": [
+                {
+                    "locationId": "brattle-street",
+                    "label": "The office on Brattle Street",
+                    "address": "48 Brattle Street, Suite 3, Cambridge, MA 02138",
+                    "phone": "(617) 555-0142",
+                    "hours": [
+                        {
+                            "day": 1,
+                            "open": 510,
+                            "close": 1020
+                        },
+                        {
+                            "day": 2,
+                            "open": 510,
+                            "close": 1020
+                        },
+                        {
+                            "day": 3,
+                            "open": 510,
+                            "close": 1020
+                        },
+                        {
+                            "day": 4,
+                            "open": 510,
+                            "close": 1020
+                        },
+                        {
+                            "day": 5,
+                            "open": 510,
+                            "close": 1020
+                        },
+                        {
+                            "day": 6,
+                            "open": 540,
+                            "close": 720
+                        }
+                    ]
+                }
+            ],
+            "reviews": [
+                {
+                    "quote": "We finally had a picture of our son that made sense, and a list of things to try on Monday. The school took the report seriously on the first read.",
+                    "name": "R. & D. P.",
+                    "detail": "Parents of a ten-year-old"
+                },
+                {
+                    "quote": "I was diagnosed at thirty-four. Dr. Ferrer's report explained twenty years of my life in eleven pages, and it was kind about it.",
+                    "name": "S. K.",
+                    "detail": "Adult client"
+                },
+                {
+                    "quote": "Dr. Bell walked my mother and me through every score. We left knowing what was normal aging and what wasn't.",
+                    "name": "L. M.",
+                    "detail": "Family member"
+                }
+            ],
+            "newPatient": [
+                {
+                    "title": "An intake call",
+                    "body": "Twenty minutes with a clinician about the questions you have. We'll tell you which evaluation fits, what it costs, and how soon we can start."
+                },
+                {
+                    "title": "Records and forms",
+                    "body": "School reports, prior testing, and a few questionnaires for you, and for a teacher if it's a child's evaluation. Everything goes through a secure portal."
+                },
+                {
+                    "title": "Testing day",
+                    "body": "About six hours with breaks, over one or two days. Bring glasses, snacks, and anything that helps you or your child feel settled."
+                },
+                {
+                    "title": "Feedback and the report",
+                    "body": "A feedback session about a week later, and the full written report within three weeks."
+                }
+            ]
+        },
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "intake-call",
+                    "name": "Free intake call",
+                    "durationMinutes": 20,
+                    "description": "A short call with a clinician about your questions and which evaluation fits."
+                },
+                {
+                    "typeId": "consultation",
+                    "name": "Intake consultation",
+                    "durationMinutes": 60,
+                    "description": "The first appointment of an evaluation: history, goals, and a plan for testing day."
+                },
+                {
+                    "typeId": "feedback",
+                    "name": "Feedback session",
+                    "durationMinutes": 90,
+                    "description": "We walk through the findings and recommendations together, in person or by video."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "ji-woo-seo",
+                    "name": "Dr. Ji-woo Seo",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 840,
+                            "end": 1020
+                        },
+                        {
+                            "day": 3,
+                            "start": 840,
+                            "end": 1020
+                        },
+                        {
+                            "day": 6,
+                            "start": 540,
+                            "end": 720
+                        }
+                    ]
+                },
+                {
+                    "providerId": "elena-ferrer",
+                    "name": "Dr. Elena Ferrer",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 780,
+                            "end": 1020
+                        },
+                        {
+                            "day": 4,
+                            "start": 780,
+                            "end": 1020
+                        }
+                    ]
+                },
+                {
+                    "providerId": "marcus-bell",
+                    "name": "Dr. Marcus Bell",
+                    "windows": [
+                        {
+                            "day": 3,
+                            "start": 540,
+                            "end": 720
+                        },
+                        {
+                            "day": 5,
+                            "start": 780,
+                            "end": 1020
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The colophon register in its own oxblood: mode light opens the site in its native appearance (cream paper by day); dark is the same reading room after hours. Marketing pages resolve brand over preset accent, so the overlay re-inks pages and app surfaces together. navigation re-pins the shared careShell chrome (a declared theme variant outranks the shell prop): the press takes the split nav — the imprint at the left, the contents at the right.",
+        "mode": "light",
+        "brand": {
+            "primary": "#6e1f24",
+            "primaryDark": "#e6aaa0"
+        },
+        "navigation": {
+            "variant": "split"
+        }
+    },
+    "landing": {
+        "$comment": "A pinned layout (packs/README.md 'Derived templates'): style re-registers the base's pages in the colophon register, and pages carries exactly the skeletons careLanding.ts emits from this remix's contentSeed — the hero turns full-bleed and the content-gated sections (the spotlight as a sample report that leads the home ahead of the journey, the journey's numbered steps, menu, faq) appear because the seed asks for them — so the composed template's document reproduces its code config section for section (tests/View/Care/careLanding.test.ts reads this through composedLandingSeed).",
+        "style": {
+            "preset": "colophon"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "spotlight",
+                        "type": "content-split",
+                        "variant": "report"
+                    },
+                    {
+                        "id": "journey",
+                        "type": "steps",
+                        "variant": "numbered-cards"
+                    },
+                    {
+                        "id": "menu",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "providers",
+                        "type": "team",
+                        "variant": "portraits"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "providers": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "providers",
+                        "type": "team",
+                        "variant": "portraits"
+                    },
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "card-grid",
+                        "variant": "4up"
+                    },
+                    {
+                        "id": "menu",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "new-patients": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "first-visit",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "how",
+                        "type": "steps",
+                        "variant": "numbered-cards"
+                    },
+                    {
+                        "id": "privacy",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    }
+                ]
+            }
+        }
+    }
+}

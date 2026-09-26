@@ -1,0 +1,198 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services-recurring pack composed with the Night Crawlers pest-control content seed, pinned to the creature register with its own brand, appearance, nav, and pages. Everything else — sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-pest-creature",
+    "remixOf": "services-recurring",
+    "templateKey": "repobot-services-pest-creature",
+    "title": "Pest control",
+    "description": "A Houston exterminator's site as a 1950s creature-feature poster: a painted monster one-sheet with a billing-block credit strip and a now-playing starburst, a creature index of Houston's usual suspects, monthly plans, the treatment in four reels, a service-ticket checklist, survivor stories, and a booking form that asks what crawled out — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Pest control company",
+    "contentSeed": "web/app/src/View/ServicesRecurring/pestCreatureRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twin) — the composed template's booking widget and Manage calendar open on this trade's own provider, not the base demo business's.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "inspection",
+                    "name": "Free home inspection",
+                    "durationMinutes": 45,
+                    "description": "A flashlight tour of your kitchen, baths, attic hatch, and foundation — and a plan for what we find."
+                },
+                {
+                    "typeId": "first-treatment",
+                    "name": "First treatment",
+                    "durationMinutes": 90,
+                    "description": "Inspect, seal, and treat inside and out — the service ticket left on your counter."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "terrence-boyd",
+                    "name": "Terrence Boyd",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 480,
+                            "end": 1020
+                        },
+                        {
+                            "day": 2,
+                            "start": 480,
+                            "end": 1020
+                        },
+                        {
+                            "day": 3,
+                            "start": 480,
+                            "end": 1020
+                        },
+                        {
+                            "day": 4,
+                            "start": 480,
+                            "end": 1020
+                        },
+                        {
+                            "day": 5,
+                            "start": 480,
+                            "end": 1020
+                        },
+                        {
+                            "day": 6,
+                            "start": 540,
+                            "end": 840
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The creature register's brand overlay: blood orange on both appearances (deeper on the cream light one), with the register's acid green and poster cream as spot inks on midnight. mode pins the dark appearance the one-sheet was painted in. navigation re-pins the shared servicesRecurringShell chrome (a declared theme variant outranks the shell prop) to the inline bar — the marquee strip over the poster — distinct from the base cleaner's split bar and the lawncare remix's full-width rail.",
+        "brand": {
+            "primary": "#c2410c",
+            "primaryDark": "#ff5a1f"
+        },
+        "mode": "dark",
+        "navigation": {
+            "variant": "inline"
+        }
+    },
+    "landing": {
+        "$comment": "Pins this remix's look. resolveCatalog merges a remix's landing shallowly over the base's, so this style and these pages replace the base pack's. The preset is creature (midnight ground, Bangers poster caps, acid green / blood orange / cream, the pulp + halftone + grain treatments). The pages are what the builders emit from this seed's content: the hero as a masthead over the painted poster (home.layout), the creature index on the specimens board, the plans as tiers, the treatment on the steps rail, the service ticket on the checklist. Routes stay the base's.",
+        "style": {
+            "preset": "creature"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "masthead-overlay"
+                    },
+                    {
+                        "id": "specimens",
+                        "type": "showcase",
+                        "variant": "specimens"
+                    },
+                    {
+                        "id": "plans",
+                        "type": "pricing",
+                        "variant": "tiers"
+                    },
+                    {
+                        "id": "turnover",
+                        "type": "steps",
+                        "variant": "horizontal-rail"
+                    },
+                    {
+                        "id": "checklist",
+                        "type": "feature-grid",
+                        "variant": "checklist"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "service-area",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "plans": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "plans",
+                        "type": "pricing",
+                        "variant": "tiers"
+                    },
+                    {
+                        "id": "add-ons",
+                        "type": "feature-grid",
+                        "variant": "cards-3up"
+                    },
+                    {
+                        "id": "compare",
+                        "type": "comparison",
+                        "variant": "table"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "book-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

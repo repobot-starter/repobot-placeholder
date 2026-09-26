@@ -1,0 +1,10 @@
+{
+    "$comment": "Project IA contract. Marketing pages render from this manifest at runtime through the landing kernel (web/app/src/View/Site/), and dashboard destinations are scaffolded from it by `npm run scaffold:ia`. Set on project create by the setup flow; extend it, don't bypass it — see docs/project-ia.md.",
+    "marketing": {
+        "preset": "dark-dev",
+        "pages": []
+    },
+    "dashboard": {
+        "destinations": []
+    }
+}

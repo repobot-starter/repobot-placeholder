@@ -1,0 +1,403 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the care pack composed with a psychiatry practice's content seed, re-registered in the boreal register (a Minnesota winter indoors: winter white and slate, a light humanist sans, one peach accent) with its own pinned page skeletons. Everything else — pages' builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "care-psychology-northlight",
+    "remixOf": "care",
+    "templateKey": "repobot-care-psychology-northlight",
+    "title": "Psychiatry Practice with a First-90-Days Track",
+    "description": "A psychiatry practice's site with real online booking: Northlight Psychiatry, a psychiatrist and two psychiatric nurse practitioners in Minneapolis managing medication for depression, anxiety, ADHD, bipolar disorder, postpartum mood, and OCD — in person in Uptown and by telehealth anywhere in Minnesota. It opens full-bleed on a man with a mug at a snowy birch window (\"Steady, one season at a time.\"), the headline set in slate over a frost wash, then its argument — the first ninety days as one horizontal track, Day 1 to Day 90, the last node in peach — then the visits with self-pay rates, how paying works in plain words (in network with most Minnesota plans, no insurer names or logos), what the practice treats as a plain run of words beside a photograph, the clinicians, patients' words, a plain FAQ, and a booking page offering a free intro call. The booking form is clinically empty — name, contact, visit type, new/returning.",
+    "marketingExampleTitle": "Psychiatry practice with a first-90-days track",
+    "contentSeed": "web/app/src/View/Care/northlightRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so these practice and appointments seeds replace the base pack's at compose and mirror THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twins) — the composed template's Manage editors and booking widget open on the psychiatry practice, not the base clinic.",
+        "practice": {
+            "providers": [
+                {
+                    "providerId": "sami-haddad",
+                    "name": "Dr. Sami Haddad",
+                    "credentials": "MD",
+                    "role": "Founder · Psychiatrist",
+                    "bio": "Sami is a board-certified psychiatrist who spent eight years in a hospital mood clinic before opening Northlight. He prescribes carefully, explains every change, and would rather adjust slowly than guess."
+                },
+                {
+                    "providerId": "anna-solberg",
+                    "name": "Anna Solberg",
+                    "credentials": "PMHNP-BC",
+                    "role": "Psychiatric nurse practitioner · Postpartum & anxiety",
+                    "bio": "Anna works with anxiety, depression, and mood during pregnancy and after birth. She grew up in Duluth, keeps a mug of tea on the desk, and is very good at the question behind the question."
+                },
+                {
+                    "providerId": "mai-thao",
+                    "name": "Mai Thao",
+                    "credentials": "PMHNP-BC",
+                    "role": "Psychiatric nurse practitioner · ADHD & telehealth",
+                    "bio": "Mai sees adults with ADHD, depression, and bipolar disorder, most of them by video from across the state. She speaks Hmong and English, and she keeps evening hours for people who can't leave work."
+                }
+            ],
+            "services": [
+                {
+                    "name": "Depression",
+                    "description": "Medication and steady follow-up, alongside your therapist if you have one."
+                },
+                {
+                    "name": "Anxiety & panic",
+                    "description": "Treatment that settles the worry without flattening the rest of you."
+                },
+                {
+                    "name": "Adult ADHD",
+                    "description": "A careful evaluation, then medication chosen for how your days actually run."
+                },
+                {
+                    "name": "Bipolar disorder",
+                    "description": "Mood stabilizers managed closely, with a plan for the hard months."
+                },
+                {
+                    "name": "Postpartum & perinatal mood",
+                    "description": "Care during pregnancy and after birth, including medication while breastfeeding."
+                },
+                {
+                    "name": "OCD",
+                    "description": "Medication management that works alongside exposure-based therapy."
+                }
+            ],
+            "insurance": [
+                "In-network with most Minnesota plans",
+                "Telehealth anywhere in Minnesota",
+                "Self-pay rates posted up front",
+                "HSA & FSA accepted",
+                "Superbills for out-of-network plans",
+                "Prescriptions sent to your pharmacy"
+            ],
+            "locations": [
+                {
+                    "locationId": "hennepin-avenue",
+                    "label": "The office on Hennepin Avenue",
+                    "address": "2828 Hennepin Avenue, Suite 210, Minneapolis, MN 55408",
+                    "phone": "(612) 555-0176",
+                    "hours": [
+                        {
+                            "day": 1,
+                            "open": 480,
+                            "close": 1140
+                        },
+                        {
+                            "day": 2,
+                            "open": 480,
+                            "close": 1140
+                        },
+                        {
+                            "day": 3,
+                            "open": 480,
+                            "close": 1140
+                        },
+                        {
+                            "day": 4,
+                            "open": 480,
+                            "close": 1140
+                        },
+                        {
+                            "day": 5,
+                            "open": 480,
+                            "close": 960
+                        }
+                    ]
+                }
+            ],
+            "reviews": [
+                {
+                    "quote": "Dr. Haddad changed one thing at a time and told me why every time. By spring I noticed I was just having ordinary days again.",
+                    "name": "J. R.",
+                    "detail": "Patient, in person"
+                },
+                {
+                    "quote": "Anna saw me three weeks after my daughter was born, by video, with the baby asleep on me. Nobody made me feel like I was failing.",
+                    "name": "K. L.",
+                    "detail": "Patient, telehealth"
+                },
+                {
+                    "quote": "I've had ADHD my whole life and this is the first plan that fits my actual workday. Mai's evening appointments are the reason I kept going.",
+                    "name": "D. V.",
+                    "detail": "Patient, telehealth"
+                }
+            ],
+            "newPatient": [
+                {
+                    "title": "A short intro call",
+                    "body": "Fifteen minutes with our coordinator: what's going on, whether we're the right fit, and which clinician has openings."
+                },
+                {
+                    "title": "Forms and records",
+                    "body": "A few questionnaires and a list of what you've tried before, through a secure portal. Nothing to print."
+                },
+                {
+                    "title": "The evaluation",
+                    "body": "Sixty minutes, in person or by video. We listen first, then talk through what we think is going on and the options."
+                },
+                {
+                    "title": "Your plan and follow-ups",
+                    "body": "A written plan within a week, then shorter visits every few weeks while things settle, and less often after that."
+                }
+            ]
+        },
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "intro-call",
+                    "name": "Free intro call",
+                    "durationMinutes": 15,
+                    "description": "A short call with our coordinator about fit, insurance, and openings."
+                },
+                {
+                    "typeId": "evaluation",
+                    "name": "Psychiatric evaluation",
+                    "durationMinutes": 60,
+                    "description": "Your first visit, in person or by video: your story, your history, and a plan."
+                },
+                {
+                    "typeId": "follow-up",
+                    "name": "Follow-up visit",
+                    "durationMinutes": 30,
+                    "description": "For current patients: how the plan is working and what to adjust."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "sami-haddad",
+                    "name": "Dr. Sami Haddad",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 480,
+                            "end": 720
+                        },
+                        {
+                            "day": 3,
+                            "start": 480,
+                            "end": 720
+                        },
+                        {
+                            "day": 5,
+                            "start": 540,
+                            "end": 780
+                        }
+                    ]
+                },
+                {
+                    "providerId": "anna-solberg",
+                    "name": "Anna Solberg",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 540,
+                            "end": 900
+                        },
+                        {
+                            "day": 4,
+                            "start": 540,
+                            "end": 900
+                        }
+                    ]
+                },
+                {
+                    "providerId": "mai-thao",
+                    "name": "Mai Thao",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 840,
+                            "end": 1140
+                        },
+                        {
+                            "day": 2,
+                            "start": 840,
+                            "end": 1140
+                        },
+                        {
+                            "day": 4,
+                            "start": 840,
+                            "end": 1140
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The boreal register in its own slate: mode light opens the site in its native appearance (winter white by day); dark is the same room after the sun goes down at four-thirty. Marketing pages resolve brand over preset accent, so the overlay re-inks pages and app surfaces together. navigation re-pins the shared careShell chrome (a declared theme variant outranks the shell prop): the practice takes the burger overlay — the name at the left, one quiet menu button at the right.",
+        "mode": "light",
+        "brand": {
+            "primary": "#2f4454",
+            "primaryDark": "#b9cad8"
+        },
+        "navigation": {
+            "variant": "burger-overlay"
+        }
+    },
+    "landing": {
+        "$comment": "A pinned layout (packs/README.md 'Derived templates'): style re-registers the base's pages in the boreal register, and pages carries exactly the skeletons careLanding.ts emits from this remix's contentSeed — the hero turns full-bleed and the content-gated sections (the journey as a horizontal rail, menu, the spotlight, faq) appear because the seed asks for them — so the composed template's document reproduces its code config section for section (tests/View/Care/careLanding.test.ts reads this through composedLandingSeed).",
+        "style": {
+            "preset": "boreal"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "journey",
+                        "type": "steps",
+                        "variant": "horizontal-rail"
+                    },
+                    {
+                        "id": "menu",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "spotlight",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "providers",
+                        "type": "team",
+                        "variant": "portraits"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "providers": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "providers",
+                        "type": "team",
+                        "variant": "portraits"
+                    },
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "card-grid",
+                        "variant": "4up"
+                    },
+                    {
+                        "id": "menu",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "new-patients": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "first-visit",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "how",
+                        "type": "steps",
+                        "variant": "numbered-cards"
+                    },
+                    {
+                        "id": "privacy",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    }
+                ]
+            }
+        }
+    }
+}

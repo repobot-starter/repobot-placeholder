@@ -1,0 +1,15 @@
+{
+    "name": "repobot-shopify-beauty-theme",
+    "version": "0.1.0",
+    "private": true,
+    "description": "Repobot Glow — a clean, clinical-but-warm skincare example store on the Repobot Shopify theme standards",
+    "scripts": {
+        "dev": "shopify theme dev",
+        "check": "shopify theme check",
+        "test": "shopify theme check --fail-level error",
+        "push": "shopify theme push"
+    },
+    "devDependencies": {
+        "@shopify/cli": "^3.60.0"
+    }
+}

@@ -1,0 +1,192 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services-recurring pack composed with an Airbnb turnover crew content seed (Clean Getaway, Miami), re-registered in the memphis register with its own page skeletons. Everything structural — builders, routes, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-recurring-turnover",
+    "remixOf": "services-recurring",
+    "templateKey": "repobot-services-recurring-turnover",
+    "title": "Cleaning & turnovers",
+    "description": "A turnover-cleaning crew's site in a 90s Miami pop register: trading-card price tiles on the home page, turnover day as a photo rail, a door-hanger room-ready checklist, host testimonials, flat-priced add-ons, a line-by-line comparison, and a booking form built around check-out times — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Turnover cleaning crew",
+    "contentSeed": "web/app/src/View/ServicesRecurring/turnoverRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so these seeds replace the base pack's at compose and mirror THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twins).",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "walkthrough",
+                    "name": "Unit walkthrough",
+                    "durationMinutes": 30,
+                    "description": "We walk the unit with you — in person or on video — note the host quirks, and set your checklist."
+                },
+                {
+                    "typeId": "first-turnover",
+                    "name": "First turnover",
+                    "durationMinutes": 180,
+                    "description": "Your first full turnover: a deep reset, the photo checklist, and your restock list started."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "marisol-vega",
+                    "name": "Marisol Vega",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 540,
+                            "end": 900
+                        },
+                        {
+                            "day": 2,
+                            "start": 540,
+                            "end": 900
+                        },
+                        {
+                            "day": 3,
+                            "start": 540,
+                            "end": 900
+                        },
+                        {
+                            "day": 4,
+                            "start": 540,
+                            "end": 900
+                        },
+                        {
+                            "day": 5,
+                            "start": 540,
+                            "end": 900
+                        },
+                        {
+                            "day": 6,
+                            "start": 540,
+                            "end": 900
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The memphis register's brand overlay: hot pink over the flyer's bright white, with the register's own aqua and lemon as spot inks — a Miami turnover crew that reads loud and reliable at once. Marketing pages resolve brand over preset accent, so the overlay re-skins the pages and the app surfaces together. navigation re-pins the shared servicesRecurringShell chrome (a declared theme variant outranks the shell prop) to the split ink bar the flyer runs its title in; the lawncare and pest remixes pin their own.",
+        "brand": {
+            "primary": "#ff2d87",
+            "primaryDark": "#ff5fa8"
+        },
+        "navigation": {
+            "variant": "split"
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (web/app/src/View/ServicesRecurring/ServicesRecurringPage.tsx, useSitePageConfig). pages seeds each page's layout skeleton — ids match servicesRecurringLanding.ts; the platform's structural editor edits these. The preset is memphis (90s Miami pop: bright white, aqua / hot pink / lemon spot inks on black, chunky italic display with hard offset shadows, a sparse confetti layer) with the catalog's hot-pink brand overlay. The home page's middle follows the content — turnover (steps horizontal-rail) and checklist (feature-grid checklist) for the turnover story; the lawncare and pest remixes pin their own preset and pages.",
+        "style": {
+            "preset": "memphis"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "split-media"
+                    },
+                    {
+                        "id": "plans",
+                        "type": "pricing",
+                        "variant": "tiers"
+                    },
+                    {
+                        "id": "turnover",
+                        "type": "steps",
+                        "variant": "horizontal-rail"
+                    },
+                    {
+                        "id": "checklist",
+                        "type": "feature-grid",
+                        "variant": "checklist"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "service-area",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "plans": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "plans",
+                        "type": "pricing",
+                        "variant": "tiers"
+                    },
+                    {
+                        "id": "add-ons",
+                        "type": "feature-grid",
+                        "variant": "cards-3up"
+                    },
+                    {
+                        "id": "compare",
+                        "type": "comparison",
+                        "variant": "table"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "book-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

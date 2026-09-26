@@ -1,0 +1,36 @@
+name: Templates artifact (manual re-bake)
+
+# Re-runs only ci.yml's templates job for main's tip, for when that job
+# failed on infrastructure (runner disk, store outage) after every gate
+# passed. It does not prove trees: dispatch it only for a commit whose
+# ci.yml gates are green, or whose fingerprint matches one that is.
+on:
+    workflow_dispatch:
+
+jobs:
+    templates:
+        name: Compose + publish templates artifact (dev store)
+        if: github.repository == 'repobot-starter/repobot-tmp-base' && github.ref == 'refs/heads/main'
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            id-token: write
+        steps:
+            - name: Free runner disk
+              run: |
+                  sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/share/boost
+                  df -h /
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  cache: npm
+            - name: Authenticate to GCP (OIDC, no stored keys)
+              uses: google-github-actions/auth@v2
+              with:
+                  workload_identity_provider: ${{ vars.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+                  service_account: ${{ vars.GCP_KERNEL_PUBLISHER_SERVICE_ACCOUNT }}
+            - name: Compose + publish (content-addressed; a no-op when this fingerprint is already in the store)
+              run: |
+                  sudo apt-get install -y --no-install-recommends zstd
+                  bash scripts/build-templates-artifact.sh --publish "${{ vars.KERNEL_SNAPSHOT_STORE_DEV || 'gs://repobot-dev-271523-kernel-snapshots' }}"

@@ -1,0 +1,207 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services pack composed with a Black-owned silk press and natural-hair studio content seed (Sable Atelier, Shaw, Washington DC), a cognac brand, and the cognac register. Everything else — builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-hair-sable",
+    "remixOf": "services",
+    "templateKey": "repobot-services-hair-sable",
+    "title": "Silk press & natural-hair studio",
+    "description": "A natural-hair studio's site as a ritual room: a silk-pressed portrait in walnut light under a display serif, the ritual in five photographed steps with their minutes, one client's words between two rules, the rates on one line, and online booking for the ritual — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Washington DC silk press studio",
+    "contentSeed": "web/app/src/View/Services/sableRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twin) — the composed template's booking widget and Manage calendar open on this team's own week, not the base demo business's.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "silk-press",
+                    "name": "The silk press ritual",
+                    "durationMinutes": 120,
+                    "description": "Consult, cleanse, steam, press, and finish, with a two-week regimen to take home."
+                },
+                {
+                    "typeId": "loc-maintenance",
+                    "name": "Loc maintenance",
+                    "durationMinutes": 90,
+                    "description": "A retwist and style with a scalp treatment."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "nia-whitfield",
+                    "name": "Nia Whitfield",
+                    "windows": [
+                        {
+                            "day": 3,
+                            "start": 600,
+                            "end": 1200
+                        },
+                        {
+                            "day": 4,
+                            "start": 600,
+                            "end": 1200
+                        },
+                        {
+                            "day": 6,
+                            "start": 480,
+                            "end": 1080
+                        }
+                    ]
+                },
+                {
+                    "providerId": "simone-carter",
+                    "name": "Simone Carter",
+                    "windows": [
+                        {
+                            "day": 4,
+                            "start": 600,
+                            "end": 1200
+                        },
+                        {
+                            "day": 5,
+                            "start": 600,
+                            "end": 1200
+                        },
+                        {
+                            "day": 6,
+                            "start": 480,
+                            "end": 1080
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "Cognac as the brand: on the cognac register the accent is the one squared ask, so a rebrand re-tints the plate without re-shooting the ritual. Marketing pages resolve brand over preset accent, so the overlay re-skins the pages and the app surfaces together. navigation re-pins the shared servicesShell chrome to the inline bar (a declared theme variant outranks the shell prop). mode dark opens on the espresso ground (theme merges shallowly).",
+        "brand": {
+            "primary": "#8f5327",
+            "primaryDark": "#a9642f"
+        },
+        "mode": "dark",
+        "navigation": {
+            "variant": "inline"
+        }
+    },
+    "landing": {
+        "$comment": "The pin: the cognac register and the ritual home — the display serif over the portrait (full-bleed-media; the seed breaks the line where the author broke it, the credit is the studio's line), the ritual as a numbered strip (the seed's build log as steps horizontal-rail: each step's minutes under its name), one client's words (testimonials single-featured), the rates as one still line (the seed's nowBuilding as social-proof ticker), and the ask. The seed hides the home services grid (home.serviceGrid). The results page opens on the before-and-after comparisons over how a visit runs; the about page carries the numbers. resolveCatalog puts these in place of the base's pages.",
+        "style": {
+            "preset": "cognac"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "build-log",
+                        "type": "steps",
+                        "variant": "horizontal-rail"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "now-building",
+                        "type": "social-proof",
+                        "variant": "ticker"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "projects": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "transformations",
+                        "type": "gallery",
+                        "variant": "before-after"
+                    },
+                    {
+                        "id": "process",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "showcase",
+                        "variant": "card-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "quote": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "quote-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,594 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 71;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AA0000010000000000000012 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2000010000000000000001 /* SwiftUI.framework */; };
+		AA0000010000000000000016 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA2000010000000000000002 /* XCTest.framework */; };
+		AA0000010000000000000019 /* AppGraphqlApi in Frameworks */ = {isa = PBXBuildFile; productRef = AA9000010000000000000002 /* AppGraphqlApi */; };
+		AA000001000000000000001A /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = AA9000010000000000000004 /* Apollo */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AA7000010000000000000002 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA6000010000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA5000010000000000000001;
+			remoteInfo = AppIOS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		AA1000010000000000000012 /* BaseApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaseApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA1000010000000000000013 /* AppIOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppIOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA2000010000000000000001 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		AA2000010000000000000002 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = System/Library/Frameworks/XCTest.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		AAB000010000000000000001 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = AA5000010000000000000001 /* AppIOS */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		AAA000010000000000000001 /* App */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (AAB000010000000000000001 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = App; sourceTree = "<group>"; };
+		AAA000010000000000000002 /* AppTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = AppTests; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AA3000010000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA000001000000000000001A /* Apollo in Frameworks */,
+				AA0000010000000000000019 /* AppGraphqlApi in Frameworks */,
+				AA0000010000000000000012 /* SwiftUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA3000010000000000000002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA0000010000000000000016 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AA4000010000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				AAA000010000000000000001 /* App */,
+				AAA000010000000000000002 /* AppTests */,
+				AA4000010000000000000008 /* Frameworks */,
+				AA4000010000000000000009 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AA4000010000000000000008 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AA2000010000000000000001 /* SwiftUI.framework */,
+				AA2000010000000000000002 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AA4000010000000000000009 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA1000010000000000000012 /* BaseApp.app */,
+				AA1000010000000000000013 /* AppIOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AA5000010000000000000001 /* AppIOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA6000010000000000000002 /* Build configuration list for PBXNativeTarget "AppIOS" */;
+			buildPhases = (
+				AA3000010000000000000003 /* Sources */,
+				AA3000010000000000000001 /* Frameworks */,
+				AA3000010000000000000004 /* Resources */,
+				AA3000010000000000000007 /* Stamp Sandbox Config */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				AAA000010000000000000001 /* App */,
+			);
+			name = AppIOS;
+			packageProductDependencies = (
+				AA9000010000000000000002 /* AppGraphqlApi */,
+				AA9000010000000000000004 /* Apollo */,
+			);
+			productName = AppIOS;
+			productReference = AA1000010000000000000012 /* BaseApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AA5000010000000000000002 /* AppIOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA6000010000000000000003 /* Build configuration list for PBXNativeTarget "AppIOSTests" */;
+			buildPhases = (
+				AA3000010000000000000005 /* Sources */,
+				AA3000010000000000000002 /* Frameworks */,
+				AA3000010000000000000006 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA7000010000000000000001 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				AAA000010000000000000002 /* AppTests */,
+			);
+			name = AppIOSTests;
+			productName = AppIOSTests;
+			productReference = AA1000010000000000000013 /* AppIOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AA6000010000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1660;
+				LastUpgradeCheck = 1660;
+				TargetAttributes = {
+					AA5000010000000000000001 = {
+						CreatedOnToolsVersion = 16.6;
+					};
+					AA5000010000000000000002 = {
+						CreatedOnToolsVersion = 16.6;
+						TestTargetID = AA5000010000000000000001;
+					};
+				};
+			};
+			buildConfigurationList = AA6000010000000000000004 /* Build configuration list for PBXProject "App" */;
+			compatibilityVersion = "Xcode 16.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AA4000010000000000000001;
+			packageReferences = (
+				AA9000010000000000000001 /* XCLocalSwiftPackageReference "ApolloGraphql/AppGraphqlApi" */,
+				AA9000010000000000000003 /* XCRemoteSwiftPackageReference "apollo-ios" */,
+			);
+			productRefGroup = AA4000010000000000000009 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AA5000010000000000000001 /* AppIOS */,
+				AA5000010000000000000002 /* AppIOSTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AA3000010000000000000004 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA3000010000000000000006 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AA3000010000000000000007 /* Stamp Sandbox Config */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Stamp Sandbox Config";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ \"$FLAVOR\" != \"sandbox\" ]; then\n  exit 0\nfi\n\nSANDBOX_CONFIG_PATH=\"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Config.sandbox.plist\"\nif [ ! -f \"$SANDBOX_CONFIG_PATH\" ]; then\n  echo \"[ios:sandbox-config] Skipping stamp (missing $SANDBOX_CONFIG_PATH).\"\n  exit 0\nfi\n\n# 1. Stamp the local dev JWT from web/app/.env.local (npm run bootstrap:env).\nENV_LOCAL_PATH=\"${SRCROOT}/../web/app/.env.local\"\nLOCAL_AUTH_TOKEN=\"\"\nif [ -f \"$ENV_LOCAL_PATH\" ]; then\n  LOCAL_AUTH_TOKEN=\"$(grep '^VITE_LOCAL_AUTH_TOKEN=' \"$ENV_LOCAL_PATH\" | head -n 1 | cut -d= -f2-)\"\nfi\nif [ -z \"$LOCAL_AUTH_TOKEN\" ]; then\n  echo \"[ios:sandbox-config] warning: no VITE_LOCAL_AUTH_TOKEN found; run 'npm run bootstrap:env' at the repo root.\"\nfi\n\n# 2. Rewrite localhost hosts to the Mac's LAN IP so physical devices can\n#    reach the emulators. Simulators work with 127.0.0.1 either way.\nLOCAL_IP=\"$(ipconfig getifaddr en0 2>/dev/null || true)\"\nif [ -z \"$LOCAL_IP\" ]; then\n  LOCAL_IP=\"$(ipconfig getifaddr en1 2>/dev/null || true)\"\nfi\n\npython3 - \"$SANDBOX_CONFIG_PATH\" \"$LOCAL_AUTH_TOKEN\" \"$LOCAL_IP\" <<'PY'\nimport plistlib\nimport sys\nfrom urllib.parse import urlparse, urlunparse\n\nconfig_path = sys.argv[1]\nlocal_auth_token = sys.argv[2]\nlocal_host = sys.argv[3] if len(sys.argv) > 3 else \"\"\n\nwith open(config_path, \"rb\") as file:\n    config = plistlib.load(file)\n\nif local_auth_token:\n    config[\"LOCAL_AUTH_TOKEN\"] = local_auth_token\n\n\ndef rewrite_url_host(raw_url: str) -> str:\n    parsed = urlparse(raw_url)\n    if parsed.hostname in (\"127.0.0.1\", \"localhost\") and local_host:\n        netloc = local_host\n        if parsed.port is not None:\n            netloc = f\"{local_host}:{parsed.port}\"\n        return urlunparse((\n            parsed.scheme,\n            netloc,\n            parsed.path,\n            parsed.params,\n            parsed.query,\n            parsed.fragment,\n        ))\n    return raw_url\n\nvalue = config.get(\"GRAPHQL_URL\")\nif isinstance(value, str) and value:\n    config[\"GRAPHQL_URL\"] = rewrite_url_host(value)\n\nwith open(config_path, \"wb\") as file:\n    plistlib.dump(config, file)\n\nprint(\"[ios:sandbox-config] Stamped sandbox config (token %s, host %s)\" % (\n    \"present\" if local_auth_token else \"missing\",\n    local_host or \"unchanged\",\n))\nPY\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AA3000010000000000000003 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA3000010000000000000005 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AA7000010000000000000001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA5000010000000000000001 /* AppIOS */;
+			targetProxy = AA7000010000000000000002 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		AA6000010000000000000005 /* Development (Debug) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = "Development (Debug)";
+		};
+		AA6000010000000000000006 /* Production (Release) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = "Production (Release)";
+		};
+		AA6000010000000000000007 /* Development (Debug) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				AUTH_URL_SCHEME = "baseapp-dev";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				FLAVOR = dev;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "App (Dev)";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "base-app-dev";
+				PRODUCT_MODULE_NAME = AppIOS;
+				PRODUCT_NAME = "BaseApp";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Development (Debug)";
+		};
+		AA6000010000000000000008 /* Production (Release) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				AUTH_URL_SCHEME = "baseapp";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				FLAVOR = prod;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "App";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "base-app";
+				PRODUCT_MODULE_NAME = AppIOS;
+				PRODUCT_NAME = "BaseApp";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Production (Release)";
+		};
+		AA6000010000000000000009 /* Development (Debug) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@loader_path/Frameworks",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "base-app-dev-tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BaseApp.app/BaseApp";
+			};
+			name = "Development (Debug)";
+		};
+		AA600001000000000000000A /* Production (Release) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@loader_path/Frameworks",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "base-app-tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BaseApp.app/BaseApp";
+			};
+			name = "Production (Release)";
+		};
+		AA600001000000000000000B /* Sandbox (Debug) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = "Sandbox (Debug)";
+		};
+		AA600001000000000000000C /* Production (Debug) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = "Production (Debug)";
+		};
+		AA600001000000000000000D /* Sandbox (Debug) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				AUTH_URL_SCHEME = "baseapp-sandbox";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				FLAVOR = sandbox;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "App (Sandbox)";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "base-app-sandbox";
+				PRODUCT_MODULE_NAME = AppIOS;
+				PRODUCT_NAME = "BaseApp";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Sandbox (Debug)";
+		};
+		AA600001000000000000000E /* Production (Debug) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				AUTH_URL_SCHEME = "baseapp";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				FLAVOR = prod;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "App";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = NO;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "base-app";
+				PRODUCT_MODULE_NAME = AppIOS;
+				PRODUCT_NAME = "BaseApp";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Production (Debug)";
+		};
+		AA600001000000000000000F /* Sandbox (Debug) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@loader_path/Frameworks",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "base-app-sandbox-tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BaseApp.app/BaseApp";
+			};
+			name = "Sandbox (Debug)";
+		};
+		AA6000010000000000000010 /* Production (Debug) */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@loader_path/Frameworks",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "base-app-tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BaseApp.app/BaseApp";
+			};
+			name = "Production (Debug)";
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AA6000010000000000000002 /* Build configuration list for PBXNativeTarget "AppIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA6000010000000000000007 /* Development (Debug) */,
+				AA600001000000000000000D /* Sandbox (Debug) */,
+				AA600001000000000000000E /* Production (Debug) */,
+				AA6000010000000000000008 /* Production (Release) */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Production (Release)";
+		};
+		AA6000010000000000000003 /* Build configuration list for PBXNativeTarget "AppIOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA6000010000000000000009 /* Development (Debug) */,
+				AA600001000000000000000F /* Sandbox (Debug) */,
+				AA6000010000000000000010 /* Production (Debug) */,
+				AA600001000000000000000A /* Production (Release) */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Production (Release)";
+		};
+		AA6000010000000000000004 /* Build configuration list for PBXProject "App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA6000010000000000000005 /* Development (Debug) */,
+				AA600001000000000000000B /* Sandbox (Debug) */,
+				AA600001000000000000000C /* Production (Debug) */,
+				AA6000010000000000000006 /* Production (Release) */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Production (Release)";
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		AA9000010000000000000001 /* XCLocalSwiftPackageReference "ApolloGraphql/AppGraphqlApi" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ApolloGraphql/AppGraphqlApi;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AA9000010000000000000003 /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apollographql/apollo-ios";
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AA9000010000000000000002 /* AppGraphqlApi */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA9000010000000000000001 /* XCLocalSwiftPackageReference "ApolloGraphql/AppGraphqlApi" */;
+			productName = AppGraphqlApi;
+		};
+		AA9000010000000000000004 /* Apollo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AA9000010000000000000003 /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = Apollo;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = AA6000010000000000000001 /* Project object */;
+}

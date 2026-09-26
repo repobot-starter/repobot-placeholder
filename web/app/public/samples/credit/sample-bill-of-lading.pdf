@@ -1,0 +1,70 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 613 >>
+stream
+BT
+/F1 12 Tf
+14 TL
+72 720 Td
+(MERIDIAN SHIPPING LINE) Tj
+T*
+(OCEAN BILL OF LADING) Tj
+T*
+() Tj
+T*
+(B/L number: MSCUAB123456) Tj
+T*
+(Shipper: Pacific Textiles Ltd) Tj
+T*
+(Consignee: To order of First Meridian Bank) Tj
+T*
+(Notify: Atlas Trading GmbH, Hamburg) Tj
+T*
+() Tj
+T*
+(Port of loading: Shanghai) Tj
+T*
+(Port of discharge: Hamburg) Tj
+T*
+(Goods: 100% cotton knitted T-shirts, 14,000 pieces) Tj
+T*
+() Tj
+T*
+(SHIPPED ON BOARD: 2027-06-04) Tj
+T*
+(Clean on board. Freight prepaid.) Tj
+T*
+() Tj
+T*
+(This is a bundled sample document for the sandbox demo.) Tj
+T*
+(REPOBOT-INTAKE-FIXTURE: credit-sample-bl) Tj
+T*
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000000904 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+974
+%%EOF

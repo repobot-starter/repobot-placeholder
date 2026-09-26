@@ -1,0 +1,32 @@
+<section class="collection">
+  <h1>{{ collection.title }}</h1>
+  <div class="product-grid">
+    {% paginate collection.products by 24 %}
+      {% for product in collection.products %}
+        <a class="product-card" href="{{ product.url }}">
+          {% if product.featured_image %}
+            <img
+              src="{{ product.featured_image | image_url: width: 480 }}"
+              alt="{{ product.featured_image.alt | escape }}"
+              loading="lazy"
+              width="480"
+              height="{{ 480 | divided_by: product.featured_image.aspect_ratio | ceil }}"
+            >
+          {% endif %}
+          <h3>{{ product.title }}</h3>
+          {% render 'price', product: product %}
+        </a>
+      {% else %}
+        <p>{{ 'sections.collection.empty' | t }}</p>
+      {% endfor %}
+      {{ paginate | default_pagination }}
+    {% endpaginate %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": []
+}
+{% endschema %}

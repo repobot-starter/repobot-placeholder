@@ -1,0 +1,211 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services pack composed with a coastal custom builder content seed (Tideline Builders, Cannon Beach), re-registered in the tideline register with its own page skeletons. Everything structural — builders, routes, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-builder",
+    "remixOf": "services",
+    "templateKey": "repobot-services-builder",
+    "title": "Custom builder & contractor",
+    "description": "A custom builder's site: a full-bleed title-card hero, a now-building ticker, one house's build log as photo cards on a rail, a materials board, services with honest starting figures, draggable before/after restorations, site-walk booking, and a project-inquiry form — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Coastal custom builder",
+    "contentSeed": "web/app/src/View/Services/builderRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so these seeds replace the base pack's at compose and mirror THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twins).",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "site-walk",
+                    "name": "Site walk",
+                    "durationMinutes": 90,
+                    "description": "Ninety minutes on the lot or in the house — the ground, the view, the weather side, and what's possible."
+                },
+                {
+                    "typeId": "design-consult",
+                    "name": "Design consult",
+                    "durationMinutes": 60,
+                    "description": "An hour at the studio with drawings, samples, and the species boards: scope, budget, and schedule."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "ingrid-solvang",
+                    "name": "Ingrid Solvang",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 540,
+                            "end": 960
+                        },
+                        {
+                            "day": 2,
+                            "start": 540,
+                            "end": 960
+                        },
+                        {
+                            "day": 3,
+                            "start": 540,
+                            "end": 960
+                        },
+                        {
+                            "day": 4,
+                            "start": 540,
+                            "end": 960
+                        },
+                        {
+                            "day": 5,
+                            "start": 540,
+                            "end": 960
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The tideline register's brand overlay: the preset's lamplight amber as the project brand, so app-side surfaces wear the same coastal register as the marketing pages instead of the kernel default blue. Values match the tideline preset's own light/dark accents — the marketing pages resolve brand over preset accent, so keeping them identical means the overlay re-brands the app without shifting the pages. mode dark opens the site in the register's native fog-slate appearance (the appearance toggle still swaps to the bright fog-morning reading). navigation pins the split letterhead (wordmark and place line left, links and the one ask right) so the full-bleed photograph owns the first screen; remixes re-pin their own.",
+        "brand": {
+            "primary": "#9a5f17",
+            "primaryDark": "#e0a255"
+        },
+        "mode": "dark",
+        "navigation": {
+            "variant": "split"
+        }
+    },
+    "landing": {
+        "$comment": "Doc-aware pack pages: routes maps each pack route to the page id its config merges under (web/app/src/View/Services/ServicesPage.tsx, useSitePageConfig). pages seeds each page's layout skeleton — ids match servicesLanding.ts; the platform's structural editor edits these. The preset is tideline (the coastal timber house: fog-slate ground under sea-mist grain, bone Fraunces set thin at monumental scale, hairlines, one lamplight-amber accent, full-bleed photographs that dissolve into the ground) — a custom builder that sells by the photograph and the process, deliberately apart from sitework's licensed-and-insured signage (which the derived trades templates keep: their catalogs pin sitework and their own skeletons).",
+        "style": {
+            "preset": "tideline"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "now-building",
+                        "type": "social-proof",
+                        "variant": "ticker"
+                    },
+                    {
+                        "id": "build-log",
+                        "type": "steps",
+                        "variant": "horizontal-rail"
+                    },
+                    {
+                        "id": "species",
+                        "type": "showcase",
+                        "variant": "specimens"
+                    },
+                    {
+                        "id": "services",
+                        "type": "card-grid",
+                        "variant": "4up"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "service-area",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "projects": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "transformations",
+                        "type": "gallery",
+                        "variant": "before-after"
+                    },
+                    {
+                        "id": "process",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "showcase",
+                        "variant": "card-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "quote": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "quote-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

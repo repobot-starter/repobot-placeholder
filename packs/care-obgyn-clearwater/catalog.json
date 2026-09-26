@@ -1,0 +1,360 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the care pack composed with a fertility clinic's content seed, re-registered in the fogline register (white ground, plum ink, dusty rose) with its own pinned page skeletons. Everything else — pages' builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "care-obgyn-clearwater",
+    "remixOf": "care",
+    "templateKey": "repobot-care-obgyn-clearwater",
+    "title": "Fertility Clinic",
+    "description": "A fertility clinic's site with real online booking: Clearwater Fertility in San Francisco, built around telling patients the odds plainly. The home opens on a couple on a bench above the city in the fog under \"The honest path to a family.\", then the numbers as a report — live-birth rates per retrieval by age band, each row with its bar, the footnote, and a visible sample-data tag until the owner enters the clinic's own reported rates — and the prices over the consultation ask. The team, treatments with their prices, the benefits billed directly, and a booking widget for consultations, intro calls, and follow-ups keep their own pages. White, plum, and dusty rose in a narrow modern serif. Flexes to IVF and egg-freezing clinics, reproductive urology, and any practice that publishes outcomes.",
+    "marketingExampleTitle": "Fertility clinic site",
+    "contentSeed": "web/app/src/View/Care/clearwaterRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so these practice and appointments seeds replace the base pack's at compose and mirror THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twins) — the composed template's Manage editors and booking widget open on the fertility clinic, not the base clinic.",
+        "practice": {
+            "providers": [
+                {
+                    "providerId": "rao-md",
+                    "name": "Meera Rao",
+                    "credentials": "MD",
+                    "role": "Reproductive endocrinologist · Medical director",
+                    "bio": "Dr. Rao trained at UCSF and opened Clearwater in 2016 to run a clinic that tells patients the odds plainly. She sees every new patient at least once, and she will draw your timeline on paper until it makes sense."
+                },
+                {
+                    "providerId": "moreno-md",
+                    "name": "Daniel Moreno",
+                    "credentials": "MD",
+                    "role": "Reproductive endocrinologist",
+                    "bio": "Dr. Moreno leads the egg-freezing and donor programs and works with many LGBTQ+ families building through donors and gestational carriers. He's bilingual in English and Spanish and answers his own messages."
+                },
+                {
+                    "providerId": "lin-rn",
+                    "name": "Grace Lin",
+                    "credentials": "RN",
+                    "role": "Nurse coordinator",
+                    "bio": "Grace is the person you'll talk to most: medication calendars, monitoring times, the 6 a.m. question. She has coordinated more than two thousand cycles and still celebrates every call with good news."
+                }
+            ],
+            "services": [
+                {
+                    "name": "Fertility consultation",
+                    "description": "An hour with a physician: your history, your tests, and a plain account of your options and odds — including doing nothing yet."
+                },
+                {
+                    "name": "IVF",
+                    "description": "Stimulation, retrieval, and transfer, with monitoring before work and a nurse coordinator who knows your calendar."
+                },
+                {
+                    "name": "Egg freezing",
+                    "description": "One or two cycles, with a straight answer about how many eggs you're likely to need at your age."
+                },
+                {
+                    "name": "IUI",
+                    "description": "A simpler first step for some couples and single parents, with or without medication."
+                },
+                {
+                    "name": "Fertility testing",
+                    "description": "Bloodwork, ultrasound, and semen analysis in one morning, with results explained at a follow-up — not in a portal."
+                },
+                {
+                    "name": "Donor & carrier programs",
+                    "description": "Egg and sperm donors and gestational carriers, for LGBTQ+ families, single parents, and anyone who needs them."
+                }
+            ],
+            "insurance": [
+                "Progyny",
+                "Carrot Fertility",
+                "Aetna",
+                "Blue Shield of California",
+                "Cigna",
+                "UnitedHealthcare"
+            ],
+            "locations": [
+                {
+                    "locationId": "clay-street",
+                    "label": "Clay Street",
+                    "address": "2340 Clay Street, Suite 400, San Francisco, CA 94115",
+                    "phone": "(415) 555-0132",
+                    "hours": [
+                        {
+                            "day": 1,
+                            "open": 420,
+                            "close": 960
+                        },
+                        {
+                            "day": 2,
+                            "open": 420,
+                            "close": 960
+                        },
+                        {
+                            "day": 3,
+                            "open": 420,
+                            "close": 960
+                        },
+                        {
+                            "day": 4,
+                            "open": 420,
+                            "close": 960
+                        },
+                        {
+                            "day": 5,
+                            "open": 420,
+                            "close": 900
+                        },
+                        {
+                            "day": 6,
+                            "open": 420,
+                            "close": 660
+                        }
+                    ]
+                }
+            ],
+            "reviews": [
+                {
+                    "quote": "Dr. Rao showed us the real numbers at the first visit, and then she showed us what would change them. We knew exactly what we were choosing.",
+                    "name": "Ana & Chris P.",
+                    "detail": "IVF, 2025"
+                },
+                {
+                    "quote": "Grace texted me back at 6:10 in the morning about a dose. That's the whole review.",
+                    "name": "Jordan M.",
+                    "detail": "Egg freezing, 2026"
+                },
+                {
+                    "quote": "Dr. Moreno never once made us feel like an exception. Two dads, one donor, one carrier, one very loud daughter.",
+                    "name": "Sam & Eli T.",
+                    "detail": "Donor and carrier program, 2025"
+                }
+            ],
+            "newPatient": [
+                {
+                    "title": "Book a consultation",
+                    "body": "Most people see a physician within a week. Bring any old test results; we'll order what's missing."
+                },
+                {
+                    "title": "Testing in one morning",
+                    "body": "Bloodwork, ultrasound, and a semen analysis if it applies, all before ten."
+                },
+                {
+                    "title": "A plan and a price",
+                    "body": "At your follow-up you get a written plan, your odds as we see them, and the cost with and without your benefits."
+                },
+                {
+                    "title": "Your coordinator",
+                    "body": "From then on, Grace or one of her team is your first call for everything."
+                }
+            ]
+        },
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "consultation",
+                    "name": "New-patient consultation",
+                    "durationMinutes": 60,
+                    "description": "An hour with a physician, in person or by video."
+                },
+                {
+                    "typeId": "intro-call",
+                    "name": "Free intro call",
+                    "durationMinutes": 15,
+                    "description": "Fifteen minutes with a nurse coordinator to ask anything first."
+                },
+                {
+                    "typeId": "follow-up",
+                    "name": "Follow-up",
+                    "durationMinutes": 30,
+                    "description": "Results, your plan, and next steps with your physician."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "rao-md",
+                    "name": "Dr. Meera Rao",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 600,
+                            "end": 900
+                        },
+                        {
+                            "day": 3,
+                            "start": 600,
+                            "end": 900
+                        }
+                    ]
+                },
+                {
+                    "providerId": "moreno-md",
+                    "name": "Dr. Daniel Moreno",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 600,
+                            "end": 900
+                        },
+                        {
+                            "day": 4,
+                            "start": 600,
+                            "end": 900
+                        }
+                    ]
+                },
+                {
+                    "providerId": "lin-rn",
+                    "name": "Grace Lin, RN",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 540,
+                            "end": 720
+                        },
+                        {
+                            "day": 5,
+                            "start": 540,
+                            "end": 780
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The fogline register's rose as the project brand: mode light opens the site in the register's native appearance (white ground, plum ink, dusty rose); the Feel toggle swaps to the same room at night. Marketing pages resolve brand over preset accent, so keeping the values identical to the preset's own accents re-inks app surfaces without shifting the pages. The shared careShell's full-width chrome stays — framestack floats it over the home's photograph and inkover sets it in plum over the fog.",
+        "mode": "light",
+        "brand": {
+            "primary": "#a8445f",
+            "primaryDark": "#c9607c"
+        }
+    },
+    "landing": {
+        "$comment": "A pinned layout (packs/README.md 'Derived templates'): style re-registers the base's pages in the fogline register, and pages carries exactly the skeletons careLanding.ts emits from this remix's contentSeed — the seed sets home.stack with a report and no band or frames, so the home is the photograph, the numbers (stats bars), and the colophon consultation ask; the inner pages are the base's, with the price list because the seed fills it — so the composed template's document reproduces its code config section for section (tests/View/Care/careLanding.test.ts reads this through composedLandingSeed).",
+        "style": {
+            "preset": "fogline"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "numbers",
+                        "type": "stats",
+                        "variant": "bars"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "colophon"
+                    }
+                ]
+            },
+            "providers": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "providers",
+                        "type": "team",
+                        "variant": "portraits"
+                    },
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "card-grid",
+                        "variant": "4up"
+                    },
+                    {
+                        "id": "menu",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "new-patients": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "first-visit",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "how",
+                        "type": "steps",
+                        "variant": "numbered-cards"
+                    },
+                    {
+                        "id": "privacy",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    }
+                ]
+            }
+        }
+    }
+}

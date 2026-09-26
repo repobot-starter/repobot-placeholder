@@ -1,0 +1,193 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services-recurring pack composed with the Fresh Cut lawn-care content seed, pinned to the gameday register with its own brand, appearance, nav, and pages. Everything else — sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-lawncare-crew",
+    "remixOf": "services-recurring",
+    "templateKey": "repobot-services-lawncare-crew",
+    "title": "Lawn care & mowing",
+    "description": "An Atlanta lawn crew's site in a sportswear-campaign register: white condensed block type over a striped-lawn photograph, plans printed as season tickets with perforated stubs and barcodes, the season as a photo rail, a what's-in-a-cut checklist, neighborhood testimonials, and a booking form that asks for the grass, the gate, and the rhythm — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Lawn care crew",
+    "contentSeed": "web/app/src/View/ServicesRecurring/lawncareCrewRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twin) — the composed template's booking widget and Manage calendar open on this trade's own provider, not the base demo business's.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "yard-walk",
+                    "name": "Yard walk & quote",
+                    "durationMinutes": 30,
+                    "description": "We walk the yard with you, name the grass, set the blade height, and quote the plan on the spot."
+                },
+                {
+                    "typeId": "first-cut",
+                    "name": "First cut",
+                    "durationMinutes": 90,
+                    "description": "Your first full cut: mow, edge, trim, blow, and stripe — with the after photo from the curb."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "andre-whitfield",
+                    "name": "Andre Whitfield",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 480,
+                            "end": 960
+                        },
+                        {
+                            "day": 2,
+                            "start": 480,
+                            "end": 960
+                        },
+                        {
+                            "day": 3,
+                            "start": 480,
+                            "end": 960
+                        },
+                        {
+                            "day": 4,
+                            "start": 480,
+                            "end": 960
+                        },
+                        {
+                            "day": 5,
+                            "start": 480,
+                            "end": 960
+                        },
+                        {
+                            "day": 6,
+                            "start": 480,
+                            "end": 780
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The gameday register's brand overlay: stadium green on the light appearance and volt on the dark — the one accent a sportswear drop runs, on the striped-lawn ground. mode pins the dark appearance the campaign was designed in (the ground IS the lawn). navigation re-pins the shared servicesRecurringShell chrome (a declared theme variant outranks the shell prop) to the full-width bar — the scoreboard rail across the top — distinct from the base cleaner's split bar and the pest remix's inline card.",
+        "brand": {
+            "primary": "#1a7f37",
+            "primaryDark": "#dcff1f"
+        },
+        "mode": "dark",
+        "navigation": {
+            "variant": "full-width"
+        }
+    },
+    "landing": {
+        "$comment": "Pins this remix's look. resolveCatalog merges a remix's landing shallowly over the base's, so this style and these pages replace the base pack's. The preset is gameday (striped-lawn ground, Barlow Condensed block caps leaning italic, one volt accent, the sport treatment). The pages are what the builders emit from this seed's content: the hero full-bleed (home.layout), the plans as tickets (every plan carries a stub), the season on the steps rail, what's in a cut on the checklist. Routes stay the base's.",
+        "style": {
+            "preset": "gameday"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "plans",
+                        "type": "pricing",
+                        "variant": "tickets"
+                    },
+                    {
+                        "id": "turnover",
+                        "type": "steps",
+                        "variant": "horizontal-rail"
+                    },
+                    {
+                        "id": "checklist",
+                        "type": "feature-grid",
+                        "variant": "checklist"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "service-area",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "plans": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "plans",
+                        "type": "pricing",
+                        "variant": "tickets"
+                    },
+                    {
+                        "id": "add-ons",
+                        "type": "feature-grid",
+                        "variant": "cards-3up"
+                    },
+                    {
+                        "id": "compare",
+                        "type": "comparison",
+                        "variant": "table"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "book-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

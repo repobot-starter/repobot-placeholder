@@ -1,0 +1,14 @@
+{
+    "key": "pong",
+    "templateKey": "repobot-pong",
+    "title": "Pong",
+    "description": "The classic paddle duel. Four difficulty levels, adjustable speed, and a local two-player mode.",
+    "marketingExampleTitle": "Classic pong",
+    "homePath": "/",
+    "previewPath": "/pong",
+    "homeViewDir": "web/app/src/View/Games/Pong",
+    "base": "game",
+    "clientOnly": true,
+    "capabilities": ["IOS", "ANDROID"],
+    "isDefault": false
+}

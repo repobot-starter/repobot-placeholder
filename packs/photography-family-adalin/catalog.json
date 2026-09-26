@@ -1,0 +1,221 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the photography-family pack composed with a newborn and motherhood photographer's content seed (Ada Lin, Seattle), re-registered in the milkglass register (the daylight newborn studio) with its own pinned page skeletons — the seed's `home.layout: \"builder\"` makes the base builders emit one full-bleed window photograph over the session builder (pricing `builder` with `builderLayout: \"tiles\"`). Everything else — pages' builders, sections, contract, tests, booking and proofing — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "photography-family-adalin",
+    "remixOf": "photography-family",
+    "templateKey": "repobot-photography-family-adalin",
+    "title": "Ada Lin — Newborn & Motherhood Photography",
+    "description": "A Seattle newborn and motherhood photographer's site in the milkglass register (milk white and sage, a thin book serif over a light grotesque): the studio's name in thin spaced capitals over one full-bleed photograph of a mother and her newborn at a rain-soft window — The first weeks, held in light. — then a session builder: choose one session (newborn in the studio, motherhood, Fresh 48 at the hospital), tick keepsakes (a linen heirloom album, fine-art prints, the digital gallery) and extras (siblings, grandparents) as photograph tiles, and watch the summary card total the session beside a Reserve your due date button. Then a selected-work wall, the photographer, the collections, one voice, and a closing banner. REAL booking (a newborn planning call, a motherhood session, a studio visit on the studio's weekday calendar), private code-gated client proofing on the platform proofing service with a sample room, an FAQ, and an inquiry form — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Newborn photographer site",
+    "contentSeed": "web/app/src/View/PhotographyFamily/adalinRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module codeAppointments entry for entry (the remix-seed test pins the twin) — the composed template's Manage session calendar and booking widget open on the documentary offering: the half day books straight off the weekend calendar; full days and day-in-the-life days start with a planning call because they run past the booking domain's 240-minute slot ceiling. One provider: a one-photographer studio.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "newborn-planning",
+                    "name": "Newborn planning call",
+                    "durationMinutes": 30,
+                    "description": "Before baby arrives, we plan the morning"
+                },
+                {
+                    "typeId": "motherhood-session",
+                    "name": "Motherhood session",
+                    "durationMinutes": 60,
+                    "description": "Maternity or the first months, in the studio"
+                },
+                {
+                    "typeId": "studio-visit",
+                    "name": "Studio visit",
+                    "durationMinutes": 30,
+                    "description": "See the space and the wraps before you book"
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "ada-lin",
+                    "name": "Ada Lin",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 600,
+                            "end": 780
+                        },
+                        {
+                            "day": 3,
+                            "start": 600,
+                            "end": 780
+                        },
+                        {
+                            "day": 4,
+                            "start": 840,
+                            "end": 1020
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The milkglass register's brand overlay: mode light opens the site in its native milk-white daylight appearance (the appearance toggle still swaps to the night-feed dark reading), and the register's sage rides as the project brand so app-side surfaces (the code-gated proofing room's chrome and controls) wear the same register as the marketing pages instead of the kernel default blue. Values match the milkglass preset's own light/dark accents — the marketing pages resolve brand over preset accent, so keeping them identical means the overlay re-brands the app without shifting the pages.",
+        "mode": "light",
+        "brand": {
+            "primary": "#6e8868",
+            "primaryDark": "#7a9574"
+        }
+    },
+    "landing": {
+        "$comment": "A pinned layout (packs/README.md 'Derived templates'): style re-registers the base's pages in the milkglass register (the daylight newborn studio: milk white and sage, Spectral over Work Sans, the name in thin spaced capitals, the session builder as photograph tiles beside a serif total), and pages carries exactly the skeletons familyLanding.ts emits from this remix's contentSeed — the builder home (a full-bleed hero, the session builder, the selected-work wall, the photographer, the collections, one voice, the booking banner) — so the composed template's document reproduces its code config section for section (tests/View/PhotographyFamily/familyLanding.test.ts reads this through composedLandingSeed).",
+        "style": {
+            "preset": "milkglass"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "build-your-session",
+                        "type": "pricing",
+                        "variant": "builder"
+                    },
+                    {
+                        "id": "selected-work",
+                        "type": "gallery",
+                        "variant": "uniform"
+                    },
+                    {
+                        "id": "intro",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "collections",
+                        "type": "showcase",
+                        "variant": "collections"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "work": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "collections",
+                        "type": "showcase",
+                        "variant": "collections"
+                    }
+                ]
+            },
+            "galleries": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "gallery-steps",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "sample-room",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "investment": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "offerings",
+                        "type": "pricing",
+                        "variant": "tiers"
+                    },
+                    {
+                        "id": "how-it-works",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials"
+                    },
+                    {
+                        "id": "inquire-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "flexible-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "inquire": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "inquiry-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

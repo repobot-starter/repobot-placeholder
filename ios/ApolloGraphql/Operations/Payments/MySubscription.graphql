@@ -1,0 +1,5 @@
+query MySubscription($productKey: String) {
+    mySubscription(productKey: $productKey) {
+        ...PaymentSubscriptionFields
+    }
+}

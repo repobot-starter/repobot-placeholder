@@ -1,0 +1,312 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the influencer pack composed with a Lisbon fashion and slow-travel creator's content seed (Lua Marinho), a bordeaux brand, and the miradouro register. Everything else — builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "influencer-lua",
+    "remixOf": "influencer",
+    "templateKey": "repobot-influencer-lua",
+    "title": "Fashion & travel creator",
+    "description": "A fashion creator's site told as a diary of evenings: Lua Marinho in Lisbon. The home opens on her walking down an Alfama stairway at golden hour under \"Dressed for the last light.\", then four more full-bleed photographs at the same size — Comporta, Palermo, Sintra, the river wall — each with the place, the hour, and what she wore written into the foot of the frame. After the diary: this summer's shoppable looks, her five platforms, the link hub's newest links, the audience numbers, one brand voice at pull-quote scale, and a quiet sign-off line. The filterable looks with every piece linked, the link-in-bio hub, her story, and a campaign inquiry form keep their own pages. Limestone ivory, espresso ink, and bordeaux in Noto Serif Display over Manrope. Flexes to fashion, travel, and lifestyle creators, stylists, and anyone whose work is photographed in good light.",
+    "marketingExampleTitle": "Lisbon fashion & travel creator",
+    "contentSeed": "web/app/src/View/Influencer/luaRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so these links and looks seeds replace the base pack's at compose and mirror THIS remix's contentSeed module entry for entry, in order (looks minus the code-owned photographs) — the composed template's Manage editors open on Lua's hub and looks, not the base demo creator's. The influencer content tests pin the twin in the composed tree.",
+        "links": {
+            "entries": [
+                {
+                    "slug": "sintra-carry-on-video",
+                    "title": "New video — Sintra in one carry-on",
+                    "url": "https://www.youtube.com/@luamarinho",
+                    "description": "Three days of fog and sun, nine pieces, one small case.",
+                    "badge": "New",
+                    "category": "Watch & read"
+                },
+                {
+                    "slug": "last-light-letter",
+                    "title": "Last Light — the Sunday letter",
+                    "url": "https://lastlight.substack.com",
+                    "description": "Where the week's light was best, what I wore into it, and what I'd skip.",
+                    "category": "Watch & read"
+                },
+                {
+                    "slug": "lisbon-map",
+                    "title": "My Lisbon map — 40 places I actually go",
+                    "url": "https://luamarinho.gumroad.com/l/lisbon-map",
+                    "description": "Miradouros by the hour, tascas without menus in English, the good linen shop.",
+                    "badge": "Free",
+                    "category": "Guides"
+                },
+                {
+                    "slug": "summer-packing-list",
+                    "title": "The summer packing list",
+                    "url": "https://luamarinho.gumroad.com/l/summer-list",
+                    "description": "The nine pieces from the Sintra video, printable and in order.",
+                    "category": "Guides"
+                },
+                {
+                    "slug": "casa-areia-linen",
+                    "title": "Casa Areia — the linen edit",
+                    "url": "https://www.casaareia.example/lua",
+                    "description": "The shirt and wide trousers from the Alfama stairs, restocked in oat and ink.",
+                    "badge": "Code LUA15",
+                    "category": "Partners"
+                },
+                {
+                    "slug": "tecela-knit",
+                    "title": "Tecelã — hand-knit in the Minho",
+                    "url": "https://www.tecela.example/lua",
+                    "description": "The moss sweater from the Sintra diary entry, and the cream cardigan.",
+                    "category": "Partners"
+                },
+                {
+                    "slug": "closet-on-vinted",
+                    "title": "My closet on Vinted",
+                    "url": "https://www.vinted.pt/member/luamarinho",
+                    "description": "Everything I've worn in the diary and no longer reach for.",
+                    "category": "Shop"
+                }
+            ]
+        },
+        "looks": {
+            "entries": [
+                {
+                    "slug": "alfama-linen",
+                    "title": "Linen on the Alfama Stairs",
+                    "category": "Everyday",
+                    "description": "An untucked white linen shirt, wide oat trousers and a crocheted straw bag — the uniform for a city that is mostly stairs and mostly warm.",
+                    "productLinks": [
+                        {
+                            "label": "The linen shirt",
+                            "url": "https://www.casaareia.example/shirt"
+                        },
+                        {
+                            "label": "The wide trousers",
+                            "url": "https://www.casaareia.example/trousers"
+                        },
+                        {
+                            "label": "The straw bag",
+                            "url": "https://www.oficinapalha.example/bag"
+                        }
+                    ],
+                    "featured": true
+                },
+                {
+                    "slug": "feira-stripes",
+                    "title": "Stripes for the Feira da Ladra",
+                    "category": "Market day",
+                    "description": "A blue-striped shirt, cream jeans and brown loafers for the flea market — good for kneeling over crates of old plates, better for carrying one home.",
+                    "productLinks": [
+                        {
+                            "label": "The striped shirt",
+                            "url": "https://www.casaareia.example/stripe"
+                        },
+                        {
+                            "label": "The loafers",
+                            "url": "https://www.sapatarialume.example/loafer"
+                        }
+                    ],
+                    "featured": true
+                },
+                {
+                    "slug": "ferry-to-cacilhas",
+                    "title": "The Ferry to Cacilhas",
+                    "category": "Travel",
+                    "description": "A butter-yellow satin skirt, a white tee and a cable cardigan off the shoulders — twelve minutes across the river, dressed for dinner on the other side.",
+                    "productLinks": [
+                        {
+                            "label": "The satin skirt",
+                            "url": "https://www.casaareia.example/skirt"
+                        },
+                        {
+                            "label": "The cable cardigan",
+                            "url": "https://www.tecela.example/cardigan"
+                        }
+                    ],
+                    "featured": true
+                },
+                {
+                    "slug": "patio-evening",
+                    "title": "Supper in the Patio",
+                    "category": "Evening",
+                    "description": "A chocolate satin skirt, a fine black knit and a gold chain — string lights, a garden table, and a skirt that moves when the conversation does.",
+                    "productLinks": [
+                        {
+                            "label": "The satin skirt",
+                            "url": "https://www.casaareia.example/bias"
+                        },
+                        {
+                            "label": "The fine knit",
+                            "url": "https://www.tecela.example/fine-knit"
+                        },
+                        {
+                            "label": "The sandals",
+                            "url": "https://www.sapatarialume.example/sandal"
+                        }
+                    ]
+                },
+                {
+                    "slug": "santa-apolonia-carry-on",
+                    "title": "Carry-On from Santa Apolónia",
+                    "category": "Travel",
+                    "description": "A navy cardigan buttoned as a top, cream wide trousers and suede loafers — the train to Porto, one small case, nothing that creases.",
+                    "productLinks": [
+                        {
+                            "label": "The navy cardigan",
+                            "url": "https://www.tecela.example/navy"
+                        },
+                        {
+                            "label": "The wide trousers",
+                            "url": "https://www.casaareia.example/cream"
+                        },
+                        {
+                            "label": "The suede loafers",
+                            "url": "https://www.sapatarialume.example/suede"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "Bordeaux as the brand: on the miradouro register the accent is the italic line, the kicker rules and the text-link asks — the photographs carry the color. Marketing pages resolve brand over preset accent, so keeping the values identical to the preset's own accents re-inks app surfaces without shifting the pages. mode light opens on the limestone ground; navigation re-pins the shared influencerShell's centered masthead to the full-width bar — the name left, the pages right — which framestack floats over the first photograph.",
+        "mode": "light",
+        "brand": {
+            "primary": "#7a2331",
+            "primaryDark": "#d9848f"
+        },
+        "navigation": {
+            "variant": "full-width"
+        }
+    },
+    "landing": {
+        "$comment": "The pin: the miradouro register and the diary home — the seed sets home.edition, so the home opens on the hero photograph (hero full-bleed-media, the headline's last line in italic), then the diary: four more photographs edge to edge at the hero's size with the place, hour and outfit written into each (gallery sequence + captionStack overlay-start), then the base's looks rail, platforms, hub teaser, metrics and one featured quote, closing on the colophon's sign-off line. Every page closes on the colophon; the inner pages keep the base's skeletons with this seed's content. resolveCatalog puts these in place of the base's pages.",
+        "style": {
+            "preset": "miradouro"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "story",
+                        "type": "gallery",
+                        "variant": "sequence"
+                    },
+                    {
+                        "id": "featured-looks",
+                        "type": "showcase",
+                        "variant": "media-rail"
+                    },
+                    {
+                        "id": "platforms",
+                        "type": "showcase",
+                        "variant": "collections"
+                    },
+                    {
+                        "id": "right-now",
+                        "type": "showcase",
+                        "variant": "card-grid"
+                    },
+                    {
+                        "id": "proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner",
+                        "variant": "colophon"
+                    }
+                ]
+            },
+            "looks": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "looks",
+                        "type": "showcase",
+                        "variant": "filterable-grid"
+                    },
+                    {
+                        "id": "shop-the-looks",
+                        "type": "showcase",
+                        "variant": "collections"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner",
+                        "variant": "colophon"
+                    }
+                ]
+            },
+            "links": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "link-hub",
+                        "type": "showcase",
+                        "variant": "filterable-grid"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner",
+                        "variant": "colophon"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "collaborations",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "contact-banner",
+                        "type": "cta-banner",
+                        "variant": "colophon"
+                    }
+                ]
+            },
+            "contact": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "contact-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

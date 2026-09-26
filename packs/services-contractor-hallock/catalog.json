@@ -1,0 +1,176 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services pack composed with a Hamptons and Nantucket shingle-style estate builder content seed (Hallock & Sons, Amagansett), a navy brand, and the shingle register. Everything else — builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-contractor-hallock",
+    "remixOf": "services",
+    "templateKey": "repobot-services-contractor-hallock",
+    "title": "Shingle-style estate builder",
+    "description": "A family estate builder's site as a country-house quarterly: the engraved title over the estate at dawn, one house told as a long-form feature — the story in two columns under a drop cap, the porch as a spread, a pull quote, the shingle and the newel post up close, the elevation drawing — then the lanes the family has built on and a commission inquiry — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Hamptons shingle-style estate builder",
+    "contentSeed": "web/app/src/View/Services/hallockRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twin) — the composed template's booking widget and Manage calendar open on this team's own week, not the base demo business's.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "introduction",
+                    "name": "A call with a Hallock",
+                    "durationMinutes": 30,
+                    "description": "The property, the house, and the timeline — a first conversation."
+                },
+                {
+                    "typeId": "property-visit",
+                    "name": "Property visit",
+                    "durationMinutes": 90,
+                    "description": "A Hallock walks the property with you and your architect."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "william-hallock",
+                    "name": "William Hallock",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 480,
+                            "end": 900
+                        },
+                        {
+                            "day": 4,
+                            "start": 480,
+                            "end": 900
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "Navy as the brand: on the shingle register the accent is the ink of the ask, the rules and the crest, so a rebrand re-inks the letterhead without re-shooting the estate. Marketing pages resolve brand over preset accent, so the overlay re-skins the pages and the app surfaces together. navigation re-pins the shared servicesShell chrome to the inline letterhead (a declared theme variant outranks the shell prop). mode light opens on the ivory laid stock (theme merges shallowly).",
+        "brand": {
+            "primary": "#1c2944",
+            "primaryDark": "#e6dbbd"
+        },
+        "mode": "light",
+        "navigation": {
+            "variant": "inline"
+        }
+    },
+    "landing": {
+        "$comment": "The pin: the shingle register and the quarterly home — the engraved title over the estate (full-bleed-media; the seed's hero kicker under the crest), one estate as a long-form story (the seed's feature as content-split feature: two columns, the spread, the pull quote, the figures, the elevation), the lanes as a spaced line (service-area), and the commission ask. The seed hides the home services grid (home.serviceGrid). The estates page opens on the restorations as before/after comparisons over how a commission runs; the about page carries the numbers. resolveCatalog puts these in place of the base's pages.",
+        "style": {
+            "preset": "shingle"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "feature",
+                        "type": "content-split",
+                        "variant": "feature"
+                    },
+                    {
+                        "id": "service-area",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "projects": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "transformations",
+                        "type": "gallery",
+                        "variant": "before-after"
+                    },
+                    {
+                        "id": "process",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "showcase",
+                        "variant": "card-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "quote": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "quote-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

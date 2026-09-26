@@ -1,0 +1,370 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the care pack composed with a midwife-led birth center's content seed, re-registered in the adobe register (clay plaster, olive and fired-clay bands) with its own pinned page skeletons. Everything else — pages' builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "care-obgyn-oakadobe",
+    "remixOf": "care",
+    "templateKey": "repobot-care-obgyn-oakadobe",
+    "title": "Birth Center & Midwifery",
+    "description": "A midwife-led birth center's site with real online booking: Oak & Adobe Birth Center in Ojai, told as a stack of photographs between painted bands. The home opens on a birth suite at dusk under \"Birth, at home in the valley\", an olive band with the three facts that matter (three suites, licensed midwives, five minutes from the hospital), the midwife listening at a prenatal visit over a clay band — the same two midwives from the first visit to six weeks after — new parents with their newborn, and the tour as the one ask. The midwives, the care and its self-pay package, the plans billed directly, and a booking widget for tours, consults, and prenatal visits keep their own pages. Adobe plaster, olive, fired clay, and a calligraphic serif. Flexes to midwifery practices, doula collectives, and small maternity clinics.",
+    "marketingExampleTitle": "Birth center site",
+    "contentSeed": "web/app/src/View/Care/oakAdobeRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so these practice and appointments seeds replace the base pack's at compose and mirror THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twins) — the composed template's Manage editors and booking widget open on the birth center, not the base clinic.",
+        "practice": {
+            "providers": [
+                {
+                    "providerId": "reyes-cnm",
+                    "name": "Inés Reyes",
+                    "credentials": "CNM",
+                    "role": "Midwife · Co-founder",
+                    "bio": "Inés caught babies at a hospital in Oxnard for nine years before she and Hanne opened Oak & Adobe in 2019. She sees every family on her side of the schedule from the first visit to the six-week check, and she's bilingual in English and Spanish."
+                },
+                {
+                    "providerId": "lindqvist-cnm",
+                    "name": "Hanne Lindqvist",
+                    "credentials": "CNM",
+                    "role": "Midwife · Co-founder",
+                    "bio": "Hanne trained in Stockholm and Los Angeles and has attended more than eight hundred births, about a third of them in water. She runs the center's postpartum home visits and still drives out to every one."
+                },
+                {
+                    "providerId": "achebe-ibclc",
+                    "name": "Adaeze Achebe",
+                    "credentials": "IBCLC",
+                    "role": "Lactation consultant",
+                    "bio": "Adaeze meets every family on day two and again at one week, at the center or at home. Feeding, sleep, pumping for work — she has an answer, or she'll find one, and she never makes anyone feel behind."
+                }
+            ],
+            "services": [
+                {
+                    "name": "Prenatal care",
+                    "description": "Hour-long visits with the same two midwives, from the first appointment to thirty-nine weeks. Labs, ultrasound referrals, and time to ask everything."
+                },
+                {
+                    "name": "Birth in the suites",
+                    "description": "Three suites with a bed, a deep tub, and a window on the valley. Your people come; the midwife stays until you're settled at home."
+                },
+                {
+                    "name": "Water birth",
+                    "description": "Labor and birth in warm water, if you want it and it stays safe. Every suite has a tub; about half our families use it."
+                },
+                {
+                    "name": "Postpartum home visits",
+                    "description": "Visits at home on day one and day three, then at the center at two and six weeks — for you and the baby, by the midwife you know."
+                },
+                {
+                    "name": "Lactation support",
+                    "description": "Feeding help on day two and at one week with Adaeze, and a drop-in circle every Thursday morning for anyone who needs it."
+                },
+                {
+                    "name": "Well-person care",
+                    "description": "Annual exams, contraception, and preconception visits with the midwives, between babies or long after them."
+                }
+            ],
+            "insurance": [
+                "Blue Shield of California",
+                "Anthem Blue Cross",
+                "Aetna",
+                "Cigna",
+                "Medi-Cal",
+                "Self-pay birth package"
+            ],
+            "locations": [
+                {
+                    "locationId": "grand-avenue",
+                    "label": "Grand Avenue",
+                    "address": "1120 Grand Avenue, Ojai, CA 93023",
+                    "phone": "(805) 555-0148",
+                    "hours": [
+                        {
+                            "day": 1,
+                            "open": 540,
+                            "close": 1020
+                        },
+                        {
+                            "day": 2,
+                            "open": 540,
+                            "close": 1020
+                        },
+                        {
+                            "day": 3,
+                            "open": 540,
+                            "close": 1020
+                        },
+                        {
+                            "day": 4,
+                            "open": 540,
+                            "close": 1020
+                        },
+                        {
+                            "day": 5,
+                            "open": 540,
+                            "close": 900
+                        },
+                        {
+                            "day": 6,
+                            "open": 540,
+                            "close": 720
+                        }
+                    ]
+                }
+            ],
+            "reviews": [
+                {
+                    "quote": "Inés was at my first visit and at the last push, and she knew exactly what I meant when I said I was done. I was not done. She was right.",
+                    "name": "Lucía M.",
+                    "detail": "Birth in the west suite, 2026"
+                },
+                {
+                    "quote": "Hanne came to our house the day after with a pot of soup and a scale. We cried, she weighed him, we ate the soup.",
+                    "name": "Sam & Theo R.",
+                    "detail": "Water birth, 2026"
+                },
+                {
+                    "quote": "Adaeze fixed in twenty minutes what three days of videos couldn't. Then she told me to go take a nap, and I did.",
+                    "name": "Priya K.",
+                    "detail": "Lactation visits, 2025"
+                }
+            ],
+            "newPatient": [
+                {
+                    "title": "Come on a tour",
+                    "body": "Tours run the first Saturday of every month at ten. See the suites, meet a midwife, and ask the questions you'd feel silly asking on the phone."
+                },
+                {
+                    "title": "A consult with the midwives",
+                    "body": "Thirty minutes to talk through your health history and whether a birth center is right for you. Most healthy, low-risk pregnancies are."
+                },
+                {
+                    "title": "Your first prenatal visit",
+                    "body": "An hour-long visit before twelve weeks if you can: history, labs, the due date, and a plan that fits you."
+                },
+                {
+                    "title": "If plans change",
+                    "body": "Ojai Valley Hospital is five minutes away. If you need to transfer, your midwife comes with you and stays."
+                }
+            ]
+        },
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "tour",
+                    "name": "Birth center tour",
+                    "durationMinutes": 60,
+                    "description": "The first Saturday of every month: the suites, a midwife, and your questions."
+                },
+                {
+                    "typeId": "consult",
+                    "name": "Midwife consult",
+                    "durationMinutes": 30,
+                    "description": "A first talk about your pregnancy and whether the center fits."
+                },
+                {
+                    "typeId": "prenatal",
+                    "name": "Prenatal visit",
+                    "durationMinutes": 60,
+                    "description": "An hour with your midwife, every visit."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "reyes-cnm",
+                    "name": "Inés Reyes, CNM",
+                    "windows": [
+                        {
+                            "day": 1,
+                            "start": 540,
+                            "end": 960
+                        },
+                        {
+                            "day": 3,
+                            "start": 540,
+                            "end": 960
+                        },
+                        {
+                            "day": 6,
+                            "start": 540,
+                            "end": 720
+                        }
+                    ]
+                },
+                {
+                    "providerId": "lindqvist-cnm",
+                    "name": "Hanne Lindqvist, CNM",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 540,
+                            "end": 960
+                        },
+                        {
+                            "day": 4,
+                            "start": 540,
+                            "end": 960
+                        }
+                    ]
+                },
+                {
+                    "providerId": "achebe-ibclc",
+                    "name": "Adaeze Achebe, IBCLC",
+                    "windows": [
+                        {
+                            "day": 4,
+                            "start": 540,
+                            "end": 720
+                        },
+                        {
+                            "day": 5,
+                            "start": 540,
+                            "end": 840
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The adobe register's olive as the project brand: mode light opens the site in the register's native appearance (plaster ground, clay ink, olive and fired-clay bands); the Feel toggle swaps to the same house after sundown. Marketing pages resolve brand over preset accent, so keeping the values identical to the preset's own accents re-inks app surfaces without shifting the pages. The shared careShell's full-width chrome stays — the framestack treatment floats it over the home's photograph.",
+        "mode": "light",
+        "brand": {
+            "primary": "#565c3a",
+            "primaryDark": "#b9bf93"
+        }
+    },
+    "landing": {
+        "$comment": "A pinned layout (packs/README.md 'Derived templates'): style re-registers the base's pages in the adobe register, and pages carries exactly the skeletons careLanding.ts emits from this remix's contentSeed — the seed sets home.stack, so the home is the photograph, the olive band, two frames over their caption bands, and the colophon tour ask; the inner pages are the base's, with the price list because the seed fills it — so the composed template's document reproduces its code config section for section (tests/View/Care/careLanding.test.ts reads this through composedLandingSeed).",
+        "style": {
+            "preset": "adobe"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "band",
+                        "type": "rich-prose",
+                        "variant": "narrow"
+                    },
+                    {
+                        "id": "frames",
+                        "type": "gallery",
+                        "variant": "sequence"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "colophon"
+                    }
+                ]
+            },
+            "providers": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "providers",
+                        "type": "team",
+                        "variant": "portraits"
+                    },
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "card-grid",
+                        "variant": "4up"
+                    },
+                    {
+                        "id": "menu",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "new-patients": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "first-visit",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "insurance",
+                        "type": "logos",
+                        "variant": "strip"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "card"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "how",
+                        "type": "steps",
+                        "variant": "numbered-cards"
+                    },
+                    {
+                        "id": "privacy",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "visit",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    }
+                ]
+            }
+        }
+    }
+}

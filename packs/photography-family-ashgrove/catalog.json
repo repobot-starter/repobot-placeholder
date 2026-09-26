@@ -1,0 +1,221 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the photography-family pack composed with a heritage portrait studio's content seed (Ashgrove Portrait Studio, Hudson NY), re-registered in the darkroom register (the portrait studio after dark) with its own pinned page skeletons — the seed's `home.layout: \"specimens\"` sets one full-bleed black-and-white plate over the prints, one sitting in four processes matted like museum prints — and its own appointments seed, mirrored from the seed module.",
+    "key": "photography-family-ashgrove",
+    "remixOf": "photography-family",
+    "templateKey": "repobot-photography-family-ashgrove",
+    "title": "Ashgrove — Heritage Portrait Studio",
+    "description": "A Hudson Valley portrait studio's site in the darkroom register (charcoal and silver, an old-style book serif with engraved capitals): one full-bleed black-and-white photograph of a family beside the studio's 8x10 camera — Sit for a portrait your great-grandchildren will keep — then the prints: one sitting in silver gelatin, platinum palladium, tintype and cyanotype, each matted like a museum print with its note and price on an engraved plaque, the sitting and the ask, recent sittings at one size, the studio, the archive and kind words.",
+    "marketingExampleTitle": "Heritage portrait studio site",
+    "contentSeed": "web/app/src/View/PhotographyFamily/ashgroveRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module codeAppointments entry for entry (the remix-seed test pins the twin) — the composed template's Manage session calendar and booking widget open on the documentary offering: the half day books straight off the weekend calendar; full days and day-in-the-life days start with a planning call because they run past the booking domain's 240-minute slot ceiling. One provider: a one-photographer studio.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "family-sitting",
+                    "name": "Family sitting",
+                    "durationMinutes": 120,
+                    "description": "The whole family on the 8x10, two hours"
+                },
+                {
+                    "typeId": "portrait-sitting",
+                    "name": "Portrait sitting",
+                    "durationMinutes": 60,
+                    "description": "One to three people, about an hour"
+                },
+                {
+                    "typeId": "print-consult",
+                    "name": "Print consultation",
+                    "durationMinutes": 30,
+                    "description": "Choose the process and size from your proofs"
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "june-adeyemi",
+                    "name": "June Adeyemi",
+                    "windows": [
+                        {
+                            "day": 3,
+                            "start": 540,
+                            "end": 780
+                        },
+                        {
+                            "day": 5,
+                            "start": 540,
+                            "end": 780
+                        },
+                        {
+                            "day": 6,
+                            "start": 540,
+                            "end": 900
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The darkroom register's brand overlay: mode dark opens the site in its native charcoal print-room appearance (the appearance toggle still swaps to the silver-paper light reading), and the register's silver rides as the project brand so app-side surfaces (the code-gated proofing room's chrome, the booking widget) read in the same ink.",
+        "mode": "dark",
+        "brand": {
+            "primary": "#3d3c39",
+            "primaryDark": "#c8c4ba"
+        }
+    },
+    "landing": {
+        "$comment": "A pinned layout (packs/README.md 'Derived templates'): style re-registers the base's pages in the darkroom register (the portrait studio after dark: charcoal and silver, Crimson Pro with Cinzel engraved capitals, the specimens board as matted museum prints on engraved plaques, a hairline ask), and pages carries exactly the skeletons familyLanding.ts emits from this remix's contentSeed — the builder home (a full-bleed hero, the session builder, the selected-work wall, the photographer, the collections, one voice, the booking banner) — so the composed template's document reproduces its code config section for section (tests/View/PhotographyFamily/familyLanding.test.ts reads this through composedLandingSeed).",
+        "style": {
+            "preset": "darkroom"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "full-bleed-media"
+                    },
+                    {
+                        "id": "the-prints",
+                        "type": "showcase",
+                        "variant": "specimens"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    },
+                    {
+                        "id": "selected-work",
+                        "type": "gallery",
+                        "variant": "uniform"
+                    },
+                    {
+                        "id": "intro",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "collections",
+                        "type": "showcase",
+                        "variant": "collections"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    }
+                ]
+            },
+            "work": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "collections",
+                        "type": "showcase",
+                        "variant": "collections"
+                    }
+                ]
+            },
+            "galleries": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "gallery-steps",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "sample-room",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "investment": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "offerings",
+                        "type": "pricing",
+                        "variant": "tiers"
+                    },
+                    {
+                        "id": "how-it-works",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq",
+                        "variant": "accordion"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials"
+                    },
+                    {
+                        "id": "inquire-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "flexible-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "inquire": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "inquiry-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,164 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the photography-music pack composed with an East Nashville music photographer's content seed (Theo Marsh, the young garage, soul, indie and hip-hop scene), an ink brand, and the liner register. home.layout \"records\" in the seed turns the home page into the record wall — one full-bleed frame, a tight grid of square album covers with invented artists and titles, then one line and a text link. Everything else — builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "photography-music-theo",
+    "remixOf": "photography-music",
+    "templateKey": "repobot-photography-music-theo",
+    "title": "Album-art photographer",
+    "description": "A music photographer's site on near-black for a young scene: one full-bleed live frame, then a record wall — a tight grid of square album covers, each with its artist and title — and one line with a text link to get in touch. Albums, client proofing galleries, and a live studio calendar behind it — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Nashville music photographer",
+    "contentSeed": "web/app/src/View/PhotographyMusic/theoRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twin) — the composed template's /book slot picker and Manage calendar open on Theo's own sessions, not the base demo photographer's.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "cover-shoot",
+                    "name": "Cover shoot",
+                    "durationMinutes": 240,
+                    "description": "A night or an afternoon for the sleeve — in the room the record sounds like, with the light it needs."
+                },
+                {
+                    "typeId": "press-shoot",
+                    "name": "Press shoot",
+                    "durationMinutes": 120,
+                    "description": "Two hours for the one-sheet, the festival program and the poster — direct flash, a bold wall, your attitude."
+                },
+                {
+                    "typeId": "listening-session",
+                    "name": "Listening session",
+                    "durationMinutes": 60,
+                    "description": "An hour at the studio with the demos and a pot of coffee, to find the picture before we shoot it."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "theo-marsh",
+                    "name": "Theo Marsh",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 780,
+                            "end": 1200
+                        },
+                        {
+                            "day": 4,
+                            "start": 780,
+                            "end": 1200
+                        },
+                        {
+                            "day": 6,
+                            "start": 600,
+                            "end": 1080
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "The liner register's brand overlay: the preset's own warm-ink accents as the project brand, so app surfaces wear the same sleeve-stock register as the marketing pages (the pages resolve brand over preset accent; identical values mean no shift). mode dark opens on the register's near-black stock, so the night-lit live frames and the hero bleed into the page (the warm-white light mode was shot too and read weaker for this scene); theme is set whole because it merges shallowly. The base's burger-overlay nav is inherited: the name alone over the photograph, the links folded away.",
+        "brand": {
+            "primary": "#1f1c18",
+            "primaryDark": "#f3ede2"
+        },
+        "mode": "dark"
+    },
+    "landing": {
+        "$comment": "The liner register over the base's routes. pages replaces the base's skeletons wholesale, so every routed page is pinned: home is the record wall (a one-frame gallery sequence, the covers gallery, the colophon banner); the rest keep the base's compositions.",
+        "style": {
+            "preset": "liner"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "frame",
+                        "type": "gallery",
+                        "variant": "sequence"
+                    },
+                    {
+                        "id": "records",
+                        "type": "gallery",
+                        "variant": "covers"
+                    },
+                    {
+                        "id": "closing",
+                        "type": "cta-banner",
+                        "variant": "colophon"
+                    }
+                ]
+            },
+            "work": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "collections",
+                        "type": "showcase",
+                        "variant": "collections"
+                    }
+                ]
+            },
+            "galleries": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "how-proofing",
+                        "type": "steps",
+                        "variant": "numbered-cards"
+                    },
+                    {
+                        "id": "sample-gallery",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "full-bleed"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-right"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "book-banner",
+                        "type": "cta-banner",
+                        "variant": "full-bleed"
+                    }
+                ]
+            },
+            "book": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "booking-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

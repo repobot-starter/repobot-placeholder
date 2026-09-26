@@ -1,0 +1,21 @@
+{
+    "schemaNamespace": "AppGraphqlApi",
+    "input": {
+        "operationSearchPaths": ["./Operations/**/*.graphql"],
+        "schemaSearchPaths": ["./Generated/*.graphqls"]
+    },
+    "output": {
+        "testMocks": {
+            "none": {}
+        },
+        "schemaTypes": {
+            "path": "./AppGraphqlApi",
+            "moduleType": {
+                "swiftPackageManager": {}
+            }
+        },
+        "operations": {
+            "inSchemaModule": {}
+        }
+    }
+}

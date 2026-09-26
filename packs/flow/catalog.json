@@ -1,0 +1,15 @@
+{
+    "key": "flow",
+    "templateKey": "repobot-flow",
+    "title": "Live Flow Budgeting",
+    "description": "Live budgeting and forecasting over your accounting data: connect QuickBooks or Xero, build budget grids whose rows link to live P&L categories — actuals auto-populate and variance is always current — then export any template to Excel or import one to start.",
+    "marketingExampleTitle": "Live budgeting and forecasting",
+    "homePath": "/",
+    "previewPath": "/templates",
+    "homeViewDir": "web/app/src/View/Site",
+    "base": "app",
+    "clientOnly": false,
+    "capabilities": ["AUTH", "DATABASE", "STORAGE", "AI", "BACKEND"],
+    "authMethods": ["email-code", "password"],
+    "isDefault": false
+}

@@ -1,0 +1,227 @@
+{
+    "$comment": "A derived template (packs/README.md 'Derived templates'): the services pack composed with a braids & natural-hair studio content seed (The Crown Room, Bed-Stuy, Brooklyn), a tangerine brand, and the crown register. Everything else — builders, sections, contract, tests — is the base pack's; compose expands this catalog through resolveCatalog (scripts/lib/pack-switch.mjs).",
+    "key": "services-hair-braids",
+    "remixOf": "services",
+    "templateKey": "repobot-services-hair-braids",
+    "title": "Braids & natural hair studio",
+    "description": "A braids and natural-hair studio's site as a glossy late-90s cover: the name cast in chrome and gold over the cover photograph with its cover lines down the left, the starting prices as the strip under it, a style menu with every length, chair time, and price, a lookbook of real installs, an install-day before/after, the house rules on one card, and online booking for consults, installs, and retwists — a multi-page site edited in one content file.",
+    "marketingExampleTitle": "Brooklyn braid studio",
+    "contentSeed": "web/app/src/View/Services/hairBraidsRemix.content.ts",
+    "content": {
+        "$comment": "Business-content contract seed override. resolveCatalog merges a remix's content per-domain over the base's, so this appointments seed replaces the base pack's at compose and mirrors THIS remix's contentSeed module entry for entry (the remix-seed tests pin the twin) — the composed template's booking widget and Manage calendar open on this studio's own chair, not the base demo business's.",
+        "appointments": {
+            "types": [
+                {
+                    "typeId": "style-consult",
+                    "name": "Free style consult",
+                    "durationMinutes": 15,
+                    "description": "Photos, your hair now, and the size, length, and price for your style — by video or at the chair."
+                },
+                {
+                    "typeId": "braid-install",
+                    "name": "Braid install",
+                    "durationMinutes": 240,
+                    "description": "Knotless, boho, Fulani, or stitch — this holds your start; Dez keeps the rest of the day for your install. The exact style is set at your consult."
+                },
+                {
+                    "typeId": "locs-retwist",
+                    "name": "Locs retwist",
+                    "durationMinutes": 120,
+                    "description": "Scalp cleanse, palm-roll or interlock retwist, and a style to finish."
+                }
+            ],
+            "providers": [
+                {
+                    "providerId": "dez-okafor",
+                    "name": "Dez Okafor",
+                    "windows": [
+                        {
+                            "day": 2,
+                            "start": 540,
+                            "end": 1140
+                        },
+                        {
+                            "day": 3,
+                            "start": 540,
+                            "end": 1140
+                        },
+                        {
+                            "day": 4,
+                            "start": 540,
+                            "end": 1140
+                        },
+                        {
+                            "day": 5,
+                            "start": 540,
+                            "end": 1140
+                        },
+                        {
+                            "day": 6,
+                            "start": 420,
+                            "end": 1020
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "theme": {
+        "$comment": "Tangerine as the brand: on the crown register the accent is the enamel on the asks, the big cover-line verbs, and the sparkle before every kicker, while the metals (gold, chrome) are the register's own spot inks, so a rebrand re-enamels the cover without re-casting the masthead. Marketing pages resolve brand over preset accent, so the overlay re-skins the pages and the app surfaces together. navigation re-pins the shared servicesShell chrome (a declared theme variant outranks the shell prop): the inline bar — wordmark and dateline left, the sections and the ask right, lifting into a card on scroll — apart from the base's split letterhead, the landscaping band, the painting masthead, and the makeup artist's split. mode dark opens on the plum cover stock (theme merges shallowly).",
+        "brand": {
+            "primary": "#d4560a",
+            "primaryDark": "#ff7a1a"
+        },
+        "mode": "dark",
+        "navigation": {
+            "variant": "inline"
+        }
+    },
+    "landing": {
+        "$comment": "The pin: the crown register and the cover home — the masthead-overlay hero (the name in chrome and gold, the gold-ruled billing line, the cover lines), the starting prices as a static strip straight under it (the seed's ticker), the style menu (price-list), the lookbook plates (specimens), the install-day before/after, the house rules card (checklist), the chair's reviews, the neighborhoods, and the closing banner. The seed hides the home services grid (home.serviceGrid) and leaves the coastal-builder build log and materials board empty. The lookbook page opens on the same looks as a filterable grid; the other pages keep the base's skeletons. resolveCatalog puts these in place of the base's pages.",
+        "style": {
+            "preset": "crown"
+        },
+        "pages": {
+            "home": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "masthead-overlay"
+                    },
+                    {
+                        "id": "now-building",
+                        "type": "social-proof",
+                        "variant": "ticker"
+                    },
+                    {
+                        "id": "price-menu",
+                        "type": "pricing",
+                        "variant": "price-list"
+                    },
+                    {
+                        "id": "lookbook",
+                        "type": "showcase",
+                        "variant": "specimens"
+                    },
+                    {
+                        "id": "transformations",
+                        "type": "gallery",
+                        "variant": "before-after"
+                    },
+                    {
+                        "id": "policies",
+                        "type": "feature-grid",
+                        "variant": "checklist"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "single-featured"
+                    },
+                    {
+                        "id": "service-area",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "projects": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "lookbook",
+                        "type": "showcase",
+                        "variant": "filterable-grid"
+                    },
+                    {
+                        "id": "transformations",
+                        "type": "gallery",
+                        "variant": "before-after"
+                    },
+                    {
+                        "id": "process",
+                        "type": "steps",
+                        "variant": "timeline"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "services": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "services",
+                        "type": "showcase",
+                        "variant": "card-grid"
+                    },
+                    {
+                        "id": "faq",
+                        "type": "faq"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "about": {
+                "sections": [
+                    {
+                        "id": "story",
+                        "type": "content-split",
+                        "variant": "media-left"
+                    },
+                    {
+                        "id": "proof",
+                        "type": "social-proof",
+                        "variant": "metrics-row"
+                    },
+                    {
+                        "id": "credentials",
+                        "type": "social-proof",
+                        "variant": "text-logos"
+                    },
+                    {
+                        "id": "kind-words",
+                        "type": "testimonials",
+                        "variant": "quote-grid"
+                    },
+                    {
+                        "id": "quote-banner",
+                        "type": "cta-banner"
+                    }
+                ]
+            },
+            "quote": {
+                "sections": [
+                    {
+                        "id": "hero",
+                        "type": "hero",
+                        "variant": "statement"
+                    },
+                    {
+                        "id": "quote-form",
+                        "type": "lead-form",
+                        "variant": "detail-form"
+                    }
+                ]
+            }
+        }
+    }
+}

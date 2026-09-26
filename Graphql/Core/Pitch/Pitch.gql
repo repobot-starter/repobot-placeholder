@@ -1,0 +1,110 @@
+# Pitch domain: investor decks whose chart slides read the owner's live
+# accounting connection. Brand and copy are stored; the numbers never are —
+# traction, revenue, margins, and runway come from the live books at read
+# and export time, and the PDF export rides the documents kernel. All
+# operations require an authenticated user; decks are strictly per-user.
+
+"The fixed deck outline; every deck has one slide of each kind."
+enum PitchSlideKind {
+    COVER
+    TRACTION
+    REVENUE
+    MARGINS
+    RUNWAY
+    ASK
+}
+
+"An investor deck: brand plus the slide outline."
+type PitchDeck {
+    id: Id!
+    name: String!
+    companyName: String!
+    tagline: String
+    "The uploaded logo (an uploads row), or null for no logo."
+    logoUploadId: Id
+    "Hex accent color for slide accents, e.g. \"#1f6feb\"."
+    accentColor: String!
+    createdTime: Instant!
+    "The outline in order; excluded slides stay in the list with included: false."
+    slides: [PitchSlide!]!
+}
+
+"One slide: editable copy plus an include toggle (the cover is always included)."
+type PitchSlide {
+    id: Id!
+    kind: PitchSlideKind!
+    position: Int!
+    title: String!
+    body: String!
+    included: Boolean!
+}
+
+"One month of a deck metric, integer minor units."
+type PitchSeriesPoint {
+    "ISO month, YYYY-MM."
+    month: String!
+    minorUnits: Int!
+}
+
+"""
+The live numbers behind the chart slides, computed from the caller's books.
+Served only while the books are connected (the query returns null otherwise).
+"""
+type PitchDeckData {
+    "The connected company the numbers come from."
+    companyName: String!
+    "Lowercase ISO currency code, e.g. \"usd\"."
+    currency: String!
+    "Monthly revenue, trailing thirteen months, oldest first."
+    revenueSeries: [PitchSeriesPoint!]!
+    expenseSeries: [PitchSeriesPoint!]!
+    netIncomeSeries: [PitchSeriesPoint!]!
+    "Month-end cash, trailing thirteen months."
+    cashSeries: [PitchSeriesPoint!]!
+    "Revenue change over the trailing year, whole percent."
+    revenueGrowthPercent: Int!
+    "Latest month's net margin, whole percent."
+    netMarginPercent: Int!
+    "Trailing-three-month average net income; negative means burn."
+    averageNetIncomeMinorUnits: Int!
+    latestCashMinorUnits: Int!
+    "Whole months of runway at the trailing burn; null when cash-flow positive."
+    runwayMonths: Int
+    trailingTwelveMonthRevenueMinorUnits: Int!
+    customerCount: Int!
+    paidInvoiceCount: Int!
+}
+
+input PitchCreateDeckInput {
+    idempotencyKey: String!
+    name: String!
+    companyName: String!
+    tagline: String
+}
+
+input PitchUpdateDeckInput {
+    deckId: Id!
+    name: String
+    companyName: String
+    "Pass an empty string to clear; omit to leave unchanged."
+    tagline: String
+    "A READY image upload to brand the cover; empty string clears; omit to leave unchanged."
+    logoUploadId: String
+    accentColor: String
+}
+
+input PitchDeleteDeckInput {
+    deckId: Id!
+}
+
+input PitchUpdateSlideInput {
+    slideId: Id!
+    title: String
+    body: String
+    included: Boolean
+}
+
+input PitchExportDeckPdfInput {
+    idempotencyKey: String!
+    deckId: Id!
+}
